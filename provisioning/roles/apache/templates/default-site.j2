@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName {{ hostname }}
+    DocumentRoot "{{ root_directory }}"
+</VirtualHost>
+
+{% if ssl %}
+<VirtualHost *:443>
+    ServerName {{ ssl-hostname }}
+    DocumentRoot "{{ root_directory }}"
+
+    SSLEngine on
+    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+</VirtualHost>
+{% endif %}

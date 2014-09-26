@@ -1,0 +1,3 @@
+[submodule "dockerbox"]
+	path = dockerbox
+	url = git@github.com:liip/dockerbox.git

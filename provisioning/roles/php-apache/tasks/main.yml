@@ -1,0 +1,2 @@
+- name: install libapache2-mod-php5
+  apt: pkg=libapache2-mod-php5 state=present

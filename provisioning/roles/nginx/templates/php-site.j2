@@ -1,0 +1,13 @@
+{% extends "default-site.j2" %}
+
+{% block index %}
+    index index.php;
+{% endblock %}
+
+{% block extra %}
+    {{ super() }}
+
+    location ~ \.php$ {
+        include conf.d/partials/_php_fpm.conf;
+    }
+{% endblock %}

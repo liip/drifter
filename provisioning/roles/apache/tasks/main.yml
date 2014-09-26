@@ -1,0 +1,16 @@
+- name: install apache
+  apt: pkg=apache2 state=present
+
+- name: remove default vhost
+  file: name=/etc/apache2/sites-{{ item }}/000-default.conf state=absent
+  with_items:
+      - enabled
+      - available
+  notify: restart apache
+
+- name: create vhost config
+  template: src={{ nginx_template }} dest=/etc/nginx/sites-available/{{ hostname }}
+
+- name: enable vhost
+  file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/nginx/sites-enabled/{{ hostname }} state=link
+  notify: reload apache

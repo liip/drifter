@@ -1,0 +1,28 @@
+{% extends "default-site.j2" %}
+
+{% block extra %}
+    {{ super() }}
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass	http://localhost:{{ port }};
+    }
+
+    {% if static_dir %}
+        location {{ static_dir }} {
+            root {{ static_fs_dir }}
+            expires {{ expire_time }};
+        }
+    {% endif %}
+{% endblock %}
+
+{% block extra_server %}
+    {% if static_host %}
+        server {
+            server_name {{ static_host }};
+            root {{ static_fs_dir }}
+        }
+    {% endif %}
+{% endblock %}

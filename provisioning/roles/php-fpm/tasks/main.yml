@@ -1,0 +1,2 @@
+- name: install php5-fpm
+  apt: pkg=php5-fpm state=present

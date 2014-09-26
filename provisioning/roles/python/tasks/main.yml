@@ -1,0 +1,18 @@
+---
+- name: install python packages
+  apt: pkg={{ item }} state=present
+  with_items:
+    - python-virtualenv
+    - python-pip
+    - python-all-dev
+    - libmysqlclient-dev
+
+- name: install pillow dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - libfreetype6-dev
+    - libjpeg8-dev
+    - zlib1g-dev
+    - libwebp-dev
+    - liblcms2-dev
+    - libtiff5-dev

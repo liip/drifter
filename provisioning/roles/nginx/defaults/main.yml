@@ -1,0 +1,6 @@
+expire_time: 6h
+extra_hostnames: ""
+static_host: false
+static_dir: false
+static_fs_dir: ""
+index: false

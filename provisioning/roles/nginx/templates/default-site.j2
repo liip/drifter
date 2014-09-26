@@ -1,0 +1,17 @@
+server {
+    server_name {{ hostname }} {{ extra_hostnames }};
+
+    access_log	/var/log/nginx/{{ hostname }}.access.log;
+    error_log	/var/log/nginx/{{ hostname }}.error.log;
+
+    root {{ root_directory }};
+    {% if index %}
+    index {% block index %}{{ index }}{% endblock %}
+    {% endif %}
+
+{% block extra %}
+{% endblock %}
+}
+
+{% block extra_server %}
+{% endblock %}

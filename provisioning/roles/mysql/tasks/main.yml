@@ -1,0 +1,11 @@
+- name: install mysql 5.5
+  apt: pkg=mysql-server-5.5 state=present
+
+- name: install python-mysqldb (for ansible)
+  apt: pkg=python-mysqldb state=present
+
+- name: create database
+  mysql_db: name={{ database_name }} state=present
+
+- name: create database user
+  mysql_user: name={{ database_user }} password={{ database_password }} priv=`{{ database_name}}.*`:ALL state=present
