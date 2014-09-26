@@ -2,5 +2,6 @@
 # Launch vagrant and then run the given playbook in it
 - name: launch vagrant
   shell: cd dockerbox/ && vagrant up
+
 - name: launch the playbook into vagrant
   shell: cd dockerbox/ && vagrant ssh -c "ansible-playbook -c local --ask-sudo-pass {{ playbook }}.yml"

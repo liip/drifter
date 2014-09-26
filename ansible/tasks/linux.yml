@@ -1,9 +1,13 @@
 ---
 # build the docker image if needed, then run it
+- name: ensure that docker daemone is started
+  service: name=docker state=started
+
 - name: build the docker image
   docker_image: path='.' name={{ image_repository }} tag={{ image_name }} state=present
-  sudo: yes
 
 - name: "{{ playbook }} the image"
   docker: image="{{ image_repository }}:{{ image_name }}" tty=True state={{ docker_state }}
-  sudo: yes
+
+- include: set_linux_hosts.yml
+  when: playbook == "start"
