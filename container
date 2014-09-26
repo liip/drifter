@@ -1,0 +1,30 @@
+#!/bin/bash
+
+function playbook() {
+    ansible-playbook -c local --ask-sudo-pass ansible/$1.yml
+}
+
+case "$1" in
+    start)
+        playbook start
+        ;;
+    up)
+        playbook start
+        ;;
+    stop)
+        playbook stop
+        ;;
+    halt)
+        playbook stop
+        ;;
+    restart)
+        playbook restart
+        ;;
+    status)
+        playbook status
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+        ;;
+esac

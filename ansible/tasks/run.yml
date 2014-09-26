@@ -1,0 +1,9 @@
+---
+- include: linux.yml
+  vars:
+    ip_suffix: 10 # This is the IP suffix to use (it must be unique accross projects)
+    image_repository: 'liip' # This is the image repository
+    image_name: 'test' # This is the name of the docker image
+  when: ansible_system == "Linux"
+- include: vagrant.yml
+  when: ansible_system != "Linux"
