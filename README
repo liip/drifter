@@ -16,6 +16,11 @@ Overview
 In order to streamline our project setups and to ease the "entry cost" for a new squad member, we
 decided as a team to use a common virtualized development environment.
 
+Requirements
+============
+
+You must have docker and python-docker installed.
+
 Docker image
 ============
 

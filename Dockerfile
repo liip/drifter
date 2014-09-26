@@ -6,17 +6,15 @@ FROM debian:wheezy
 MAINTAINER Gilles Crettenand <gilles.crettenand@liip.ch>
 
 # set sources
-RUN echo "deb http://ftp.ch.debian.org/debian/ wheezy main contrib non-free" > /etc/apt/sources.list.d/wheezy.list
-RUN echo "deb http://ftp.ch.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list.d/wheezy.list
-RUN echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> /etc/apt/sources.list.d/wheezy.list
-RUN echo "deb http://ftp.ch.debian.org/debian/ wheezy-backports main contrib non-free" > /etc/apt/sources.list.d/backports.list
-RUN rm -f /etc/apt/sources.list
+RUN rm -f /etc/apt/sources.list && ( \
+      echo "deb http://ftp.ch.debian.org/debian/ wheezy main contrib non-free" && \
+      echo "deb http://ftp.ch.debian.org/debian/ wheezy-updates main contrib non-free" && \
+      echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" \
+    ) > /etc/apt/sources.list.d/wheezy.list && \
+    echo "deb http://ftp.ch.debian.org/debian/ wheezy-backports main contrib non-free" > /etc/apt/sources.list.d/backports.list
 
-# update packages
-RUN apt-get update && apt-get dist-upgrade -y
-
-# install ansible
-RUN apt-get install -y ansible
+# update packages and install ansible
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y ansible apt-utils
 
 # copy provisioning files
 ADD ./provisioning ./provisioning
