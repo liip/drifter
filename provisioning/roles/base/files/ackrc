@@ -1,0 +1,31 @@
+# always use colors
+--color
+
+# case insensitive only when no upper case
+--smart-case
+
+# ignore sf2 cache
+--ignore-dir=app/cache
+
+# ignore VCA specific dirs
+--ignore-dir=web/media
+--ignore-dir=app/logs
+--ignore-dir=.idea
+--ignore-dir=web/uploads
+--ignore-dir=web/assetic
+--ignore-dir=web/static
+--ignore-dir=src/VCA/ModelBundle/Model/om
+--ignore-dir=v2/pub/media/cache
+--ignore-dir=v2/media/logs
+--ignore-dir=v1/media/view-cache
+--ignore-dir=deployment/local_test
+
+# sort files
+--sort-files
+
+# add mustache
+--type-set=mustache=.mustache
+# add compass
+--type-set=compass=.scss
+# add twig
+--type-set=twig=.twig

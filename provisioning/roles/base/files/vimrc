@@ -1,0 +1,39 @@
+" activate syntax highlighting and set colors
+syntax on
+set background=dark
+
+" jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" load indentation rules and plugins according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+set showcmd			" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
+set autoread		" auto read when file are changed outside
+set number			" show line numbers
+set cursorline		" highlight the current line
+set autoindent		" keep indentation on new line
+set nocompatible	" break VI compatibility
+set ttyfast			" smoother redrawing
+set scrolloff=3		" keep at least 3 line of context when scrolling
+set ruler			" show line / column position
+
+" show more option on completion
+set wildmenu	wildmode=longest:full,full
+
+" tab configuration
+set expandtab		" spaces instead of tabs
+set shiftwidth=4	" number of space for indentation
+set tabstop=4		" size of a tab
+set softtabstop=4	" size of a soft tab
+
+" command to save the current file as root
+:command Wroot %!sudo tee %

@@ -1,0 +1,29 @@
+# append history file
+shopt -s histappend
+
+# correct spelling mistakes when doing a cd
+shopt -s cdspell
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+    shopt -s "$option" 2> /dev/null
+done
+
+# add user bin directory
+PATH=./:$PATH
+if [ -d ~/bin ]; then
+    PATH=~/bin:$PATH
+fi
+
+# set a fancy prompt (non-color, overwrite the one in /etc/profile)
+if [ -f ~/.ps1 ]; then
+    source ~/.ps1
+fi
+
+# source aliases
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+fi
+

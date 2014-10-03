@@ -7,10 +7,23 @@
 - name: ensure base packages are installed
   apt: pkg={{ item }} state=present
   with_items:
+    - procps
+    - command-not-found
     - bash-completion
     - bzip2
     - git
     - vim
     - ack-grep
     - build-essential
+
+- name: install shell config
+  copy: src={{ item }} dest=/root/.{{ item }}
+  with_items:
+    - aliases
+    - bashrc
+    - ps1
+    - gitconfig
+    - gitglobalignore
+    - ackrc
+    - vimrc
 

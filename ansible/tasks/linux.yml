@@ -4,10 +4,11 @@
   service: name=docker state=started
 
 - name: build the docker image
-  docker_image: path='.' name={{ image_repository }} tag={{ image_name }} state=present
+  docker_image: path='./../../' name={{ image_repository }} tag={{ image_name }} state=present
+#  this is not working it seems, destroy the image before trying
 
 - name: "{{ playbook }} the image"
-  docker: image="{{ image_repository }}:{{ image_name }}" tty=True state={{ docker_state }}
+  docker: image="{{ image_repository }}:{{ image_name }}" tty=True command=/sbin/init state={{ docker_state }}
 
 - include: set_linux_hosts.yml
   when: playbook == "start"
