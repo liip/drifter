@@ -1,2 +1,2 @@
 site_template: default-site.j2
-ssl: false
+ssl-hostname: false

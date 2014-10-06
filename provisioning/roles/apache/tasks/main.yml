@@ -2,7 +2,7 @@
   apt: pkg=apache2 state=present
 
 - name: remove default vhost
-  file: name=/etc/apache2/sites-{{ item }}/000-default.conf state=absent
+  file: name=/etc/apache2/sites-{{ item }}/000-default state=absent
   with_items:
       - enabled
       - available
@@ -14,3 +14,13 @@
 - name: enable vhost
   file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/apache2/sites-enabled/{{ hostname }} state=link
   notify: reload apache
+
+- name: enable apache modules
+  action: command a2enmod {{ item }}
+  with_items:
+      - rewrite
+      - vhost_alias
+      - mime
+      - deflate
+      - headers
+  notify: restart apache

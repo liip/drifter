@@ -3,7 +3,7 @@
     DocumentRoot "{{ root_directory }}"
 </VirtualHost>
 
-{% if ssl %}
+{% if ssl-hostname %}
 <VirtualHost *:443>
     ServerName {{ ssl-hostname }}
     DocumentRoot "{{ root_directory }}"

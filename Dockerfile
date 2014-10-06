@@ -19,6 +19,7 @@ RUN rm -f /etc/apt/sources.list && ( \
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y ansible apt-utils
 
 # copy provisioning files
+WORKDIR /root
 ADD ./rawbot-docker/provisioning ./provisioning
 ADD ./playbook.yml ./provisioning/playbook.yml
 
