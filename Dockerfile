@@ -19,7 +19,7 @@ RUN rm -f /etc/apt/sources.list && ( \
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y ansible apt-utils
 
 # copy provisioning files
-ADD ./virtualization/provisioning ./provisioning
+ADD ./rawbot-docker/provisioning ./provisioning
 ADD ./virt-playbook.yml ./provisioning/playbook.yml
 
 # provision the image

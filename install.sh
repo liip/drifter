@@ -3,24 +3,30 @@
 # this script is used to install the virtualization capabilities in a new project
 # it is used the following way
 
+BASE=$(pwd)
 VIRTDIR="virtualization"
+REPODIR="rawbot-docker"
 VIRTIBIN="container"
 
-git submodule add git@github.com:team-rawbot/rawbot-docker.git $VIRTDIR
+mkdir $VIRTDIR
 
-cp $VIRTDIR/provisioning/playbook.yml.dist virt-playbook.yml
+git submodule add git@github.com:team-rawbot/rawbot-docker.git $VIRTDIR/$REPODIR
 
-ln -s $VIRTDIR/Dockerfile Dockerfile
+cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/virt-playbook.yml
+
+cd $VIRTDIR
+ln -s $REPODIR/Dockerfile Dockerfile
+cd $BASE
 
 cat << EOF > $VIRTIBIN
 #!/bin/sh
 
-cd $VIRTDIR
+cd $VIRTDIR/$REPODIR
 ./container "\$@"
 EOF
 chmod +x $VIRTIBIN
 
-cat << EOF > virt-parameters.yml
+cat << EOF > $VIRTDIR/virt-parameters.yml
 ip_suffix: 10 # This is the IP suffix to use (it must be unique accross projects)
 image_repository: 'liip' # This is the image repository
 image_name: 'test' # This is the name of the docker image
