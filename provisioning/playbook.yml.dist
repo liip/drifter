@@ -3,6 +3,6 @@
 - hosts: all
   roles:
     - { role: base }
-    - { role: nginx, hostname: "docker-test.lo", root_directory: "/var/www", nginx_template: "php-site.j2" }
+    - { role: nginx, hostname: "docker-test.lo", root_directory: "/var/www", site_template: "php-site.j2" }
     - { role: mysql, database_name: "docker-test" }
     - { role: php-fpm }

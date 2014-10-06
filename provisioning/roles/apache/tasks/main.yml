@@ -9,8 +9,8 @@
   notify: restart apache
 
 - name: create vhost config
-  template: src={{ nginx_template }} dest=/etc/nginx/sites-available/{{ hostname }}
+  template: src={{ site_template }} dest=/etc/apache2/sites-available/{{ hostname }}
 
 - name: enable vhost
-  file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/nginx/sites-enabled/{{ hostname }} state=link
+  file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/apache2/sites-enabled/{{ hostname }} state=link
   notify: reload apache
