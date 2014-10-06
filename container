@@ -27,9 +27,9 @@ case "$1" in
         playbook status
         ;;
     enter)
-        CID=$(docker ps -l -q)
-        PID=$(docker inspect --format "{{ .State.Pid }}" $CID)
-        nsenter --target $PID --mount --uts --ipc --net --pid
+        CID=$(sudo docker ps -l -q)
+        PID=$(sudo docker inspect --format "{{ .State.Pid }}" $CID)
+        sudo nsenter --target $PID --mount --uts --ipc --net --pid
         ;;
     *)
         echo "Usage: $0 {start|stop|restart|status}"
