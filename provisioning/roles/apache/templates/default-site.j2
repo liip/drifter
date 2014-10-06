@@ -3,9 +3,9 @@
     DocumentRoot "{{ root_directory }}"
 </VirtualHost>
 
-{% if ssl-hostname %}
+{% if ssl_hostname %}
 <VirtualHost *:443>
-    ServerName {{ ssl-hostname }}
+    ServerName {{ ssl_hostname }}
     DocumentRoot "{{ root_directory }}"
 
     SSLEngine on
