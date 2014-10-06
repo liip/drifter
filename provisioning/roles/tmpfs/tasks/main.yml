@@ -1,0 +1,2 @@
+- name: add tmpfs mount in fstab
+  mount: name={{ mount_path }} src=tmpfs fstype=tmpfs opts="nodev,nosuid,noatime,size=500m" state=mounted
