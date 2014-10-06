@@ -12,7 +12,7 @@ mkdir $VIRTDIR
 
 git submodule add git@github.com:team-rawbot/rawbot-docker.git $VIRTDIR/$REPODIR
 
-cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/virt-playbook.yml
+cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
 
 cd $VIRTDIR
 ln -s $REPODIR/Dockerfile Dockerfile
@@ -26,7 +26,7 @@ cd $VIRTDIR/$REPODIR
 EOF
 chmod +x $VIRTIBIN
 
-cat << EOF > $VIRTDIR/virt-parameters.yml
+cat << EOF > $VIRTDIR/parameters.yml
 ip_suffix: 10 # This is the IP suffix to use (it must be unique accross projects)
 image_repository: 'liip' # This is the image repository
 image_name: 'test' # This is the name of the docker image

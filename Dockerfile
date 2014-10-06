@@ -20,7 +20,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y ansible apt-
 
 # copy provisioning files
 ADD ./rawbot-docker/provisioning ./provisioning
-ADD ./virt-playbook.yml ./provisioning/playbook.yml
+ADD ./playbook.yml ./provisioning/playbook.yml
 
 # provision the image
 RUN ( echo '[docker]' && echo 'localhost' ) > /etc/ansible/hosts && ansible-playbook ./provisioning/playbook.yml --connection=local

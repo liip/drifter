@@ -1,7 +1,7 @@
 ---
 - include_vars: "{{ item }}"
   with_first_found:
-    - "../../../virt-parameters.yml"
+    - "../../../parameters.yml"
     - "../default-paramaters.yml"
 
 - include: linux.yml
