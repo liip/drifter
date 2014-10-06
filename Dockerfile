@@ -20,11 +20,11 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y ansible apt-
 
 # copy provisioning files
 WORKDIR /root
-ADD ./rawbot-docker/provisioning ./provisioning
-ADD ./playbook.yml ./provisioning/playbook.yml
+ADD ./rawbot-docker/provisioning /root/provisioning
+ADD ./playbook.yml /root/provisioning/playbook.yml
 
 # provision the image
-RUN ( echo '[docker]' && echo 'localhost' ) > /etc/ansible/hosts && ansible-playbook ./provisioning/playbook.yml --connection=local
+RUN ( echo '[docker]' && echo 'localhost' ) > /etc/ansible/hosts && ansible-playbook /root/provisioning/playbook.yml --connection=local
 
 # clean up
 RUN apt-get clean
