@@ -7,8 +7,12 @@
   docker_image: path='./../../' name={{ image_repository }} tag={{ image_name }} state=present
 #  this is not working it seems, destroy the image before trying
 
+- name: Get local dir
+  local_action: shell cd ..; pwd
+  register: pwd
+
 - name: "{{ playbook }} the image"
-  docker: image="{{ image_repository }}:{{ image_name }}" tty=True command=/sbin/init state={{ docker_state }}
+  docker: image="{{ image_repository }}:{{ image_name }}" tty=True command=/sbin/init volumes="{{ pwd.stdout }}:/exports:ro" state={{ docker_state }}
 
 - include: set_linux_hosts.yml
   when: playbook == "start"

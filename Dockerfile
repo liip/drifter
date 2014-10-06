@@ -26,3 +26,7 @@ RUN ( echo '[docker]' && echo 'localhost' ) > /etc/ansible/hosts && ansible-play
 
 # clean up
 RUN apt-get clean
+
+# shared folders
+VOLUME /exports
+WORKDIR /exports
