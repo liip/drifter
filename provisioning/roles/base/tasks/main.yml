@@ -10,6 +10,7 @@
     - procps
     - command-not-found
     - bash-completion
+    - zsh
     - bzip2
     - git
     - vim
@@ -21,9 +22,16 @@
   with_items:
     - aliases
     - bashrc
-    - ps1
+    - zshrc
+    - liquidpromptrc
     - gitconfig
     - gitglobalignore
     - ackrc
     - vimrc
+
+- name: install liquidprompt
+  git: repo=https://github.com/nojhan/liquidprompt.git dest=/root/liquidprompt accept_hostkey=yes
+
+- name: use liquidprompt as promt
+  file: src=/root/liquidprompt/liquidprompt dest=/root/.ps1 state=link
 
