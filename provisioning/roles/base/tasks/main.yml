@@ -4,9 +4,16 @@
 - name: ensure apt database is up-to-date
   apt: update_cache=yes
 
+- name: set en_US.UTF-8 as generated locale
+  debconf: name=locales question='locales/locales_to_be_generated'  value='en_US.UTF-8 UTF-8' vtype='multiselect'
+
+- name: set en_US.UTF-8 as default locale
+  debconf: name=locales question='locales/default_environment_locale' value=en_US.UTF-8 vtype='select'
+
 - name: ensure base packages are installed
   apt: pkg={{ item }} state=present
   with_items:
+    - locales
     - procps
     - command-not-found
     - bash-completion
@@ -16,6 +23,7 @@
     - vim
     - ack-grep
     - build-essential
+    - wget
 
 - name: install shell config
   copy: src={{ item }} dest=/root/.{{ item }}
