@@ -19,7 +19,8 @@ RUN rm -f /etc/apt/sources.list && ( \
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y ansible apt-utils
 
 # copy provisioning files
-ADD ./provisioning ./provisioning
+ADD ./virtualization/provisioning ./provisioning
+ADD ./virt-playbook.yml ./provisioning/playbook.yml
 
 # provision the image
 RUN ( echo '[docker]' && echo 'localhost' ) > /etc/ansible/hosts && ansible-playbook ./provisioning/playbook.yml --connection=local
