@@ -8,7 +8,7 @@
 #  this is not working it seems, destroy the image before trying
 
 - name: Get local dir
-  local_action: shell cd ..; pwd
+  local_action: shell cd ../../../; pwd
   register: pwd
 
 - name: "{{ playbook }} the image"
