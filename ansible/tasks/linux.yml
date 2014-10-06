@@ -12,7 +12,7 @@
   register: pwd
 
 - name: "{{ playbook }} the image"
-  docker: image="{{ image_repository }}:{{ image_name }}" tty=True command=/sbin/init volumes="{{ pwd.stdout }}:/exports:ro" state={{ docker_state }}
+  docker: image="{{ image_repository }}:{{ image_name }}" tty=True command=/sbin/init volumes="{{ pwd.stdout }}:/exports:rw" state={{ docker_state }}
 
 - include: set_linux_hosts.yml
   when: playbook == "start"
