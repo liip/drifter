@@ -5,6 +5,8 @@
 FROM debian:wheezy
 MAINTAINER Gilles Crettenand <gilles.crettenand@liip.ch>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # set sources
 RUN rm -f /etc/apt/sources.list && ( \
       echo "deb http://ftp.ch.debian.org/debian/ wheezy main contrib non-free" && \
