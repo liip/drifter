@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  vars:
+    playbook: 'restart'
+    docker_state: 'restarted'
+  tasks:
+    - include: tasks/run.yml
