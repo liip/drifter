@@ -1,5 +1,5 @@
 server {
-    server_name {{ hostname }} {{ extra_hostnames }};
+    server_name {{ hostname }} {{ hostnames }};
 
     access_log	/var/log/nginx/{{ hostname }}.access.log;
     error_log	/var/log/nginx/{{ hostname }}.error.log;

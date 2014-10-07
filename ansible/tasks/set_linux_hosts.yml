@@ -5,5 +5,4 @@
 
 - name: set /etc/hosts
   lineinfile: dest=/etc/hosts regexp=".*{{ item }}$" line="{{ docker_ip.stdout }} {{ item }}" state=present backup=yes
-  with_items:
-    - "{{ image_name }}.docker.lo"
+  with_items: [hostname] + hostnames

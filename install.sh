@@ -30,4 +30,6 @@ cat << EOF > $VIRTDIR/parameters.yml
 docker:
     image_repository: 'liip' # This is the image repository
     image_name: 'test' # This is the name of the docker image
+hostname: "{{ image_name }}.docker.lo"
+hostnames: []
 EOF

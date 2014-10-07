@@ -1,11 +1,21 @@
 <VirtualHost *:80>
     ServerName {{ hostname }}
+
+    {% for h in hostnames %}
+        ServerAlias h
+    {% endfor %}
+
     DocumentRoot "{{ root_directory }}"
 </VirtualHost>
 
-{% if ssl_hostname %}
+{% if ssl %}
 <VirtualHost *:443>
-    ServerName {{ ssl_hostname }}
+    ServerName {{ ssl_hostname | default(hostname) }}
+
+    {% for h in ssl_hostnames | default(hostnames) %}
+        ServerAlias h
+    {% endfor %}
+
     DocumentRoot "{{ root_directory }}"
 
     SSLEngine on

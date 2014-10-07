@@ -5,5 +5,5 @@
   roles:
     - { role: base }
     - { role: mysql, database_name: "docker-test" }
-    - { role: nginx, hostname: "test.docker.lo", root_directory: "/exports/web", site_template: "php-site.j2" }
+    - { role: nginx, root_directory: "/exports/web", site_template: "php-site.j2" }
     - { role: php-fpm }

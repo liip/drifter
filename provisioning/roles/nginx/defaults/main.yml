@@ -1,8 +1,10 @@
-expire_time: 6h
-extra_hostnames: ""
+# template to use
+site_template: default-site.j2
+# index file
+index: false
+
+# django related config
 static_host: false
 static_dir: false
 static_fs_dir: ""
-index: false
-
-site_template: default-site.j2
+expire_time: 6h # expire time of static files

@@ -1,2 +1,4 @@
+# template to use
 site_template: default-site.j2
-ssl_hostname: false
+# activate SSL ?
+ssl: false
