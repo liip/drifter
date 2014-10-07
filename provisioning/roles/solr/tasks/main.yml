@@ -1,0 +1,9 @@
+- name: download solr
+  get_url: url={{ solr.url }} dest={{ solr.dir }}/solr.tgz
+
+- name: extract solr
+  command: tar xzf {{ solr.dir }}/solr.tgz
+
+- name: ensure supervisor solr configuration is up-to-date
+  template: src="supervisor.j2" dest=/etc/supervisor/conf.d/solr.conf
+  notify: restart supervisor

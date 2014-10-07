@@ -1,0 +1,7 @@
+[program:solr]
+user=solr
+directory={{ solr.config_dir }}
+command=java -jar -Dsolr.solr.home={{ solr.dir }} start.jar
+autostart=true
+autorestart=true
+redirect_stderr=true
