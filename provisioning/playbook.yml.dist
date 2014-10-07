@@ -6,3 +6,5 @@
     - { role: mysql, database_name: "docker-test" }
     - { role: nginx, root_directory: "/exports/web", site_template: "php-site.j2" }
     - { role: php-fpm }
+    - { role: compass }
+    - { role: solr }
