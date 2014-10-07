@@ -1,0 +1,15 @@
+[PHP]
+
+display_startup_errors = On
+display_errors = On
+error_reporting = {{ php_error_reporting }}
+
+max_execution_time = {{ php_max_execution_time }}
+memory_limit = {{ php_memory_limit }}
+upload_max_filesize = {{ php_upload_max_filesize }}
+post_max_size = {{ php_upload_max_filesize }}
+date.timezone = "{{ php_date_timezone }}"
+
+default_charset = "{{ php_default_charset }}"
+
+short_open_tag = Off
