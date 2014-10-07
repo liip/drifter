@@ -1,0 +1,11 @@
+- name: create directory for composer
+  file: name={{ composer.dir }} state=directory
+
+- name: install composer
+  shell: "cd {{ composer.dir }} && curl -sS https://getcomposer.org/installer | php"
+
+- name: symling composer in /usr/local/bin
+  file: src="{{ composer.dir }}/composer.phar" dest=/usr/local/bin/{{ item }} state=link
+  with_items:
+    - composer
+    - composer.phar
