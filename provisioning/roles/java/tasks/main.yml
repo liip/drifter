@@ -1,0 +1,2 @@
+- name: ensure Java is installed
+  apt: pkg=openjdk-7-jre state=installed
