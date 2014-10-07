@@ -1,8 +1,5 @@
 ---
-- include_vars: "{{ item }}"
-  with_first_found:
-    - "../../../parameters.yml"
-    - "../default-paramaters.yml"
+- include_vars: "../../../parameters.yml"
 
 - include: linux.yml
   sudo: yes

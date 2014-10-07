@@ -27,7 +27,7 @@ EOF
 chmod +x $VIRTIBIN
 
 cat << EOF > $VIRTDIR/parameters.yml
-ip_suffix: 10 # This is the IP suffix to use (it must be unique accross projects)
-image_repository: 'liip' # This is the image repository
-image_name: 'test' # This is the name of the docker image
+docker:
+    image_repository: 'liip' # This is the image repository
+    image_name: 'test' # This is the name of the docker image
 EOF
