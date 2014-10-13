@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: supervisor }
+  - { role: supervisor, service_name: "solr", user: "solr", command: "java -jar -Dsolr.solr.home={{ solr.dir }} start.jar", directory: "solr.config_dir" }
   - { role: java }
