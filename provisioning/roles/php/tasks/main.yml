@@ -12,7 +12,6 @@
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
   with_items:
-  - { src: php/php.ini.j2, dest: /etc/php5/apache2/90-php-docker.ini }
-  - { src: php/php.ini.j2, dest: /etc/php5/cli/90-php-docker.ini }
-  - { src: php/xdebug.ini.j2, dest: /etc/php5/conf.d/20-xdebug.ini}
-  notify: restart apache
+  - { src: php.ini.j2, dest: /etc/php5/conf.d/90-php-docker.ini }
+  - { src: php.ini.j2, dest: /etc/php5/cli/90-php-docker.ini }
+  - { src: xdebug.ini.j2, dest: /etc/php5/conf.d/20-xdebug.ini}
