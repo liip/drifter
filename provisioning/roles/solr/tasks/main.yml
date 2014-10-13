@@ -1,5 +1,5 @@
 - name: download solr
-  get_url: url={{ solr.url }} dest={{ solr.dir }}/solr.tgz
+  get_url: url={{ solr.url }} dest={{ solr.install_dir }}/solr.tgz
 
 - name: extract solr
-  command: tar xzf {{ solr.dir }}/solr.tgz
+  command: tar xzf {{ solr.install_dir }}/solr.tgz
