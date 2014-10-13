@@ -1,4 +1,4 @@
 solr:
   url: "http://archive.apache.org/dist/lucene/solr/3.5.0/apache-solr-3.5.0.tgz"
   dir: "/opt/solr"
-  config_dir: "{{ solr.dir }}"/example/
+  config_dir: "{{ solr.dir }}/example/"
