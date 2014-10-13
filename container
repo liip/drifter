@@ -4,7 +4,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
 function playbook() {
-    ansible-playbook -c local --ask-sudo-pass ansible/$1.yml
+    ( echo '[docker]' && echo 'localhost ansible_connection=local' ) > ./hosts.ini
+    ansible-playbook -i ./hosts.ini --ask-sudo-pass ansible/$1.yml
 }
 
 case "$1" in
