@@ -1,5 +1,11 @@
+- name: create solr user
+  user: name=solr comment="Solr Daemon" group="www-data" home="{{ solr.install_dir }}"
+
 - name: download solr
   get_url: url={{ solr.url }} dest={{ solr.install_dir }}/solr.tgz
 
 - name: extract solr
   command: tar xzf {{ solr.install_dir }}/solr.tgz
+
+- name: solr directory permission
+  file: dest="{{ solr.install_dir }}" state=directory owner=solr group=www-data recurse=yes
