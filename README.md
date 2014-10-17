@@ -44,6 +44,7 @@ TODO
 Use it on your projects
 =======================
 
+curl -sS https://raw.githubusercontent.com/team-rawbot/rawbot-docker/master/install.sh | /bin/bash
 
 Rational
 ========
