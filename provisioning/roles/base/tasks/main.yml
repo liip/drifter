@@ -24,6 +24,8 @@
     - ack-grep
     - build-essential
     - wget
+    - openssh-server
+    - sudo
 
 - name: install shell config
   copy: src={{ item }} dest=/root/.{{ item }}
@@ -43,3 +45,6 @@
 - name: use liquidprompt as promt
   file: src=/root/liquidprompt/liquidprompt dest=/root/.ps1 state=link
 
+# liip / liip
+- name: create default user
+  user: name=liip password="$6$7hfyjHHsY$JUc3HV4qCt.pTDKmVQO2DDbYTjQM2QZ5Jco6cbSmEHCpne09vC/Tbb/L4FnH3PY5WReZNEiMjjmuVX1wo7IKO/" groups=sudo
