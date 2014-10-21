@@ -1,8 +1,0 @@
----
-- include_vars: "../../../parameters.yml"
-
-- include: linux.yml
-  sudo: yes
-  when: ansible_system == "Linux"
-- include: vagrant.yml
-  when: ansible_system != "Linux"

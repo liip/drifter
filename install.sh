@@ -27,9 +27,7 @@ EOF
 chmod +x $VIRTIBIN
 
 cat << EOF > $VIRTDIR/parameters.yml
-docker:
-    image_repository: 'liip' # This is the image repository
-    image_name: 'test' # This is the name of the docker image
-hostname: "{{ docker.image_name }}.docker.lo"
+project_name: "test"
+hostname: "{{ project_name }}.lo"
 hostnames: []
 EOF
