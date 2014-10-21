@@ -1,30 +1,19 @@
 #!/bin/sh -x
 
 # this script is used to install the virtualization capabilities in a new project
-# it is used the following way
 
 BASE=$(pwd)
 VIRTDIR="virtualization"
-REPODIR="rawbot-docker"
-VIRTIBIN="container"
+REPODIR="rawbot-virtualization"
 
 mkdir $VIRTDIR
 
-git submodule add git@github.com:team-rawbot/rawbot-docker.git $VIRTDIR/$REPODIR
+git submodule add git@github.com:team-rawbot/rawbot-virtualization.git $VIRTDIR/$REPODIR
 
 cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
+cp $VIRTDIR/$REPODIR/VagrantfileExtra.dist $VIRTDIR/VagrantfileExtra
 
-cd $VIRTDIR
-ln -s $REPODIR/Dockerfile Dockerfile
-cd $BASE
-
-cat << EOF > $VIRTIBIN
-#!/bin/sh
-
-cd $VIRTDIR/$REPODIR
-./container "\$@"
-EOF
-chmod +x $VIRTIBIN
+ln -s $VIRTDIR/$REPODIR/Vagrantfile Vagrantfile
 
 cat << EOF > $VIRTDIR/parameters.yml
 project_name: "test"
