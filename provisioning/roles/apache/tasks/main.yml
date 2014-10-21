@@ -24,3 +24,8 @@
       - deflate
       - headers
   notify: restart apache
+
+- name: enable Apache SSL module
+  action: command a2enmod ssl
+  when: ssl
+  notify: restart apache
