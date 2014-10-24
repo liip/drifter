@@ -43,10 +43,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.playbook = "virtualization/playbook.yml"
         ansible.verbose = 'v'
         ansible.host_key_checking = false
-
-        ansible.extra_vars = {
-            hostname: custom_config.hostname,
-            hostnames: custom_config.hostnames,
-        }
     end
 end

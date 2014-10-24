@@ -3,3 +3,7 @@ project_name: "test"
 hostname: "test.lo"
 hostnames: []
 box_ip: "10.10.10.10"
+
+database_name: "test"
+root_directory: "/vagrant/web"
+site_template: "php-site.j2"
