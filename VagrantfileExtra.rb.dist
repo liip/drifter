@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'yaml'
+
 class CustomConfig
   attr_accessor :project_name
   attr_accessor :hostname
@@ -8,10 +10,12 @@ class CustomConfig
   attr_accessor :box_ip
 
   def initialize
-    @project_name = "test"
-    @hostname = "#{@project_name}.lo"
-    @hostnames = Array.new
-    @box_ip = "10.10.10.10"
+    config = YAML::load(File.open('virtualization/parameters.yml'))
+
+    @project_name = config['project_name'] || "test"
+    @hostname = config['hostname'] || "#{@project_name}.lo"
+    @hostnames = config['hostnames'] || Array.new
+    @box_ip = config['box_ip'] || "10.10.10.10"
   end
 
   def load_aliases
