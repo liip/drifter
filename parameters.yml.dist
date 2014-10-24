@@ -1,0 +1,5 @@
+---
+project_name: "test"
+hostname: "test.lo"
+hostnames: []
+box_ip: "10.10.10.10"

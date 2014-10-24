@@ -11,12 +11,12 @@ mkdir $VIRTDIR
 git submodule add git@github.com:team-rawbot/rawbot-virtualization.git $VIRTDIR/$REPODIR
 
 cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
-cp $VIRTDIR/$REPODIR/VagrantfileExtra.dist $VIRTDIR/VagrantfileExtra
+cp $VIRTDIR/$REPODIR/VagrantfileExtra.rb.dist $VIRTDIR/VagrantfileExtra.rb
+cp $VIRTDIR/$REPODIR/parameters.yml.dist $VIRTDIR/parameters.yml
 
 ln -s $VIRTDIR/$REPODIR/Vagrantfile Vagrantfile
+ln -s $VIRTDIR/$REPODIR/provisioning/roles roles
 
-cat << EOF > $VIRTDIR/parameters.yml
-project_name: "test"
-hostname: "{{ project_name }}.lo"
-hostnames: []
+cat << EOF > $VIRTDIR/ansible.cfg
+roles_path = ./$REPODIR
 EOF

@@ -1,9 +1,9 @@
 ---
 # This is a simple playbook to used to provision a docker image using nginx + php + mysql
 - hosts: all
-  vars_files:
-   - parameters.yml
+  sudo: yes
   roles:
+    - { role: base }
     - { role: mysql, database_name: "docker-test" }
     - { role: nginx, root_directory: "/exports/web", site_template: "php-site.j2" }
     - { role: php-fpm }

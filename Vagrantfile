@@ -4,14 +4,20 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-load 'virtualization/VagrantfileExtra'
+load 'virtualization/VagrantfileExtra.rb'
+
+custom_config = CustomConfig.new
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = custom_config.project_name
+    config.vm.hostname = custom_config.hostname
+
     config.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64.box"
     config.vm.provider "lxc" do |lxc, override|
         override.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64-lxc.box"
     end
 
+    config.vm.network :private_network, ip: custom_config.box_ip
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
     config.ssh.forward_agent = true
@@ -21,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.hostmanager.manage_host = true
         config.hostmanager.ignore_private_ip = true
         config.hostmanager.include_offline = true
-        config.hostmanager.aliases = load_aliases
+        config.hostmanager.aliases = custom_config.load_aliases
     end
 
     config.vm.provider "virtualbox" do |v|
@@ -37,5 +43,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.playbook = "virtualization/playbook.yml"
         ansible.verbose = 'v'
         ansible.host_key_checking = false
+
+        ansible.extra_vars = {
+            hostname: custom_config.hostname,
+            hostnames: custom_config.hostnames,
+        }
     end
 end

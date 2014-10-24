@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+class CustomConfig
+  attr_accessor :project_name
+  attr_accessor :hostname
+  attr_accessor :hostnames
+  attr_accessor :box_ip
+
+  def initialize
+    @project_name = "test"
+    @hostname = "#{@project_name}.lo"
+    @hostnames = Array.new
+    @box_ip = "10.10.10.10"
+  end
+
+  def load_aliases
+    @hostnames
+  end
+end
