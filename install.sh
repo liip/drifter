@@ -17,7 +17,7 @@ cp $VIRTDIR/$REPODIR/parameters.yml.dist $VIRTDIR/parameters.yml
 ln -s $VIRTDIR/$REPODIR/Vagrantfile Vagrantfile
 
 cd $VIRTDIR
-ln -s $VIRTDIR/$REPODIR/provisioning/roles roles
+ln -s $REPODIR/provisioning/roles roles
 cd ..
 
 cat << EOF > $VIRTDIR/ansible.cfg
