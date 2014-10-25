@@ -1,0 +1,16 @@
+- name: install postgresql 9.1
+  apt: pkg=postgresql-9.1 state=present
+
+- name: install python-psycopg2 (for ansible)
+  apt: pkg=python-psycopg2 state=present
+
+- name: ensure mysql is started
+  action: service name=postgresql state=started
+
+- name: create database user
+  mysql_user: name={{ database_user }} password={{ database_password }} priv=*.*:ALL,GRANT state=present
+  sudo_user: postgres
+
+- name: create database
+  mysql_db: name={{ database_name }} state=present
+  sudo_user: postgres
