@@ -1,0 +1,15 @@
+---
+- debug: msg="{{ django_version }}"
+
+- name: create venv and install base packages
+  pip: "requirements={{ django_root }}/requirements/{{ requirement }}.txt virtualenv={{ env_root }}"
+  sudo: no
+
+- name: sync db
+  command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
+  when: django_version != "1.7"
+  sudo: no
+
+- name: migrate
+  command: "{{ env_root }}/bin/python {{ django_root }}/manage.py migrate"
+  sudo: no

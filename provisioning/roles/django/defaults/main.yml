@@ -1,0 +1,4 @@
+requirement: "base"
+django_root: "{{ root_directory }}"
+env_root: "{{ root_directory }}/ENV"
+django_version: "1.7"

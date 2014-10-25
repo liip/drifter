@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: python }
+  - { role: nginx, site_template: "django-site.j2", port: 8000 }
