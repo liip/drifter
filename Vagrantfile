@@ -31,12 +31,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "virtualbox" do |v|
-        v.customize ["modifyvm", :id, "--memory", "1024"]
+        v.memory = 4096
+        v.cpus = 2
         v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
 
-    config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, nfs_version: 3
+    config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: true, nfs_version: 3
 
     config.vm.provision "ansible" do |ansible|
         ansible.host_key_checking = false
