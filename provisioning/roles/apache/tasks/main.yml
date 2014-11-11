@@ -1,8 +1,10 @@
 - name: install apache
   apt: pkg=apache2 state=present
+  sudo: yes
 
 - name: remove default vhost
   file: name=/etc/apache2/sites-{{ item }}/000-default state=absent
+  sudo: yes
   with_items:
       - enabled
       - available
@@ -10,13 +12,16 @@
 
 - name: create vhost config
   template: src={{ site_template }} dest=/etc/apache2/sites-available/{{ hostname }}
+  sudo: yes
 
 - name: enable vhost
   file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/apache2/sites-enabled/{{ hostname }} state=link
+  sudo: yes
   notify: reload apache
 
 - name: enable apache modules
   action: command a2enmod {{ item }}
+  sudo: yes
   with_items:
       - rewrite
       - vhost_alias
@@ -27,5 +32,6 @@
 
 - name: enable Apache SSL module
   action: command a2enmod ssl
+  sudo: yes
   when: ssl
   notify: restart apache

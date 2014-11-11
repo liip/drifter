@@ -1,5 +1,6 @@
 - name: ensure Ruby packages are installed
   apt: pkg={{ item }} state=installed
+  sudo: yes
   with_items:
     - ruby-dev
     - rubygems-integration

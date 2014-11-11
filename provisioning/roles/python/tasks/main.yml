@@ -1,6 +1,7 @@
 ---
 - name: install python packages
   apt: pkg={{ item }} state=present
+  sudo: yes
   with_items:
     - python-virtualenv
     - python-pip
@@ -9,6 +10,7 @@
 
 - name: install pillow dependencies
   apt: pkg={{ item }} state=present
+  sudo: yes
   with_items:
     - libfreetype6-dev
     - libjpeg8-dev

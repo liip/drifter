@@ -1,7 +1,9 @@
 - name: install supervisor
   apt: pkg=supervisor state=present
+  sudo: yes
   notify: enable supervisor
 
 - name: create service config
   template: src=service.conf dest=/etc/supervisor/conf.d/{{ service_name }}.conf
+  sudo: yes
   notify: restart supervisor

@@ -1,16 +1,20 @@
 - name: install nginx
   apt: pkg=nginx state=present
+  sudo: yes
 
 - name: create partials directory
   file: name=/etc/nginx/conf.d/partials state=directory
+  sudo: yes
 
 - name: install partials
   copy: src={{ item }} dest=/etc/nginx/conf.d/partials/{{ item }}
+  sudo: yes
   with_items:
     - _php_fpm.conf
 
 - name: remove default vhost
   file: name=/etc/nginx/sites-{{ item }}/default state=absent
+  sudo: yes
   with_items:
       - enabled
       - available
@@ -18,7 +22,9 @@
 
 - name: create vhost config
   template: src={{ site_template }} dest=/etc/nginx/sites-available/{{ hostname }}
+  sudo: yes
 
 - name: enable vhost
   file: src=/etc/nginx/sites-available/{{ hostname }} dest=/etc/nginx/sites-enabled/{{ hostname }} state=link
+  sudo: yes
   notify: reload nginx

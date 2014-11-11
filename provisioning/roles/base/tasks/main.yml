@@ -1,17 +1,22 @@
 - name: ensure python-apt is installed
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
+  sudo: yes
 
 - name: ensure apt database is up-to-date
   apt: update_cache=yes
+  sudo: yes
 
 - name: set en_US.UTF-8 as generated locale
   debconf: name=locales question='locales/locales_to_be_generated'  value='en_US.UTF-8 UTF-8' vtype='multiselect'
+  sudo: yes
 
 - name: set en_US.UTF-8 as default locale
   debconf: name=locales question='locales/default_environment_locale' value=en_US.UTF-8 vtype='select'
+  sudo: yes
 
 - name: ensure base packages are installed
   apt: pkg={{ item }} state=present
+  sudo: yes
   with_items:
     - locales
     - procps
@@ -26,9 +31,10 @@
     - wget
     - openssh-server
     - sudo
+    - imagemagick
 
 - name: install shell config
-  copy: src={{ item }} dest=/root/.{{ item }}
+  copy: src={{ item }} dest=~/.{{ item }}
   with_items:
     - aliases
     - bashrc
@@ -40,11 +46,7 @@
     - vimrc
 
 - name: install liquidprompt
-  git: repo=https://github.com/nojhan/liquidprompt.git dest=/root/liquidprompt accept_hostkey=yes
+  git: repo=https://github.com/nojhan/liquidprompt.git dest=~/liquidprompt accept_hostkey=yes
 
-- name: use liquidprompt as promt
-  file: src=/root/liquidprompt/liquidprompt dest=/root/.ps1 state=link
-
-# liip / liip
-- name: create default user
-  user: name=liip password="$6$7hfyjHHsY$JUc3HV4qCt.pTDKmVQO2DDbYTjQM2QZ5Jco6cbSmEHCpne09vC/Tbb/L4FnH3PY5WReZNEiMjjmuVX1wo7IKO/" groups=sudo
+- name: use liquidprompt as prompt
+  file: src=~/liquidprompt/liquidprompt dest=~/.ps1 state=link

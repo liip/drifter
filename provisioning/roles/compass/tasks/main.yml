@@ -1,4 +1,5 @@
 - name: ensure compass package is installed
   apt: pkg={{ item }} state=installed
+  sudo: yes
   with_items:
     - ruby-compass

@@ -1,5 +1,6 @@
 - name: install PHP5 packages
   apt: pkg={{ item }} state=present
+  sudo: yes
   with_items:
     - php5-mysql
     - php5-xcache
@@ -11,7 +12,7 @@
 
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
+  sudo: yes
   with_items:
-  - { src: php.ini.j2, dest: /etc/php5/conf.d/90-php-docker.ini }
-  - { src: php.ini.j2, dest: /etc/php5/cli/90-php-docker.ini }
+  - { src: php.ini.j2, dest: /etc/php5/conf.d/90-php-dev.ini }
   - { src: xdebug.ini.j2, dest: /etc/php5/conf.d/20-xdebug.ini}
