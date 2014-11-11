@@ -32,6 +32,7 @@
     - openssh-server
     - sudo
     - imagemagick
+    - iputils-ping
 
 - name: install shell config
   copy: src={{ item }} dest=~/.{{ item }}
