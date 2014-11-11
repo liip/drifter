@@ -20,6 +20,3 @@ cd $VIRTDIR
 ln -s $REPODIR/provisioning/roles roles
 cd ..
 
-cat << EOF > $VIRTDIR/ansible.cfg
-roles_path = ./$REPODIR
-EOF
