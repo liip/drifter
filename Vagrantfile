@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if Vagrant.has_plugin?("vagrant-hostmanager")
         config.hostmanager.enabled = true
         config.hostmanager.manage_host = true
-        config.hostmanager.ignore_private_ip = true
+        config.hostmanager.ignore_private_ip = false
         config.hostmanager.include_offline = true
         config.hostmanager.aliases = custom_config.load_aliases
     end
