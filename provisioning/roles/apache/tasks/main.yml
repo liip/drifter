@@ -20,7 +20,7 @@
   notify: reload apache
 
 - name: enable apache modules
-  action: command a2enmod {{ item }}
+  apache2_module: state=present name={{ item }}
   sudo: yes
   with_items:
       - rewrite
@@ -31,7 +31,7 @@
   notify: restart apache
 
 - name: enable Apache SSL module
-  action: command a2enmod ssl
+  apache2_module: state=present name=ssl
   sudo: yes
   when: ssl
   notify: restart apache
