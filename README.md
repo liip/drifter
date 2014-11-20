@@ -17,13 +17,14 @@ decided as a team to use a common virtualized development environment.
 Requirements
 ============
 
-You must have vagrant installed.
+* Vagrant >= 1.5
+* Ansible >= 1.6
 
 Linux (Debian & Unbuntu)
 ------------------------
 
 ```
-apt-get install -y vagrant
+apt-get install -y vagrant ansible
 ```
 
 Max OS X
@@ -36,24 +37,34 @@ Windows
 
 TODO
 
-Use it on your projects
-=======================
+Installation
+============
 
-curl -sS https://raw.githubusercontent.com/team-rawbot/rawbot-docker/master/install.sh | /bin/bash
+Hipster-style (piping curl output to sh)
+----------------------------------------
 
-Rational
+```
+curl -sS https://raw.githubusercontent.com/team-rawbot/rawbot-virtualization/master/install.sh | /bin/bash
+```
+
+Manually
+--------
+
+Have a look at the `install.sh` script and just manually reproduce it.
+
+Using it
 ========
 
-LXC containers works great on Linux hosts, however they are not available on Mac OS X or Windows.
+What you'll probably want to do first is edit the `Vagrantfile` file. Don't do
+this, instead edit the `parameters.yml` file and set the values accordingly. If
+you need finer control or if you like writing Ruby code, edit the
+`VagrantfileExtra.rb`. You should never edit the `Vagrantfile` file since it's
+part of the submodule, this way you'll be able to get it updated when it gets
+updated in this repository.
 
-It was decided to a Vagrant based solution. A bunch of Ansible roles to ease provisioning of the
-box is also provided.
-
-Ansible
-=======
-
-Various roles are provided in the `provisioning/roles` directory. Each of those roles should be autonomous,
-but you probably will have to use multiple of them to have a coherent system. For example :
+Various roles are provided in the `provisioning/roles` directory. Each of those
+roles should be autonomous, but you probably will have to use multiple of them
+to have a coherent system. For example :
 
 * base
 * nginx
