@@ -1,5 +1,6 @@
 [core]
     excludesfile = ~/.gitglobalignore
+    preloadindex = true
 [color]
     ui = true
 [color "diff"]
