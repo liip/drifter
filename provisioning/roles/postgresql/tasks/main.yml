@@ -6,6 +6,10 @@
   apt: pkg=python-psycopg2 state=present
   sudo: yes
 
+- name: install postgresql dev libraries
+  apt: pkg=libpq-dev state=present
+  sudo: yes
+
 - name: ensure postgresql is started
   action: service name=postgresql state=started
   sudo: yes
