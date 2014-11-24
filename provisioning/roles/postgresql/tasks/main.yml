@@ -6,16 +6,16 @@
   apt: pkg=python-psycopg2 state=present
   sudo: yes
 
-- name: ensure mysql is started
+- name: ensure postgresql is started
   action: service name=postgresql state=started
   sudo: yes
 
 - name: create database user
-  mysql_user: name={{ database_user }} password={{ database_password }} priv=*.*:ALL,GRANT state=present
+  postgresql_user: name={{ database_user }} password={{ database_password }} state=present
   sudo_user: postgres
   sudo: yes
 
 - name: create database
-  mysql_db: name={{ database_name }} state=present
+  postgresql_db: name={{ database_name }} owner={{ database_user }} state=present
   sudo_user: postgres
   sudo: yes
