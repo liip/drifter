@@ -33,6 +33,7 @@
     - sudo
     - imagemagick
     - iputils-ping
+    - ncurses-term
 
 - name: install shell config
   copy: src={{ item }} dest=~/.{{ item }}
