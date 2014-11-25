@@ -3,7 +3,7 @@
 - hosts: all
   vars_files:
    - parameters.yml
-  sudo: yes
+  sudo: no
   roles:
     - { role: base }
     - { role: mysql}
