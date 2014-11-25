@@ -1,3 +1,5 @@
+- set_fact: database_type=postgresql
+
 - name: install postgresql 9.1
   apt: pkg=postgresql-9.1 state=present
   sudo: yes

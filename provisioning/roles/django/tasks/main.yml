@@ -5,6 +5,9 @@
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
 
+- name: fill in DATABASE_URL setting
+  copy: dest=/vagrant/envdir/local/DATABASE_URL content="{{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
+
 - name: sync db
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
   when: django_version != "1.7"
