@@ -1,9 +1,27 @@
 ---
-project_name: "test"
-hostname: "test.lo"
+# Name of your project, will also be the vagrant box name
+project_name: "rawbot"
+
+# Main hostname through which the vagrant box will be accessible
+hostname: "rawbot.lo"
+# Alternative hostnames through which you want to access the vagrant box
 hostnames: []
+
+# The box IP, this must be unique across all your virtualized projects to
+# avoid collisions. WARNING, this parameter will not guarantee that your box
+# will be accessible at this IP depending on your network configuration or
+# provider choice.
 box_ip: "10.10.10.10"
 
-database_name: "test"
-root_directory: "/vagrant/web"
-site_template: "php-site.j2"
+# Name of the database to create for your project if you include the
+# MySQL or PostgreSQL role
+database_name: "rawbot"
+
+# Root directory of your project for the webserver and other purposes
+root_directory: "/vagrant/"
+
+# Do we activate SSL ?
+ssl: yes
+
+# If using PHP, default reporting level of errors
+php_error_reporting: "E_ALL & ~E_NOTICE"

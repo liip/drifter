@@ -1,13 +1,54 @@
 ---
-# This is a simple playbook to used to provision a docker image using nginx + php + mysql
+# This is the file used by Ansible to provision your project
+# You can decide what you want to install in your box by choosing
+# various provided roles or add tasks to this file. If you need
+# more explanation, please refer to the rawbot-virtualization README
+
+# For some part, multiple roles are proposed, just uncomment the ones
+# you need.
+
 - hosts: all
   vars_files:
    - parameters.yml
   sudo: no
+
   roles:
+    ## Install some base packages and configuration files, this should be ok for all projects
     - { role: base }
-    - { role: mysql}
-    - { role: nginx}
-    - { role: php-fpm }
-    - { role: compass }
-    - { role: solr }
+
+    ## Database, choose either mysql or postgres, some subsequent roles will be configured
+    ## depending on your choice here.
+    # - { role: mysql}
+    # - { role: postgresl}
+
+    ## Scripting / Language support
+    # - { role: php-fpm }       # PHP using Nginx and PHP-FPM
+    # - { role: apache-php }    # PHP using Apache and mod-php
+    # - { role: django }        # Django framework
+
+    ## Webserver, choose one of those only if you have not choosed a scripting language
+    ## above
+    # - { role: nginx}          # Nginx for basic HTML website
+    # - { role: apache}         # Apache for basic HTML website
+
+    ## Install compass in the box
+    # - { role: compass }
+
+    ## Install Solr in the box
+    # - { role: solr }
+
+    ## Install Composer in the box
+    # - { role: composer }
+
+    ## You can also creates your own role, just add a directory under the 'virtualization'
+    ## folder and refer to it like for other roles :
+    # - { role: my_own_role }
+
+# If needed, you can specify your own tasks, here is an example :
+#  tasks:
+#    - name: install project dev tools
+#      shell: cd {{ root_directory }} && composer.phar --quiet install
+#    - name: Copy application config file
+#      shell: cp -f {{ root_directory }}/config/server_config.php.vagrant {{ root_directory }}/config/server_config.php
+#    - name: Provision the database
+#      shell: cd {{ root_directory }} && ./console mysql:reset
