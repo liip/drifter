@@ -1,3 +1,4 @@
 ---
 dependencies:
   - { role: php }
+  - { role: nginx, site_template: "php-site.j2"}
