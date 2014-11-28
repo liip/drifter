@@ -23,5 +23,10 @@ root_directory: "/vagrant/"
 # Do we activate SSL ?
 # ssl: yes
 
-# If using PHP, default reporting level of errors
+# For a PHP project, you might want to set the following
+# Default reporting level of PHP errors
 # php_error_reporting: "E_ALL & ~E_NOTICE"
+
+# For a Django project, you might want to set the following
+# django_pip_requirements: "dev"
+# django_version: "1.6"

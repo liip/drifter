@@ -4,7 +4,7 @@
   copy: dest=/vagrant/envdir/local/DATABASE_URL content="{{ database_type | mandatory }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
 
 - name: create venv and install base packages
-  pip: "requirements={{ django_root }}/requirements/{{ requirement }}.txt virtualenv={{ env_root }}"
+  pip: "requirements={{ django_root }}/requirements/{{ django_pip_requirements }}.txt virtualenv={{ env_root }}"
 
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
