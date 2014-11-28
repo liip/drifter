@@ -28,3 +28,7 @@
   file: src=/etc/nginx/sites-available/{{ hostname }} dest=/etc/nginx/sites-enabled/{{ hostname }} state=link
   sudo: yes
   notify: reload nginx
+
+- name: make sure nginx starts at boot
+  service: name=nginx enabled=yes
+  sudo: yes
