@@ -2,9 +2,19 @@
   sudo: yes
   file: name={{ composer.dir }} state=directory
 
+- command: test -f {{ composer.dir }}/composer.phar
+  register: composer_installed
+  ignore_errors: yes
+
 - name: install composer
   sudo: yes
   shell: "cd {{ composer.dir }} && curl -sS https://getcomposer.org/installer | php"
+  when: composer_installed|failed
+
+- name: upgrade composer
+  sudo: yes
+  shell: "cd {{ composer.dir }} && ./composer.phar self-update"
+  when: composer_installed|success
 
 - name: symling composer in /usr/local/bin
   file: src="{{ composer.dir }}/composer.phar" dest=/usr/local/bin/{{ item }} state=link
