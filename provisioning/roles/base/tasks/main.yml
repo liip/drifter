@@ -60,3 +60,8 @@
   lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
   notify: restart ssh
   sudo: yes
+
+# This is required because the SSH daemon needs to use the new configuration
+# before trying to execute other provisioning scripts that might fail because
+# of the locale environment variables
+- meta: flush_handlers
