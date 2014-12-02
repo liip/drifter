@@ -9,6 +9,7 @@
     - php5-cli
     - php5-intl
     - php5-gd
+    - php5-imagick
 
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
