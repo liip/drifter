@@ -56,6 +56,9 @@
 - name: cd to /vagrant when sshing
   lineinfile: dest=~/.bashrc line='cd /vagrant'
 
+# Some programs such as PostgreSQL use the current locale to create the base
+# databases. If the locale is set to a value that isn't installed on the
+# system, PostgreSQL installation will fail
 - name: disallow setting of LANG and LOCALE
   lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
   notify: restart ssh

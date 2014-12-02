@@ -61,5 +61,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.host_key_checking = false
         # Update verbosity as needed, multiples 'v' means more verbose
         # ansible.verbose = 'v'
+
+        # We can't use controlmaster because it makes SSH use the same
+        # connection over and over again. This clashes with the base role which
+        # changes sshd configuration. If controlmaster is used, the new sshd
+        # configuration is not taken into account
+        ansible.raw_ssh_args = ['-o ControlMaster=no']
     end
 end
