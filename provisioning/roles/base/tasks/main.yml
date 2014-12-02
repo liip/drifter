@@ -58,4 +58,5 @@
 
 - name: disallow setting of LANG and LOCALE
   lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
+  notify: restart ssh
   sudo: yes
