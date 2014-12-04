@@ -2,14 +2,29 @@ zend_extension=/usr/lib/php5/20100525/xdebug.so
 
 xdebug.max_nesting_level=1000
 
+; activate colors in CLI
+xdebug.cli_color=1
+
+; disable coverage for speedup
+xdebug.coverage_enable=0
+
+; allow for file opening in PHPStorm ( see http://davidbu.ch/mann/blog/2014-05-06/open-php-stack-trace-links-phpstorm.html )
+xdebug.file_link_format="pstorm://%f:%l"
+
 ; config to run the profiler
 xdebug.profiler_enable=0
 xdebug.profiler_output_dir=/vagrant/profiling/
 
+; config to run the tracer
+xdebug.trace_enable=0
+xdebug.trace_output_dir=/vagrant/tracing/
+
 ; config to run the remote debugger
-xdebug.remote_enable=0
-xdebug.remote_port="9000"
-xdebug.remote_host="{{ host_ip | default('10.10.10.1') }}"
-xdebug.idekey="VCA-XDEBUG-DOCKER"
-xdebug.remote_autostart=1
+xdebug.remote_enable=1
+xdebug.remote_connect_back=1
+xdebug.idekey="XDEBUG-RAWBOT"
+
+; allows to start xdebug features via query string / cookie / plugin
+xdebug.profiler_enable_trigger=1
+xdebug.trace_enable_trigger=1
 
