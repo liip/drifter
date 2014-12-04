@@ -2,8 +2,6 @@
   apt: pkg={{ item }} state=present
   sudo: yes
   with_items:
-    - php5-mysql
-    - php5-pgsql
     - php5-xcache
     - php5-xdebug
     - php5-curl
@@ -11,6 +9,16 @@
     - php5-intl
     - php5-gd
     - php5-imagick
+
+- name: install mysql database driver
+  apt: pkg=php5-mysql state=present
+  sudo: yes
+  when: database_type == 'mysql'
+
+- name: install postgresql database driver
+  apt: pkg=php5-pgsql state=present
+  sudo: yes
+  when: database_type == 'postgresql'
 
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
