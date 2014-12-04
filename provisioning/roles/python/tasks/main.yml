@@ -6,7 +6,6 @@
     - python-virtualenv
     - python-pip
     - python-all-dev
-    - libmysqlclient-dev
 
 - name: install pillow dependencies
   apt: pkg={{ item }} state=present

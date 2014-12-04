@@ -16,6 +16,10 @@
   apt: pkg=python-mysqldb state=present
   sudo: yes
 
+- name: install mysql dev libraries
+  apt: pkg=libmysqlclient-dev state=present
+  sudo: yes
+
 - name: create my.cnf config for user
   template: src=my.cnf.j2 dest=~/.my.cnf
 
