@@ -23,7 +23,7 @@
 
     ## Scripting / Language support
     # - { role: php-fpm }       # PHP using Nginx and PHP-FPM
-    # - { role: apache-php }    # PHP using Apache and mod-php
+    # - { role: php-apache }    # PHP using Apache and mod-php
     # - { role: django }        # Django framework
 
     ## Webserver, choose one of those only if you have not choosed a scripting language
