@@ -3,6 +3,7 @@
   sudo: yes
   with_items:
     - php5-mysql
+    - php5-pgsql
     - php5-xcache
     - php5-xdebug
     - php5-curl
