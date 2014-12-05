@@ -56,6 +56,10 @@
 - name: cd to /vagrant when sshing
   lineinfile: dest=~/.bashrc line='cd /vagrant'
 
+- name: add vagrant user to www-data group
+  shell: "usermod -a -G www-data vagrant"
+  sudo: yes
+
 # Some programs such as PostgreSQL use the current locale to create the base
 # databases. If the locale is set to a value that isn't installed on the
 # system, PostgreSQL installation will fail
