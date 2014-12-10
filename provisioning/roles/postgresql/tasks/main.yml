@@ -1,15 +1,15 @@
 - set_fact: database_type=postgresql
 
 - name: install postgresql 9.1
-  apt: pkg=postgresql-9.1 state=present
+  apt: pkg=postgresql-9.1 state=latest
   sudo: yes
 
 - name: install python-psycopg2 (for ansible)
-  apt: pkg=python-psycopg2 state=present
+  apt: pkg=python-psycopg2 state=latest
   sudo: yes
 
 - name: install postgresql dev libraries
-  apt: pkg=libpq-dev state=present
+  apt: pkg=libpq-dev state=latest
   sudo: yes
 
 - name: ensure postgresql is started

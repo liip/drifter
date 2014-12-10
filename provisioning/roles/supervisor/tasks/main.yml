@@ -1,5 +1,5 @@
 - name: install supervisor
-  apt: pkg=supervisor state=present
+  apt: pkg=supervisor state=latest
   sudo: yes
   notify: enable supervisor
 

@@ -15,7 +15,7 @@
   sudo: yes
 
 - name: ensure base packages are installed
-  apt: pkg={{ item }} state=present
+  apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
     - locales

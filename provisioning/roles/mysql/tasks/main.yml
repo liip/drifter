@@ -9,15 +9,15 @@
   sudo: yes
 
 - name: install mysql 5.5
-  apt: pkg=mysql-server-5.5 state=present
+  apt: pkg=mysql-server-5.5 state=latest
   sudo: yes
 
 - name: install python-mysqldb (for ansible)
-  apt: pkg=python-mysqldb state=present
+  apt: pkg=python-mysqldb state=latest
   sudo: yes
 
 - name: install mysql dev libraries
-  apt: pkg=libmysqlclient-dev state=present
+  apt: pkg=libmysqlclient-dev state=latest
   sudo: yes
 
 - name: create my.cnf config for user

@@ -1,5 +1,5 @@
 - name: install nginx
-  apt: pkg=nginx state=present
+  apt: pkg=nginx state=latest
   sudo: yes
 
 - name: create partials directory

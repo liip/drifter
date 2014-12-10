@@ -1,5 +1,5 @@
 - name: install PHP5 packages
-  apt: pkg={{ item }} state=present
+  apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
     - php5-xcache
@@ -11,12 +11,12 @@
     - php5-imagick
 
 - name: install mysql database driver
-  apt: pkg=php5-mysql state=present
+  apt: pkg=php5-mysql state=latest
   sudo: yes
   when: database_type == 'mysql'
 
 - name: install postgresql database driver
-  apt: pkg=php5-pgsql state=present
+  apt: pkg=php5-pgsql state=latest
   sudo: yes
   when: database_type == 'postgresql'
 

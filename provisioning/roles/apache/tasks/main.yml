@@ -1,5 +1,5 @@
 - name: install apache
-  apt: pkg=apache2 state=present
+  apt: pkg=apache2 state=latest
   sudo: yes
 
 - name: remove default vhost
