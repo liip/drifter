@@ -7,7 +7,7 @@ bootstrap of the virtualization stack of a new or existing project.
 For the complete steps on how to create a project from scratch for the
 RAWBOT team, please see "[RAWBOT Project Howto][1]" in the Liip wiki.
 
-[1]: http://need.some.url.here
+[1]: https://wiki.liip.ch/display/INTERN/New+project+How-to
 
 TL;DR;
 ------
