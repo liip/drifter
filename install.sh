@@ -8,7 +8,7 @@ REPODIR="rawbot-virtualization"
 
 mkdir $VIRTDIR
 
-git submodule add git@github.com:team-rawbot/rawbot-virtualization.git $VIRTDIR/$REPODIR
+git submodule add https://github.com/team-rawbot/rawbot-virtualization.git $VIRTDIR/$REPODIR
 
 cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
 cp $VIRTDIR/$REPODIR/VagrantfileExtra.rb.dist $VIRTDIR/VagrantfileExtra.rb
