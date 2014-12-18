@@ -63,7 +63,7 @@ You also need a virtualization solution, either one of those :
 
 Optional dependencies :
 
-* vagrant-hostmanager >= 1.5.0
+* vagrant-hostmanager >= 1.5.0 (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
 
 ### Linux (Debian & Ubuntu)
 
