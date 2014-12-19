@@ -60,6 +60,17 @@
   shell: "usermod -a -G www-data vagrant"
   sudo: yes
 
+- name: get local git username
+  local_action: command git config user.name
+  register: git_username
+
+- name: get local git email
+  local_action: command git config user.email
+  register: git_email
+
+- name: set box git username and email
+  shell: git config --global user.name "{{ git_username.stdout }}"; git config --global user.email "{{ git_email.stdout }}"
+
 # Some programs such as PostgreSQL use the current locale to create the base
 # databases. If the locale is set to a value that isn't installed on the
 # system, PostgreSQL installation will fail

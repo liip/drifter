@@ -18,6 +18,7 @@
 
     up = "!git update"
     st = status
+    ss = status -s
 
     fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
     ri = rebase --interactive --autosquash
