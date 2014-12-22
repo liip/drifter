@@ -63,10 +63,12 @@
 - name: get local git username
   local_action: command git config user.name
   register: git_username
+  ignore_errors: yes
 
 - name: get local git email
   local_action: command git config user.email
   register: git_email
+  ignore_errors: yes
 
 - name: set box git username and email
   shell: git config --global user.name "{{ git_username.stdout }}"; git config --global user.email "{{ git_email.stdout }}"
