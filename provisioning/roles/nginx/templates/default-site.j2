@@ -1,5 +1,5 @@
 server {
-    server_name {{ hostname }} {{ hostnames }};
+    server_name {{ hostname }} {% for hostname in hostnames %}{{ hostname }} {% endfor %};
 
     access_log	/var/log/nginx/{{ hostname }}.access.log;
     error_log	/var/log/nginx/{{ hostname }}.error.log;
