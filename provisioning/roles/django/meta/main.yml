@@ -1,4 +1,4 @@
 ---
 dependencies:
   - { role: python }
-  - { role: nginx, site_template: "django-site.j2", port: 8000 }
+  - { role: nginx, site_template: "django-site.j2", port: 8000, when: "no_nginx is not defined" }
