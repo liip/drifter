@@ -1,5 +1,8 @@
 ---
 # This role requires either the postgresql or mysql roles to be enabled
+- name: create the local environement directory
+  file: path=/vagrant/envdir/local state=directory
+
 - name: fill in DATABASE_URL setting
   copy: dest=/vagrant/envdir/local/DATABASE_URL content="{{ database_type | mandatory }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
 
