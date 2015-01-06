@@ -15,7 +15,7 @@
   sudo: yes
 
 - name: enable vhost
-  file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/apache2/sites-enabled/{{ hostname }} state=link
+  file: src=/etc/apache2/sites-available/{{ hostname }} dest=/etc/apache2/sites-enabled/0001-{{ hostname }} state=link
   sudo: yes
   notify: reload apache
 
