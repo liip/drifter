@@ -53,8 +53,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
     end
 
-    config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async']
-
     config.vm.provision "ansible" do |ansible|
         ansible.host_key_checking = false
         ansible.playbook = "virtualization/playbook.yml"
