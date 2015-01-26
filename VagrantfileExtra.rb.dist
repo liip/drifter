@@ -14,17 +14,20 @@ class CustomConfig
   attr_accessor :hostname
   attr_accessor :hostnames
   attr_accessor :box_ip
+  attr_accessor :playbook
 
   # Retrieve the values of 'virtualization/parameters.yml' so that
   # they can be used by Vagrant. If you need to change those values
   # prefer editing the parameters.yml file instead.
   def initialize
-    config = YAML::load(File.open('virtualization/parameters.yml'))
+    parameters_file = ENV.fetch('VIRTUALIZATION_PARAMETERS_FILE', 'virtualization/parameters.yml')
+    config = YAML::load(File.open(parameters_file))
 
     @project_name = config['project_name'] || "rawbot"
     @hostname = config['hostname'] || "#{@project_name}.lo"
     @hostnames = config['hostnames'] || Array.new
     @box_ip = config['box_ip'] || "10.10.10.10"
+    @playbook = config['playbook'] || "virtualization/playbook.yml"
   end
 
   # Modify this if you need to determine a list from hostnames

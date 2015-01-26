@@ -55,7 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision "ansible" do |ansible|
         ansible.host_key_checking = false
-        ansible.playbook = "virtualization/playbook.yml"
+        ansible.playbook = custom_config.playbook
         ansible.host_key_checking = false
         # Update verbosity as needed, multiples 'v' means more verbose
         # ansible.verbose = 'v'
