@@ -1,0 +1,13 @@
+---
+- name: Make sure APT supports HTTPS sources
+  apt: pkg=apt-transport-https state=present
+  sudo: yes
+- name: Add nodesource.com apt key
+  apt_key: id=68576280 url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+  sudo: yes
+- name: Add nodesource.com apt repo
+  apt_repository: repo='deb https://deb.nodesource.com/node wheezy main' state=present
+  sudo: yes
+- name: Install nodejs
+  apt: update_cache=yes name=nodejs state=present
+  sudo: yes
