@@ -25,7 +25,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64.box"
 
-    config.vm.network :private_network, ip: custom_config.box_ip
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
     config.ssh.forward_agent = true
@@ -38,7 +37,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.hostmanager.aliases = custom_config.load_aliases
     end
 
-    config.vm.provider "virtualbox" do |v|
+    config.vm.provider "virtualbox" do |v, override|
+        override.vm.network :private_network, ip: custom_config.box_ip
+
         v.memory = 4096
         v.cpus = 2
     end
