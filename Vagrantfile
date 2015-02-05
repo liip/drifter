@@ -39,6 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v, override|
         override.vm.network :private_network, ip: custom_config.box_ip
+        override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async']
 
         v.memory = 4096
         v.cpus = 2
