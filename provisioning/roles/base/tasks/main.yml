@@ -24,6 +24,7 @@
     - bash-completion
     - zsh
     - bzip2
+    - unzip
     - git
     - vim
     - ack-grep
