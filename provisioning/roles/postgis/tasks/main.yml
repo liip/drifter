@@ -1,0 +1,23 @@
+- name: ensure geo packages are installed
+  apt: pkg={{ item }} state=present
+  with_items:
+      - binutils
+      - libproj-dev
+      - gdal-bin
+      - postgresql-9.1-postgis
+  sudo: yes
+
+- name: ensure postgis database template exists
+  postgresql_db: name=template_postgis state=present
+  sudo_user: postgres
+  sudo: yes
+  register: postgis_template_created
+
+- name: run postgis scripts
+  command: psql -d template_postgis --file '{{ item }}'
+  with_items:
+      - /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
+      - /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
+  sudo_user: postgres
+  sudo: yes
+  when: postgis_template_created|changed

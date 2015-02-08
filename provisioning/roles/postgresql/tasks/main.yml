@@ -22,6 +22,6 @@
   sudo: yes
 
 - name: create database
-  postgresql_db: name={{ database_name }} owner={{ database_user }} state=present
+  postgresql_db: name={{ database_name }} owner={{ database_user }} template={{ database_template }} state=present
   sudo_user: postgres
   sudo: yes
