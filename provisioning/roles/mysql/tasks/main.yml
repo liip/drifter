@@ -1,4 +1,5 @@
 - set_fact: database_type=mysql
+  when: database_type is not defined
 
 - name: set mysql root password via debconf
   debconf: name=mysql-server-5.5 question='mysql-server/root_password'  value='root' vtype='password'
