@@ -38,7 +38,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "virtualbox" do |v, override|
-        override.vm.network :private_network, ip: custom_config.box_ip
+        #on liip's docker based gitlab-ci runner setup, hostonly networks doesn't work
+        # or I (chregu) couldn't figure out, how to get it working, therefor don't enable it
+        # Tests still work even without that
+        if ENV['VAGRANT_NO_HOSTONLYIF'] != 'yes'
+            override.vm.network :private_network, ip: custom_config.box_ip
+        end
         override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async']
 
         v.memory = 4096
