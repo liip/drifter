@@ -14,6 +14,10 @@
   debconf: name=locales question='locales/default_environment_locale' value=en_US.UTF-8 vtype='select'
   sudo: yes
 
+- name: ensure members of sudo can sudo password-less
+  copy: src=passwordless-sudo dest=/etc/sudoers.d/sudo-passwordless
+  sudo: yes
+
 - name: ensure base packages are installed
   apt: pkg={{ item }} state=latest
   sudo: yes
