@@ -9,8 +9,23 @@
       - postgresql-9.1-postgis
   sudo: yes
 
+- name: ensure postgis database template exists
+  postgresql_db: name=template_postgis state=present
+  sudo_user: postgres
+  sudo: yes
+  register: postgis_template_created
+
+- name: run postgis scripts on postgis database template
+  command: psql -d template_postgis --file '/usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}'
+  with_items:
+    - postgis.sql
+    - spatial_ref_sys.sql
+  sudo_user: postgres
+  sudo: yes
+  when: postgis_template_created|changed
+
 - name: run postgis scripts on existing database
-  action: command psql -d {{ database_name }} --file /usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}
+  command: psql -d {{ database_name }} --file /usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}
   sudo_user: postgres
   sudo: yes
   with_items:
