@@ -20,7 +20,7 @@ load 'virtualization/VagrantfileExtra.rb'
 custom_config = CustomConfig.new
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = custom_config.project_name
+    config.vm.box = "wheezy64"
     config.vm.hostname = custom_config.hostname
 
     config.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64.box"
@@ -46,6 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
+        override.vm.box = "wheezy64-lxc"
         override.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64-lxc.box"
 
         if Vagrant.has_plugin?("vagrant-hostmanager")
