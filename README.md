@@ -88,7 +88,21 @@ vagrant plugin install vagrant-lxc
 
 ### Max OS X
 
-TODO: explain how to install the requirements on a Mac
+For Ansible :
+
+```
+brew install ansible
+```
+
+For Vagrant & Virtualbox :
+
+with cask:
+
+```
+brew cask install vagrant virtualbox
+```
+
+Otherwise download the binaries and install the apps the as usual.
 
 ### Windows
 
