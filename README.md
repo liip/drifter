@@ -19,7 +19,7 @@ curl -sS https://raw.githubusercontent.com/team-rawbot/rawbot-virtualization/mas
 ```
 
 This will create a `Vagrantfile` in your root and a `virtualization` folder
-containing configuration option. You know have to follow those two steps :
+containing configuration option. You now have to follow those two steps :
 
 * edit `virtualization/parameters.yml` to set parameters related to your project
 * edit `virtualization/playbook.yml` to configure what to install in your box
