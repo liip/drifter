@@ -1,5 +1,11 @@
 ---
 # This role requires either the postgresql or mysql roles to be enabled
+
+# Gettext is used by Django's compilemessages
+- name: ensure gettext is installed
+  apt: pkg=gettext state=latest
+  sudo: yes
+
 - name: create the local environement directory
   file: path=/vagrant/envdir/local state=directory
 
