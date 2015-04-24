@@ -25,4 +25,5 @@
   sudo: yes
   with_items:
   - { src: php.ini.j2, dest: /etc/php5/conf.d/90-php-dev.ini }
+  - { src: php.ini.j2, dest: /etc/php5/cli/conf.d/90-php-dev.ini }
   - { src: xdebug.ini.j2, dest: /etc/php5/conf.d/20-xdebug.ini}
