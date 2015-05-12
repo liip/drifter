@@ -1,3 +1,6 @@
 - name: install libapache2-mod-php5
   apt: pkg=libapache2-mod-php5 state=latest
   sudo: yes
+
+- apache2_module: state=present name=php5
+  notify: restart apache
