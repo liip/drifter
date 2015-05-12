@@ -4,3 +4,4 @@
 
 - apache2_module: state=present name=php5
   notify: restart apache
+  sudo: yes
