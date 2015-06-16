@@ -20,10 +20,10 @@ load 'virtualization/VagrantfileExtra.rb'
 custom_config = CustomConfig.new
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "wheezy64"
+    config.vm.box = "jessie64"
     config.vm.hostname = custom_config.hostname
 
-    config.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64.box"
+    config.vm.box_url = "http://vagrantbox-public.liip.ch/liip-jessie64.box"
 
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
@@ -46,8 +46,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
-        override.vm.box = "wheezy64-lxc"
-        override.vm.box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64-lxc.box"
+        override.vm.box = "jessie64-lxc"
+
+        override.vm.box_url = "http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box"
 
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
