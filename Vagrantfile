@@ -44,6 +44,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         v.memory = 4096
         v.cpus = 2
+        v.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
     end
 
     config.vm.provider "lxc" do |lxc, override|
