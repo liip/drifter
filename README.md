@@ -1,8 +1,8 @@
 RAWBOT Virtualization Framework
 ===============================
 
-This repository is supposed to be used as a git submodule to allow for quick
-bootstrap of the virtualization stack of a new or existing project.
+This repository is supposed to be used as a git submodule to quickly
+bootstrap the virtualization stack of a new or existing project.
 
 For the complete steps on how to create a project from scratch for the
 RAWBOT team, please see "[RAWBOT Project Howto][1]" in the Liip wiki.
