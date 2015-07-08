@@ -1,3 +1,6 @@
 database_user: "{{ database_name }}"
 database_password: "{{ database_name }}"
 database_template: "template1"
+database_encoding: "UTF-8"
+database_lc_collate: "en_US.UTF-8"
+database_lc_ctype: "en_US.UTF-8"
