@@ -5,6 +5,12 @@
         ServerAlias {{ h }}
     {% endfor %}
 
+    <Directory />
+        Options All
+        AllowOverride All
+        Require all granted
+    </Directory>
+
     DocumentRoot "{{ root_directory }}"
 </VirtualHost>
 
@@ -15,6 +21,12 @@
     {% for h in ssl_hostnames | default(hostnames) %}
         ServerAlias {{ h }}
     {% endfor %}
+
+    <Directory />
+        Options All
+        AllowOverride All
+        Require all granted
+    </Directory>
 
     DocumentRoot "{{ root_directory }}"
 
