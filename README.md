@@ -425,3 +425,11 @@ lxc.network.flags = up
 ```
 
 ### VirtualBox
+
+Install [veewee](https://github.com/jedi4ever/veewee/) and then:
+
+``
+git clone https://github.com/team-rawbot/veewee-definitions definitions
+veewee vbox build liip-jessie64
+veewee vbox export liip-jessie64
+```
