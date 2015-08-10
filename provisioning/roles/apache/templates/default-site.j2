@@ -8,7 +8,11 @@
     <Directory />
         Options All
         AllowOverride All
-        Require all granted
+        {% if ansible_lsb.major_release|int >= 8 %}
+            Require all granted
+        {% else %}
+            Allow from all
+        {% endif %}
     </Directory>
 
     DocumentRoot "{{ root_directory }}"
@@ -25,7 +29,11 @@
     <Directory />
         Options All
         AllowOverride All
-        Require all granted
+        {% if ansible_lsb.major_release|int >= 8 %}
+            Require all granted
+        {% else %}
+            Allow from all
+        {% endif %}
     </Directory>
 
     DocumentRoot "{{ root_directory }}"
