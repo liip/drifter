@@ -5,3 +5,7 @@
 - apache2_module: state=present name=php5
   notify: restart apache
   sudo: yes
+
+- name: Configure mod-php
+  file: src=/etc/php5/mods-available/php-dev.ini dest=/etc/php5/apache2/conf.d/90-php-dev.ini state=link
+  sudo: yes

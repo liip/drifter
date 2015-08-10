@@ -32,8 +32,17 @@
   sudo: yes
   with_items:
     - libfreetype6-dev
-    - libjpeg8-dev
     - zlib1g-dev
     - libwebp-dev
     - liblcms2-dev
     - libtiff5-dev
+
+- name: install libjpeg-dev
+  apt: pkg=libjpeg-dev state=latest
+  sudo: yes
+  when: ansible_lsb.major_release|int >= 8
+
+- name: install libjpeg8-dev
+  apt: pkg=libjpeg8-dev state=latest
+  sudo: yes
+  when: ansible_lsb.major_release|int == 7

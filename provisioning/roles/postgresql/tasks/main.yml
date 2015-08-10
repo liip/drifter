@@ -2,8 +2,14 @@
   when: database_type is not defined
 
 - name: install postgresql 9.1
-  apt: pkg=postgresql-9.1 state=latest
+  apt: pkg=postgresql9.1 state=latest
   sudo: yes
+  when: ansible_lsb.major_release|int == 7
+
+- name: install postgresql
+  apt: pkg=postgresql state=latest
+  sudo: yes
+  when: ansible_lsb.major_release|int >= 8
 
 - name: install python-psycopg2 (for ansible)
   apt: pkg=python-psycopg2 state=latest

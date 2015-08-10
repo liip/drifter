@@ -5,6 +5,16 @@
         ServerAlias {{ h }}
     {% endfor %}
 
+    <Directory />
+        Options All
+        AllowOverride All
+        {% if ansible_lsb.major_release|int >= 8 %}
+            Require all granted
+        {% else %}
+            Allow from all
+        {% endif %}
+    </Directory>
+
     DocumentRoot "{{ root_directory }}"
 </VirtualHost>
 
@@ -15,6 +25,16 @@
     {% for h in ssl_hostnames | default(hostnames) %}
         ServerAlias {{ h }}
     {% endfor %}
+
+    <Directory />
+        Options All
+        AllowOverride All
+        {% if ansible_lsb.major_release|int >= 8 %}
+            Require all granted
+        {% else %}
+            Allow from all
+        {% endif %}
+    </Directory>
 
     DocumentRoot "{{ root_directory }}"
 
