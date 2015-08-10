@@ -403,3 +403,25 @@ What could be done if the need arise :
 * Better installer with questions to automatically create the config files instead of manual editing
 * Improve the `Vagrantfile` extension mechanism
 * Provide a role to simply the creation of a Symfony project
+
+Create boxes
+------------
+
+### LXC
+
+```
+git clone https://github.com/team-rawbot/vagrant-lxc-base-boxes
+cd vagrant-lxc-base-boxes
+make jessie
+```
+
+If you're getting errors when trying to install the base packages, check your
+default LXC config (`/etc/lxc/default.conf`) and adapt it to your setup:
+
+```
+lxc.network.type = veth
+lxc.network.link = lxcbr0
+lxc.network.flags = up
+```
+
+### VirtualBox
