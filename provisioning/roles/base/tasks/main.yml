@@ -56,12 +56,6 @@
     - ackrc
     - vimrc
 
-- name: install liquidprompt
-  git: repo=https://github.com/nojhan/liquidprompt.git dest=~/liquidprompt accept_hostkey=yes
-
-- name: use liquidprompt as prompt
-  file: src=~/liquidprompt/liquidprompt dest=~/.ps1 state=link
-
 - name: cd to /vagrant when sshing
   lineinfile: dest=~/.bashrc line='cd /vagrant'
 
