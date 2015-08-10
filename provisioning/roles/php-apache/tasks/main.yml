@@ -1,3 +1,7 @@
 - name: install libapache2-mod-php5
   apt: pkg=libapache2-mod-php5 state=latest
   sudo: yes
+
+- name: Configure mod-php
+  file: src=/etc/php5/mods-available/php-dev.ini dest=/etc/php5/apache2/conf.d/90-php-dev.ini state=link
+  sudo: yes
