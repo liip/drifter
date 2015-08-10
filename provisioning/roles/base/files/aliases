@@ -7,6 +7,16 @@ alias la='ls -a'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias .........='cd ../../../../../../../..'
+alias ..........='cd ../../../../../../../../..'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -19,3 +29,7 @@ alias df="df -h"
 alias du="du -h"
 
 alias ack="ack-grep"
+
+alias hl='highlight --out-format xterm256 --style rdark --line-numbers --syntax '
+alias lintxml='xmllint --format -'
+alias lintjson='python -m json.tool'

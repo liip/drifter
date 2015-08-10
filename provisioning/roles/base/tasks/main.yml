@@ -32,6 +32,8 @@
     - git
     - vim
     - ack-grep
+    - highlight
+    - libxml2-utils
     - build-essential
     - wget
     - openssh-server
