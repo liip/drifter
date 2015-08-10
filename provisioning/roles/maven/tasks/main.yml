@@ -1,0 +1,3 @@
+- name: ensure Maven is installed
+  apt: pkg=maven state=installed
+  sudo: yes

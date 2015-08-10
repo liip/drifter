@@ -24,5 +24,12 @@
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
   sudo: yes
   with_items:
-  - { src: php.ini.j2, dest: /etc/php5/conf.d/90-php-dev.ini }
-  - { src: xdebug.ini.j2, dest: /etc/php5/conf.d/20-xdebug.ini}
+    - { src: php.ini.j2, dest: /etc/php5/mods-available/phpdev.ini }
+    - { src: xdebug.ini.j2, dest: /etc/php5/mods-available/xdebug.ini }
+
+- name: Activate PHP configuration files
+  command: php5enmod {{ item }}
+  with_items:
+    - phpdev
+    - xdebug
+  sudo: yes

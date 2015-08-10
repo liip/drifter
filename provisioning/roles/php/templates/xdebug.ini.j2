@@ -8,8 +8,8 @@ xdebug.cli_color=1
 ; disable coverage for speedup
 xdebug.coverage_enable=0
 
-; allow for file opening in PHPStorm ( see http://davidbu.ch/mann/blog/2014-05-06/open-php-stack-trace-links-phpstorm.html )
-xdebug.file_link_format="pstorm://%f:%l"
+; PHPStorm 8 link format to open files
+xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
 
 ; config to run the profiler
 xdebug.profiler_enable=0

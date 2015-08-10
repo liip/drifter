@@ -27,6 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
     config.ssh.forward_agent = true
+    config.ssh.forward_x11 = true
 
     if Vagrant.has_plugin?("vagrant-hostmanager")
         config.hostmanager.enabled = true
