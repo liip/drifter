@@ -12,20 +12,24 @@
   apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
-    - python-virtualenv
     - python3-pip
     - python3-all-dev
   when: python_version == "3"
 
-- name: make symlink from pip-3.2 to pip
-  file: src=/usr/bin/pip-3.2 dest=/usr/bin/pip state=link
+- name: make symlink from pip-3.2 / pip3 to pip
+  file: src="/usr/bin/{{ (ansible_lsb.major_release|int == 7) | ternary('pip-3.2', 'pip3') }}" dest=/usr/bin/pip state=link
   sudo: yes
   when: python_version == "3"
 
-- name: install python 3 virtualenv
+- name: install python 3 virtualenv (wheezy)
   pip: name=virtualenv
   sudo: yes
-  when: python_version == "3"
+  when: python_version == "3" and ansible_lsb.major_release|int == 7
+
+- name: install python 3 virtualenv (jessie)
+  apt: pkg=python3-virtualenv state=latest
+  sudo: yes
+  when: python_version == "3" and ansible_lsb.major_release|int == 8
 
 - name: install pillow dependencies
   apt: pkg={{ item }} state=latest
@@ -37,12 +41,12 @@
     - liblcms2-dev
     - libtiff5-dev
 
-- name: install libjpeg-dev
+- name: install libjpeg-dev (jessie)
   apt: pkg=libjpeg-dev state=latest
   sudo: yes
   when: ansible_lsb.major_release|int >= 8
 
-- name: install libjpeg8-dev
+- name: install libjpeg8-dev (wheezy)
   apt: pkg=libjpeg8-dev state=latest
   sudo: yes
   when: ansible_lsb.major_release|int == 7
