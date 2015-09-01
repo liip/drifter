@@ -41,12 +41,7 @@
     - liblcms2-dev
     - libtiff5-dev
 
-- name: install libjpeg-dev (jessie)
-  apt: pkg=libjpeg-dev state=latest
+- name: install libjpeg-dev
+  apt: pkg="{{ (ansible_lsb.major_release|int == 7) | ternary('libjpeg8-dev', 'libjpeg-dev') }}" state=latest
   sudo: yes
   when: ansible_lsb.major_release|int >= 8
-
-- name: install libjpeg8-dev (wheezy)
-  apt: pkg=libjpeg8-dev state=latest
-  sudo: yes
-  when: ansible_lsb.major_release|int == 7
