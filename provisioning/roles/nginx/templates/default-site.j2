@@ -1,10 +1,11 @@
 server {
+    listen {{ port }};
     server_name {{ hostname }} {% for hostname in hostnames %}{{ hostname }} {% endfor %};
 
-    access_log	/var/log/nginx/{{ hostname }}.access.log;
-    error_log	/var/log/nginx/{{ hostname }}.error.log;
+    access_log	/var/log/nginx/{{ vhost }}.access.log;
+    error_log	/var/log/nginx/{{ vhost }}.error.log;
 
-    root {{ root_directory }};
+    root {{ web_directory }};
     {% if index %}
     index {% block index %}{{ index }}{% endblock %}
     {% endif %}
