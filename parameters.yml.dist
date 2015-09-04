@@ -29,4 +29,4 @@ root_directory: "/vagrant/"
 
 # For a Django project, you might want to set the following
 # django_pip_requirements: "dev"
-# django_version: "1.6"
+# django_version: "1.8"

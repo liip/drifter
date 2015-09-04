@@ -1,4 +1,4 @@
 requirement: "base"
 django_root: "{{ root_directory }}"
 env_root: "~/ENV"
-django_version: "1.7"
+django_version: "1.8"

@@ -20,7 +20,7 @@
 
 - name: sync db
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
-  when: django_version != "1.7"
+  when: django_version | version_compare('1.7', '<')
 
 - name: migrate
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py migrate --noinput"
