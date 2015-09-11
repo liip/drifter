@@ -1,0 +1,16 @@
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "main": "README.md",
+  "author": "Liip AG",
+  "license": "private",
+  "private": true,
+  "devDependencies": {
+    "browser-sync": "^2.9.3",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-sass": "^2.0.4"
+  }
+}
