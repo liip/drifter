@@ -42,7 +42,10 @@
     - iputils-ping
     - ncurses-term
     - python-pycurl # needed by ansible to add apt repos
-    - silversearcher-ag
+
+- name: ensure silversearcher-ag is installed
+  apt: pkg=silversearcher-ag
+  when: ansible_lsb.major_release|int >= 8
 
 - name: install shell config
   copy: src={{ item }} dest=~/.{{ item }}
