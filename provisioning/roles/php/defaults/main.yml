@@ -1,5 +1,3 @@
-database_type: false
-
 php_error_reporting: "E_ALL | E_STRICT"
 
 php_max_execution_time: "3600"
