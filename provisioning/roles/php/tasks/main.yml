@@ -13,12 +13,12 @@
 - name: install mysql database driver
   apt: pkg=php5-mysql state=latest
   sudo: yes
-  when: database_type == 'mysql'
+  when: "'{{ database_type|default(false) }}' == 'mysql'"
 
 - name: install postgresql database driver
   apt: pkg=php5-pgsql state=latest
   sudo: yes
-  when: database_type == 'postgresql'
+  when: "'{{ database_type|default(false) }}' == 'postgresql'"
 
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
