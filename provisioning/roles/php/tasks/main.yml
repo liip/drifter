@@ -35,5 +35,5 @@
   sudo: yes
 
 - name: Download php-cs-fixer
-  shell: "curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer"
+  shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer
   sudo: yes
