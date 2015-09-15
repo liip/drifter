@@ -2,12 +2,16 @@
   apt: pkg=apache2 state=latest
   sudo: yes
 
-- name: remove default vhost
-  file: name=/etc/apache2/sites-{{ item }}/000-default.conf state=absent
+- name: disable default vhost
+  file: name=/etc/apache2/sites-enabled/000-default state=absent
   sudo: yes
-  with_items:
-      - enabled
-      - available
+  when: ansible_lsb.major_release|int < 8
+  notify: restart apache
+
+- name: disable default vhost
+  file: name=/etc/apache2/sites-enabled/000-default.conf state=absent
+  sudo: yes
+  when: ansible_lsb.major_release|int >= 8
   notify: restart apache
 
 - name: create vhost config
