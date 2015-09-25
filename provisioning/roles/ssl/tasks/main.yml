@@ -1,0 +1,50 @@
+- name: create CA directories
+  file: dest={{ ssl_root_dir }}/{{ item }} state=directory
+  with_items: [ certs, db, private, config ]
+  sudo: yes
+
+- name: create database index
+  file: dest={{ ssl_root_dir }}/db/index state=touch
+  sudo: yes
+
+- name: create crlnumber
+  shell: echo 1001 > {{ ssl_root_dir }}/db/crlnumber creates="{{ ssl_root_dir }}/db/crlnumber"
+  sudo: yes
+
+- name: create serial
+  shell: openssl rand -hex 16 > {{ ssl_root_dir }}/db/serial creates="{{ ssl_root_dir }}/db/serial"
+  sudo: yes
+
+
+- name: create the CA config file
+  template: src=ca.cnf dest={{ ssl_ca_conf_file }}
+  sudo: yes
+
+- name: create the config file
+  template: src=vagrant.cnf dest={{ ssl_conf_file }}
+  sudo: yes
+
+- name: create the EXT config file
+  template: src=vagrant.ext dest={{ ssl_ext_file }}
+  sudo: yes
+
+- name: create CA key file
+  shell: openssl req -new -config {{ ssl_ca_conf_file }} -out {{ ssl_ca_csr_file }} -keyout {{ ssl_ca_key_file }} creates="{{ ssl_ca_csr_file }}"
+  sudo: yes
+
+- name: create CA cert
+  shell: openssl ca -batch -selfsign -config {{ ssl_ca_conf_file }} -in {{ ssl_ca_csr_file }} -out {{ ssl_ca_cert_file }} -extensions ca_ext creates="{{ ssl_ca_cert_file }}"
+  sudo: yes
+
+
+- name: create key file
+  shell: openssl genrsa -3 -out {{ ssl_key_file }} 2048 creates="{{ ssl_key_file }}"
+  sudo: yes
+
+- name: create the csr
+  shell: openssl req -new -config {{ ssl_conf_file }} -key {{ ssl_key_file }} -out {{ ssl_csr_file }} creates="{{ ssl_csr_file }}"
+  sudo: yes
+
+- name: create the certificate
+  shell: openssl ca -batch -config {{ ssl_ca_conf_file }} -in {{ ssl_csr_file }} -out {{ ssl_cert_file }} -extensions csr_ext creates="{{ ssl_cert_file }}"
+  sudo: yes
