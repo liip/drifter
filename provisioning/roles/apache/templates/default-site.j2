@@ -39,7 +39,7 @@
     DocumentRoot "{{ root_directory }}"
 
     SSLEngine on
-    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+    SSLCertificateKeyFile {{ ssl_key_file }}
+    SSLCertificateFile {{ ssl_cert_file }}
 </VirtualHost>
 {% endif %}

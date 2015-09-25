@@ -9,9 +9,31 @@ server {
     index {% block index %}{{ index }}{% endblock %}
     {% endif %}
 
-{% block extra %}
-{% endblock %}
+    {% block extra %}
+    {% endblock %}
 }
+
+{% if ssl %}
+server {
+    listen 443;
+
+    ssl on;
+    ssl_certificate_key {{ ssl_key_file }};
+    ssl_certificate {{ ssl_cert_file }};
+
+    server_name {{ hostname }} {% for hostname in hostnames %}{{ hostname }} {% endfor %};
+
+    access_log	/var/log/nginx/{{ hostname }}.access.log;
+    error_log	/var/log/nginx/{{ hostname }}.error.log;
+
+    root {{ root_directory }};
+    {% if index %}
+    index {{ self.index() }}
+    {% endif %}
+
+    {{ self.extra() }}
+}
+{% endif %}
 
 {% block extra_server %}
 {% endblock %}
