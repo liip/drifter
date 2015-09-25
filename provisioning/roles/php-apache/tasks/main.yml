@@ -7,5 +7,9 @@
   sudo: yes
 
 - name: Configure mod-php
-  file: src=/etc/php5/mods-available/php-dev.ini dest=/etc/php5/apache2/conf.d/90-php-dev.ini state=link
+  command: php5enmod {{ item }}
+  with_items:
+    - php-dev
+    - xdebug
+  notify: restart apache
   sudo: yes
