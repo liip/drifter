@@ -18,14 +18,34 @@
 
 - name: create the CA config file
   template: src=ca.cnf dest={{ ssl_ca_conf_file }}
+  register: ca_config
   sudo: yes
 
 - name: create the config file
   template: src=vagrant.cnf dest={{ ssl_conf_file }}
+  register: cert_config
   sudo: yes
 
 - name: create the EXT config file
   template: src=vagrant.ext dest={{ ssl_ext_file }}
+  register: ext_config
+  sudo: yes
+
+- name: cleanup files upon CA change
+  file: dest={{ item }} state=absent
+  with_items:
+    - "{{ ssl_ca_csr_file }}"
+    - "{{ ssl_ca_cert_file }}"
+  when: ca_config.changed
+  sudo: yes
+
+- name: cleanup files upon config change
+  file: dest={{ item }} state=absent
+  with_items:
+    - "{{ ssl_key_file }}"
+    - "{{ ssl_csr_file }}"
+    - "{{ ssl_cert_file }}"
+  when: ca_config.changed or cert_config.changed or ext_config.changed
   sudo: yes
 
 - name: create CA key file
