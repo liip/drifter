@@ -42,8 +42,21 @@ distinguished_name      = ca_dn
 req_extensions          = ca_ext
 
 [ca_ext]
-basicConstraints        = critical,CA:true
+basicConstraints        = critical,CA:true,pathlen:0
 keyUsage                = critical,keyCertSign,cRLSign
 subjectKeyIdentifier    = hash
+nameConstraints         = critical,@name_constraints
+extendedKeyUsage        = serverAuth
 
 [csr_ext]
+
+
+[name_constraints]
+permitted;DNS.0={{ hostname }}
+{% for h in hostnames %}
+  permitted;DNS.{{ loop.index }}={{ h }}
+{% endfor %}
+permitted;IP.0=10.0.0.0.0/255.0.0.0
+permitted;IP.1=172.16.0.0.0/255.128.0.0
+permitted;IP.2=192.168.0.0.0/255.255.0.0
+
