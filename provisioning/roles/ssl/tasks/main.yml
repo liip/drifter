@@ -68,3 +68,7 @@
 - name: create the certificate
   shell: openssl ca -batch -config {{ ssl_ca_conf_file }} -in {{ ssl_csr_file }} -out {{ ssl_cert_file }} -extensions csr_ext creates="{{ ssl_cert_file }}"
   sudo: yes
+
+- name: copy CA to project dir
+  shell: cp -f {{ ssl_ca_cert_file }} {{ root_directory }}
+  sudo: yes
