@@ -57,6 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provision "ansible" do |ansible|
+        ansible.extra_vars = custom_config.respond_to?('extra_vars') ? custom_config.extra_vars : {}
         ansible.host_key_checking = false
         # Default value for backwards-compatibility
         ansible.playbook = custom_config.respond_to?('playbook') ? custom_config.playbook : "virtualization/playbook.yml"
