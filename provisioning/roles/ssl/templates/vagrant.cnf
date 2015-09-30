@@ -1,0 +1,14 @@
+[req]
+prompt = no
+distinguished_name = dn
+req_extensions = ext
+
+[dn]
+CN = {{ hostname }}
+emailAddress = webmaster@{{ hostname }}
+O = Liip SA
+L = Switzerland
+C = CH
+
+[ext]
+subjectAltName = DNS:{{ hostname }}{% if hostnames %},DNS:{{ hostnames|join(", DNS:") }}{% endif %}

@@ -22,7 +22,20 @@
     {% if static_host %}
         server {
             server_name {{ static_host }};
-            root {{ static_fs_dir }}
+            root {{ static_fs_dir }};
         }
+
+        {% if ssl %}
+            server {
+                listen 443;
+
+                ssl on;
+                ssl_certificate_key {{ ssl_key_file }};
+                ssl_certificate {{ ssl_cert_file }};
+
+                server_name {{ static_host }};
+                root {{ static_fs_dir }};
+            }
+        {% endif %}
     {% endif %}
 {% endblock %}
