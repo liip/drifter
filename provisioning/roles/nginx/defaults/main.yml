@@ -1,5 +1,8 @@
 # template to use
 site_template: default-site.j2
+# activate SSL ?
+ssl: false
+
 # index file
 index: false
 
