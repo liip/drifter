@@ -21,7 +21,7 @@ database_name: "rawbot"
 root_directory: "/vagrant/"
 
 # Do we activate SSL ?
-# ssl: yes
+ssl: yes
 
 # For a PHP project, you might want to set the following
 # Default reporting level of PHP errors
