@@ -5,7 +5,7 @@
   apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
-    - virtualenv
+    - python-virtualenv
     - python-pip
     - python-all-dev
 
