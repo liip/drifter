@@ -44,6 +44,10 @@
   sudo: yes
   when: "'{{ database_type|default(false) }}' == 'postgresql'"
 
+- name: retrieve xdebug extension path
+  shell: dpkg -L php5-xdebug | grep -i xdebug.so
+  register: xdebug_path
+
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
   sudo: yes
