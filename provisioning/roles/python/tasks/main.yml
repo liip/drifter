@@ -1,6 +1,10 @@
 ---
-# We always install Python 2 + Python 3 packages in case we want to use tools
-# like tox
+- name: error when trying to use python3 on wheezy
+  fail: msg="You cannot use python 3 on Wheezy."
+  when: "ansible_lsb.major_release|int < 8 and {{python_version}}|int > 2"
+
+# We always try to install Python 2 + Python 3 packages in case
+# we want to use tools like tox
 - name: install python 2 packages
   apt: pkg={{ item }} state=latest
   sudo: yes
@@ -15,11 +19,8 @@
   with_items:
     - python3-pip
     - python3-all-dev
-
-- name: install python 3 virtualenv (jessie)
-  apt: pkg=python3-venv state=latest
-  sudo: yes
-  when: ansible_lsb.major_release|int == 8
+    - python3-venv
+  when: ansible_lsb.major_release|int >= 8
 
 - name: install pillow dependencies
   apt: pkg={{ item }} state=latest
@@ -34,4 +35,3 @@
 - name: install libjpeg-dev
   apt: pkg="{{ (ansible_lsb.major_release|int == 7) | ternary('libjpeg8-dev', 'libjpeg-dev') }}" state=latest
   sudo: yes
-  when: ansible_lsb.major_release|int >= 8
