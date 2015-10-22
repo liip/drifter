@@ -1,14 +1,38 @@
+- name: error when trying to use something else than PHP 5.6 on jessie
+  fail: msg="Jessie only supports version 5.6."
+  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} != 5.6"
+
+- name: error when trying to use an invalid PHP version on wheezy
+  fail: msg="Invalid PHP version {{ php_version }}."
+  when: "{{ php_version | float }} != 5.6 and {{ php_version | float }} != 5.5 and {{ php_version | float }} != 5.4"
+
+- name: Install DotDeb key
+  apt_key: url=http://www.dotdeb.org/dotdeb.gpg
+  sudo: yes
+  when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} > 5.4"
+
+- name: Add DotDeb repository
+  apt_repository: repo='{{ item }}' update_cache=yes
+  with_items:
+    - deb http://packages.dotdeb.org wheezy-php{{ php_version | replace('.', '') }} all
+  sudo: yes
+  when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} > 5.4"
+
 - name: install PHP5 packages
   apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
-    - php5-xcache
     - php5-xdebug
     - php5-curl
     - php5-cli
     - php5-intl
     - php5-gd
     - php5-imagick
+
+- name: install xcache packages
+  apt: pkg=php5-xcache state=latest
+  sudo: yes
+  when: "{{ php_version | float }} < 5.6"
 
 - name: install mysql database driver
   apt: pkg=php5-mysql state=latest
