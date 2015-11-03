@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: ruby }
+  - { role: supervisor, service_name: "mailcatcher", user: "root", command: "bash -c \"mailcatcher --http-ip 0.0.0.0 -f\"", root_directory: "/usr/local/bin/" }
+

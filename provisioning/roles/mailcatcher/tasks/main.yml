@@ -2,19 +2,8 @@
   apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
-    - ruby
-    - ruby-dev
     - libsqlite3-dev
 
 - name: ensure mailcatcher installed
   gem: name=mailcatcher user_install=no state=latest
-  sudo: yes
-
-- name: copy mailcatcher init file
-  copy: src=mailcatcher dest=/etc/init.d/mailcatcher mode=0755
-  sudo: yes
-
-- name: enable mailcatcher
-  shell: update-rc.d mailcatcher defaults
-  notify: restart mailcatcher
   sudo: yes
