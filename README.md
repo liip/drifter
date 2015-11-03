@@ -377,7 +377,7 @@ thus avoiding costly network transfers for shared directories.
 
 ### Mailcatcher
 
-Allows you to catch emails right in the box. With mailcatcher it's very easy to test a application which sends email. You only need to use port __1025__ for SMTP in your application. All mails that goes to this port will be immediately shown in the webinterface which you can find under __http://[url_or_ip_to_your_box]:1080__. They weren't then redirected to their real destination.
+Allows you to catch emails right in the box. With mailcatcher it's very easy to test a application which sends email. You only need to use __127.0.0.1:1025__ for SMTP in your application. All mails that goes to this port will be immediately shown in the webinterface which you can find under __http://[url_or_ip_to_your_box]:1080__. They weren't then redirected to their real destination.
 
 More infos at: [mailcatcher.me](http://mailcatcher.me)
 
