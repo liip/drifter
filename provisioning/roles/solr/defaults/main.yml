@@ -1,5 +1,17 @@
-solr_base_dir: "/opt/solr" # this is needed because you cannot reference a field from a structure to declare another field in this structure
-solr:
-  url: "http://archive.apache.org/dist/lucene/solr/3.5.0/apache-solr-3.5.0.tgz"
-  install_dir: "{{ solr_base_dir }}"
-  config_dir: "{{ solr_base_dir }}/example/"
+solr_base_dir: "/opt/solr"
+solr_version: "5.3.1"
+
+solr_base_url_filename: "{{ solr_version | version_compare('4.1.0', '<') | ternary('apache-', '') }}"
+solr_base_config_dir: "{{ solr_version | version_compare('5.0.0', '<') | ternary('example', 'server') }}"
+
+solr_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_version }}/{{ solr_base_url_filename }}solr-{{ solr_version }}.tgz"
+
+solr_install_dir: "{{ solr_base_dir }}"
+
+solr_config_dir: "{{ solr_base_dir }}/{{ solr_base_config_dir }}/solr"
+
+solr_port: "8984"
+solr_command: "{{ solr_version | version_compare('4.10.0', '<') | ternary(
+  'java -jar ' + solr_install_dir + '/example/start.jar -Djetty.home=' + solr_install_dir + '/example -Dsolr.solr.home=' + solr_config_dir + ' -Djetty.port=' + solr_port,
+  solr_install_dir + '/bin/solr start -f -p ' + solr_port + ' -s ' + solr_config_dir
+) }}"
