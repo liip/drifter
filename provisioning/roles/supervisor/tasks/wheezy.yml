@@ -19,11 +19,15 @@
   sudo: yes
   notify: enable supervisor
 
-- name: install default parameters
+- name: install config
   file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisor/supervisord.conf state=link
   sudo: yes
 
-- name: install config
+- name: supervisorctl needs the config in etc
+  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisord.conf state=link
+  sudo: yes
+
+- name: install default parameters
   file: src={{ wheezy_repo_destination }}/debian/supervisor.default dest=/etc/default/supervisor state=link
   sudo: yes
 
