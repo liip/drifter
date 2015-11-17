@@ -10,6 +10,10 @@
   file: path=/etc/supervisor/conf.d state=directory owner=root group=root mode=0755 recurse=yes
   sudo: yes
 
+- name: ensure log dir exists
+  file: path=/var/log/supervisor/ state=directory owner=root group=root mode=0755 recurse=yes
+  sudo: yes
+
 - name: install init script
   command: \cp -f {{ wheezy_repo_destination }}/debian/supervisor.init /etc/init.d/supervisor creates=/etc/init.d/supervisor
   sudo: yes
