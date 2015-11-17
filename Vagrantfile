@@ -70,5 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # changes sshd configuration. If controlmaster is used, the new sshd
         # configuration is not taken into account
         ansible.raw_ssh_args = ['-o ControlMaster=no']
+        # force handlers to run even on playbook errors
+        ansible.raw_arguments = ['--force-handlers']
     end
 end
