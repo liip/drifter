@@ -1,8 +1,8 @@
 {
   "name": "{{ project_name }}",
   "version": "1.0.0",
-  "main": "README.md",
-  "author": "Liip AG",
+  "main": "{{ gulp_package_json_readme }}",
+  "author": "{{ gulp_package_json_author }}",
   "license": "private",
   "private": true,
   "devDependencies": {
