@@ -31,8 +31,11 @@
     # - { role: nginx }          # Nginx for basic HTML website
     # - { role: apache }         # Apache for basic HTML website
 
-    ## Install compass in the box
+    ## Install Compass in the box
     # - { role: compass }
+
+    ## Install Gulp with RAWBOT Gulpfile in the box
+    # - { role: gulp }
 
     ## Install Solr in the box
     # - { role: solr }

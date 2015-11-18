@@ -1,0 +1,4 @@
+gulp_package_json_path: /vagrant/package.json
+gulp_gulpfile_path: /vagrant/Gulpfile.js
+gulp_package_json_author: Liip AG
+gulp_package_json_readme: README.md
