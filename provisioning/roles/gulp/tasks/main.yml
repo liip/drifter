@@ -1,13 +1,12 @@
 - name: Create package.json and Gulpfile.js if non-existent
-  template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644 force=no
-  sudo: yes
+  template: src={{ item.src }} dest={{ item.dest }} force=no
   with_items:
     - { src: package.json, dest: /vagrant/package.json }
     - { src: Gulpfile.js, dest: /vagrant/Gulpfile.js }
 
 - name: Install Gulp globally
-  shell: npm install -g gulp
+  npm: name=gulp global=yes
   sudo: yes
 
 - name: Install Node packages / Gulp dependencies
-  shell: npm install
+  npm: path=/vagrant
