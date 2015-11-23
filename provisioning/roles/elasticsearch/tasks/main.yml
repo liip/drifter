@@ -1,0 +1,20 @@
+- name: create elasticsearch user
+  user: name=elasticsearch comment="Elasticsearch Daemon" group="www-data" home="{{ elasticsearch_base_dir }}"
+  sudo: yes
+
+- name: Install Elasticsearch APT key
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch
+  sudo: yes
+
+- name: Install Elasticsearch APT repository
+  apt_repository: repo='deb http://packages.elastic.co/elasticsearch/2.x/debian stable main' state=present update_cache=yes
+  sudo: yes
+
+- name: install elasticsearch
+  apt: pkg=elasticsearch=2.0.0 state=present
+  sudo: yes
+
+- name: elasticsearch directory permission
+  file: dest="{{ elasticsearch_base_dir }}" state=directory owner=elasticsearch group=www-data recurse=yes
+  sudo: yes
+  notify: restart supervisor
