@@ -1,2 +1,0 @@
-elasticsearch_base_dir: "/usr/share/elasticsearch"
-elasticsearch_command: "/usr/share/elasticsearch/bin/elasticsearch"

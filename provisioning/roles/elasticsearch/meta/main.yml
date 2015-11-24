@@ -1,4 +1,3 @@
 ---
 dependencies:
-  - { role: supervisor, service_name: "elasticsearch", user: "elasticsearch", command: "{{ elasticsearch_command }}", root_directory: "{{ elasticsearch_base_dir }}" }
   - { role: java }
