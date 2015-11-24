@@ -40,6 +40,9 @@
     ## Install Solr in the box
     # - { role: solr }
 
+    ## Install Elasticsearch in the box
+    # - { role: elasticsearch }
+
     ## Install Composer in the box
     # - { role: composer }
 
