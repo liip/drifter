@@ -375,6 +375,14 @@ thus avoiding costly network transfers for shared directories.
 
 * **mount_path** : the path to replace with a tmpfs
 
+### Mailcatcher
+
+With mailcatcher it's very easy to test an application which sends emails. It allows you to catch emails right in the box and they weren't redirected to their real destination (no more spamed dev inbox). 
+
+You only need to use __127.0.0.1:1025__ for SMTP in your application. All mails that goes to this port will be immediately shown in the webinterface which you can find under __http://[url_or_ip_to_your_box]:1080__. 
+
+More infos at: [mailcatcher.me](http://mailcatcher.me)
+
 
 PHP Debugging with RVF & PHPStorm
 ---------------------------------

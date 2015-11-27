@@ -1,0 +1,9 @@
+- name: ensure needed packages are installed
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+    - libsqlite3-dev
+
+- name: ensure mailcatcher installed
+  gem: name=mailcatcher user_install=no state=latest
+  sudo: yes
