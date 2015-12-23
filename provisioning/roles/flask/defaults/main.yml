@@ -1,0 +1,2 @@
+flask_pip_requirements: requirements.txt
+env_root: "~/ENV"
