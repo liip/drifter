@@ -17,12 +17,25 @@ VAGRANTFILE_API_VERSION = "2"
 
 load 'virtualization/VagrantfileExtra.rb'
 
+# add a 'get' method to our config class
+class CustomConfig
+    def get(name, default = nil)
+        if self.respond_to?(name)
+            self.send(name)
+        elsif default.nil?
+            raise "[CONFIG ERROR] '#{name}' cannot be found and no default provided."
+        else
+            default
+        end
+    end
+end
+
 custom_config = CustomConfig.new
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = custom_config.respond_to?('vbox_box_name') ? custom_config.vbox_box_name : 'jessie64'
-    config.vm.box_url = custom_config.respond_to?('vbox_box_url') ? custom_config.vbox_box_url : "http://vagrantbox-public.liip.ch/liip-jessie64.box"
-    config.vm.hostname = custom_config.hostname
+    config.vm.box = custom_config.get('vbox_box_name', 'jessie64')
+    config.vm.box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
+    config.vm.hostname = custom_config.get('hostname')
 
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
@@ -34,11 +47,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.hostmanager.manage_host = true
         config.hostmanager.ignore_private_ip = false
         config.hostmanager.include_offline = true
-        config.hostmanager.aliases = custom_config.load_aliases
+        config.hostmanager.aliases = custom_config.get('load_aliases', [])
     end
 
     config.vm.provider "virtualbox" do |v, override|
-        override.vm.network :private_network, ip: custom_config.box_ip
+        override.vm.network :private_network, ip: custom_config.get('box_ip')
         override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
 
         v.memory = 4096
@@ -48,8 +61,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
-        override.vm.box = custom_config.respond_to?('lxc_box_name') ? custom_config.lxc_box_name : 'jessie64-lxc'
-        override.vm.box_url = custom_config.respond_to?('lxc_box_url') ? custom_config.lxc_box_url : "http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box"
+        override.vm.box = custom_config.get('lxc_box_name', 'jessie64-lxc')
+        override.vm.box_url = custom_config.get('lxc_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box')
 
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
@@ -57,10 +70,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provision "ansible" do |ansible|
-        ansible.extra_vars = custom_config.respond_to?('extra_vars') ? custom_config.extra_vars : {}
+        ansible.extra_vars = custom_config.get('extra_vars', {})
         ansible.host_key_checking = false
         # Default value for backwards-compatibility
-        ansible.playbook = custom_config.respond_to?('playbook') ? custom_config.playbook : "virtualization/playbook.yml"
+        ansible.playbook = custom_config.get('playbook', 'virtualization/playbook.yml')
         ansible.host_key_checking = false
         # Update verbosity as needed, multiples 'v' means more verbose
         # ansible.verbose = 'v'

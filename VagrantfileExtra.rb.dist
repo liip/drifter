@@ -6,15 +6,23 @@
 # If the provided possibilities are not enough for you, please get in
 # touch so we can find a common solution !
 
+# The following are options than can be configured in this file :
+# * vbox_box_name : name of the virtualbox box
+# * vbox_box_url  : url of the virtualbox box
+# * lxc_box_name  : name of the virtualbox box
+# * lxc_box_url   : url of the virtualbox box
+
 require 'yaml'
 
 class CustomConfig
   # Those accessors will be used by the Vagrantfile
-  attr_accessor :project_name
-  attr_accessor :hostname
-  attr_accessor :hostnames
-  attr_accessor :box_ip
-  attr_accessor :playbook
+  attr_accessor :project_name  # project name (currently unused by the Vagrant file)
+  attr_accessor :hostname      # main hostname of the box
+  attr_accessor :hostnames     # alternative hostnames (array)
+  attr_accessor :box_ip        # IP of the box
+
+  attr_accessor :playbook      # path to the playbook
+  attr_accessor :extra_vars    # extra variables to pass to Ansible
 
   # Retrieve the values of 'virtualization/parameters.yml' so that
   # they can be used by Vagrant. If you need to change those values
@@ -27,7 +35,9 @@ class CustomConfig
     @hostname = config['hostname'] || "#{@project_name}.lo"
     @hostnames = config['hostnames'] || Array.new
     @box_ip = config['box_ip'] || "10.10.10.10"
+
     @playbook = config['playbook'] || "virtualization/playbook.yml"
+    @extra_vars = {}
   end
 
   # Modify this if you need to determine a list from hostnames
