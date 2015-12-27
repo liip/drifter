@@ -32,6 +32,14 @@ end
 
 custom_config = CustomConfig.new
 
+ansible_provisioner = custom_config.get('ansible_local', false) ? 'ansible_local' : 'ansible'
+
+if ansible_provisioner == 'ansible_local'
+    Vagrant.require_version ">= 1.8.1"
+else
+    Vagrant.require_version ">= 1.6.2"
+end
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = custom_config.get('vbox_box_name', 'jessie64')
     config.vm.box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
@@ -69,21 +77,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
     end
 
-    config.vm.provision "ansible" do |ansible|
+    config.vm.provision ansible_provisioner do |ansible|
         ansible.extra_vars = custom_config.get('extra_vars', {})
-        ansible.host_key_checking = false
-        # Default value for backwards-compatibility
         ansible.playbook = custom_config.get('playbook', 'virtualization/playbook.yml')
-        ansible.host_key_checking = false
+
+        # force handlers to run even on playbook errors
+        ansible.raw_arguments = ['--force-handlers']
+
         # Update verbosity as needed, multiples 'v' means more verbose
         # ansible.verbose = 'v'
 
-        # We can't use controlmaster because it makes SSH use the same
-        # connection over and over again. This clashes with the base role which
-        # changes sshd configuration. If controlmaster is used, the new sshd
-        # configuration is not taken into account
-        ansible.raw_ssh_args = ['-o ControlMaster=no']
-        # force handlers to run even on playbook errors
-        ansible.raw_arguments = ['--force-handlers']
+        if ansible_provisioner == 'ansible'
+            ansible.host_key_checking = false
+            # We can't use controlmaster because it makes SSH use the same
+            # connection over and over again. This clashes with the base role which
+            # changes sshd configuration. If controlmaster is used, the new sshd
+            # configuration is not taken into account
+            ansible.raw_ssh_args = ['-o ControlMaster=no']
+        else
+            # try to install ansible in the box so that we don't have to recreate them
+            ansible.install = true
+        end
     end
 end
