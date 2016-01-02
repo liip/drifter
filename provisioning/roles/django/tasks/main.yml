@@ -11,7 +11,8 @@
   file: path=/vagrant/envdir state=directory
 
 - name: fill in DATABASE_URL setting
-  copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type | mandatory }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
+  copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
+  when: database_type is defined
 
 - name: create venv with latest pip version
   pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ (python_version|int == 2) | ternary('virtualenv', 'pyvenv') }}"
@@ -24,7 +25,8 @@
 
 - name: sync db
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
-  when: django_version | version_compare('1.7', '<')
+  when: database_type is defined and django_version | version_compare('1.7', '<')
 
 - name: migrate
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py migrate --noinput"
+  when: database_type is defined
