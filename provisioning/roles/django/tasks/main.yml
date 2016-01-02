@@ -13,8 +13,11 @@
 - name: fill in DATABASE_URL setting
   copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type | mandatory }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
 
-- name: create venv and install base packages
-  pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }} virtualenv_command={{ (python_version|int == 2) | ternary('virtualenv', 'pyvenv') }}"
+- name: create venv with latest pip version
+  pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ (python_version|int == 2) | ternary('virtualenv', 'pyvenv') }}"
+
+- name: install base packages in venv
+  pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }}"
 
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
