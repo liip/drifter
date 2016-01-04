@@ -6,8 +6,12 @@
   apt_repository: repo='deb http://packages.elastic.co/elasticsearch/2.x/debian stable main' state=present update_cache=yes
   sudo: yes
 
-- name: install elasticsearch
+- name: Install elasticsearch
   apt: pkg=elasticsearch state=present
+  sudo: yes
+
+- name: Copy elasticsearch configuration
+  copy: src=elasticsearch.yml dest=/etc/elasticsearch/elasticsearch.yml
   sudo: yes
 
 - name: Enable elasticsearch service
