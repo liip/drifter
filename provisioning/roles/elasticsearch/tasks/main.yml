@@ -21,5 +21,3 @@
 - name: Install elasticsearch-head plugin
   command: /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head creates=/usr/share/elasticsearch/plugins/head
   sudo: yes
-
-
