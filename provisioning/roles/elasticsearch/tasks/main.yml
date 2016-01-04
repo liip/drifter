@@ -10,8 +10,8 @@
   apt: pkg=elasticsearch state=present
   sudo: yes
 
-- name: Copy elasticsearch configuration
-  copy: src=elasticsearch.yml dest=/etc/elasticsearch/elasticsearch.yml
+- name: Set elasticsearch to be bound to network interface 0.0.0.0
+  lineinfile: "dest=/etc/elasticsearch/elasticsearch.yml regexp=^network.host:(.)+$ line='network.host: 0.0.0.0' state=present"
   sudo: yes
 
 - name: Enable elasticsearch service
