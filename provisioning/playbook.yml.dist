@@ -46,15 +46,12 @@
     ## Install Composer in the box
     # - { role: composer }
 
-    ## Install the ssh rule, currently only allows to disable StrictHostKeyChecking (needs 
-    ## adjustement of parameters.yml as well)
+    ## Install the ssh rule, installs gitlab.liip.ch and github.com host key
     # - { role: ssh }
     
     ## You can also creates your own role, just add a directory under the 'virtualization'
     ## folder and refer to it like for other roles :
     # - { role: my_own_role }
-    
-    
 
 # If needed, you can specify your own tasks, here is an example :
 #  tasks:

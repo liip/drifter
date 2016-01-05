@@ -32,5 +32,6 @@ root_directory: "/vagrant/"
 # django_version: "1.8"
 
 # if you want to dissable ssh StrictHostKeyChecking (needs the ssh role)
+# this has security issues, you better add your ssh host keys in the ssh role
 # ssh_no_stricthostkeychecking: true
 
