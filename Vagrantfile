@@ -75,8 +75,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
         end
-
-        ansible_provisioner = 'ansible'
     end
 
     config.vm.provision ansible_provisioner do |ansible|
