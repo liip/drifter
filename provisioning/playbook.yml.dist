@@ -46,6 +46,9 @@
     ## Install Composer in the box
     # - { role: composer }
 
+    ## Install the ssh rule, installs gitlab.liip.ch and github.com host key
+    # - { role: ssh }
+    
     ## You can also creates your own role, just add a directory under the 'virtualization'
     ## folder and refer to it like for other roles :
     # - { role: my_own_role }
