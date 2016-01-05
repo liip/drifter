@@ -1,0 +1,7 @@
+- name: disable strict host checking
+  lineinfile: dest=/home/vagrant/.ssh/config owner=vagrant mode=0600 line="StrictHostKeyChecking no" create="yes"
+  when: "{{ ssh_no_stricthostkeychecking|default(false) }} == true"
+
+  
+  
+
