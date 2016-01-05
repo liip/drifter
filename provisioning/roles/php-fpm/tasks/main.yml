@@ -1,3 +1,10 @@
 - name: install php5-fpm
   apt: pkg=php5-fpm state=latest
-  sudo: yes
+  sudo: yes  
+  when: "{{ php_version | float }} < 7.0"
+
+- name: install php7.0-fpm
+  apt: pkg=php7.0-fpm state=latest
+  sudo: yes  
+  when: "{{ php_version | float }} == 7.0"
+  

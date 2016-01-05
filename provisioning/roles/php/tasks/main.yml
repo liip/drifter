@@ -1,15 +1,15 @@
-- name: error when trying to use something else than PHP 5.6 on jessie
+- name: error when trying to use something else than PHP 5.6 or PHP 7.0 on jessie
   fail: msg="Jessie only supports version 5.6."
-  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} != 5.6"
+  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} != 5.6 and {{ php_version | float }} != 7.0"
 
 - name: error when trying to use an invalid PHP version on wheezy
   fail: msg="Invalid PHP version {{ php_version }}."
-  when: "{{ php_version | float }} != 5.6 and {{ php_version | float }} != 5.5 and {{ php_version | float }} != 5.4"
+  when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} != 5.6 and {{ php_version | float }} != 5.5 and {{ php_version | float }} != 5.4"
 
 - name: Install DotDeb key
   apt_key: url=http://www.dotdeb.org/dotdeb.gpg
   sudo: yes
-  when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} > 5.4"
+  when: "{{ php_version | float }} > 5.4"
 
 - name: Add DotDeb repository
   apt_repository: repo='{{ item }}' update_cache=yes
@@ -17,6 +17,13 @@
     - deb http://packages.dotdeb.org wheezy-php{{ php_version | replace('.', '') }} all
   sudo: yes
   when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} > 5.4"
+
+- name: Add DotDeb repository for PHP 7.0 on Jessie
+  apt_repository: repo='{{ item }}' update_cache=yes
+  with_items:
+    - deb http://packages.dotdeb.org jessie all
+  sudo: yes
+  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} == 7.0"
 
 - name: install PHP5 packages
   apt: pkg={{ item }} state=latest
@@ -28,7 +35,20 @@
     - php5-intl
     - php5-gd
     - php5-imagick
+  when: "{{ php_version | float }} < 7.0"
 
+- name: install PHP7 packages
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+#    - php7.0-xdebug
+    - php7.0-curl
+    - php7.0-cli
+    - php7.0-intl
+    - php7.0-gd
+#    - php7.0-imagick
+  when: "{{ php_version | float }} == 7.0"  
+  
 - name: install xcache packages
   apt: pkg=php5-xcache state=latest
   sudo: yes
@@ -37,16 +57,28 @@
 - name: install mysql database driver
   apt: pkg=php5-mysql state=latest
   sudo: yes
-  when: "'{{ database_type|default(false) }}' == 'mysql'"
-
+  when: "'{{ database_type|default(false) }}' == 'mysql' and {{ php_version | float }} < 7.0"
+  
 - name: install postgresql database driver
   apt: pkg=php5-pgsql state=latest
   sudo: yes
-  when: "'{{ database_type|default(false) }}' == 'postgresql'"
+  when: "'{{ database_type|default(false) }}' == 'postgresql' and {{ php_version | float }} < 7.0"
+
+- name: install mysql database driver
+  apt: pkg=php7.0-mysql state=latest
+  sudo: yes
+  when: "'{{ database_type|default(false) }}' == 'mysql' and {{ php_version | float }} == 7.0"
+  
+- name: install postgresql database driver
+  apt: pkg=php7.0-pgsql state=latest
+  sudo: yes
+  when: "'{{ database_type|default(false) }}' == 'postgresql' and {{ php_version | float }} == 7.0"
 
 - name: retrieve xdebug extension path
   shell: dpkg -L php5-xdebug | grep -i xdebug.so
   register: xdebug_path
+  when: "{{ php_version | float }} < 7.0"
+
 
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
@@ -54,6 +86,7 @@
   with_items:
     - { src: php.ini.j2, dest: /etc/php5/mods-available/php-dev.ini }
     - { src: xdebug.ini.j2, dest: /etc/php5/mods-available/xdebug.ini }
+  when: "{{ php_version | float }} < 7.0"
 
 - name: Activate PHP configuration files
   command: php5enmod {{ item }}
@@ -61,6 +94,7 @@
     - php-dev
     - xdebug
   sudo: yes
+  when: "{{ php_version | float }} < 7.0"
 
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer

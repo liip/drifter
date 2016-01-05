@@ -8,11 +8,15 @@
   file: name=/etc/nginx/conf.d/partials state=directory
   sudo: yes
 
-- name: install partials
-  copy: src={{ item }} dest=/etc/nginx/conf.d/partials/{{ item }}
+- name: install partials for php 5.5
+  copy: src=_php_fpm.conf dest=/etc/nginx/conf.d/partials/_php_fpm.conf
   sudo: yes
-  with_items:
-    - _php_fpm.conf
+  when: "{{ php_version | float }} < 7.0"
+
+- name: install partials for php 7.0
+  copy: src=_php7_fpm.conf dest=/etc/nginx/conf.d/partials/_php_fpm.conf
+  sudo: yes
+  when: "{{ php_version | float }} == 7.0"
 
 - name: remove default vhost
   file: name=/etc/nginx/sites-{{ item }}/default state=absent
