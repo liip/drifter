@@ -1,0 +1,22 @@
+before_script:
+  - mkdir -p ../${PWD##*/}.vagrant
+  - ln -s ../${PWD##*/}.vagrant .vagrant
+  
+variables:
+  VAGRANT_DEFAULT_PROVIDER: lxc
+
+# uncomment this, if you want to cache some stuff between runs  
+# cache:
+#  paths:
+#    - vendor/
+#    - bin/
+#  group: sharedcache
+  
+tests:
+  tags:
+     - shell
+     - lxc
+  script: "bash ./scripts/gitlabci.sh"
+  
+
+        
