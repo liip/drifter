@@ -2,7 +2,8 @@
 
 set -e
 
-echo -e "\nStarting the build..."
+echo -e "\nStarting the build ..."
+echo -e " Running in directory: $PWD"
 
 function finish() {
     echo -e "\033[31mBuild failed, cleanup\e[0m\n- Stop vagrant"
