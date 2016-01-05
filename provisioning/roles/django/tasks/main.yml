@@ -11,17 +11,22 @@
   file: path=/vagrant/envdir state=directory
 
 - name: fill in DATABASE_URL setting
-  copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type | mandatory }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
+  copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
+  when: database_type is defined
 
-- name: create venv and install base packages
-  pip: "requirements={{ django_root }}/requirements/{{ django_pip_requirements }}.txt virtualenv={{ env_root }} virtualenv_command={{ (python_version|int == 2) | ternary('virtualenv', 'pyvenv') }}"
+- name: create venv with latest pip version
+  pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ (python_version|int == 2) | ternary('virtualenv', 'pyvenv') }}"
+
+- name: install base packages in venv
+  pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }}"
 
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
 
 - name: sync db
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
-  when: django_version | version_compare('1.7', '<')
+  when: database_type is defined and django_version | version_compare('1.7', '<')
 
 - name: migrate
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py migrate --noinput"
+  when: database_type is defined
