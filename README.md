@@ -106,21 +106,7 @@ Otherwise download the binaries and install the apps the as usual.
 
 ### Windows
 
-If you have developers with windows in your team, you need to have some additinoal steps for the initial setup, since Windows doesn't support symlinks the same way "unix" does. And you also need at least Vagrant 1.8.1 for ansible_local provisioning support.
-
-To setup, copy the Vagrantfile into your project root (instead of a symlink) and add an ansible.cfg for the correct roles directory.
-
-```
-rm Vagrantfile
-cp  virtualization/rawbot-virtualization/Vagrantfile Vagrantfile
-echo '[defaults]
-roles_path = virtualization/rawbot-virtualization/provisioning/roles' > ansible.cfg
-```
-
-Commit this to git and you should be good to go.
-
-The gitlabci scripts also check, if both Vagrantfile are the same and bails, if not. So you can be sure, that you get notified in case the Vagrantfile in the rawbot-virtualization repo gets updated.
-
+Install Virtualbox and Vagrant (>= 1.8.1)
 
 Goals
 -----

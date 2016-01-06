@@ -59,6 +59,8 @@ class CustomConfig
   end
 end
 
+load 'virtualization/rawbot-virtualization/VagrantfileGeneral'
+
 # Cross-platform way of finding an executable in the $PATH.
 #
 #   which('ruby') #=> /usr/bin/ruby
