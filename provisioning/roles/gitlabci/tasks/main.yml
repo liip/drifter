@@ -6,3 +6,10 @@
  
 - name: install gitlabci.sh
   template: src=gitlabci.sh dest=/vagrant/{{ ci_scripts_folder}}gitlabci.sh force=no mode=0755
+  
+- name: install provisionbuild.dat
+  shell: date +%Y%m%d%H%M%S > virtualization/provisionbuild.dat
+  args:
+    chdir: /vagrant/
+    creates: virtualization/provisionbuild.dat
+ 
