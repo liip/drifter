@@ -13,7 +13,7 @@ function finish() {
 }
 
 function cleanup() {
-   vagrant halt -f
+   vagrant halt
 }
 
 trap finish EXIT SIGHUP SIGINT SIGTERM
