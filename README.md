@@ -259,8 +259,6 @@ yourself, the Django or PHP-FPM roles do it automatically with the correct param
 
 The server logs are stored in `/var/log/nginx/<hostname>.(error|access).log`.
 
-For now, there is no SSL support for the NGinx role, ask if you need it !
-
 #### Parameters
 
 * **site_template** : The virtual host template to use, defaults to "default-site.j2" for
@@ -374,6 +372,23 @@ thus avoiding costly network transfers for shared directories.
 #### Parameters
 
 * **mount_path** : the path to replace with a tmpfs
+
+### SSL
+
+If you set the `ssl` parameter to true in your `parameters.yml` file, ansible will create a
+Certification Authority (CA) and then create and sign SSL certificates for all hosts configured
+for your project.
+
+The CA certificate will then be copied to your project `root_directory`. If you add this
+certificate to your trust store, you should be able to access your websites with HTTPS without
+any error messages from most browsers.
+
+If the role is activated, both Apache and NGinx will be configured to use the created certificates.
+
+WARNING: if the certificate is regenerated because you did a `vagrant destroy` or the hostname
+changed, you will need to reimport the CA certificate into your trust store and in the meantime you
+might get errors from your browser. Chrome for example produce a pretty confusing error message about
+an attacker trying to steal your credentials.
 
 
 PHP Debugging with RVF & PHPStorm
