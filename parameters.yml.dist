@@ -36,3 +36,7 @@ root_directory: "/vagrant/"
 # this has security issues, you better add your ssh host keys in the ssh role
 # ssh_no_stricthostkeychecking: true
 
+# For the gitlabci roles, it installs its scripts into /scripts/
+# If you want another folder for that, adjust it here
+# ci_scripts_folder: scripts/
+

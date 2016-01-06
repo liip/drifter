@@ -32,7 +32,7 @@ You can also use any other file, but then adjust the env variable `CI_TEST_SCRIP
 If you want to avoid that the ci runners do call the provisioning all the time, add a file in `virtualization/provisionbuild.dat` to your project, with eg.
 
 ````
-date > virtualization/provisionbuild.dat
+date +%Y%m%d%H%M%S > virtualization/provisionbuild.dat
 ````
 
 The Gitlab CI scripts will now only do provisioning, when that file has a different content (or start from scratch)

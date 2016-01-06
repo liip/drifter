@@ -1,8 +1,8 @@
 #!/bin/sh 
 
-export CI_TEST_SCRIPT=./scripts/test.sh
+export CI_TEST_SCRIPT={{ ci_scripts_folder }}run_tests.sh
 
-#if you want to use a global cache dir which is used
+# if you want to use a global cache dir which is used
 # across all projects (even not your own), enable this
 # can for example be used with composer cache
 

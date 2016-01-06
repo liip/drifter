@@ -16,7 +16,4 @@ tests:
   tags:
      - shell
      - lxc
-  script: "bash ./scripts/gitlabci.sh"
-  
-
-        
+  script: "bash {{ ci_scripts_folder }}gitlabci.sh"

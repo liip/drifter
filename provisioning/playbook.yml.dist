@@ -48,6 +48,10 @@
 
     ## Install the ssh rule, installs gitlab.liip.ch and github.com host key
     # - { role: ssh }
+
+    ## Install some Gitlab CI scripts and .gitlab-ci.yml. 
+    ## See https://github.com/team-rawbot/rawbot-virtualization/blob/master/ci/README.md for details
+    # - { role: gitlabci }
     
     ## You can also creates your own role, just add a directory under the 'virtualization'
     ## folder and refer to it like for other roles :
