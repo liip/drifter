@@ -1,0 +1,35 @@
+- name: Add DotDeb repository for PHP 7.0 on Jessie
+  apt_repository: repo='{{ item }}' update_cache=yes
+  with_items:
+    - deb http://packages.dotdeb.org jessie all
+  sudo: yes
+  when: "{{ php_version | float }} == 7.0"
+
+- name: install PHP7 packages
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+#    - php7.0-xdebug
+    - php7.0-curl
+    - php7.0-cli
+    - php7.0-intl
+    - php7.0-gd
+#    - php7.0-imagick
+
+- name: install mysql database driver
+  apt: pkg=php7.0-mysql state=latest
+  sudo: yes
+  when: "'{{ database_type|default(false) }}' == 'mysql'"
+  
+- name: install postgresql database driver
+  apt: pkg=php7.0-pgsql state=latest
+  sudo: yes
+  when: "'{{ database_type|default(false) }}' == 'postgresql'"
+
+#- name: Place PHP configuration files in place.
+#  template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
+#  sudo: yes
+#  with_items:
+#    - { src: php.ini.j2, dest: /etc/php5/mods-available/php-dev.ini }
+#    - { src: xdebug.ini.j2, dest: /etc/php5/mods-available/xdebug.ini }
+  
