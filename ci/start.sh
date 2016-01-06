@@ -16,6 +16,25 @@ function cleanup() {
    vagrant halt
 }
 
+
+if [[ ! $DONT_CHECK_VAGRANTFILE_SAMENESS ]]
+then
+    if [ -f Vagrantfile -a -f virtualization/rawbot-virtualization/Vagrantfile ]
+    then
+        if ! cmp --silent Vagrantfile virtualization/rawbot-virtualization/Vagrantfile
+        then
+            echo "*****************************************************************"
+            echo "Vagrantfile and virtualization/rawbot-virtualization/Vagrantfile"
+            echo "are not the same, please do"
+            echo "cp virtualization/rawbot-virtualization/Vagrantfile Vagrantfile"
+            echo
+            echo "Failing the tests until this is fixed."
+            echo "*****************************************************************"
+            exit 1
+        fi 
+    fi
+fi
+
 trap finish EXIT SIGHUP SIGINT SIGTERM
 
 if [[ $DO_GLOBAL_PROJECTS_CACHE && $GITLAB_CI ]];
