@@ -5,13 +5,17 @@
 
 # write here your test scripts and initialization stuff
 
-export COMPOSER_CACHE_DIR=~/.projects_cache/composer_cache
+echo "No tests configured yet! Please adjust $0"
 
-echo "- Install dependencies"
-composer.phar install --no-interaction;
 
-echo "- Run phpunit"
-bin/phpunit -c app ;
+# eg for PHP/composer
+
+## export COMPOSER_CACHE_DIR=~/.projects_cache/composer_cache
+
+## echo "- Install dependencies"
+## composer.phar install --no-interaction;
+## echo "- Run phpunit"
+## bin/phpunit -c app ;
 
 # end custom scripts
 
