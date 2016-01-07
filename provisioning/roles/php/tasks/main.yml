@@ -1,4 +1,4 @@
-- set_fact: php_version_installed=php_version
+- set_fact: php_version_installed={{ php_version | float }}
 
 - name: Install DotDeb key
   apt_key: url=http://www.dotdeb.org/dotdeb.gpg
