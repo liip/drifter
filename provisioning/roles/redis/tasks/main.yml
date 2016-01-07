@@ -1,3 +1,11 @@
 - name: ensure Redis is installed
   apt: pkg=redis-server state=installed
   sudo: yes
+  
+- name: install PHP5 redis extension
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items:
+    - php5-redis
+  when: "{{ php_version_installed | float }} < 7.0"
+ 
