@@ -2,7 +2,7 @@
 
 set -e
 
-git clone git@github.com:phpredis/phpredis.git
+git clone https://github.com/phpredis/phpredis.git
 
 cd phpredis
 
@@ -23,11 +23,11 @@ rm -rf phpredis
 sudo sh -c "echo extension=redis.so > /etc/php/7.0/mods-available/redis.ini"
 
 cd /etc/php/7.0/cli/conf.d
-
 sudo ln -s ../../mods-available/redis.ini
 
-cd /etc/php/7.0/fpm/conf.d
-
-sudo ln -s ../../mods-available/redis.ini
-
+if [[ -d  /etc/php/7.0/fpm/conf.d ]]
+then
+    cd /etc/php/7.0/fpm/conf.d
+    sudo ln -s ../../mods-available/redis.ini
+fi
 
