@@ -8,12 +8,12 @@
 - include: php7.yml
   when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} == 7.0"
   
-- include: php5.yml
-  when: "{{ php_version | float }} < 7.0"
-  
 - include: wheezy-php5.yml
   when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} < 7.0"
 
+- include: php5.yml
+  when: "{{ php_version | float }} < 7.0"
+  
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer
   sudo: yes
