@@ -1,0 +1,100 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# This file should allow you to edit Vagrant related options Feel free
+# to modify it to avoid having your own project dependent Vagrantfile.
+# If the provided possibilities are not enough for you, please get in
+# touch so we can find a common solution !
+
+# The following are options than can be configured in this file :
+# * vbox_box_name : name of the virtualbox box
+# * vbox_box_url  : url of the virtualbox box
+# * lxc_box_name  : name of the virtualbox box
+# * lxc_box_url   : url of the virtualbox box
+
+require 'yaml'
+
+class CustomConfig
+  # Those accessors will be used by the Vagrantfile
+  attr_accessor :project_name  # project name (currently unused by the Vagrant file)
+  attr_accessor :hostname      # main hostname of the box
+  attr_accessor :hostnames     # alternative hostnames (array)
+  attr_accessor :box_ip        # IP of the box
+
+  attr_accessor :ansible_local # use 'ansible_local' provisionner ?
+  attr_accessor :playbook      # path to the playbook
+  attr_accessor :extra_vars    # extra variables to pass to Ansible
+
+  # Retrieve the values of 'virtualization/parameters.yml' so that
+  # they can be used by Vagrant. If you need to change those values
+  # prefer editing the parameters.yml file instead.
+  def initialize
+    parameters_file = ENV.fetch('VIRTUALIZATION_PARAMETERS_FILE', 'virtualization/parameters.yml')
+    config = YAML::load(File.open(parameters_file))
+    @project_name = config['project_name'] || "rawbot"
+    @hostname = config['hostname'] || "#{@project_name}.lo"
+    @hostnames = config['hostnames'] || Array.new
+
+    @playbook = config['playbook'] || "virtualization/playbook.yml"
+    if ARGV[1] == "php-7.0"
+        @extra_vars = {php_version: 7.0}
+        @box_ip = "10.10.10.13"
+    else
+        @extra_vars = {php_version: 5.6}
+        @box_ip = config['box_ip'] || "10.10.10.10"
+    end
+
+    # until ansible local works fine on vagrant-lxc 
+    #  check if ansible is available on the host system
+    #  and use "traditional" ansible, otherwise use
+    #  ansible_local (so that will still fail, when you try to use
+    #  vagrant-lxc without a ansible installed on the host, but that's
+    #  easily solvable
+    if which 'ansible'
+        @ansible_local = false
+    else
+        @ansible_local = true
+    end
+  end
+
+  # Modify this if you need to determine a list from hostnames
+  # from a file for example.
+  def load_aliases
+    @hostnames
+  end
+end
+
+# Cross-platform way of finding an executable in the $PATH.
+#
+#   which('ruby') #=> /usr/bin/ruby
+def which(cmd)
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each { |ext|
+      exe = File.join(path, "#{cmd}#{ext}")
+      return exe if File.executable?(exe) && !File.directory?(exe)
+    }
+  end
+  return nil
+end
+
+load 'virtualization/rawbot-virtualization/VagrantfileGeneral'
+
+custom_config = CustomConfig.new
+
+
+Vagrant.configure('2') do |config|
+  config.vm.define 'php-5.6', primary: true do |vmconfig|
+  end
+
+  config.vm.define 'php-7.0', autostart: false do |vmconfig|
+  end
+end
+
+Vagrant.configure("2") do |config|
+   if ENV['GITLAB_CI'] && ENV['DO_GLOBAL_PROJECTS_CACHE']
+        config.vm.synced_folder "/home/gitlab-runner/projects_cache/", "/home/vagrant/.projects_cache"
+   end
+end
+
+

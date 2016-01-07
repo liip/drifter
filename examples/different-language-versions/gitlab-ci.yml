@@ -1,0 +1,34 @@
+before_script:
+  - mkdir -p ../${PWD##*/}.vagrant
+  - ln -s ../${PWD##*/}.vagrant .vagrant
+
+stages:
+  - test
+
+variables:
+  VAGRANT_DEFAULT_PROVIDER: lxc
+
+php56:
+  tags:
+    - go
+    - shell
+  script: "./scripts/gitlabci.sh php-5.6"
+  stage: test
+  cache:
+    paths:
+      - vendor/
+      - bin/
+    group: sharedcache56
+
+php70:
+  tags:
+    - go
+    - shell
+  script: "./scripts/gitlabci.sh php-7.0"
+  stage: test
+  cache:
+    paths:
+      - vendor/
+      - bin/
+    group: sharedcache70
+
