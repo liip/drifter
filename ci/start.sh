@@ -24,6 +24,10 @@ then
     mkdir -p /home/gitlab-runner/projects_cache/
 fi
 
+echo -e "- Start ssh-agent"
+. ./virtualization/rawbot-virtualization/ci/ssh-agent.sh
+
+
 echo -e "- Start vagrant"
 
 if [ -f ./virtualization/provisionbuild.dat ]
@@ -41,9 +45,6 @@ then
 else
     vagrant up --provider lxc --provision
 fi
-    
-echo -e "- Start ssh-agent"
-. ./virtualization/rawbot-virtualization/ci/ssh-agent.sh
 
 if [ -f $CI_TEST_SCRIPT ]; 
 then
