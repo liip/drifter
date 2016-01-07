@@ -2,11 +2,11 @@
 
 export CI_TEST_SCRIPT={{ ci_scripts_folder }}run_tests.sh
 
-# if you want to use a global cache dir which is used
-# across all projects (even not your own), enable this
-# can for example be used with composer cache
+# if you don't want to use a global cache dir which is used
+# across all projects (even not your own), disable .this
+# can for example be used with php composer cache
 
-# export DO_GLOBAL_PROJECTS_CACHE=true
+export DO_GLOBAL_PROJECTS_CACHE=true
 
 echo "- Update submodules"
 git submodule update --init
