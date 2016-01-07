@@ -1,0 +1,13 @@
+- name: ensure php7.0-dev is installed
+  apt: pkg=php7.0-dev state=installed
+  sudo: yes
+  
+- name: install phpredis install script for PHP7
+  copy: src=install_phpredis.sh dest=/tmp/install_phpredis.sh mode=0755
+  
+- name: compile and install phpredis for PHP7
+  command: bash /tmp/install_phpredis.sh
+  args:
+    chdir: /tmp/
+    creates: /etc/php/7.0/mods-available/redis.ini
+
