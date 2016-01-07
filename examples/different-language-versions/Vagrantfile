@@ -38,10 +38,10 @@ class CustomConfig
     @playbook = config['playbook'] || "virtualization/playbook.yml"
     if ARGV[1] == "php-7.0"
         @extra_vars = {php_version: 7.0}
-        @box_ip = "10.10.10.13"
+        @box_ip = "10.10.14.13"
     else
         @extra_vars = {php_version: 5.6}
-        @box_ip = config['box_ip'] || "10.10.10.10"
+        @box_ip = config['box_ip'] || "10.10.14.10"
     end
 
     # until ansible local works fine on vagrant-lxc 
@@ -79,9 +79,6 @@ def which(cmd)
 end
 
 load 'virtualization/rawbot-virtualization/VagrantfileGeneral'
-
-custom_config = CustomConfig.new
-
 
 Vagrant.configure('2') do |config|
   config.vm.define 'php-5.6', primary: true do |vmconfig|

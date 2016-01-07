@@ -49,17 +49,17 @@ class CustomConfig
     
     if ARGV[1] == "php-7.0"
         @extra_vars = {php_version: 7.0}
-        @box_ip = "10.10.11.13"
+        @box_ip = "10.10.14.13"
     elsif ARGV[1] == "php-5.5"
         @extra_vars = {php_version: 5.5}
-        @box_ip = "10.10.11.14"
+        @box_ip = "10.10.14.14"
         @vbox_box_name = 'wheezy64'
         @vbox_box_url = 'http://vagrantbox-public.liip.ch/liip-wheezy64.box'
         @lxc_box_name = "wheezy64-lxc"
         @lxc_box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64-lxc.box"
     else
         @extra_vars = {php_version: 5.6}
-        @box_ip = config['box_ip'] || "10.10.11.10"
+        @box_ip = config['box_ip'] || "10.10.14.10"
     end
 
     # until ansible local works fine on vagrant-lxc 
@@ -98,12 +98,7 @@ end
 
 load 'virtualization/rawbot-virtualization/VagrantfileGeneral'
 
-custom_config = CustomConfig.new
-
-ansible_provisioner = custom_config.get('ansible_local', false) ? 'ansible_local' : 'ansible'
-
 Vagrant.configure('2') do |config|
-
   config.vm.define 'php-5.5', autostart: false do |vmconfig|
   end  
 
@@ -112,7 +107,6 @@ Vagrant.configure('2') do |config|
 
   config.vm.define 'php-7.0', autostart: false do |vmconfig|
   end
-
 end
 
 Vagrant.configure("2") do |config|
