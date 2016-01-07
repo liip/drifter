@@ -11,4 +11,6 @@ export CI_TEST_SCRIPT={{ ci_scripts_folder }}run_tests.sh
 echo "- Update submodules"
 git submodule update --init
 
+export VIRTUALBOX_NAME=$1
+
 ./virtualization/rawbot-virtualization/ci/start.sh
