@@ -15,8 +15,6 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-load 'virtualization/VagrantfileExtra.rb'
-
 # add a 'get' method to our config class
 class CustomConfig
     def get(name, default = nil)
@@ -75,8 +73,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
         end
-
-        ansible_provisioner = 'ansible'
     end
 
     config.vm.provision ansible_provisioner do |ansible|

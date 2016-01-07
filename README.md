@@ -53,7 +53,7 @@ vagrant up --provider lxc
 Requirements
 ------------
 
-* Vagrant >= 1.6.2
+* Vagrant >= 1.6.2 (1.8.1 for Windows as a host support)
 * Ansible >= 1.7.2
 
 You also need a virtualization solution, either one of those :
@@ -106,7 +106,7 @@ Otherwise download the binaries and install the apps the as usual.
 
 ### Windows
 
-TODO: explain how to install the requirements on Windows
+Install Virtualbox and Vagrant (>= 1.8.1)
 
 Goals
 -----

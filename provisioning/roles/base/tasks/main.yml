@@ -1,3 +1,7 @@
+- name: remove systemd
+  apt: name=systemd state=absent
+  sudo: yes 
+  
 - name: ensure python-apt is installed
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
   sudo: yes

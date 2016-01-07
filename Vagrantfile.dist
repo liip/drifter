@@ -39,7 +39,17 @@ class CustomConfig
 
     @playbook = config['playbook'] || "virtualization/playbook.yml"
     @extra_vars = {}
-    @ansible_local = true
+    # until ansible local works fine on vagrant-lxc 
+    #  check if ansible is available on the host system
+    #  and use "traditional" ansible, otherwise use
+    #  ansible_local (so that will still fail, when you try to use
+    #  vagrant-lxc without a ansible installed on the host, but that's
+    #  easily solvable
+    if which 'ansible'
+        @ansible_local = false
+    else
+        @ansible_local = true
+    end
   end
 
   # Modify this if you need to determine a list from hostnames
@@ -48,3 +58,19 @@ class CustomConfig
     @hostnames
   end
 end
+
+# Cross-platform way of finding an executable in the $PATH.
+#
+#   which('ruby') #=> /usr/bin/ruby
+def which(cmd)
+  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
+  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+    exts.each { |ext|
+      exe = File.join(path, "#{cmd}#{ext}")
+      return exe if File.executable?(exe) && !File.directory?(exe)
+    }
+  end
+  return nil
+end
+
+load 'virtualization/rawbot-virtualization/VagrantfileGeneral'
