@@ -12,6 +12,7 @@
     - php5-intl
     - php5-gd
     - php5-imagick
+    - php5-sqlite
 
 - name: install mysql database driver
   apt: pkg=php5-mysql state=latest
