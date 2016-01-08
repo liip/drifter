@@ -1,0 +1,6 @@
+- name: Install RMT via [composer]
+  shell: composer global require "liip/rmt"
+
+- name: Symlink RMT in /usr/local/bin
+  file: src=/home/vagrant/.composer/vendor/liip/rmt/RMT dest=/usr/local/bin/RMT state=link
+  sudo: yes

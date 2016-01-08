@@ -325,6 +325,11 @@ Django role to be able to configure the database correctly.
 Install Pip and Virtualenv along with dev dependencies. Dependencies to build the
 Pillow package are also installed.
 
+# RMT - Release Management Tool
+
+Install RMT in the box. Once done you can use it on the shell by running `RMT`
+For more info on usage, go on https://github.com/liip/RMT#usage
+
 ### Ruby
 
 Install Ruby gem integration for Debian and dev dependencies.
