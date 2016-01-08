@@ -25,6 +25,7 @@
         # Added to avoid 502 Bad Gateway errors
         fastcgi_buffer_size 512k;
         fastcgi_buffers 16 512k;
+        fastcgi_busy_buffers_size 512k;
     }
 
     # PROD
@@ -37,6 +38,7 @@
         # Added to avoid 502 Bad Gateway errors
         fastcgi_buffer_size 512k;
         fastcgi_buffers 16 512k;
+        fastcgi_busy_buffers_size 512k;
 
         # Prevents URIs that include the front controller. This will 404:
         # http://domain.tld/app.php/some-path
