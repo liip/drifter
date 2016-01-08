@@ -15,7 +15,9 @@
     - php7.0-intl
     - php7.0-gd
     - php7.0-sqlite3
-#    - php7.0-imagick
+    - pkg-config 
+    - php7.0-dev
+    - libmagickwand-6.q16-dev
 
 - name: install mysql database driver
   apt: pkg=php7.0-mysql state=latest
@@ -27,10 +29,19 @@
   sudo: yes
   when: "'{{ database_type|default(false) }}' == 'postgresql'"
 
-#- name: Place PHP configuration files in place.
+#- name: Place PHP 7 configuration files in place.
 #  template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
 #  sudo: yes
 #  with_items:
-#    - { src: php.ini.j2, dest: /etc/php5/mods-available/php-dev.ini }
-#    - { src: xdebug.ini.j2, dest: /etc/php5/mods-available/xdebug.ini }
+#    - { src: php.ini.j2, dest: /etc/php/7.0/mods-available/php-dev.ini }
+#    - { src: xdebug.ini.j2, dest: /etc/php/7.0/mods-available/xdebug.ini }
   
+- name: install imagick install script for PHP7
+  copy: src=install_imagick.sh dest=/tmp/install_imagick.sh mode=0755
+  
+- name: compile and install imagick for PHP7
+  command: bash /tmp/install_imagick.sh
+  args:
+    chdir: /tmp/
+    creates: /etc/php/7.0/mods-available/imagick.ini
+
