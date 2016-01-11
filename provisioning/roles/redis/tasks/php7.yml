@@ -3,7 +3,9 @@
   sudo: yes
   
 - name: install phpredis install script for PHP7
-  copy: src=install_phpredis.sh dest=/tmp/install_phpredis.sh mode=0755
+  copy: src="{{ item }}" dest=/tmp/ mode=0755
+  with_items: 
+    - install_phpredis.sh
   
 - name: compile and install phpredis for PHP7
   command: bash /tmp/install_phpredis.sh
@@ -11,3 +13,8 @@
     chdir: /tmp/
     creates: /etc/php/7.0/mods-available/redis.ini
 
+- name: install phpredis for PHP7 in php-fpm
+  file: src=/etc/php/7.0/mods-available/redis.ini dest=/etc/php/7.0/fpm/conf.d/20-redis.ini state=link
+  notify: 
+    - restart php-fpm
+  when: "{{ phpfpm_installed | default(false) }} == true"
