@@ -13,6 +13,9 @@ To enable this, add the following to your `Vagrantfile` in the class `CustomConf
   attr_accessor :lxc_box_name
   attr_accessor :vbox_box_url
   attr_accessor :vbox_box_name
+  attr_accessor :box_ip_55        # IP of the box for PHP 5.5
+  attr_accessor :box_ip_70        # IP of the box for PHP 7.0
+
 ```
 
 And then in the `initialize` method 
@@ -25,20 +28,20 @@ And then in the `initialize` method
 
 @vbox_box_name = config['vbox_box_name'] || 'jessie64'
 @vbox_box_url = config['vbox_box_url'] || 'http://vagrantbox-public.liip.ch/liip-jessie64.box'
+@box_ip_70 = config['box_ip_70'] || "10.10.10.12"
+@box_ip_55 = config['box_ip_55'] || "10.10.10.11"
+@box_ip = config['box_ip'] || "10.10.10.10"
 
 if ARGV[1] == "php-7.0"
     @extra_vars = {php_version: 7.0}
-    @box_ip = "10.10.11.13"
 elsif ARGV[1] == "php-5.5"
     @extra_vars = {php_version: 5.5}
-    @box_ip = "10.10.11.14"
     @vbox_box_name = 'wheezy64'
     @vbox_box_url = 'http://vagrantbox-public.liip.ch/liip-wheezy64.box'
     @lxc_box_name = "wheezy64-lxc"
     @lxc_box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64-lxc.box"
 else
     @extra_vars = {php_version: 5.6}
-    @box_ip = config['box_ip'] || "10.10.11.10"
 end
 ```
 
@@ -48,9 +51,13 @@ and at the lower end of `Vagrantfile` again
 Vagrant.configure('2') do |config|
 
   config.vm.define 'php-5.5', autostart: false do |vmconfig|
+      vmconfig.vm.hostname = "#{custom_config.get('project_name')}-55.lo"
+      vmconfig.vm.network :private_network, ip: custom_config.get('box_ip_55')
   end  
 
   config.vm.define 'php-7.0', autostart: false do |vmconfig|
+    vmconfig.vm.hostname = "#{custom_config.get('project_name')}-70.lo"
+    vmconfig.vm.network :private_network, ip: custom_config.get('box_ip_70')
   end
 
   config.vm.define 'php-5.6', primary: true do |vmconfig|
@@ -60,6 +67,13 @@ end
 ```
 
 The `@extra_vars` in the `initialize` method will be sent to your ansible playbook. And our `php` role already knows what to do, when those are set.
+
+You can also add the following to `parameters.yml` to keep it consistent:
+
+```
+box_ip_55: "10.10.11.13"
+box_ip_70: "10.10.11.14"
+```
 
 Now you can start all three boxes with
 

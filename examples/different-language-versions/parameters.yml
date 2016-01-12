@@ -1,0 +1,38 @@
+---
+# Name of your project, will also be the vagrant box name
+project_name: "yourprojectname"
+
+# Main hostname through which the vagrant box will be accessible
+hostname: "yourprojectname.lo"
+# Alternative hostnames through which you want to access the vagrant box
+hostnames: []
+
+# The box IP, this must be unique across all your virtualized projects to
+# avoid collisions. WARNING, this parameter will not guarantee that your box
+# will be accessible at this IP depending on your network configuration or
+# provider choice.
+box_ip: "10.10.11.12"
+
+box_ip_70: "10.10.11.14"
+
+# Name of the database to create for your project if you include the
+# MySQL or PostgreSQL role
+database_name: "rawbot"
+
+# Root directory of your project for the webserver and other purposes
+root_directory: "/vagrant/web/"
+# Do we activate SSL ?
+# ssl: yes
+
+# For a PHP project, you might want to set the following
+# Default reporting level of PHP errors
+# php_error_reporting: "E_ALL & ~E_NOTICE"
+# php_version: 7.0
+
+# For a Django project, you might want to set the following
+# django_pip_requirements: "dev"
+# django_version: "1.8"
+
+# don't overcommit memory ...
+redis_travis_ci: true
+
