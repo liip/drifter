@@ -150,4 +150,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ansible.install = true
         end
     end
+    
+    if ENV['GITLAB_CI'] && ENV['DO_GLOBAL_PROJECTS_CACHE']
+        config.vm.synced_folder "/home/gitlab-runner/projects_cache/", "/home/vagrant/.projects_cache"
+    end
 end
