@@ -1,6 +1,6 @@
 - name: error when trying to use something less than PHP 5.6 on jessie
   fail: msg="Jessie only supports version 5.6."
-  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} != 5.6"
+  when: "ansible_lsb.major_release|int == 8 and {{ php_version_installed }} != 5.6"
 
 - name: install PHP5 packages
   apt: pkg={{ item }} state=latest
@@ -18,7 +18,7 @@
   apt: pkg=php5-mysql state=latest
   sudo: yes
   when: "'{{ database_type|default(false) }}' == 'mysql'"
-  
+
 - name: install postgresql database driver
   apt: pkg=php5-pgsql state=latest
   sudo: yes

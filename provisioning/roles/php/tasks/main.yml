@@ -3,17 +3,20 @@
 - name: Install DotDeb key
   apt_key: url=http://www.dotdeb.org/dotdeb.gpg
   sudo: yes
-  when: "{{ php_version | float }} > 5.4"
+  when: "{{ php_version_installed }} > 5.4"
+
+- fail: msg="PHP7.0 is only available on Jessie."
+  when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} == 7.0"
 
 - include: php7.yml
-  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} == 7.0"
-  
+  when: "{{ php_version_installed }} == 7.0"
+
 - include: wheezy-php5.yml
-  when: "ansible_lsb.major_release|int < 8 and {{ php_version | float }} < 7.0"
+  when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} > 5.4"
 
 - include: php5.yml
-  when: "{{ php_version | float }} < 7.0"
-  
+  when: "{{ php_version_installed }} < 7.0"
+
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer
   sudo: yes

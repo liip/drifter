@@ -3,19 +3,19 @@
   with_items:
     - deb http://packages.dotdeb.org jessie all
   sudo: yes
-  when: "{{ php_version | float }} == 7.0"
 
 - name: install PHP7 packages
   apt: pkg={{ item }} state=latest
   sudo: yes
   with_items:
+# xdebug is not available for now in dotdeb :/
 #    - php7.0-xdebug
     - php7.0-curl
     - php7.0-cli
     - php7.0-intl
     - php7.0-gd
     - php7.0-sqlite3
-    - pkg-config 
+    - pkg-config
     - php7.0-dev
     - libmagickwand-6.q16-dev
 
@@ -23,7 +23,7 @@
   apt: pkg=php7.0-mysql state=latest
   sudo: yes
   when: "'{{ database_type|default(false) }}' == 'mysql'"
-  
+
 - name: install postgresql database driver
   apt: pkg=php7.0-pgsql state=latest
   sudo: yes
@@ -35,10 +35,10 @@
 #  with_items:
 #    - { src: php.ini.j2, dest: /etc/php/7.0/mods-available/php-dev.ini }
 #    - { src: xdebug.ini.j2, dest: /etc/php/7.0/mods-available/xdebug.ini }
-  
+
 - name: install imagick install script for PHP7
   copy: src=install_imagick.sh dest=/tmp/install_imagick.sh mode=0755
-  
+
 - name: compile and install imagick for PHP7
   command: bash /tmp/install_imagick.sh
   args:
