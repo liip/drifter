@@ -96,4 +96,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # force handlers to run even on playbook errors
         ansible.raw_arguments = ['--force-handlers']
     end
+    
+    if ENV['GITLAB_CI'] && ENV['DO_GLOBAL_PROJECTS_CACHE']
+        config.vm.synced_folder "/home/gitlab-runner/projects_cache/", "/home/vagrant/.projects_cache"
+    end
 end
