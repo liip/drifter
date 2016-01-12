@@ -8,11 +8,9 @@
   file: name=/etc/nginx/conf.d/partials state=directory
   sudo: yes
 
-- name: install partials
-  copy: src={{ item }} dest=/etc/nginx/conf.d/partials/{{ item }}
+- name: install partials for php
+  template: src=_php_fpm.conf dest=/etc/nginx/conf.d/partials/_php_fpm.conf
   sudo: yes
-  with_items:
-    - _php_fpm.conf
 
 - name: remove default vhost
   file: name=/etc/nginx/sites-{{ item }}/default state=absent

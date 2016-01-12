@@ -1,0 +1,15 @@
+- name: install libapache2-mod-php7.0
+  apt: pkg=libapache2-mod-php7.0 state=latest
+  sudo: yes
+
+- apache2_module: state=present name=php7.0
+  notify: restart apache
+  sudo: yes
+
+#- name: Configure mod-php
+#  command: php5enmod {{ item }}
+#  with_items:
+#    - php-dev
+#    - xdebug
+#  notify: restart apache
+#  sudo: yes
