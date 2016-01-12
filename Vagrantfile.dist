@@ -1,10 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# This file should allow you to edit Vagrant related options Feel free
-# to modify it to avoid having your own project dependent Vagrantfile.
-# If the provided possibilities are not enough for you, please get in
-# touch so we can find a common solution !
+# This Vagrantfile contains some configuration option that you can
+# tweak for your project.
+# It then loads the "main" Vagrantfile from the submodule.
 
 # The following are options than can be configured in this file :
 # * vbox_box_name : name of the virtualbox box
@@ -45,4 +44,16 @@ class CustomConfig
   def load_aliases
     @hostnames
   end
+
+  def get(name, default = nil)
+    if self.respond_to?(name)
+      self.send(name)
+    elsif default.nil?
+      raise "[CONFIG ERROR] '#{name}' cannot be found and no default provided."
+    else
+      default
+    end
+  end
 end
+
+load 'virtualization/rawbot-virtualization/Vagrantfile'

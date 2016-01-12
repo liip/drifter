@@ -11,12 +11,6 @@ mkdir $VIRTDIR
 git submodule add https://github.com/team-rawbot/rawbot-virtualization.git $VIRTDIR/$REPODIR
 
 cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
-cp $VIRTDIR/$REPODIR/VagrantfileExtra.rb.dist $VIRTDIR/VagrantfileExtra.rb
 cp $VIRTDIR/$REPODIR/parameters.yml.dist $VIRTDIR/parameters.yml
-
-ln -s $VIRTDIR/$REPODIR/Vagrantfile Vagrantfile
-
-cd $VIRTDIR
-ln -s $REPODIR/provisioning/roles roles
-cd ..
-
+cp $VIRTDIR/$REPODIR/ansible.cfg.dist ansible.cfg
+cp $VIRTDIR/$REPODIR/Vagrantfile.dist Vagrantfile

@@ -1,0 +1,2 @@
+[defaults]
+roles_path = virtualization/rawbot-virtualization/provisioning/roles

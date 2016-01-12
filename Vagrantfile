@@ -15,17 +15,28 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-load 'virtualization/VagrantfileExtra.rb'
+def class_exists?(class_name)
+  klass = Module.const_get(class_name)
+  return klass.is_a?(Class)
+rescue NameError
+  return false
+end
 
-# add a 'get' method to our config class
-class CustomConfig
-    def get(name, default = nil)
-        if self.respond_to?(name)
-            self.send(name)
-        elsif default.nil?
-            raise "[CONFIG ERROR] '#{name}' cannot be found and no default provided."
-        else
-            default
+# try to support both new and old Vagrantfile format by loading
+# the config if this Vagrantfile was called directly
+unless class_exists?(CustomConfig)
+    load 'virtualization/VagrantfileExtra.rb'
+
+    # add a 'get' method to our config class (already added in the new format)
+    class CustomConfig
+        def get(name, default = nil)
+            if self.respond_to?(name)
+                self.send(name)
+            elsif default.nil?
+                raise "[CONFIG ERROR] '#{name}' cannot be found and no default provided."
+            else
+                default
+            end
         end
     end
 end
