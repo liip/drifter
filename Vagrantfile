@@ -50,8 +50,8 @@ end
 # the config if this Vagrantfile was called directly
 unless class_exists?('CustomConfig')
     puts "It seems you are using the old Vagrantfile format for this framework."
-    puts "You should have a look at the MIGRATIONS.md file to read the steps"
-    puts "required to go from the version 0.1.0 to 0.2.0."
+    puts "You should have a look at the docs/migrations.md file to read the"
+    puts "steps required to go from the version 0.1.0 to 0.2.0."
     puts "---------------------------------------------------------------------"
 
     load 'virtualization/VagrantfileExtra.rb'

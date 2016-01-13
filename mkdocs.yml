@@ -1,0 +1,11 @@
+site_name: Drifter
+site_description: Drifter is a framework to help provision developer boxes using Ansible and Vagrant
+theme: readthedocs
+pages:
+- ['index.md', 'Index']
+- ['roles.md', 'The roles']
+- ['debugging.md', 'PHP Debugging']
+- ['roadmap.md', 'Roadmap']
+- ['boxes.md', 'Custom boxes']
+- ['migrations.md', 'Migration steps']
+
