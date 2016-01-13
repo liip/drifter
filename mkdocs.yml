@@ -14,6 +14,7 @@ pages:
     - 'Database roles': 'roles/databases.md'
     - 'PHP roles': 'roles/php.md'
     - 'Python roles': 'roles/python.md'
+    - 'Java roles': 'roles/java.md'
     - 'Frontend roles': 'roles/frontend.md'
     - 'Other roles': 'roles/others.md'
   - 'Tips & Tricks':

@@ -25,3 +25,5 @@ Django role to be able to configure the database correctly.
 * **database_name** : the name of the database to create, set in parameters.yml
 * **database_user**: the name of the user, defaults to the database name
 * **database_password**: the password of the user, defaults to the database name
+
+# PostGIS

@@ -3,7 +3,7 @@
 This roles installs various useful software like vim, ack-grep, etc. It also put some
 configuration files of the vagrant user home directory.
 
-It should always be included to have a common environement in all vagrant boxes.
+It should always be included to have a common environment in all vagrant boxes.
 
 # Supervisor
 
@@ -20,19 +20,7 @@ If you need multiple services, just include the role multiple times with the var
 * **user** : user to use to launch the service
 * **command** : the command to launch
 * **root_directory** : the base directory for the service
-
-# Java
-
-Install a Java Runtime Environment using the OpenJDK Debian package.
-
-# Ruby
-
-Install Ruby gem integration for Debian and dev dependencies.
-
-Any Debian ruby package should then be also recognized as a Gem. You can however
-continue to install Gems using the `gem` utility if you need a specific version
-or an unavailable package.
-
+* **environment_vars** : environment vars you want to set
 
 # tmpfs
 
@@ -58,6 +46,16 @@ any error messages from most browsers.
 If the role is activated, both Apache and NGinx will be configured to use the created certificates.
 
 WARNING: if the certificate is regenerated because you did a `vagrant destroy` or the hostname
-changed, you will need to reimport the CA certificate into your trust store and in the meantime you
+changed, you will need to re import the CA certificate into your trust store and in the meantime you
 might get errors from your browser. Chrome for example produce a pretty confusing error message about
 an attacker trying to steal your credentials.
+
+# SSH
+
+Disable SSH strict host key checking if `ssh_no_stricthostkeychecking` is set to true in the parameters.
+
+Also add the github and gitlab.liip.ch host key to the `kwown_host` file.
+
+## Parameters
+
+* **ssh_no_stricthostkeychecking** : if set to true, disable SSH strict host key checking

@@ -1,18 +1,20 @@
+# Ruby
+
+Install Ruby gem integration for Debian and dev dependencies.
+
+Any Debian ruby package should then be also recognized as a Gem. You can however
+continue to install Gems using the `gem` utility if you need a specific version
+or an unavailable package.
+
+# NodeJS
+
+TODO
+
 # RMT - Release Management Tool
 
 Install RMT in the box. Once done you can use it on the shell by running `RMT`
-For more info on usage, go on https://github.com/liip/RMT#usage
+For more info on usage, go to https://github.com/liip/RMT#usage
 
-# Solr
+# Redis
 
-Create a "solr" user, then download and extract the given Solr package in the box.
-
-Solr is then launched automatically using the Supervisor role.
-
-## Parameters
-
-* **solr_base_dir** : Solr base directory, this is not directly used by the role, defaults to "/opt/solr"
-* **solr.url** : The Solr package to use, defaults to "http://archive.apache.org/dist/lucene/solr/3.5.0/apache-solr-3.5.0.tgz"
-* **solr.install_dir** : Solr installation directory, defaults to the solr_base_dir
-* **solr.config_dir** : Solr configuration directory, defaults to "solr_base_dir/example/"
-
+TODO
