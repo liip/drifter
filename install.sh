@@ -4,11 +4,11 @@
 
 BASE=$(pwd)
 VIRTDIR="virtualization"
-REPODIR="rawbot-virtualization"
+REPODIR="drifter"
 
 mkdir $VIRTDIR
 
-git submodule add https://github.com/team-rawbot/rawbot-virtualization.git $VIRTDIR/$REPODIR
+git submodule add https://github.com/liip/drifter.git $VIRTDIR/$REPODIR
 
 cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
 cp $VIRTDIR/$REPODIR/parameters.yml.dist $VIRTDIR/parameters.yml

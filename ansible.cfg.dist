@@ -1,2 +1,2 @@
 [defaults]
-roles_path = virtualization/rawbot-virtualization/provisioning/roles
+roles_path = virtualization/drifter/provisioning/roles

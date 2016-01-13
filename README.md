@@ -1,13 +1,8 @@
-RAWBOT Virtualization Framework
-===============================
+Drifter
+=======
 
 This repository is supposed to be used as a git submodule to quickly
 bootstrap the virtualization stack of a new or existing project.
-
-For the complete steps on how to create a project from scratch for the
-RAWBOT team, please see "[RAWBOT Project Howto][1]" in the Liip wiki.
-
-[1]: https://wiki.liip.ch/display/INTERN/New+project+How-to
 
 TL;DR;
 ------
@@ -15,7 +10,7 @@ TL;DR;
 To install it in your project, simply run the following in your project root :
 
 ```
-curl -sS https://raw.githubusercontent.com/team-rawbot/rawbot-virtualization/master/install.sh | /bin/bash
+curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash
 ```
 
 This will create a `Vagrantfile` in your root and a `virtualization` folder
@@ -123,7 +118,7 @@ The idea is to have a common ground for each project that can be improved over t
 benefiting from the improvements.
 
 This repository aims to contain multiples Ansible roles to manage the various part of the development
-stack needed to work on the various projects of the RAWBOT team in Lausanne.  If a squad need new roles,
+stack needed to work on the various projects of Liip.  If a someone need new roles,
 it is highly recommended that they are added to the common pool if they are deemed reusable.
 
 Each squad can tailor its box to its need by modifying the Ansible playbook which should ultimately only

@@ -11,7 +11,7 @@ In order to migrate, follow those steps (commands assume you are in your project
 1. Remove the Vagrantfile symbolic link from the root : `rm -f Vagrantfile`
 2. Copy the VagrantfileExtra.rb file to your root and rename it : `mv virtualization/VagrantfileExtra.rb Vagrantfile`
 3. Add the `get` method to your `CustomConfig` class in the `Vagrantfile` (copy the snippet below inside the class)
-4. Add the loading of the complete Vagrantfile to the project Vagrantfile : `echo "load 'virtualization/rawbot-virtualization/Vagrantfile'" >> Vagrantfile`
+4. Add the loading of the complete Vagrantfile to the project Vagrantfile : `echo "load 'virtualization/drifter/Vagrantfile'" >> Vagrantfile`
 
     def get(name, default = nil)
         if self.respond_to?(name)

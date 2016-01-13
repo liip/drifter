@@ -31,7 +31,7 @@ class CustomConfig
     parameters_file = ENV.fetch('VIRTUALIZATION_PARAMETERS_FILE', 'virtualization/parameters.yml')
     config = YAML::load(File.open(parameters_file))
 
-    @project_name = config['project_name'] || "rawbot"
+    @project_name = config['project_name'] || "example"
     @hostname = config['hostname'] || "#{@project_name}.lo"
     @hostnames = config['hostnames'] || Array.new
     @box_ip = config['box_ip'] || "10.10.10.10"
@@ -58,4 +58,4 @@ class CustomConfig
   end
 end
 
-load 'virtualization/rawbot-virtualization/Vagrantfile'
+load 'virtualization/drifter/Vagrantfile'

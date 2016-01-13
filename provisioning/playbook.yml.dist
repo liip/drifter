@@ -2,7 +2,7 @@
 # This is the file used by Ansible to provision your project
 # You can decide what you want to install in your box by choosing
 # various provided roles or add tasks to this file. If you need
-# more explanation, please refer to the rawbot-virtualization README
+# more explanation, please refer to the drifter README
 
 # For some part, multiple roles are proposed, just uncomment the ones
 # you need.
@@ -34,7 +34,7 @@
     ## Install Compass in the box
     # - { role: compass }
 
-    ## Install Gulp with RAWBOT Gulpfile in the box
+    ## Install Gulp with Drifter Gulpfile in the box
     # - { role: gulp }
 
     ## Install Solr in the box
@@ -48,7 +48,7 @@
 
     ## Install the ssh rule, installs gitlab.liip.ch and github.com host key
     # - { role: ssh }
-    
+
     ## You can also creates your own role, just add a directory under the 'virtualization'
     ## folder and refer to it like for other roles :
     # - { role: my_own_role }
