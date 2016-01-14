@@ -13,4 +13,4 @@ git submodule update --init
 
 export VIRTUALBOX_NAME=$1
 
-./virtualization/rawbot-virtualization/ci/start.sh
+./virtualization/drifter/ci/start.sh

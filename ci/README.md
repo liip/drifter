@@ -22,7 +22,7 @@ The config file for Gitlab CI, it tells the CI what exactly to run
 
 #### scripts/gitlabci.sh
 
-The script called first by the gitlab runner. It updates the submodules and then calls `./virtualization/rawbot-virtualization/ci/start.sh`, which does start vagrant, provisions it and calls your actual test script. 
+The script called first by the gitlab runner. It updates the submodules and then calls `./virtualization/drifter/ci/start.sh`, which does start vagrant, provisions it and calls your actual test script. 
 
 #### scripts/run_tests.sh
 
@@ -51,9 +51,9 @@ Copy the following files to some location (we have a /scripts/ folder, but you c
 
 ````
 SCRIPTS_FOLDER=./scripts/
-cp virtualization/rawbot-virtualization/provisioning/roles/gitlabci/templates/gitlab-ci.yml .gitlab-ci.yml
-cp virtualization/rawbot-virtualization/provisioning/roles/gitlabci/templates/gitlabci.sh $SCRIPTS_FOLDER/gitlabci.sh
-cp virtualization/rawbot-virtualization/provisioning/roles/gitlabci/files/run_tests.sh $SCRIPTS_FOLDER/run_tests.sh
+cp virtualization/drifter/provisioning/roles/gitlabci/templates/gitlab-ci.yml .gitlab-ci.yml
+cp virtualization/drifter/provisioning/roles/gitlabci/templates/gitlabci.sh $SCRIPTS_FOLDER/gitlabci.sh
+cp virtualization/drifter/provisioning/roles/gitlabci/files/run_tests.sh $SCRIPTS_FOLDER/run_tests.sh
 date +%Y%m%d%H%M%S > virtualization/provisionbuild.dat
 ````
 

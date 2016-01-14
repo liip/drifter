@@ -25,7 +25,7 @@ then
 fi
 
 echo -e "- Start ssh-agent"
-. ./virtualization/rawbot-virtualization/ci/ssh-agent.sh
+. ./virtualization/drifter/ci/ssh-agent.sh
 
 
 echo -e "- Start vagrant"

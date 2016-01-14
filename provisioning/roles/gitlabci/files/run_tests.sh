@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # don't delete this line, or copy that content and adjust it
-. ./virtualization/rawbot-virtualization/ci/test-header.sh
+. ./virtualization/drifter/ci/test-header.sh
 
 # write here your test scripts and initialization stuff
 
@@ -20,5 +20,5 @@ echo "No tests configured yet! Please adjust $0"
 # end custom scripts
 
 # don't delete this line, or copy that content and adjust it
-. ./virtualization/rawbot-virtualization/ci/test-footer.sh
+. ./virtualization/drifter/ci/test-footer.sh
 
