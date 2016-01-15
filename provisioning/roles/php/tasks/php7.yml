@@ -10,6 +10,7 @@
   with_items:
 # xdebug is not available for now in dotdeb :/
 #    - php7.0-xdebug
+    - php7.0-common
     - php7.0-curl
     - php7.0-cli
     - php7.0-intl
