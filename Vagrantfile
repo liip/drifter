@@ -39,10 +39,12 @@ end
 # and ansible_local (see https://github.com/fgrehm/vagrant-lxc/issues/398)
 # once this issue is resolved, this can be probably removed.
 def get_provider
-  if ARGV[1] and (ARGV[1].split('=')[0] == "--provider" or ARGV[2])
-    return (ARGV[1].split('=')[1] || ARGV[2])
+  provider_index = ARGV.index('--provider')
+  if (provider_index && ARGV[provider_index + 1])
+     return ARGV[provider_index + 1]
+  elsif ARGV.index('--provider=lxc')
+     return "lxc"
   end
-
   return ENV['VAGRANT_DEFAULT_PROVIDER'] || 'virtualbox'
 end
 
