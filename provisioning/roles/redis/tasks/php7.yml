@@ -18,3 +18,4 @@
   notify: 
     - restart php-fpm
   when: "{{ phpfpm_installed | default(false) }} == true"
+  sudo: yes
