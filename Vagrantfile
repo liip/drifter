@@ -41,8 +41,7 @@ end
 def get_provider
   provider_index = ARGV.index('--provider')
   if (provider_index && ARGV[provider_index + 1])
-     return ARGV[2]
-
+     return ARGV[provider_index + 1]
   elsif ARGV.index('--provider=lxc')
      return "lxc"
   end
