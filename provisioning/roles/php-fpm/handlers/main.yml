@@ -1,4 +1,4 @@
 - name: restart php-fpm
   service:
-    name: "{{ (php_version | float == 7.0) | ternary('php7.0-fpm', 'php5-fpm') }}"
+    name: "{{ 'php7.0-fpm' if (php_version_installed|float == 7.0) else 'php5-fpm' }}"
     state: restarted

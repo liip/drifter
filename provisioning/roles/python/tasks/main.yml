@@ -33,5 +33,5 @@
     - libtiff5-dev
 
 - name: install libjpeg-dev
-  apt: pkg="{{ (ansible_lsb.major_release|int == 7) | ternary('libjpeg8-dev', 'libjpeg-dev') }}" state=latest
+  apt: pkg="{{ 'libjpeg8-dev' if (ansible_lsb.major_release|int == 7) else 'libjpeg-dev' }}" state=latest
   sudo: yes
