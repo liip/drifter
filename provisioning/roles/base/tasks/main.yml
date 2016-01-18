@@ -50,6 +50,7 @@
 - name: ensure silversearcher-ag is installed
   apt: pkg=silversearcher-ag
   when: ansible_lsb.major_release|int >= 8
+  sudo: yes
 
 - name: install shell config
   copy: src={{ item }} dest=~/.{{ item }}
