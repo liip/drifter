@@ -1,6 +1,9 @@
 - name: install gitlab-ci.yml
   template: src=gitlab-ci.yml dest=/vagrant/.gitlab-ci.yml force=no
 
+- name: create ci scripts directory
+  file: path=/vagrant/{{ ci_scripts_folder}} state=directory mode=0755
+
 - name: install run_tests.sh
   copy: src=run_tests.sh dest=/vagrant/{{ ci_scripts_folder}}run_tests.sh force=no mode=0755
  
