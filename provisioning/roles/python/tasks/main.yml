@@ -19,7 +19,7 @@
   with_items:
     - python3-pip
     - python3-all-dev
-    - python3-venv
+    - python3.4-venv
   when: ansible_lsb.major_release|int >= 8
 
 - name: install pillow dependencies
