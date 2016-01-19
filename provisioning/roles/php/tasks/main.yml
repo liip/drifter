@@ -1,21 +1,42 @@
 - set_fact: php_version_installed={{ php_version | float }}
-
-- name: Install DotDeb key
-  apt_key: url=http://www.dotdeb.org/dotdeb.gpg
-  sudo: yes
-  when: "{{ php_version_installed }} > 5.4"
-
+  
 - fail: msg="PHP7.0 is only available on Jessie."
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} == 7.0"
 
-- include: php7.yml
-  when: "{{ php_version_installed }} == 7.0"
+- include: ubuntu-repo.yml
+  when: "ansible_distribution == 'Ubuntu'"
+
+- include: debian-repo.yml
+  when: "ansible_distribution == 'Debian'"
+
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}.yml"
+
+- name: install PHP packages
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items: "{{ php_packages }}" 
+
+- name: install mysql database driver
+  apt: pkg={{ php_mysql_package }} state=latest
+  sudo: yes
+  when: "'{{ database_type|default(false) }}' == 'mysql'"
+
+- name: install postgresql database driver
+  apt: pkg={{ php_pgsql_package}} state=latest
+  sudo: yes
+  when: "'{{ database_type|default(false) }}' == 'postgresql'"
+
+- include: not-debian-7.0.yml
+  when: "not ({{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian')"
+
+- include: debian-php7.yml
+  when: "{{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian'"
 
 - include: wheezy-php5.yml
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} > 5.4"
-
-- include: php5.yml
-  when: "{{ php_version_installed }} < 7.0"
 
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer

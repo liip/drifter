@@ -1,0 +1,19 @@
+php_xdebug_package: php5-xdebug
+
+php_packages:
+  - php5-common
+  - php5-cli
+  - php5-curl
+  - php5-intl
+  - php5-gd
+  - php5-sqlite
+  - php5-imagick
+  - "{{ php_xdebug_package }}"
+
+php_mysql_package: php5-mysql
+  
+php_pgsql_package: php5-pgsql
+
+etc_php_path: /etc/php5/
+
+phpenmod: php5enmod

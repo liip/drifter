@@ -1,0 +1,22 @@
+php_xdebug_package: php-xdebug
+
+php_packages:
+  - php5.6-common
+  - php5.6-cli
+  - php5.6-curl
+  - php5.6-intl
+  - php5.6-gd
+  - php5.6-sqlite3
+  - php5.6-readline
+  - php-imagick
+  - "{{ php_xdebug_package }}"
+
+php_mysql_package: php5.6-mysql
+  
+php_pgsql_package: php5.6-pgsql
+
+#/etc/php5 auf debian
+etc_php_path: /etc/php/
+
+#php5enmod auf debian
+phpenmod: phpenmod

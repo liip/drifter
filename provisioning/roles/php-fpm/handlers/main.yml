@@ -1,4 +1,5 @@
 - name: restart php-fpm
   service:
-    name: "{{ 'php7.0-fpm' if (php_version_installed|float == 7.0) else 'php5-fpm' }}"
+    name: "{{ php_fpm_package }}"
     state: restarted
+  sudo: yes

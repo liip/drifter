@@ -1,0 +1,19 @@
+- name: debian-php7 | install imagick install script for PHP7
+  copy: src=install_imagick.sh dest=/tmp/install_imagick.sh mode=0755
+
+- name: debian-php7 | compile and install imagick for PHP7
+  command: bash /tmp/install_imagick.sh
+  args:
+    chdir: /tmp/
+    creates: /etc/php/7.0/mods-available/imagick.ini
+
+- name: debian-php7 | install xdebug install script for PHP7
+  copy: src=install_xdebug.sh dest=/tmp/install_xdebug.sh mode=0755
+
+- name: debian-php7 | compile and install xdebug for PHP7
+  command: bash /tmp/install_xdebug.sh
+  args:
+    chdir: /tmp/
+    creates: /etc/php/7.0/mods-available/xdebug.ini
+    
+    

@@ -1,16 +1,26 @@
 - name: ensure Redis is installed
   apt: pkg=redis-server state=installed
   sudo: yes
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+    - "{{ ansible_distribution }}.yml"
   
-- name: install PHP5 redis extension
-  apt: pkg={{ item }} state=latest
+- name: install PHP redis extension
+  apt: pkg={{ php_redis_package }} state=latest
   sudo: yes
+  when: "not ({{ php_version | float }} == 7.0 and ansible_distribution == 'Debian')"
+  
+- name: Activate PHP configuration files
+  command: "{{phpenmod}} -s ALL {{ item }}"
   with_items:
-    - php5-redis
-  when: "{{ php_version_installed | float }} < 7.0"
-  
+    - redis
+  notify: 
+    - restart php-fpm    
+  sudo: yes
+  when: "not ({{ php_version | float }} == 7.0 and ansible_distribution == 'Debian')"
+
 - include: php7.yml
- 
-  when: "ansible_lsb.major_release|int == 8 and {{ php_version | float }} == 7.0"
-  
+  when: "{{ php_version | float }} == 7.0 and ansible_distribution == 'Debian'"
 

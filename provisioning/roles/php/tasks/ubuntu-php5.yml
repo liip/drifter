@@ -1,0 +1,6 @@
+- name: ubuntu-php5 | ppa:ondrej/php5-5.6
+  apt_repository: repo='ppa:ondrej/php5-5.6'
+  sudo: yes
+  when: "{{ php_version_installed }} == 5.6"
+  
+

@@ -1,0 +1,15 @@
+- name: debian-repo | error when trying to use something less than PHP 5.6 on jessie
+  fail: msg="Jessie only supports version 5.6."
+  when: "ansible_lsb.major_release|int >= 8 and {{ php_version_installed }} < 5.6"
+
+- name: debian-repo | Install DotDeb key
+  apt_key: url=http://www.dotdeb.org/dotdeb.gpg
+  sudo: yes
+  when: "{{ php_version_installed }} > 5.4"  
+
+- name: debian-repo | Add DotDeb repository for PHP 7.0 on Jessie
+  apt_repository: repo='{{ item }}' update_cache=yes
+  with_items:
+    - deb http://packages.dotdeb.org jessie all
+  sudo: yes
+  when: "php_version_installed == '7.0'"
