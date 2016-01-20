@@ -15,8 +15,6 @@ php_mysql_package: php5.6-mysql
   
 php_pgsql_package: php5.6-pgsql
 
-#/etc/php5 auf debian
 etc_php_path: /etc/php/
 
-#php5enmod auf debian
 phpenmod: phpenmod

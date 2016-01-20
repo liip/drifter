@@ -16,9 +16,6 @@ php_mysql_package: php7.0-mysql
   
 php_pgsql_package: php7.0-pgsql
 
-
-#/etc/php5 auf debian
 etc_php_path: /etc/php/7.0/
 
-#php5enmod auf debian
-phpenmod: phpenmod
+

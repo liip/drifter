@@ -9,10 +9,15 @@
 - include: debian-repo.yml
   when: "ansible_distribution == 'Debian'"
 
+# we do include_vars twice so that we can have default values
+# and just have to override any changes in the specific versions
+- include_vars: "default.yml"
+
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
    - "{{ ansible_distribution }}.yml"
+   - "default.yml"
 
 - name: install PHP packages
   apt: pkg={{ item }} state=latest

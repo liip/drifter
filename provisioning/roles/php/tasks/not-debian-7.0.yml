@@ -1,7 +1,3 @@
-- name: retrieve xdebug extension path
-  shell: "dpkg -L {{ php_xdebug_package }} | grep -i xdebug.so"
-  register: xdebug_path
-
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
   sudo: yes

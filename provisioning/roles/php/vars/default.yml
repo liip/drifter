@@ -17,3 +17,5 @@ php_pgsql_package: php5-pgsql
 etc_php_path: /etc/php5/
 
 phpenmod: php5enmod
+
+xdebug_path: xdebug.so
