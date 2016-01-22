@@ -111,6 +111,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.hostmanager.aliases = custom_config.get('load_aliases', [])
     end
 
+    if Vagrant.has_plugin?("vagrant-cachier")
+        # cache the packages for all identical boxes
+        config.cache.scope = :box
+    end
+
     config.vm.provider "virtualbox" do |v, override|
         override.vm.network :private_network, ip: custom_config.get('box_ip')
         override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
@@ -119,6 +124,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.cpus = 2
         v.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
         v.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+
+        if Vagrant.has_plugin?("vagrant-cachier")
+            # use the same nfs config than above for cache performance
+            override.cache.synced_folder_opts type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
+        end
     end
 
     config.vm.provider "lxc" do |lxc, override|
@@ -152,7 +162,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ansible.install = true
         end
     end
-    
+
     if ENV['GITLAB_CI'] && ENV['DO_GLOBAL_PROJECTS_CACHE']
         config.vm.synced_folder "/home/gitlab-runner/projects_cache/", "/home/vagrant/.projects_cache"
     end
