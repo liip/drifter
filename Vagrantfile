@@ -95,7 +95,11 @@ end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = custom_config.get('vbox_box_name', 'jessie64')
-    config.vm.box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
+    box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
+    if box_url != ""
+       config.vm.box_url = box_url
+    end
+    
     config.vm.hostname = custom_config.get('hostname')
 
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
@@ -123,7 +127,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "lxc" do |lxc, override|
         override.vm.box = custom_config.get('lxc_box_name', 'jessie64-lxc')
-        override.vm.box_url = custom_config.get('lxc_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box')
+        box_url = custom_config.get('lxc_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box')
+        if box_url != ""
+          override.vm.box_url = box_url
+        end
 
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
