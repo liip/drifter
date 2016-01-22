@@ -131,7 +131,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         if Vagrant.has_plugin?("vagrant-cachier")
             # use the same nfs config than above for cache performance
-            override.cache.synced_folder_opts type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
+             override.cache.synced_folder_opts = {type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']}
         end
     end
 
