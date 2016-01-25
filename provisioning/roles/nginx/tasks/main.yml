@@ -11,6 +11,7 @@
 - name: install partials for php
   template: src=_php_fpm.conf dest=/etc/nginx/conf.d/partials/_php_fpm.conf
   sudo: yes
+  when: "php_version_installed is defined"
 
 - name: remove default vhost
   file: name=/etc/nginx/sites-{{ item }}/default state=absent
