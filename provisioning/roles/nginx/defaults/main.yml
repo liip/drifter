@@ -18,5 +18,5 @@ static_dir: false
 static_fs_dir: ""
 expire_time: 6h # expire time of static files
 
-fpm_socket: "{{ '/run/php/php7.0-fpm.sock' if (php_version_installed|float == 7.0) else '/var/run/php5-fpm.sock' }}"
+fpm_socket: "{{ '/run/php/php7.0-fpm.sock' if (php_version_installed is defined and php_version_installed|float == 7.0) else '/var/run/php5-fpm.sock' }}"
 
