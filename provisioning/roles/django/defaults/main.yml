@@ -1,4 +1,4 @@
-django_pip_requirement: "requirements/base.txt"
+django_pip_requirements: "requirements/base.txt"
 django_root: "{{ root_directory }}"
 env_root: "~/ENV"
 django_version: "1.8"
