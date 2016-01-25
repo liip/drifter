@@ -6,11 +6,12 @@
   with_first_found:
     - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
     - "{{ ansible_distribution }}.yml"
+  when: "php_version_installed is defined"
   
 - name: install PHP redis extension
   apt: pkg={{ php_redis_package }} state=latest
   sudo: yes
-  when: "not ({{ php_version | float }} == 7.0 and ansible_distribution == 'Debian')"
+  when: "php_version_installed is defined and not ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
   
 - name: Activate PHP configuration files
   command: "{{phpenmod}} -s ALL {{ item }}"
@@ -19,8 +20,8 @@
   notify: 
     - restart php-fpm    
   sudo: yes
-  when: "not ({{ php_version | float }} == 7.0 and ansible_distribution == 'Debian')"
+  when: "php_version_installed is defined and not ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
 
 - include: php7.yml
-  when: "{{ php_version | float }} == 7.0 and ansible_distribution == 'Debian'"
+  when: "php_version_installed is defined and ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
 
