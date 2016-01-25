@@ -9,6 +9,7 @@ php_packages:
   - php5.6-sqlite3
   - php5.6-readline
   - php-imagick
+  - php5.6-json
   - "{{ php_xdebug_package }}"
 
 php_mysql_package: php5.6-mysql
