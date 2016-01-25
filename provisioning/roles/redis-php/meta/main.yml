@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: redis }
+  - { role: php }
