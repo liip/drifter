@@ -146,6 +146,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             override.hostmanager.ignore_private_ip = true
         end
     end
+    
+    # install ansible 1.9.2 in ansible_local so that we can be sure to have the right version
+    if ansible_provisioner == 'ansible_local'
+       config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y python-pip python-dev && sudo pip install ansible==1.9.2 && sudo cp /usr/local/bin/ansible /usr/bin/ansible; fi"
+    end
 
     config.vm.provision ansible_provisioner do |ansible|
         ansible.extra_vars = custom_config.get('extra_vars', {})

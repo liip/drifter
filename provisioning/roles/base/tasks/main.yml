@@ -2,9 +2,10 @@
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
   sudo: yes
 
-- name: remove systemd
+- name: remove systemd on Debian
   apt: name=systemd state=absent
   sudo: yes
+  when: "ansible_distribution == 'Debian'"
 
 - name: ensure apt database is up-to-date
   apt: update_cache=yes

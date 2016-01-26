@@ -1,0 +1,4 @@
+- name: Add ppa:ondrej/php for Ubuntu
+  apt_repository: repo='ppa:ondrej/php'
+  sudo: yes
+  when: "{{ php_version_installed }} > 5.5"

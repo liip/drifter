@@ -1,6 +1,13 @@
 - set_fact: phpfpm_installed=true
 
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "default-{{ php_version_installed }}.yml"
+   - "default.yml"
+
+
 - name: install php-fpm
-  apt: pkg={{ 'php7.0-fpm' if (php_version_installed|float == 7.0)  else 'php5-fpm' }} state=latest
+  apt: pkg={{ php_fpm_package }} state=latest
   sudo: yes
 
