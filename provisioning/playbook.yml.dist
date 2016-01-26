@@ -50,7 +50,7 @@
     # - { role: ssh }
 
     ## Install some Gitlab CI scripts and .gitlab-ci.yml. 
-    ## See https://github.com/team-rawbot/rawbot-virtualization/blob/master/ci/README.md for details
+    ## See https://github.com/liip/drifter/blob/master/ci/README.md for details
     # - { role: gitlabci }
     
     ## You can also creates your own role, just add a directory under the 'virtualization'
