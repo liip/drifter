@@ -18,4 +18,3 @@ php_pgsql_package: php7.0-pgsql
 
 etc_php_path: /etc/php/7.0/
 
-

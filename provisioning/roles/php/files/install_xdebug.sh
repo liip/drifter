@@ -24,4 +24,3 @@ then
     sudo ln -s ../../mods-available/xdebug.ini
 fi
 
-

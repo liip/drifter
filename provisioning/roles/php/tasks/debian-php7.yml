@@ -15,5 +15,4 @@
   args:
     chdir: /tmp/
     creates: /etc/php/7.0/mods-available/xdebug.ini
-    
-    
+
