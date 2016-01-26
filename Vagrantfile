@@ -124,6 +124,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         override.vm.network :private_network, ip: custom_config.get('box_ip')
         override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
 
+        v.linked_clone = true if Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8')
         v.memory = 4096
         v.cpus = 2
         v.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
