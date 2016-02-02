@@ -122,6 +122,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v, override|
         override.vm.network :private_network, ip: custom_config.get('box_ip')
+        
+        if Vagrant::Util::Platform.windows? && !Vagrant.has_plugin?("vagrant-winnfsd")
+            puts "*************************************************************************"
+            puts "Please install the plugin vagrant-winnfsd to have NFS Support on Windows!"
+            puts "vagrant plugin install vagrant-winnfsd"
+            puts "*************************************************************************"
+            exit 1
+        end
         override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
 
         v.linked_clone = true if Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8')
