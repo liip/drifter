@@ -15,7 +15,7 @@
   when: database_type is defined
 
 - name: create venv with latest pip version
-  pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv' }}"
+  pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv-3.4' }}"
 
 - name: install base packages in venv
   pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }}"
