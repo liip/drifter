@@ -12,7 +12,8 @@ php_packages:
   - php7.0-json
   - "{{ php_xdebug_package }}"
 
-php_mysql_package: php7.0-mysql
+php_mysql_packages: 
+  - php7.0-mysql
   
 php_pgsql_package: php7.0-pgsql
 

@@ -12,8 +12,9 @@ php_packages:
   - php5.6-json
   - "{{ php_xdebug_package }}"
 
-php_mysql_package: php5.6-mysql
-  
+php_mysql_packages: 
+  - php5.6-mysql
+
 php_pgsql_package: php5.6-pgsql
 
 etc_php_path: /etc/php/

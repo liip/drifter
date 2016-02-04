@@ -12,7 +12,8 @@ php_packages:
   - libmagickwand-6.q16-dev
   - pkg-config
 
-php_mysql_package: php7.0-mysql
+php_mysql_packages: 
+  - php7.0-mysql
   
 php_pgsql_package: php7.0-pgsql
 

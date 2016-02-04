@@ -25,7 +25,8 @@
   with_items: "{{ php_packages }}" 
 
 - name: install mysql database driver
-  apt: pkg={{ php_mysql_package }} state=latest
+  apt: pkg={{ item }} state=latest
+  with_items: "{{ php_mysql_packages }}"
   sudo: yes
   when: "'{{ database_type|default(false) }}' == 'mysql'"
 
