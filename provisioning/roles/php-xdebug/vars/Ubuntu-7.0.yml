@@ -1,0 +1,9 @@
+php_xdebug_package: php-xdebug
+
+php_packages:
+  - "{{ php_xdebug_package }}"
+
+etc_php_path: /etc/php/
+
+#php5enmod auf debian
+phpenmod: phpenmod

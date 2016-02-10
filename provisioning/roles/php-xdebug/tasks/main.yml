@@ -1,0 +1,23 @@
+# we do include_vars twice so that we can have default values
+# and just have to override any changes in the specific versions
+- include_vars: "default.yml"
+
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}.yml"
+   - "default.yml"
+
+- name: install PHP packages
+  apt: pkg={{ item }} state=latest
+  sudo: yes
+  with_items: "{{ php_packages }}" 
+
+
+- include: not-debian-7.0.yml
+  when: "not ({{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian')"
+
+- include: debian-php7.yml
+  when: "{{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian'"
+
+

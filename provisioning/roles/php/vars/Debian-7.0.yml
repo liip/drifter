@@ -1,5 +1,3 @@
-php_xdebug_package: php-xdebug
-
 php_packages:
   - php7.0-common
   - php7.0-cli
