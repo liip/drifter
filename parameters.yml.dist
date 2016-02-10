@@ -40,3 +40,7 @@ root_directory: "/vagrant/"
 # If you want another folder for that, adjust it here
 # ci_scripts_folder: scripts/
 
+# If you need to add custom hosts into /etc/hosts, add them here
+# hosts:
+#   - name: someotherhost
+#     ip: 192.168.12.34

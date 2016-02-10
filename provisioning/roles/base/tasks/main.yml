@@ -107,4 +107,9 @@
 
 - name: set box git username and email
   shell: git config --global user.name "{{ git_username.stdout }}"; git config --global user.email "{{ git_email.stdout }}"
+  
+- name: "Add custom hosts to /etc/hosts file"
+  lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
+  with_items: hosts
+  sudo: yes  
 
