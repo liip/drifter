@@ -156,6 +156,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
     end
     
+    # Set some env variables, so they can be used within the vagrant box as well
+    # Important for example if you want to provision different things on the CI 
+    config.vm.provision "shell", inline: "echo export CI_SERVER=#{ENV['CI_SERVER']} > /etc/profile.d/drifter_vars.sh;
+                                          echo export GITLAB_CI=#{ENV['GITLAB_CI']} >> /etc/profile.d/drifter_vars.sh;
+                                          chmod a+x /etc/profile.d/drifter_vars.sh"
+
     # install ansible 1.9.4 in ansible_local so that we can be sure to have the right version
     if ansible_provisioner == 'ansible_local'
        config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y python-pip python-dev && sudo pip install ansible==1.9.4 && sudo cp /usr/local/bin/ansible /usr/bin/ansible; fi"
