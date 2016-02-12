@@ -77,13 +77,14 @@ custom_config = CustomConfig.new
 ansible_provisioner = custom_config.get('ansible_local', false) ? 'ansible_local' : 'ansible'
 
 if get_provider() == 'lxc' and ansible_provisioner == 'ansible_local'
-    puts "You are using the LXC provider and selected 'ansible_local'."
-    puts "We automatically switched you back to 'ansible' because there"
-    puts "currently is an issue : https://github.com/fgrehm/vagrant-lxc/issues/398"
-    puts "-------------------------------------------------------------"
+    if  ARGV.include?("up") or ARGV.include?("provision")
+      puts "You are using the LXC provider and selected 'ansible_local'."
+      puts "We automatically switched you back to 'ansible' because there"
+      puts "currently is an issue : https://github.com/fgrehm/vagrant-lxc/issues/398"
+      puts "-------------------------------------------------------------"
+    end
     ansible_provisioner = 'ansible'
 end
-
 if ansible_provisioner == 'ansible_local'
     Vagrant.require_version ">= 1.8.1"
 else
