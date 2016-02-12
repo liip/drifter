@@ -1,4 +1,3 @@
-php_xdebug_package: php-xdebug
 
 php_packages:
   - php7.0-common
@@ -10,7 +9,6 @@ php_packages:
   - php7.0-readline
   - php-imagick
   - php7.0-json
-  - "{{ php_xdebug_package }}"
 
 php_mysql_packages: 
   - php7.0-mysql

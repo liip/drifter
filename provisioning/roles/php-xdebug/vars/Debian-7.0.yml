@@ -1,0 +1,6 @@
+php_xdebug_package: php-xdebug
+
+php_packages: []
+
+etc_php_path: /etc/php/7.0/
+
