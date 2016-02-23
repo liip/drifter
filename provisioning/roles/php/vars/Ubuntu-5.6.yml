@@ -9,9 +9,15 @@ php_packages:
   - php5.6-readline
   - php-imagick
   - php5.6-json
+  - php5.6-xml
+  - php5.6-soap
+  - php5.6-mbstring
+  - php5.6-bcmath
+  - php5.6-xsl
 
 php_mysql_packages: 
   - php5.6-mysql
+  - php5.6-pdo-mysql
 
 php_pgsql_package: php5.6-pgsql
 
