@@ -1,2 +1,4 @@
 php_fpm_package: php5-fpm
+
+php_fpm_pool_conf: /etc/php5/fpm/pool.d/www.conf
   
