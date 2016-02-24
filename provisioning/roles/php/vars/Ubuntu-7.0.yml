@@ -13,11 +13,9 @@ php_packages:
   - php7.0-soap
   - php7.0-mbstring
   - php7.0-bcmath
-  - php7.0-xsl
 
 php_mysql_packages: 
   - php7.0-mysql
-  - php7.0-pdo-mysql
   
 php_pgsql_package: php7.0-pgsql
 
