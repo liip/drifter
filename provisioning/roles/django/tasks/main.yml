@@ -18,7 +18,7 @@
   pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv-3.4' }}"
 
 - name: install base packages in venv
-  pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }}"
+  pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }} extra_args=--exists-action=w"
 
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
