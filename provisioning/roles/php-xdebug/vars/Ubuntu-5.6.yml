@@ -3,6 +3,6 @@ php_xdebug_package: php-xdebug
 php_packages:
   - "{{ php_xdebug_package }}"
 
-etc_php_path: /etc/php/
+etc_php_path: /etc/php/5.6/
 
 phpenmod: phpenmod
