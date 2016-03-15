@@ -19,6 +19,8 @@
    - "{{ ansible_distribution }}.yml"
    - "default.yml"
 
+- set_fact: php_phpenmod={{ phpenmod }}
+
 - name: install PHP packages
   apt: pkg={{ item }} state=latest
   sudo: yes

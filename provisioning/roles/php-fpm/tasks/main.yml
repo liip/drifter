@@ -15,3 +15,9 @@
   replace: dest={{ php_fpm_pool_conf }} regexp="^user = www-data" replace="user = vagrant"
   notify: restart php-fpm
   sudo: yes
+  
+- name: Activate PHP configuration files
+  command: "{{php_phpenmod}} {{ item }}"
+  with_items:
+    - php-dev
+  sudo: yes
