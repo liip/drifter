@@ -6,7 +6,7 @@
   apt_repository: repo='{{ item }}' update_cache=yes
   with_items:
     - deb http://packages.dotdeb.org wheezy-php{{ php_version | replace('.', '') }} all
-  sudo: yes
+  become: yes
   when: "{{ php_version_installed }} > 5.4"
 
 

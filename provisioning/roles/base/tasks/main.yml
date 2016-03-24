@@ -1,31 +1,31 @@
 - name: ensure python-apt is installed
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
-  sudo: yes
+  become: yes
 
 - name: remove systemd on Debian
   apt: name=systemd state=absent
-  sudo: yes
+  become: yes
   when: "ansible_distribution == 'Debian'"
 
 - name: ensure apt database is up-to-date
   apt: update_cache=yes
-  sudo: yes
+  become: yes
 
 - name: set en_US.UTF-8 as generated locale
   debconf: name=locales question='locales/locales_to_be_generated'  value='en_US.UTF-8 UTF-8' vtype='multiselect'
-  sudo: yes
+  become: yes
 
 - name: set en_US.UTF-8 as default locale
   debconf: name=locales question='locales/default_environment_locale' value=en_US.UTF-8 vtype='select'
-  sudo: yes
+  become: yes
 
 - name: ensure members of sudo can sudo password-less
   copy: src=passwordless-sudo dest=/etc/sudoers.d/sudo-passwordless
-  sudo: yes
+  become: yes
 
 - name: ensure base packages are installed
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: yes
   with_items:
     - locales
     - procps
@@ -55,17 +55,17 @@
 - name: disallow setting of LANG and LOCALE
   lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
   notify: restart ssh
-  sudo: yes
+  become: yes
 
 - name: disallow DNS lookups in sshd
   lineinfile: dest=/etc/ssh/sshd_config line='UseDNS no' state=present
   notify: restart ssh
-  sudo: yes
+  become: yes
   
 - name: disallow GSSAPIAuthentication lookups in sshd
   lineinfile: dest=/etc/ssh/sshd_config line='GSSAPIAuthentication no' state=present
   notify: restart ssh
-  sudo: yes
+  become: yes
 
 # This is required because the SSH daemon needs to use the new configuration
 # before trying to execute other provisioning scripts that might fail because
@@ -74,7 +74,7 @@
 - name: ensure silversearcher-ag is installed
   apt: pkg=silversearcher-ag
   when: ansible_lsb.major_release|int >= 8
-  sudo: yes
+  become: yes
 
 - name: install shell config
   copy: src={{ item }} dest=~/.{{ item }}
@@ -93,7 +93,7 @@
 
 - name: add vagrant user to www-data group
   shell: "usermod -a -G www-data vagrant"
-  sudo: yes
+  become: yes
 
 - name: get local git username
   local_action: command git config user.name
@@ -111,5 +111,5 @@
 - name: "Add custom hosts to /etc/hosts file"
   lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
   with_items: hosts
-  sudo: yes  
+  become: yes  
 

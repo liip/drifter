@@ -1,6 +1,6 @@
 - name: Place PHP configuration files in place.
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
-  sudo: yes
+  become: yes
   with_items:
     - { src: xdebug.ini.j2, dest: "{{ etc_php_path }}/mods-available/xdebug.ini" }
 
@@ -8,4 +8,4 @@
   command: "{{phpenmod}} {{ item }}"
   with_items:
     - xdebug
-  sudo: yes
+  become: yes

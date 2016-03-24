@@ -1,18 +1,18 @@
 - name: restart supervisor
   shell: /etc/init.d/supervisor stop; /etc/init.d/supervisor start
-  sudo: yes
+  become: yes
 
 - name: start supervisor
   service: name=supervisor state=started
-  sudo: yes
+  become: yes
 
 - name: stop supervisor
   service: name=supervisor state=stopped
-  sudo: yes
+  become: yes
 
 - name: enable supervisor
   service: name=supervisor enabled=yes
-  sudo: yes
+  become: yes
 
 - name: restart supervisor service
   command: supervisorctl restart {{ name }}

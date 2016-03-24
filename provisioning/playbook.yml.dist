@@ -10,7 +10,7 @@
 - hosts: all
   vars_files:
    - parameters.yml
-  sudo: no
+  become: no
 
   roles:
     ## Install some base packages and configuration files, this should be ok for all projects

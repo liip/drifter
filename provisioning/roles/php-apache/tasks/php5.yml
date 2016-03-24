@@ -1,10 +1,10 @@
 - name: install libapache2-mod-php5
   apt: pkg=libapache2-mod-php5 state=latest
-  sudo: yes
+  become: yes
 
 - apache2_module: state=present name=php5
   notify: restart apache
-  sudo: yes
+  become: yes
 
 - name: Configure mod-php
   command: php5enmod {{ item }}
@@ -12,4 +12,4 @@
     - php-dev
     - xdebug
   notify: restart apache
-  sudo: yes
+  become: yes

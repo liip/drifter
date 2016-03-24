@@ -6,7 +6,7 @@
 
 - name: Install Gulp globally
   npm: name=gulp global=yes
-  sudo: yes
+  become: yes
 
 - name: Install Node packages / Gulp dependencies
   npm: path=/vagrant

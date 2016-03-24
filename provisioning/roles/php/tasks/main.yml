@@ -23,18 +23,18 @@
 
 - name: install PHP packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: yes
   with_items: "{{ php_packages }}" 
 
 - name: install mysql database driver
   apt: pkg={{ item }} state=latest
   with_items: "{{ php_mysql_packages }}"
-  sudo: yes
+  become: yes
   when: "'{{ database_type|default(false) }}' == 'mysql'"
 
 - name: install postgresql database driver
   apt: pkg={{ php_pgsql_package}} state=latest
-  sudo: yes
+  become: yes
   when: "'{{ database_type|default(false) }}' == 'postgresql'"
 
 - include: not-debian-7.0.yml
@@ -48,4 +48,4 @@
 
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer
-  sudo: yes
+  become: yes

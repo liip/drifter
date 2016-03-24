@@ -2,4 +2,4 @@
   service:
     name: "{{ php_fpm_package }}"
     state: restarted
-  sudo: yes
+  become: yes

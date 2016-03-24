@@ -3,30 +3,30 @@
 
 - name: install postgresql 9.1
   apt: pkg=postgresql-9.1 state=latest
-  sudo: yes
+  become: yes
   when: ansible_lsb.major_release|int == 7
 
 - name: install postgresql
   apt: pkg=postgresql state=latest
-  sudo: yes
+  become: yes
   when: ansible_lsb.major_release|int >= 8
 
 - name: install python-psycopg2 (for ansible)
   apt: pkg=python-psycopg2 state=latest
-  sudo: yes
+  become: yes
 
 - name: install postgresql dev libraries
   apt: pkg=libpq-dev state=latest
-  sudo: yes
+  become: yes
 
 - name: ensure postgresql is started
   action: service name=postgresql state=started
-  sudo: yes
+  become: yes
 
 - name: create database user
   postgresql_user: name={{ database_user }} password={{ database_password }} state=present role_attr_flags=SUPERUSER
-  sudo_user: postgres
-  sudo: yes
+  become_user: postgres
+  become: yes
 
 - name: create database
   postgresql_db: name={{ database_name }}
@@ -36,5 +36,5 @@
                  lc_collate={{ database_lc_collate }}
                  lc_ctype={{ database_lc_ctype }}
                  state=present
-  sudo_user: postgres
-  sudo: yes
+  become_user: postgres
+  become: yes
