@@ -1,0 +1,9 @@
+- name: clone diff-so-fancy
+  git: repo=https://github.com/so-fancy/diff-so-fancy.git dest=/tmp/fancy-diff
+
+- name: copy files to /usr/local/bin
+  shell: cp -f /tmp/fancy-diff/diff-so-fancy /usr/local/bin && cp -rf /tmp/fancy-diff/lib /usr/local/bin && cp -f /tmp/fancy-diff/third_party/diff-highlight/diff-highlight /usr/local/bin
+  become: yes
+
+- name: activate fancy-diff
+  shell: git config --global pager.diff "diff-so-fancy | less --tabs=4 -RFX"; git config --global pager.show "diff-so-fancy | less --tabs=4 -RFX"
