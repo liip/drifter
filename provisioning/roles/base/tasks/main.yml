@@ -34,7 +34,6 @@
     - zsh
     - bzip2
     - unzip
-    - git
     - vim
     - ack-grep
     - highlight
@@ -47,8 +46,7 @@
     - iputils-ping
     - ncurses-term
     - python-pycurl # needed by ansible to add apt repos
-    
-    
+
 # Some programs such as PostgreSQL use the current locale to create the base
 # databases. If the locale is set to a value that isn't installed on the
 # system, PostgreSQL installation will fail
@@ -61,7 +59,7 @@
   lineinfile: dest=/etc/ssh/sshd_config line='UseDNS no' state=present
   notify: restart ssh
   become: yes
-  
+
 - name: disallow GSSAPIAuthentication lookups in sshd
   lineinfile: dest=/etc/ssh/sshd_config line='GSSAPIAuthentication no' state=present
   notify: restart ssh
@@ -83,8 +81,6 @@
     - bashrc
     - zshrc
     - liquidpromptrc
-    - gitconfig
-    - gitglobalignore
     - ackrc
     - vimrc
 
@@ -95,21 +91,7 @@
   shell: "usermod -a -G www-data vagrant"
   become: yes
 
-- name: get local git username
-  local_action: command git config user.name
-  register: git_username
-  ignore_errors: yes
-
-- name: get local git email
-  local_action: command git config user.email
-  register: git_email
-  ignore_errors: yes
-
-- name: set box git username and email
-  shell: git config --global user.name "{{ git_username.stdout }}"; git config --global user.email "{{ git_email.stdout }}"
-  
 - name: "Add custom hosts to /etc/hosts file"
   lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
   with_items: hosts
-  become: yes  
-
+  become: yes

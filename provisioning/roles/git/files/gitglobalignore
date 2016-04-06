@@ -1,10 +1,9 @@
+.vagrant
+
 .idea
 phpunit.xml
 atlassian-ide-plugin.xml
 
-data/soap/
-vendor/bundles/Liip/FunctionalTestBundle
-web/media/cache
 nohup.out
 
 *.iml

@@ -1,0 +1,25 @@
+*.tex   diff=tex
+*.bib   diff=bibtex
+
+*.c     diff=cpp
+*.h     diff=cpp
+*.c++   diff=cpp
+*.h++   diff=cpp
+*.cpp   diff=cpp
+*.hpp   diff=cpp
+*.cc    diff=cpp
+*.hh    diff=cpp
+*.m     diff=matlab
+*.py    diff=python
+*.rb    diff=ruby
+*.php   diff=php
+*.pl    diff=perl
+*.html  diff=html
+*.xhtml diff=html
+*.f     diff=fortran
+*.js    diff=javascript
+
+*.png   diff=exif
+*.jpg   diff=exif
+*.jpeg  diff=exif
+*.gif   diff=exif

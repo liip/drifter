@@ -1,0 +1,71 @@
+[core]
+    excludesfile = ~/.gitglobalignore
+    attributesFile = ~/.gitglobalattributes
+    pager = diff-highlight | less
+
+[credential]
+    helper = cache
+
+[help]
+    autocorrect = 1
+
+[diff]
+    noprefix = true
+
+[rebase]
+    autosquash = true
+
+[color]
+    ui = true
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    commit = cyan bold
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[color "diff-highlight"]
+    oldNormal = "red bold"
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
+
+[alias]
+    graph = log --graph --oneline --decorate --date-order --color --boundary --all   # graph of the history
+    releases = log --decorate --oneline --simplify-by-decoration --all               # list all releases on the branch
+
+    update = merge --ff-only @{u}  # perform a ff-only-merge
+    up = "!git update"             # short for update
+
+    out = log @{u}..            # outgoing changes
+
+    st = status -s              # short for status
+
+    fix = commit --fixup HEAD   # fixup the last commmit
+    fixup = commit --fixup      # fixup a commit in the history (need a revision)
+    squash = commit --squash    # squash a commit in the history (need a revision)
+    ri = rebase --interactive   # interactive rebase
+    pushf = push --force-with-lease
+
+    addnw = !sh -c 'git diff -w --no-color "$@" | git apply --cached --ignore-whitespace' -  # add non whitespace changed to the index
+
+    show-merged = !sh -c 'git branch -r --merged | grep -v $(git rev-parse --abbrev-ref HEAD) | sed "s/origin.//"' -
+    delete-merged = !sh -c 'git branch -r --merged | grep -v $(git rev-parse --abbrev-ref HEAD) | sed "s/origin.//" | xargs -n 1 git push --delete origin' -
+
+[branch]
+    autosetupmerge = always
+[merge]
+    defaultToUpstream = true
+[push]
+    default = simple
+[fetch]
+    prune = true
+
+[diff "exif"]
+    binary = true
+    textconv = exiftool
+[diff "css"]
+    xfuncname = "^([a-zA-Z#.@][^\\}]*)$"
+[diff "javascript"]
+    xfuncname = "^\\s*(.*?\\bfunction\\b.*?\\(.*?\\))"
