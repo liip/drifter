@@ -13,6 +13,7 @@ php_packages:
   - php5.6-soap
   - php5.6-mbstring
   - php5.6-bcmath
+  - php5.6-zip
 
 php_mysql_packages: 
   - php5.6-mysql
