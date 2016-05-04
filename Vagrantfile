@@ -100,7 +100,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if box_url != ""
        config.vm.box_url = box_url
     end
-    
+
     config.vm.hostname = custom_config.get('hostname')
 
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
@@ -123,7 +123,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v, override|
         override.vm.network :private_network, ip: custom_config.get('box_ip')
-        
+
         if Vagrant::Util::Platform.windows? && !Vagrant.has_plugin?("vagrant-winnfsd")
             puts "*************************************************************************"
             puts "Please install the plugin vagrant-winnfsd to have NFS Support on Windows!"
@@ -156,16 +156,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             override.hostmanager.ignore_private_ip = true
         end
     end
-    
+
     # Set some env variables, so they can be used within the vagrant box as well
-    # Important for example if you want to provision different things on the CI 
+    # Important for example if you want to provision different things on the CI
     config.vm.provision "shell", inline: "echo export CI_SERVER=#{ENV['CI_SERVER']} > /etc/profile.d/drifter_vars.sh;
                                           echo export GITLAB_CI=#{ENV['GITLAB_CI']} >> /etc/profile.d/drifter_vars.sh;
                                           chmod a+x /etc/profile.d/drifter_vars.sh"
 
     # install ansible 1.9.4 in ansible_local so that we can be sure to have the right version
     if ansible_provisioner == 'ansible_local'
-       config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y python-pip python-dev && sudo pip install ansible==1.9.4 && sudo cp /usr/local/bin/ansible /usr/bin/ansible; fi"
+       config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y libffi-dev python-pip python-dev && sudo pip install ansible==1.9.4 && sudo cp /usr/local/bin/ansible /usr/bin/ansible; fi"
     end
 
     config.vm.provision ansible_provisioner do |ansible|
