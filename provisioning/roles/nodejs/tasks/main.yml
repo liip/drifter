@@ -6,7 +6,7 @@
   apt_key: id=68576280 url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
   sudo: yes
 - name: Add nodesource.com apt repo
-  apt_repository: repo='deb https://deb.nodesource.com/node_0.12 wheezy main' state=present update_cache=yes 
+  apt_repository: repo='deb https://deb.nodesource.com/node_5.x jessie main' state=present update_cache=yes
   sudo: yes
 - name: Install nodejs
   apt: name=nodejs state=present
