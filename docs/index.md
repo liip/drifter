@@ -111,9 +111,8 @@ through this file.
 * `virtualization/playbook.yml` for provisioning. You can control which roles are
 used to build your box. This allows you to control what is installed in your box.
 
-If those two mechanism are not enough for you, you can also extand the `Vagrantfile`
-through the `virtualization/VagrantfileExtra.rb` file. You should not have to
-touch the `Vagrantfile` at all.
+If those two mechanism are not enough for you, you can also modify the `Vagrantfile`, but
+be aware that the risk of botching things up is far greater.
 
 Currently you do not have a lot of control, but we will glad to add anything making sense
 to this file. Feel free to ask and we will comply ;)

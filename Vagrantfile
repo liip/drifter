@@ -103,7 +103,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.hostname = custom_config.get('hostname')
 
-    config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+    custom_config.get('forwarded_ports', {"80" => "8080", "3000" => "3000"}).each do |source, dest|
+        config.vm.network "forwarded_port", guest: source, host: dest, auto_correct: true
+    end
 
     config.ssh.forward_agent = true
     config.ssh.forward_x11 = true
