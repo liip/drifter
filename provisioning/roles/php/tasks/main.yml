@@ -46,6 +46,10 @@
 - include: wheezy-php5.yml
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} > 5.4"
 
+- name: set php alternative to the correct path 
+  alternatives: name=php path={{ alternatives_php_path }}
+  sudo: yes
+  
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer
   sudo: yes

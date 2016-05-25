@@ -23,3 +23,5 @@ php_pgsql_package: php5.6-pgsql
 etc_php_path: /etc/php/5.6/
 
 phpenmod: phpenmod
+
+alternatives_php_path: /usr/bin/php5.6
