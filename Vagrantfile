@@ -167,7 +167,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # install ansible 1.9.4 in ansible_local so that we can be sure to have the right version
     if ansible_provisioner == 'ansible_local'
-       config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y libffi-dev libyaml-dev python-pip python-dev python-yaml && sudo apt-get --purge remove -y python-cffi && sudo ln -s /usr/local/bin/ansible /usr/bin/ansible && sudo pip install ansible==1.9.4; fi"
+        config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y libffi-dev libyaml-dev python-pip python-dev python-yaml && ( dpkg -s python-cffi > /dev/null 2>&1 && sudo apt-get --purge remove -y python-cffi || true) && sudo ln -s /usr/local/bin/ansible /usr/bin/ansible && sudo pip install ansible==1.9.4; fi"
     end
 
     config.vm.provision ansible_provisioner do |ansible|
