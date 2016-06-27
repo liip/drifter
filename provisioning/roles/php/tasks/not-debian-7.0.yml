@@ -8,4 +8,5 @@
   command: "{{phpenmod}} {{ item }}"
   with_items:
     - php-dev
+    - imagick
   sudo: yes
