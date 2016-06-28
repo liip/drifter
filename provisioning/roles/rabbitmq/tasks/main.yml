@@ -1,0 +1,15 @@
+- name: ensure rabbitmq is installed
+  apt: pkg=rabbitmq-server state=installed
+  sudo: yes
+
+- name: activate rabbitmq_management plugin
+  shell: "/usr/sbin/rabbitmq-plugins enable rabbitmq_management"
+  sudo: yes
+
+- name: restart rabbitmq
+  service: name=rabbitmq-server state=restarted
+  sudo: yes
+
+- name: get rabbitmqadmin script
+  get_url: url=http://localhost:15672/cli/rabbitmqadmin dest=/usr/local/bin/rabbitmqadmin mode=755
+  sudo: yes
