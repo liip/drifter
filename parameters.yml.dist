@@ -52,3 +52,11 @@ root_directory: "/vagrant/"
 # hosts:
 #   - host: someotherhost
 #     ip: 192.168.12.34
+
+# If you want to use ubuntu instead of debian (or any other box),
+# uncomment this. You can also replace "base" with "php7", if you need
+# php7 (with fpm and nginx) anyway.
+# lxc_box_name: "drifter/trusty64-base"
+# lxc_box_url: "https://vagrantbox-public.liip.ch/drifter-trusty64-base.json"
+# vbox_box_name: "drifter/trusty64-base"
+# vbox_box_url: "https://vagrantbox-public.liip.ch/drifter-trusty64-base.json"
