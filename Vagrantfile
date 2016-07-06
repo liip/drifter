@@ -72,8 +72,8 @@ else
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = custom_config.get('vbox_box_name', 'jessie64')
-    box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
+    config.vm.box = custom_config.get('vbox_box_name', 'drifter/jessie64-base')
+    box_url = custom_config.get('vbox_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
     if box_url != ""
        config.vm.box_url = box_url
     end
@@ -125,8 +125,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
-        override.vm.box = custom_config.get('lxc_box_name', 'jessie64-lxc')
-        box_url = custom_config.get('lxc_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box')
+        override.vm.box = custom_config.get('lxc_box_name', 'drifter/jessie64-base')
+        box_url = custom_config.get('lxc_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
         if box_url != ""
           override.vm.box_url = box_url
         end

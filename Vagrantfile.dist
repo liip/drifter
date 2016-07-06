@@ -30,10 +30,10 @@ class CustomConfig
     parameters_file = ENV.fetch('VIRTUALIZATION_PARAMETERS_FILE', 'virtualization/parameters.yml')
     config = YAML::load(File.open(parameters_file))
 
-    @lxc_box_url = config['lxc_box_url'] || 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json'
-    @lxc_box_name = config['lxc_box_name'] || 'drifter/jessie64-base'
-    @vbox_box_url = config['vbox_box_url'] || 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json'
-    @vbox_box_name = config['vbox_box_name'] || 'drifter/jessie64-base'
+    @lxc_box_url = config['lxc_box_url']     || config['box_url']  || 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json'
+    @lxc_box_name = config['lxc_box_name']   || config['box_name'] || 'drifter/jessie64-base'
+    @vbox_box_url = config['vbox_box_url']   || config['box_url']  || 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json'
+    @vbox_box_name = config['vbox_box_name'] || config['box_name'] || 'drifter/jessie64-base'
 
     @project_name = config['project_name'] || "example"
     @hostname = config['hostname'] || "#{@project_name}.lo"
