@@ -1,18 +1,18 @@
 - name: create solr user
-  user: name=solr comment="Solr Daemon" group="www-data" home="{{ solr.install_dir }}"
+  user: name=solr comment="Solr Daemon" group="www-data" home="{{ solr_install_dir }}"
   sudo: yes
 
 - name: download solr
-  get_url: url={{ solr.url }} dest={{ solr.install_dir }}/solr.tgz
+  get_url: url={{ solr_url }} dest={{ solr_install_dir }}/solr-{{ solr_version }}.tgz
   sudo_user: solr
   sudo: yes
 
 - name: extract solr
-  command: tar xzf {{ solr.install_dir }}/solr.tgz
+  command: tar xzf {{ solr_install_dir }}/solr-{{ solr_version }}.tgz --strip 1 -C {{ solr_install_dir }}/
   sudo_user: solr
   sudo: yes
 
 - name: solr directory permission
-  file: dest="{{ solr.install_dir }}" state=directory owner=solr group=www-data recurse=yes
-  sudo_user: solr
+  file: dest="{{ solr_install_dir }}" state=directory owner=solr group=www-data recurse=yes
   sudo: yes
+  notify: restart supervisor

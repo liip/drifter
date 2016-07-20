@@ -1,0 +1,8 @@
+php_xdebug_package: php5-xdebug
+
+php_packages:
+  - "{{ php_xdebug_package }}"
+
+phpenmod: php5enmod
+
+xdebug_path: xdebug.so

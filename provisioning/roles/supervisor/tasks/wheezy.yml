@@ -1,0 +1,40 @@
+- name: install supervisor with pip
+  pip: name=supervisor version={{ wheezy_supervisor_pip_version }} state=present
+  sudo: yes
+
+- name: get debian package files
+  git: repo=git://anonscm.debian.org/collab-maint/supervisor.git dest={{ wheezy_repo_destination }} accept_hostkey=yes
+  sudo: yes
+
+- name: ensure conf.d dir exists
+  file: path=/etc/supervisor/conf.d state=directory owner=root group=root mode=0755 recurse=yes
+  sudo: yes
+
+- name: ensure log dir exists
+  file: path=/var/log/supervisor/ state=directory owner=root group=root mode=0755 recurse=yes
+  sudo: yes
+
+- name: install init script
+  command: \cp -f {{ wheezy_repo_destination }}/debian/supervisor.init /etc/init.d/supervisor creates=/etc/init.d/supervisor
+  sudo: yes
+
+- name: ensure init script has correct persmission
+  file: path=/etc/init.d/supervisor owner=root group=root mode=0755
+  sudo: yes
+  notify: enable supervisor
+
+- name: install config
+  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisor/supervisord.conf state=link
+  sudo: yes
+
+- name: supervisorctl needs the config in etc
+  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisord.conf state=link
+  sudo: yes
+
+- name: install default parameters
+  file: src={{ wheezy_repo_destination }}/debian/supervisor.default dest=/etc/default/supervisor state=link
+  sudo: yes
+
+- name: symling supervisord binary
+  file: src=/usr/local/bin/supervisord dest=/usr/bin/supervisord state=link
+  sudo: yes

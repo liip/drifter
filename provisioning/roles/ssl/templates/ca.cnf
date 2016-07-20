@@ -1,0 +1,62 @@
+[default]
+name                    = ca
+default_ca              = ca_default
+
+[ca_dn]
+countryName             = "CH"
+organizationName        = "Liip SA"
+commonName              = "{{ hostname }} CA"
+
+[ca_default]
+home                    = {{ ssl_root_dir }}
+database                = $home/db/index
+serial                  = $home/db/serial
+crlnumber               = $home/db/crlnumber
+certificate             = $home/$name.crt
+private_key             = $home/private/$name.key
+RANDFILE                = $home/private/random
+new_certs_dir           = $home/certs
+unique_subject          = no
+copy_extensions         = copy
+default_days            = 3650
+default_crl_days        = 365
+default_md              = sha256
+policy                  = policy_match
+
+[policy_match]
+countryName             = supplied
+stateOrProvinceName     = optional
+organizationName        = supplied
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[req]
+default_bits            = 2048
+encrypt_key             = no
+default_md              = sha256
+utf8                    = yes
+string_mask             = utf8only
+prompt                  = no
+distinguished_name      = ca_dn
+req_extensions          = ca_ext
+
+[ca_ext]
+basicConstraints        = critical,CA:true,pathlen:0
+keyUsage                = critical,keyCertSign,cRLSign
+subjectKeyIdentifier    = hash
+nameConstraints         = critical,@name_constraints
+extendedKeyUsage        = serverAuth
+
+[csr_ext]
+
+
+[name_constraints]
+permitted;DNS.0={{ hostname }}
+{% for h in hostnames %}
+  permitted;DNS.{{ loop.index }}={{ h }}
+{% endfor %}
+permitted;IP.0=10.0.0.0.0/255.0.0.0
+permitted;IP.1=172.16.0.0.0/255.128.0.0
+permitted;IP.2=192.168.0.0.0/255.255.0.0
+

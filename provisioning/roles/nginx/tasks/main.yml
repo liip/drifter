@@ -1,3 +1,5 @@
+- set_fact: vhost_counter={{ vhost_counter | int + 1 }}
+
 - name: install nginx
   apt: pkg=nginx state=latest
   sudo: yes
@@ -5,12 +7,18 @@
 - name: create partials directory
   file: name=/etc/nginx/conf.d/partials state=directory
   sudo: yes
+  
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}-php-{{ php_version_installed }}.yml"
+   - "default-php-{{ php_version_installed }}.yml"
+   - "default-php.yml"
+  when: "php_version_installed is defined" 
 
-- name: install partials
-  copy: src={{ item }} dest=/etc/nginx/conf.d/partials/{{ item }}
+- name: install partials for php
+  template: src=_php_fpm.conf dest=/etc/nginx/conf.d/partials/_php_fpm.conf
   sudo: yes
-  with_items:
-    - _php_fpm.conf
+  when: "php_version_installed is defined"
 
 - name: remove default vhost
   file: name=/etc/nginx/sites-{{ item }}/default state=absent
@@ -21,11 +29,11 @@
   notify: restart nginx
 
 - name: create vhost config
-  template: src={{ site_template }} dest=/etc/nginx/sites-available/{{ hostname }}
+  template: src={{ site_template }} dest=/etc/nginx/sites-available/{{ vhost }}
   sudo: yes
 
 - name: enable vhost
-  file: src=/etc/nginx/sites-available/{{ hostname }} dest=/etc/nginx/sites-enabled/0001-{{ hostname }} state=link
+  file: src=/etc/nginx/sites-available/{{ vhost }} dest=/etc/nginx/sites-enabled/{{ '%04d'|format(vhost_counter|int) }}-{{ vhost }} state=link
   sudo: yes
   notify: reload nginx
 

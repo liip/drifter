@@ -1,0 +1,4 @@
+[defaults]
+roles_path = virtualization/drifter/provisioning/roles
+display_skipped_hosts = False
+

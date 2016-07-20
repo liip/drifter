@@ -1,4 +1,4 @@
-zend_extension=/usr/lib/php5/20100525/xdebug.so
+zend_extension={{ xdebug_path }}
 
 xdebug.max_nesting_level=1000
 
@@ -13,16 +13,16 @@ xdebug.file_link_format="phpstorm://open?file=%f&line=%l"
 
 ; config to run the profiler
 xdebug.profiler_enable=0
-xdebug.profiler_output_dir=/vagrant/profiling/
+xdebug.profiler_output_dir={{ root_directory }}/profiling/
 
 ; config to run the tracer
 xdebug.trace_enable=0
-xdebug.trace_output_dir=/vagrant/tracing/
+xdebug.trace_output_dir={{ root_directory }}/tracing/
 
 ; config to run the remote debugger
 xdebug.remote_enable=1
 xdebug.remote_connect_back=1
-xdebug.idekey="XDEBUG-RAWBOT"
+xdebug.idekey="XDEBUG-RVF"
 
 ; allows to start xdebug features via query string / cookie / plugin
 xdebug.profiler_enable_trigger=1

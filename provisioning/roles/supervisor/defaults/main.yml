@@ -1,0 +1,4 @@
+supervisor_start_directory: "{{ root_directory }}"
+
+wheezy_supervisor_pip_version: "3.1.3"
+wheezy_repo_destination: "/home/vagrant/debian-supervisor"

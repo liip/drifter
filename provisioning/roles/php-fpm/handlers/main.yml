@@ -1,0 +1,5 @@
+- name: restart php-fpm
+  service:
+    name: "{{ php_fpm_package }}"
+    state: restarted
+  sudo: yes

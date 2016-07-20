@@ -1,3 +1,23 @@
-- name: install php5-fpm
-  apt: pkg=php5-fpm state=latest
+- set_fact: phpfpm_installed=true
+
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "default-{{ php_version_installed }}.yml"
+   - "default.yml"
+
+
+- name: install php-fpm
+  apt: pkg={{ php_fpm_package }} state=latest
+  sudo: yes
+
+- name: run php-fpm as vagrant user
+  replace: dest={{ php_fpm_pool_conf }} regexp="^user = www-data" replace="user = vagrant"
+  notify: restart php-fpm
+  sudo: yes
+  
+- name: Activate PHP configuration files
+  command: "{{php_phpenmod}} {{ item }}"
+  with_items:
+    - php-dev
   sudo: yes

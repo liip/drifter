@@ -1,4 +1,27 @@
 server {
+    listen {{ port }};
+    server_name {{ hostname }} {% for hostname in hostnames %}{{ hostname }} {% endfor %};
+
+    access_log	/var/log/nginx/{{ vhost }}.access.log;
+    error_log	/var/log/nginx/{{ vhost }}.error.log;
+
+    root {{ web_directory }};
+    {% if index %}
+    index {% block index %}{{ index }}{% endblock %}
+    {% endif %}
+
+    {% block extra %}
+    {% endblock %}
+}
+
+{% if ssl %}
+server {
+    listen 443;
+
+    ssl on;
+    ssl_certificate_key {{ ssl_key_file }};
+    ssl_certificate {{ ssl_cert_file }};
+
     server_name {{ hostname }} {% for hostname in hostnames %}{{ hostname }} {% endfor %};
 
     access_log	/var/log/nginx/{{ hostname }}.access.log;
@@ -6,12 +29,12 @@ server {
 
     root {{ root_directory }};
     {% if index %}
-    index {% block index %}{{ index }}{% endblock %}
+    index {{ self.index() }}
     {% endif %}
 
-{% block extra %}
-{% endblock %}
+    {{ self.extra() }}
 }
+{% endif %}
 
 {% block extra_server %}
 {% endblock %}

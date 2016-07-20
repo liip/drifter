@@ -16,9 +16,12 @@
   shell: "cd {{ composer.dir }} && ./composer.phar self-update"
   when: composer_installed|success
 
-- name: symling composer in /usr/local/bin
+- name: symlink composer in /usr/local/bin
   file: src="{{ composer.dir }}/composer.phar" dest=/usr/local/bin/{{ item }} state=link
   sudo: yes
   with_items:
     - composer
     - composer.phar
+
+- name: add composer binary dir to path
+  lineinfile: dest=~/.bashrc line='PATH=~/.composer/vendor/bin:$PATH'

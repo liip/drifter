@@ -1,0 +1,1 @@
+fpm_socket: /var/run/php5-fpm.sock

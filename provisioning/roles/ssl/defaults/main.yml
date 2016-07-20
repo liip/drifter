@@ -1,0 +1,17 @@
+ssl_root_dir: /etc/ssl/vagrant
+
+# do not change those, the openssl config expect the files
+# in certain directories, see ca.cnf in templates
+ssl_ca_conf_file: "{{ ssl_root_dir }}/config/ca.cnf"
+ssl_ca_key_file: "{{ ssl_root_dir }}/private/ca.key"
+ssl_ca_csr_file: "{{ ssl_root_dir }}/private/ca.csr"
+ssl_ca_cert_file: "{{ ssl_root_dir }}/ca.crt"
+
+# those you can change
+ssl_conf_file: "{{ ssl_root_dir }}/config/vagrant.cnf"
+ssl_ext_file: "{{ ssl_root_dir }}/config/vagrant.ext"
+ssl_key_file: "{{ ssl_root_dir }}/private/vagrant.key"
+ssl_csr_file: "{{ ssl_root_dir }}/private/vagrant.csr"
+ssl_cert_file: "{{ ssl_root_dir }}/certs/vagrant.pem"
+
+

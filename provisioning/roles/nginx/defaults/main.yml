@@ -1,10 +1,20 @@
+# vhost name
+vhost: "{{ hostname }}"
 # template to use
 site_template: default-site.j2
+# activate SSL ?
+ssl: false
+
 # index file
 index: false
+# web directory
+web_directory: "{{ root_directory }}"
+# port on which nginx is listening
+port: 80
 
 # django related config
 static_host: false
 static_dir: false
 static_fs_dir: ""
 expire_time: 6h # expire time of static files
+

@@ -2,6 +2,11 @@
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
   sudo: yes
 
+- name: remove systemd on Debian
+  apt: name=systemd state=absent
+  sudo: yes
+  when: "ansible_distribution == 'Debian'"
+
 - name: ensure apt database is up-to-date
   apt: update_cache=yes
   sudo: yes
@@ -42,7 +47,34 @@
     - iputils-ping
     - ncurses-term
     - python-pycurl # needed by ansible to add apt repos
-    - silversearcher-ag
+    
+    
+# Some programs such as PostgreSQL use the current locale to create the base
+# databases. If the locale is set to a value that isn't installed on the
+# system, PostgreSQL installation will fail
+- name: disallow setting of LANG and LOCALE
+  lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
+  notify: restart ssh
+  sudo: yes
+
+- name: disallow DNS lookups in sshd
+  lineinfile: dest=/etc/ssh/sshd_config line='UseDNS no' state=present
+  notify: restart ssh
+  sudo: yes
+  
+- name: disallow GSSAPIAuthentication lookups in sshd
+  lineinfile: dest=/etc/ssh/sshd_config line='GSSAPIAuthentication no' state=present
+  notify: restart ssh
+  sudo: yes
+
+# This is required because the SSH daemon needs to use the new configuration
+# before trying to execute other provisioning scripts that might fail because
+# of the locale environment variables
+- meta: flush_handlers
+- name: ensure silversearcher-ag is installed
+  apt: pkg=silversearcher-ag
+  when: ansible_lsb.major_release|int >= 8
+  sudo: yes
 
 - name: install shell config
   copy: src={{ item }} dest=~/.{{ item }}
@@ -75,16 +107,9 @@
 
 - name: set box git username and email
   shell: git config --global user.name "{{ git_username.stdout }}"; git config --global user.email "{{ git_email.stdout }}"
+  
+- name: "Add custom hosts to /etc/hosts file"
+  lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
+  with_items: hosts
+  sudo: yes  
 
-# Some programs such as PostgreSQL use the current locale to create the base
-# databases. If the locale is set to a value that isn't installed on the
-# system, PostgreSQL installation will fail
-- name: disallow setting of LANG and LOCALE
-  lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
-  notify: restart ssh
-  sudo: yes
-
-# This is required because the SSH daemon needs to use the new configuration
-# before trying to execute other provisioning scripts that might fail because
-# of the locale environment variables
-- meta: flush_handlers

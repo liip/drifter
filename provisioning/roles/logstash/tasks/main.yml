@@ -1,0 +1,15 @@
+- name: Install logstash APT key
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch
+  sudo: yes
+
+- name: Install logstash APT repository
+  apt_repository: repo='deb http://packages.elastic.co/logstash/{{ logstash_version}}/debian stable main' state=present update_cache=yes
+  sudo: yes
+
+- name: Install logstash
+  apt: pkg=logstash state=present
+  sudo: yes
+
+- name: Enable logstash service
+  service: name=logstash state=started enabled=yes
+  sudo: yes

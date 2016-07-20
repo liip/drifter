@@ -1,11 +1,19 @@
 ---
 # Name of your project, will also be the vagrant box name
-project_name: "rawbot"
+project_name: "example"
 
 # Main hostname through which the vagrant box will be accessible
-hostname: "rawbot.lo"
+hostname: "example.lo"
 # Alternative hostnames through which you want to access the vagrant box
 hostnames: []
+
+# Ports you want forwared to your host. See https://www.vagrantup.com/docs/networking/forwarded_ports.html
+# for details.
+forwarded_ports: {
+    "80": "8080",    # HTTP
+    "443": "8443",  # HTTPS
+    "3000": "3000",  # BrowserSync default port
+}
 
 # The box IP, this must be unique across all your virtualized projects to
 # avoid collisions. WARNING, this parameter will not guarantee that your box
@@ -15,12 +23,13 @@ box_ip: "10.10.10.10"
 
 # Name of the database to create for your project if you include the
 # MySQL or PostgreSQL role
-database_name: "rawbot"
+database_name: "example"
 
 # Root directory of your project for the webserver and other purposes
 root_directory: "/vagrant/"
 
-# Do we activate SSL ?
+# Do we activate SSL ? The CA will be copied to your project dir, you can then
+# add it to your computer keychain
 # ssl: yes
 
 # For a PHP project, you might want to set the following
@@ -28,5 +37,18 @@ root_directory: "/vagrant/"
 # php_error_reporting: "E_ALL & ~E_NOTICE"
 
 # For a Django project, you might want to set the following
-# django_pip_requirements: "dev"
+# django_pip_requirements: "requirements/dev.txt"
 # django_version: "1.8"
+
+# if you want to dissable ssh StrictHostKeyChecking (needs the ssh role)
+# this has security issues, you better add your ssh host keys in the ssh role
+# ssh_no_stricthostkeychecking: true
+
+# For the gitlabci roles, it installs its scripts into /scripts/
+# If you want another folder for that, adjust it here
+# ci_scripts_folder: scripts/
+
+# If you need to add custom hosts into /etc/hosts, add them here
+# hosts:
+#   - host: someotherhost
+#     ip: 192.168.12.34

@@ -16,6 +16,11 @@ class CustomConfig
   attr_accessor :box_ip
   attr_accessor :playbook
 
+  attr_accessor :vbox_box_name
+  attr_accessor :vbox_box_url
+  attr_accessor :lxc_box_url
+  attr_accessor :lxc_box_name
+
   # Retrieve the values of 'virtualization/parameters.yml' so that
   # they can be used by Vagrant. If you need to change those values
   # prefer editing the parameters.yml file instead.
@@ -28,6 +33,11 @@ class CustomConfig
     @hostnames = config['hostnames'] || Array.new
     @box_ip = config['box_ip'] || "10.10.10.10"
     @playbook = config['playbook'] || "virtualization/playbook.yml"
+
+    @vbox_box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64.box"
+    @vbox_box_name = "wheezy64"
+    @lxc_box_url = "http://vagrantbox-public.liip.ch/liip-wheezy64-lxc.box"
+    @lxc_box_name = "wheezy64-lxc"
   end
 
   # Modify this if you need to determine a list from hostnames

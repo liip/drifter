@@ -7,7 +7,7 @@
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
-        proxy_pass	http://localhost:{{ port | default(8000) }};
+        proxy_pass	http://localhost:{{ proxy_port | default(8000) }};
     }
 
     {% if static_dir %}
@@ -22,7 +22,20 @@
     {% if static_host %}
         server {
             server_name {{ static_host }};
-            root {{ static_fs_dir }}
+            root {{ static_fs_dir }};
         }
+
+        {% if ssl %}
+            server {
+                listen 443;
+
+                ssl on;
+                ssl_certificate_key {{ ssl_key_file }};
+                ssl_certificate {{ ssl_cert_file }};
+
+                server_name {{ static_host }};
+                root {{ static_fs_dir }};
+            }
+        {% endif %}
     {% endif %}
 {% endblock %}

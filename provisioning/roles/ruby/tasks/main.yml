@@ -2,5 +2,6 @@
   apt: pkg={{ item }} state=installed
   sudo: yes
   with_items:
+    - ruby
     - ruby-dev
     - rubygems-integration

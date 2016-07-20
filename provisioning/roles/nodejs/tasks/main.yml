@@ -1,4 +1,10 @@
 ---
+- fail: msg="'{{ nodejs_version }}' is an invalid version. Please choose between {{nodejs_acceptable_versions|join(', ')}}"
+  when: "nodejs_version not in nodejs_acceptable_versions"
+
+- fail: msg="'{{ nodejs_distro }}' is an invalid distro. Please choose between {{nodejs_acceptable_distros|join(', ')}}"
+  when: "nodejs_distro not in nodejs_acceptable_distros"
+
 - name: Make sure APT supports HTTPS sources
   apt: pkg=apt-transport-https state=present
   sudo: yes
@@ -6,8 +12,8 @@
   apt_key: id=68576280 url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
   sudo: yes
 - name: Add nodesource.com apt repo
-  apt_repository: repo='deb https://deb.nodesource.com/node_0.12 wheezy main' state=present
+  apt_repository: repo='deb https://deb.nodesource.com/node_{{ nodejs_version }} {{ nodejs_distro}} main' state=present update_cache=yes
   sudo: yes
 - name: Install nodejs
-  apt: update_cache=yes name=nodejs state=present
+  apt: name=nodejs state=present
   sudo: yes

@@ -1,0 +1,4 @@
+- name: ensure Redis is installed
+  apt: pkg=redis-server state=installed
+  sudo: yes
+

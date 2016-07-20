@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars_files:
+   - parameters.yml
+  sudo: no
+
+  roles:
+    - { role: base }

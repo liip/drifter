@@ -1,0 +1,1 @@
+subjectAltName = DNS:{{ hostname }}{% if hostnames %},DNS:{{ hostnames|join(", DNS:") }}{% endif %}

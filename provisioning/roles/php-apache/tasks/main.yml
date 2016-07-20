@@ -1,11 +1,6 @@
-- name: install libapache2-mod-php5
-  apt: pkg=libapache2-mod-php5 state=latest
-  sudo: yes
+- include: php7.yml
+  when: "{{ php_version_installed|float }} == 7.0"
 
-- apache2_module: state=present name=php5
-  notify: restart apache
-  sudo: yes
+- include: php5.yml
+  when: "{{ php_version_installed|float }} < 7.0"
 
-- name: Configure mod-php
-  file: src=/etc/php5/mods-available/php-dev.ini dest=/etc/php5/apache2/conf.d/90-php-dev.ini state=link
-  sudo: yes
