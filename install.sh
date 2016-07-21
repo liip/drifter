@@ -1,6 +1,9 @@
 #!/bin/sh -x
 
 # this script is used to install the virtualization capabilities in a new project
+# Modify with care as the README tells users to run the latest version of the script
+# but we checkout the latest tag, so you might run in issues when you try to copy
+# or use files that are not yet tagged.
 
 BASE=$(pwd)
 VIRTDIR="virtualization"
