@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
 # this script is used to install the virtualization capabilities in a new project
 # Modify with care as the README tells users to run the latest version of the script
@@ -8,6 +8,19 @@
 BASE=$(pwd)
 VIRTDIR="virtualization"
 REPODIR="drifter"
+
+rollback()
+{
+    rm -Rf $VIRTDIR/$REPODIR
+    # this might lead to some confusing error output, but if we didn't reach
+    # the file copying stage it will leave the directory in a cleaner state.
+    rmdir $VIRTDIR
+}
+
+trap 'rollback' 0
+
+# exit on first error
+set -e
 
 mkdir $VIRTDIR
 
@@ -24,3 +37,6 @@ cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
 cp $VIRTDIR/$REPODIR/parameters.yml.dist $VIRTDIR/parameters.yml
 cp $VIRTDIR/$REPODIR/ansible.cfg.dist ansible.cfg
 cp $VIRTDIR/$REPODIR/Vagrantfile.dist Vagrantfile
+
+# remove error handler
+trap : 0
