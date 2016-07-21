@@ -2,6 +2,15 @@
 
 ## Version 1.0.0
 
+### Ansible version and `ansible_local`
+
+Changes were made to the roles that requires to use of at least the version 1.9.0 of `ansible`. This means Debian stable users
+have to install `ansible` via the [Backports](https://backports.debian.org/Instructions/) if they don't want to use the
+`ansible_local` provisioner.
+
+Also, the default is now `ansible_local` also for LXC and the Vagrant version was bumped to 1.8.4 in this case to get rid of the
+bug that caused issues before. This is the new recommanded provisioner.
+
 ### Old Vagrantfile format
 
 The support for the old Vagrantfile format has been removed in this version. You should follow the steps detailed in the
