@@ -7,8 +7,13 @@ Used for the current boxes available on https://vagrantbox-public.liip.ch/
 
 See https://gitlab.liip.ch/liip/drifter-base-boxes
 
+### Ansible
 
-## Other way (older, may still workd
+If you plan on using the `ansible_local` provisioner, `ansible` must be
+installed in the box with at least a version of 1.9.0 otherwise the roles
+won't work.
+
+## Other way (older, may still work)
 
 ### LXC
 
