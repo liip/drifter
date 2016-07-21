@@ -1,4 +1,5 @@
-gulp_package_json_path: /vagrant/package.json
-gulp_gulpfile_path: /vagrant/Gulpfile.js
+gulp_directory: /vagrant/
+gulp_package_json_path: "{{ gulp_directory }}/package.json"
 gulp_package_json_author: Liip AG
 gulp_package_json_readme: README.md
+gulp_use_webpack: true

@@ -2,7 +2,15 @@
   template: src={{ item.src }} dest={{ item.dest }} force=no
   with_items:
     - { src: package.json, dest: "{{ gulp_package_json_path }}" }
-    - { src: Gulpfile.js, dest: "{{ gulp_gulpfile_path }}" }
+    - { src: Gulpfile.js, dest: "{{ gulp_directory }}/Gulpfile.js" }
+    - { src: gulp.config.js, dest: "{{ gulp_directory }}/gulp.config.js" }
+    - { src: webpack.config.js, dest: "{{ gulp_directory }}/webpack.config.js" }
+
+- name: Create package.json and Gulpfile.js if non-existent
+  template: src={{ item.src }} dest={{ item.dest }} force=no
+  with_items:
+    - { src: webpack.config.js, dest: "{{ gulp_directory }}/webpack.config.js" }
+  when: gulp_use_webpack
 
 - name: Install Gulp globally
   npm: name=gulp global=yes

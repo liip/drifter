@@ -1,46 +1,23 @@
 ////////////////////////////////////////////
 // Drifter Gulpfile
-// Version 0.4.0
+// Version 1.0.4
 ////////////////////////////////////////////
 
 'use strict';
 
-/**
- * Configuration
- */
-var config = {
-  src: {
-    sass:           'static/sass/**/*.scss',
-    images:         'static/images/**/*.{gif,jpg,jpeg,png,svg}',
-    templates:      '**/*.html',
-  },
-  dest: {
-    css:            'static/stylesheets',
-    images:         'static/images',
-  },
-  browserSync: {
-    proxy:          '{{ hostname }}',
-    open:           false,
-    notify:         false,
-  },
-  sass: {
-    outputStyle:    'compressed',
-  },
-  autoprefixer: {
-    browsers:       ['last 2 versions', 'ie 9'],
-    cascade:        false,
-  },
-};
-
-/**
- * Load dependencies
- */
-var gulp          = require('gulp'),
+var config        = require('./gulp.config.js'),
+    gulp          = require('gulp'),
     $             = require('gulp-load-plugins')(),
     argv          = require('yargs').argv,
     browserSync   = require('browser-sync').create(),
-    reload        = browserSync.reload;
+    reload        = browserSync.reload,
+    isProduction  = argv.production;
 
+{% if gulp_use_webpack %}
+var webpackConfig = require('./webpack.config.js'),
+    webpack       = require('webpack')(webpackConfig(isProduction)),
+    util = require("gulp-util");
+{% endif %}
 
 /*----------------------------------------*\
   TASKS
@@ -49,11 +26,12 @@ var gulp          = require('gulp'),
 /**
  * Watching files for changes
  */
-gulp.task('watch', ['sass'], function() {
+gulp.task('watch', [{% if gulp_use_webpack %}'webpack', {% endif %}'sass'], function() {
   browserSync.init(config.browserSync);
 
   gulp.watch(config.src.sass, ['sass']);
   gulp.watch(config.src.templates, reload);
+  {% if gulp_use_webpack %}gulp.watch(config.src.javascripts, ['webpack', reload]);{% endif %}
 });
 
 /**
@@ -63,13 +41,26 @@ gulp.task('watch', ['sass'], function() {
  */
 gulp.task('sass', function() {
   return gulp.src(config.src.sass)
-    .pipe($.if(!argv.production, $.sourcemaps.init()))
+    .pipe($.if(! isProduction, $.sourcemaps.init()))
     .pipe($.sass(config.sass).on('error', $.sass.logError))
     .pipe($.autoprefixer(config.autoprefixer))
-    .pipe($.if(!argv.production, $.sourcemaps.write('.')))
+    .pipe($.if(! isProduction, $.sourcemaps.write('.')))
     .pipe(gulp.dest(config.dest.css))
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
+
+{% if gulp_use_webpack %}
+/**
+ * Pack JavaScript modules
+ */
+gulp.task('webpack', function(done) {
+  webpack.run(function(err, stats) {
+    if(err) throw new $.util.PluginError('webpack', err);
+    $.util.log('[webpack]', stats.toString());
+    done();
+  });
+});
+{% endif %}
 
 /**
  * Optimize images
@@ -86,3 +77,5 @@ gulp.task('images', function () {
 });
 
 gulp.task('default', ['watch']);
+
+gulp.task('build', [{% if gulp_use_webpack %}'webpack', {% endif %}'sass']);
