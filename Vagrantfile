@@ -29,7 +29,7 @@ end
 
 custom_config = CustomConfig.new
 
-ansible_provisioner = custom_config.get('ansible_local', false) ? 'ansible_local' : 'ansible'
+ansible_provisioner = custom_config.get('ansible_local', true) ? 'ansible_local' : 'ansible'
 
 if ansible_provisioner == 'ansible_local'
     Vagrant.require_version ">= 1.8.4"
