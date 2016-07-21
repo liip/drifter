@@ -1,11 +1,11 @@
 - name: install PHP memcached extension
   apt: pkg=php-memcached state=latest
-  sudo: yes
+  become: yes
 
 - name: Activate PHP configuration files
   command: "{{phpenmod}} -s ALL {{ item }}"
   with_items:
     - memcached
-  notify: 
-    - restart php-fpm    
-  sudo: yes
+  notify:
+    - restart php-fpm
+  become: yes
