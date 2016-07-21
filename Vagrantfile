@@ -34,20 +34,6 @@ def which(cmd)
   return nil
 end
 
-# Some hack to detect the current provider took from https://groups.google.com/forum/#!topic/vagrant-up/XIxGdm78s4I
-# We need it to detect LXC because there is currently an issue with LXC
-# and ansible_local (see https://github.com/fgrehm/vagrant-lxc/issues/398)
-# once this issue is resolved, this can be probably removed.
-def get_provider
-  provider_index = ARGV.index('--provider')
-  if (provider_index && ARGV[provider_index + 1])
-     return ARGV[provider_index + 1]
-  elsif ARGV.index('--provider=lxc')
-     return "lxc"
-  end
-  return ENV['VAGRANT_DEFAULT_PROVIDER'] || 'virtualbox'
-end
-
 # try to support both new and old Vagrantfile format by loading
 # the config if this Vagrantfile was called directly
 unless class_exists?('CustomConfig')
@@ -76,17 +62,8 @@ custom_config = CustomConfig.new
 
 ansible_provisioner = custom_config.get('ansible_local', false) ? 'ansible_local' : 'ansible'
 
-if get_provider() == 'lxc' and ansible_provisioner == 'ansible_local'
-    if  ARGV.include?("up") or ARGV.include?("provision")
-      puts "You are using the LXC provider and selected 'ansible_local'."
-      puts "We automatically switched you back to 'ansible' because there"
-      puts "currently is an issue : https://github.com/fgrehm/vagrant-lxc/issues/398"
-      puts "-------------------------------------------------------------"
-    end
-    ansible_provisioner = 'ansible'
-end
 if ansible_provisioner == 'ansible_local'
-    Vagrant.require_version ">= 1.8.1"
+    Vagrant.require_version ">= 1.8.4"
 else
     unless which 'ansible'
         raise "[PROVISIONER ERROR] cannot find ansible on the host. Try using ansible_local."
@@ -95,8 +72,8 @@ else
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = custom_config.get('vbox_box_name', 'jessie64')
-    box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
+    config.vm.box = custom_config.get('vbox_box_name', 'drifter/jessie64-base')
+    box_url = custom_config.get('vbox_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
     if box_url != ""
        config.vm.box_url = box_url
     end
@@ -148,8 +125,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
-        override.vm.box = custom_config.get('lxc_box_name', 'jessie64-lxc')
-        box_url = custom_config.get('lxc_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box')
+        override.vm.box = custom_config.get('lxc_box_name', 'drifter/jessie64-base')
+        box_url = custom_config.get('lxc_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
         if box_url != ""
           override.vm.box_url = box_url
         end
