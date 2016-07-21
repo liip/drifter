@@ -7,7 +7,7 @@ Requirements
 ------------
 
 * Vagrant >= 1.6.2 (on Windows you need >= 1.8.1)
-* Ansible >= 1.7.2 (starting with Vagrant 1.8.1 this dependency is optional)
+* Ansible >= 1.9.0 (starting with Vagrant 1.8.4 this dependency is optional)
 
 You also need a virtualization solution, either one of those :
 
