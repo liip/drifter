@@ -41,8 +41,8 @@ else
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = custom_config.get('vbox_box_name', 'drifter/jessie64-base')
-    box_url = custom_config.get('vbox_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
+    config.vm.box = custom_config.get('box_name', 'drifter/jessie64-base')
+    box_url = custom_config.get('box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
     if box_url != ""
        config.vm.box_url = box_url
     end
@@ -61,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.hostmanager.manage_host = true
         config.hostmanager.ignore_private_ip = false
         config.hostmanager.include_offline = true
-        config.hostmanager.aliases = custom_config.get('load_aliases', [])
+        config.hostmanager.aliases = custom_config.get('hostnames', [])
     end
 
     if Vagrant.has_plugin?("vagrant-cachier")
@@ -70,7 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "virtualbox" do |v, override|
-        override.vm.network :private_network, ip: custom_config.get('box_ip')
+        override.vm.network :private_network, ip: custom_config.get('box_ip', "10.10.10.10")
 
         if Vagrant::Util::Platform.windows? && !Vagrant.has_plugin?("vagrant-winnfsd")
             puts "*************************************************************************"
@@ -94,12 +94,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
-        override.vm.box = custom_config.get('lxc_box_name', 'drifter/jessie64-base')
-        box_url = custom_config.get('lxc_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
-        if box_url != ""
-          override.vm.box_url = box_url
-        end
-
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
         end

@@ -7,6 +7,14 @@
 The support for the old Vagrantfile format has been removed in this version. You should follow the steps detailed in the
 migration from 0.1.0 to 0.2.0 if you haven't done it already.
 
+### Virtualbox and LXC URLs
+
+It's not possible to specify separate boxes for LXC and Virtualbox via Drifter anymore. You need to move to the new JSON
+box format in order to be able to do it. You can have a look at https://vagrantbox-public.liip.ch/drifter-jessie64-base.json
+for an example.
+
+The `lxc_box_name`, `lxc_box_url`, `vbox_box_name` and `vbox_box_url` have been removed in favor of `box_name` and `box_url`.
+
 ## Version 0.1.0 to 0.2.0
 
 In order for the framework to work correctly on Windows, we removed the symlinks to the Vagrantfile stored in the submodule.

@@ -11,7 +11,7 @@ hostnames: []
 # for details.
 forwarded_ports: {
     "80": "8080",    # HTTP
-    "443": "8443",  # HTTPS
+    "443": "8443",   # HTTPS
     "3000": "3000",  # BrowserSync default port
 }
 
@@ -58,9 +58,3 @@ root_directory: "/vagrant/"
 # php7 (with fpm and nginx) anyway.
 # box_name: "drifter/trusty64-base"
 # box_url: "https://vagrantbox-public.liip.ch/drifter-trusty64-base.json"
-
-# you can also define different boxes for lxc and virtualbox
-# lxc_box_name: "drifter/trusty64-base"
-# lxc_box_url: "https://vagrantbox-public.liip.ch/drifter-trusty64-base.json"
-# vbox_box_name: "drifter/trusty64-base"
-# vbox_box_url: "https://vagrantbox-public.liip.ch/drifter-trusty64-base.json"
