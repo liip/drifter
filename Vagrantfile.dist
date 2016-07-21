@@ -22,7 +22,7 @@ class CustomConfig
   attr_accessor :lxc_box_name  # url of the virtualbox box
   attr_accessor :vbox_box_url  # name of the lxc box
   attr_accessor :vbox_box_name # url of the lxc box
-  
+
   # Retrieve the values of 'virtualization/parameters.yml' so that
   # they can be used by Vagrant. If you need to change those values
   # prefer editing the parameters.yml file instead.
@@ -30,14 +30,15 @@ class CustomConfig
     parameters_file = ENV.fetch('VIRTUALIZATION_PARAMETERS_FILE', 'virtualization/parameters.yml')
     config = YAML::load(File.open(parameters_file))
 
-    @lxc_box_url = config['lxc_box_url'] || "http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box"
-    @lxc_box_name = config['lxc_box_name'] || 'jessie64-lxc'    
-    @vbox_box_url = config['vbox_box_url'] || 'http://vagrantbox-public.liip.ch/liip-jessie64.box'
-    @vbox_box_name = config['vbox_box_name'] || 'jessie64'
-    
+    @lxc_box_url = config['lxc_box_url']     || config['box_url']  || 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json'
+    @lxc_box_name = config['lxc_box_name']   || config['box_name'] || 'drifter/jessie64-base'
+    @vbox_box_url = config['vbox_box_url']   || config['box_url']  || 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json'
+    @vbox_box_name = config['vbox_box_name'] || config['box_name'] || 'drifter/jessie64-base'
+
     @project_name = config['project_name'] || "example"
     @hostname = config['hostname'] || "#{@project_name}.lo"
     @hostnames = config['hostnames'] || Array.new
+    @_forwarded_ports = config['forwarded_ports'] || {"80" => "8080", "3000" => "3000"}
     @box_ip = config['box_ip'] || "10.10.10.10"
 
     @ansible_local = true
@@ -49,6 +50,10 @@ class CustomConfig
   # from a file for example.
   def load_aliases
     @hostnames
+  end
+
+  def forwarded_ports
+    @_forwarded_ports
   end
 
   def get(name, default = nil)

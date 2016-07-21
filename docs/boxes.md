@@ -1,7 +1,16 @@
 Create boxes
 ============
 
-## LXC
+## Current way
+
+Used for the current boxes available on https://vagrantbox-public.liip.ch/
+
+See https://gitlab.liip.ch/liip/drifter-base-boxes
+
+
+## Other way (older, may still workd
+
+### LXC
 
 ```
 git clone https://github.com/team-rawbot/vagrant-lxc-base-boxes
@@ -18,7 +27,7 @@ lxc.network.link = lxcbr0
 lxc.network.flags = up
 ```
 
-## VirtualBox
+### VirtualBox
 
 Install [veewee](https://github.com/jedi4ever/veewee/) and then:
 
@@ -27,3 +36,5 @@ git clone https://github.com/team-rawbot/veewee-definitions definitions
 veewee vbox build liip-jessie64
 veewee vbox export liip-jessie64
 ```
+
+

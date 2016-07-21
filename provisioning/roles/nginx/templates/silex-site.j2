@@ -1,0 +1,35 @@
+{% extends "default-site.j2" %}
+
+{% block index %}
+    index index.php;
+{% endblock %}
+
+{% block extra %}
+    {{ super() }}
+
+     location / {
+             # try to serve file directly, fallback to front controller
+             try_files $uri /index.php$is_args$args;
+         }
+
+         # If you have 2 front controllers for dev|prod use the following line instead
+         # location ~ ^/(index|index_dev)\.php(/|$) {
+         location ~ ^/index\.php(/|$) {
+             fastcgi_pass unix:{{ fpm_socket }};
+             fastcgi_split_path_info ^(.+\.php)(/.*)$;
+             include fastcgi_params;
+             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+             fastcgi_param HTTPS off;
+
+             # Prevents URIs that include the front controller. This will 404:
+             # http://domain.tld/index.php/some-path
+             # Enable the internal directive to disable URIs like this
+             # internal;
+         }
+
+         #return 404 for all php files as we do have a front controller
+         location ~ \.php$ {
+             return 404;
+         }
+
+{% endblock %}

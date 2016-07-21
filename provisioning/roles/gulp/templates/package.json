@@ -6,11 +6,14 @@
   "license": "private",
   "private": true,
   "devDependencies": {
-    "browser-sync": "^2.9.3",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.3.1",
-    "gulp-imagemin": "^2.3.0",
-    "gulp-load-plugins": "^1.0.0-rc.1",
-    "gulp-sass": "^2.0.4"
+    "browser-sync": "^2.12.7",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-load-plugins": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "yargs": "^4.7.0"
   }
 }

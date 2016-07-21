@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: memcached }
+  - { role: php }

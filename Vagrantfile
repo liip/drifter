@@ -34,20 +34,6 @@ def which(cmd)
   return nil
 end
 
-# Some hack to detect the current provider took from https://groups.google.com/forum/#!topic/vagrant-up/XIxGdm78s4I
-# We need it to detect LXC because there is currently an issue with LXC
-# and ansible_local (see https://github.com/fgrehm/vagrant-lxc/issues/398)
-# once this issue is resolved, this can be probably removed.
-def get_provider
-  provider_index = ARGV.index('--provider')
-  if (provider_index && ARGV[provider_index + 1])
-     return ARGV[provider_index + 1]
-  elsif ARGV.index('--provider=lxc')
-     return "lxc"
-  end
-  return ENV['VAGRANT_DEFAULT_PROVIDER'] || 'virtualbox'
-end
-
 # try to support both new and old Vagrantfile format by loading
 # the config if this Vagrantfile was called directly
 unless class_exists?('CustomConfig')
@@ -76,17 +62,8 @@ custom_config = CustomConfig.new
 
 ansible_provisioner = custom_config.get('ansible_local', false) ? 'ansible_local' : 'ansible'
 
-if get_provider() == 'lxc' and ansible_provisioner == 'ansible_local'
-    if  ARGV.include?("up") or ARGV.include?("provision")
-      puts "You are using the LXC provider and selected 'ansible_local'."
-      puts "We automatically switched you back to 'ansible' because there"
-      puts "currently is an issue : https://github.com/fgrehm/vagrant-lxc/issues/398"
-      puts "-------------------------------------------------------------"
-    end
-    ansible_provisioner = 'ansible'
-end
 if ansible_provisioner == 'ansible_local'
-    Vagrant.require_version ">= 1.8.1"
+    Vagrant.require_version ">= 1.8.4"
 else
     unless which 'ansible'
         raise "[PROVISIONER ERROR] cannot find ansible on the host. Try using ansible_local."
@@ -95,15 +72,17 @@ else
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = custom_config.get('vbox_box_name', 'jessie64')
-    box_url = custom_config.get('vbox_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64.box')
+    config.vm.box = custom_config.get('vbox_box_name', 'drifter/jessie64-base')
+    box_url = custom_config.get('vbox_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
     if box_url != ""
        config.vm.box_url = box_url
     end
-    
+
     config.vm.hostname = custom_config.get('hostname')
 
-    config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+    custom_config.get('forwarded_ports', {"80" => "8080", "3000" => "3000"}).each do |source, dest|
+        config.vm.network "forwarded_port", guest: source, host: dest, auto_correct: true
+    end
 
     config.ssh.forward_agent = true
     config.ssh.forward_x11 = true
@@ -123,7 +102,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider "virtualbox" do |v, override|
         override.vm.network :private_network, ip: custom_config.get('box_ip')
-        
+
         if Vagrant::Util::Platform.windows? && !Vagrant.has_plugin?("vagrant-winnfsd")
             puts "*************************************************************************"
             puts "Please install the plugin vagrant-winnfsd to have NFS Support on Windows!"
@@ -146,8 +125,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.provider "lxc" do |lxc, override|
-        override.vm.box = custom_config.get('lxc_box_name', 'jessie64-lxc')
-        box_url = custom_config.get('lxc_box_url', 'http://vagrantbox-public.liip.ch/liip-jessie64-lxc.box')
+        override.vm.box = custom_config.get('lxc_box_name', 'drifter/jessie64-base')
+        box_url = custom_config.get('lxc_box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
         if box_url != ""
           override.vm.box_url = box_url
         end
@@ -156,16 +135,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             override.hostmanager.ignore_private_ip = true
         end
     end
-    
+
     # Set some env variables, so they can be used within the vagrant box as well
-    # Important for example if you want to provision different things on the CI 
+    # Important for example if you want to provision different things on the CI
     config.vm.provision "shell", inline: "echo export CI_SERVER=#{ENV['CI_SERVER']} > /etc/profile.d/drifter_vars.sh;
                                           echo export GITLAB_CI=#{ENV['GITLAB_CI']} >> /etc/profile.d/drifter_vars.sh;
                                           chmod a+x /etc/profile.d/drifter_vars.sh"
 
     # install ansible 1.9.4 in ansible_local so that we can be sure to have the right version
     if ansible_provisioner == 'ansible_local'
-       config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y python-pip python-dev && sudo pip install ansible==1.9.4 && sudo cp /usr/local/bin/ansible /usr/bin/ansible; fi"
+        config.vm.provision "shell", inline: "if [ ! -f /usr/local/bin/ansible ]; then sudo apt-get update && sudo apt-get install -y libssl-dev libffi-dev libyaml-dev python-pip python-dev python-yaml && ( dpkg -s python-cffi > /dev/null 2>&1 && sudo apt-get --purge remove -y python-cffi || true) && sudo ln -s /usr/local/bin/ansible /usr/bin/ansible && sudo pip install ansible==1.9.4; fi"
     end
 
     config.vm.provision ansible_provisioner do |ansible|

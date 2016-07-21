@@ -2,7 +2,7 @@
   become: yes
   file: name={{ composer.dir }} state=directory
 
-- command: test -f {{ composer.dir }}/composer.phar
+- command: tests -f {{ composer.dir }}/composer.phar
   register: composer_installed
   ignore_errors: yes
 

@@ -8,3 +8,5 @@ php_upload_max_filesize: "128M"
 php_date_timezone: "Europe/Zurich"
 
 php_default_charset: "UTF-8"
+
+php_default_socket_timeout: "120"

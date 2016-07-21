@@ -13,6 +13,7 @@ php_packages:
   - php7.0-soap
   - php7.0-mbstring
   - php7.0-bcmath
+  - php7.0-zip
 
 php_mysql_packages: 
   - php7.0-mysql
@@ -24,3 +25,5 @@ etc_php_path: /etc/php/7.0/
 
 #php5enmod auf debian
 phpenmod: phpenmod
+
+alternatives_php_path: /usr/bin/php7.0

@@ -21,7 +21,7 @@ Optional dependencies :
 Documentation
 -------------
 
-You can find the complete documentation on Read The Docs : http://liip-drifter.rtfd.org/
+You can find the complete documentation on Read The Docs : https://liip-drifter.readthedocs.io/
 
 TL;DR;
 ------

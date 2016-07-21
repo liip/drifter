@@ -43,15 +43,16 @@ then
       vagrant ssh -c "echo $THISPROVISION > /home/vagrant/provisionbuild.last" $VIRTUALBOX_NAME
     fi
 else
-    vagrant up $VIRTUALBOX_NAME --provider lxc --provision 
+    vagrant up $VIRTUALBOX_NAME --provider lxc --provision
 fi
 
-if [ -f $CI_TEST_SCRIPT ]; 
+if [ -f $CI_TEST_SCRIPT ];
 then
     echo -e "- Run $CI_TEST_SCRIPT"
-    vagrant ssh $VIRTUALBOX_NAME -- -t "cd /vagrant && $CI_TEST_SCRIPT" 
+    vagrant ssh $VIRTUALBOX_NAME -- -t "cd /vagrant && $CI_TEST_SCRIPT"
 else
     echo -e "\033[31mNo test script found ($CI_TEST_SCRIPT) \e[0m"
+    exit 1
 fi
 
 trap - EXIT SIGHUP SIGINT SIGTERM
