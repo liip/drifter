@@ -1,7 +1,7 @@
 - name: restart nginx
   service: name=nginx state=restarted
-  sudo: yes
+  become: yes
 
 - name: reload nginx
   service: name=nginx state=reloaded
-  sudo: yes
+  become: yes

@@ -1,6 +1,6 @@
 - name: install supervisor
   apt: pkg=supervisor state=latest
-  sudo: yes
+  become: yes
   notify: enable supervisor
   when: ansible_lsb.major_release|int >= 8
 
@@ -9,5 +9,5 @@
 
 - name: create service config
   template: src=service.conf dest=/etc/supervisor/conf.d/{{ service_name }}.conf
-  sudo: yes
+  become: yes
   notify: restart supervisor

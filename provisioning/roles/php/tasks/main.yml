@@ -1,5 +1,5 @@
 - set_fact: php_version_installed={{ php_version | float }}
-  
+
 - fail: msg="PHP7.0 is only available on Jessie."
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} == 7.0"
 
@@ -23,18 +23,18 @@
 
 - name: install PHP packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
-  with_items: "{{ php_packages }}" 
+  become: yes
+  with_items: "{{ php_packages }}"
 
 - name: install mysql database driver
   apt: pkg={{ item }} state=latest
   with_items: "{{ php_mysql_packages }}"
-  sudo: yes
+  become: yes
   when: "'{{ database_type|default(false) }}' == 'mysql'"
 
 - name: install postgresql database driver
   apt: pkg={{ php_pgsql_package}} state=latest
-  sudo: yes
+  become: yes
   when: "'{{ database_type|default(false) }}' == 'postgresql'"
 
 - include: not-debian-7.0.yml
@@ -46,10 +46,10 @@
 - include: wheezy-php5.yml
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} > 5.4"
 
-- name: set php alternative to the correct path 
+- name: set php alternative to the correct path
   alternatives: name=php path={{ alternatives_php_path }}
-  sudo: yes
-  
+  become: yes
+
 - name: Download php-cs-fixer
   shell: curl http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer && chmod +x /usr/local/bin/php-cs-fixer creates=/usr/local/bin/php-cs-fixer
-  sudo: yes
+  become: yes

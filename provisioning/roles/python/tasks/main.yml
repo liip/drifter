@@ -7,7 +7,7 @@
 # we want to use tools like tox
 - name: install python 2 packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: yes
   with_items:
     - python-virtualenv
     - python-pip
@@ -15,7 +15,7 @@
 
 - name: install python 3 packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: yes
   with_items:
     - python3-pip
     - python3-all-dev
@@ -24,7 +24,7 @@
 
 - name: install pillow dependencies
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: yes
   with_items:
     - libfreetype6-dev
     - zlib1g-dev
@@ -34,4 +34,4 @@
 
 - name: install libjpeg-dev
   apt: pkg="{{ 'libjpeg8-dev' if (ansible_lsb.major_release|int == 7) else 'libjpeg-dev' }}" state=latest
-  sudo: yes
+  become: yes

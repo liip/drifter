@@ -10,7 +10,7 @@
 
 - name: install PHP packages
   apt: pkg={{ item }} state=latest
-  sudo: yes
+  become: yes
   with_items: "{{ php_packages }}" 
 
 

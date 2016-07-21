@@ -2,7 +2,7 @@
 - hosts: all
   vars_files:
    - parameters.yml
-  sudo: no
+  become: no
 
   roles:
     - { role: base }

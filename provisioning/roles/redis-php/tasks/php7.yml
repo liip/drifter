@@ -1,6 +1,6 @@
 - name: ensure php7.0-dev is installed
   apt: pkg=php7.0-dev state=installed
-  sudo: yes
+  become: yes
   
 - name: install phpredis install script for PHP7
   copy: src="{{ item }}" dest=/tmp/ mode=0755
@@ -18,4 +18,4 @@
   notify: 
     - restart php-fpm
   when: "{{ phpfpm_installed | default(false) }} == true"
-  sudo: yes
+  become: yes

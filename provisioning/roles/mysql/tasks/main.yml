@@ -3,30 +3,30 @@
 
 - name: set mysql root password via debconf
   debconf: name=mysql-server-5.5 question='mysql-server/root_password'  value='root' vtype='password'
-  sudo: yes
+  become: yes
 
 - name: set mysql root password confirmation via debconf
   debconf: name=mysql-server-5.5 question='mysql-server/root_password_again'  value='root' vtype='password'
-  sudo: yes
+  become: yes
 
 - name: install mysql 5.5
   apt: pkg=mysql-server-5.5 state=latest
-  sudo: yes
+  become: yes
 
 - name: install python-mysqldb (for ansible)
   apt: pkg=python-mysqldb state=latest
-  sudo: yes
+  become: yes
 
 - name: install mysql dev libraries
   apt: pkg=libmysqlclient-dev state=latest
-  sudo: yes
+  become: yes
 
 - name: create my.cnf config for user
   template: src=my.cnf.j2 dest=~/.my.cnf
 
 - name: ensure mysql is started
   action: service name=mysql state=started
-  sudo: yes
+  become: yes
 
 - name: create database user
   mysql_user: name={{ database_user }} password={{ database_password }} priv=*.*:ALL,GRANT state=present

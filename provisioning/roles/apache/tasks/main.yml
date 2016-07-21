@@ -1,31 +1,31 @@
 - name: install apache
   apt: pkg=apache2 state=latest
-  sudo: yes
+  become: yes
 
 - name: disable default vhost
   file: name=/etc/apache2/sites-enabled/000-default state=absent
-  sudo: yes
+  become: yes
   when: ansible_lsb.major_release|int < 8
   notify: restart apache
 
 - name: disable default vhost
   file: name=/etc/apache2/sites-enabled/000-default.conf state=absent
-  sudo: yes
+  become: yes
   when: ansible_lsb.major_release|int >= 8
   notify: restart apache
 
 - name: create vhost config
   template: src={{ site_template }} dest=/etc/apache2/sites-available/{{ hostname }}.conf
-  sudo: yes
+  become: yes
 
 - name: enable vhost
   file: src=/etc/apache2/sites-available/{{ hostname }}.conf dest=/etc/apache2/sites-enabled/0001-{{ hostname }}.conf state=link
-  sudo: yes
+  become: yes
   notify: reload apache
 
 - name: enable apache modules
   apache2_module: state=present name={{ item }}
-  sudo: yes
+  become: yes
   with_items:
       - rewrite
       - vhost_alias
@@ -36,6 +36,6 @@
 
 - name: enable Apache SSL module
   apache2_module: state=present name=ssl
-  sudo: yes
+  become: yes
   when: ssl
   notify: restart apache

@@ -5,7 +5,7 @@
 # Gettext is used by Django's compilemessages
 - name: ensure gettext is installed
   apt: pkg=gettext state=latest
-  sudo: yes
+  become: yes
 
 - name: create the local environement directory
   file: path=/vagrant/envdir state=directory
