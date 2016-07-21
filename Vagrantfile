@@ -14,13 +14,6 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-def class_exists?(class_name)
-  klass = Module.const_get(class_name)
-  return klass.is_a?(Class)
-rescue NameError
-  return false
-end
-
 # Cross-platform way of finding an executable in the $PATH.
 #   which('ruby') #=> /usr/bin/ruby
 def which(cmd)
@@ -32,30 +25,6 @@ def which(cmd)
     }
   end
   return nil
-end
-
-# try to support both new and old Vagrantfile format by loading
-# the config if this Vagrantfile was called directly
-unless class_exists?('CustomConfig')
-    puts "It seems you are using the old Vagrantfile format for this framework."
-    puts "You should have a look at the docs/migrations.md file to read the"
-    puts "steps required to go from the version 0.1.0 to 0.2.0."
-    puts "---------------------------------------------------------------------"
-
-    load 'virtualization/VagrantfileExtra.rb'
-
-    # add a 'get' method to our config class (already added in the new format)
-    class CustomConfig
-        def get(name, default = nil)
-            if self.respond_to?(name)
-                self.send(name)
-            elsif default.nil?
-                raise "[CONFIG ERROR] '#{name}' cannot be found and no default provided."
-            else
-                default
-            end
-        end
-    end
 end
 
 custom_config = CustomConfig.new

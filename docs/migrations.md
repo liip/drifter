@@ -1,5 +1,12 @@
 # Migrations instructions
 
+## Version 1.0.0
+
+### Old Vagrantfile format
+
+The support for the old Vagrantfile format has been removed in this version. You should follow the steps detailed in the
+migration from 0.1.0 to 0.2.0 if you haven't done it already.
+
 ## Version 0.1.0 to 0.2.0
 
 In order for the framework to work correctly on Windows, we removed the symlinks to the Vagrantfile stored in the submodule.
