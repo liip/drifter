@@ -12,13 +12,13 @@
     - gitglobalignore
     - gitglobalattributes
 
-- name: get local git username
-  local_action: command git config user.name
+- name: get git username from synced config
+  shell: git config --file ~/.gitconfig-host user.name
   register: git_username
   ignore_errors: yes
 
-- name: get local git email
-  local_action: command git config user.email
+- name: get git email from synced config
+  shell: git config --file ~/.gitconfig-host user.email
   register: git_email
   ignore_errors: yes
 
