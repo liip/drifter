@@ -1,0 +1,11 @@
+:arrow_up: Ensure you have put a meaningful title in the box up there. :arrow_up:
+
+[Quick description of your PR and motivation.]
+
+* This PR is a : [Bugfix/New feature/Improvement]
+* Link to the related issue if relevant
+
+- [ ] Documentation is written
+- [ ] `parameters.yml.dist` is updated
+- [ ] `playbook.yml.dist` is updated
+- [ ] [Changelog](https://github.com/liip/drifter/blob/master/CHANGELOG.md) was updated

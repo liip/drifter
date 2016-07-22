@@ -1,0 +1,32 @@
+:arrow_up: Ensure you have put a meaningful title in the box up there. :arrow_up:
+
+[Short description of problem here]
+
+**Reproduction Steps:**
+
+1. [First Step]
+2. [Second Step]
+3. [Other Steps...]
+
+**Expected behavior:**
+
+[Describe expected behavior here]
+
+**Observed behavior:**
+
+[Describe observed behavior here]
+
+**Drifter version:** [Enter Drifter version here]
+**Vagrant version:** [Enter Vagrant version here]
+**OS and version:** [Enter OS name and version here]
+
+**Configuration files:**
+
+Put the content or a link to your `virtualization/playbook.yml` and  `virtualization/parameters.yml`.
+Also include your `Vagrantfile` if it was modified compared since Drifter installation.
+
+**Additional information:**
+
+* Problem started happening recently, didn't happen in an older version of Drifter: [Yes/No]
+* Problem can be reliably reproduced, doesn't happen randomly: [Yes/No]
+* Problem happens to my colleagues aswell or only me: [Yes/No]
