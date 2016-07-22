@@ -6,4 +6,5 @@
   become: yes
 
 - name: activate fancy-diff
-  shell: git config --global pager.diff "diff-so-fancy | less --tabs=4 -RFX"; git config --global pager.show "diff-so-fancy | less --tabs=4 -RFX"
+  shell: git config --system pager.diff "diff-so-fancy | less --tabs=4 -RFX"; git config --system pager.show "diff-so-fancy | less --tabs=4 -RFX"
+  become: yes
