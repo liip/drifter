@@ -6,8 +6,7 @@ Drifter is a framework to help provision developer boxes using Ansible and Vagra
 Requirements
 ------------
 
-* Vagrant >= 1.6.2 (on Windows you need >= 1.8.1)
-* Ansible >= 1.9.0 (starting with Vagrant 1.8.4 this dependency is optional)
+* Vagrant >= 1.8.4
 
 You also need a virtualization solution, either one of those :
 
@@ -17,6 +16,7 @@ You also need a virtualization solution, either one of those :
 Optional dependencies :
 
 * vagrant-hostmanager >= 1.5.0 (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
+* Ansible >= 1.9.0 (if you want to use a different provisioner than the default `ansible-local`)
 
 Documentation
 -------------
