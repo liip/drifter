@@ -58,3 +58,43 @@ box :
 vagrant plugin install vagrant-lxc
 vagrant up --provider lxc
 ```
+
+Installing Vagrant
+------------------
+
+## Debian Stretch (testing) and Ubuntu Xenial 16.04
+
+Open a termain and run :
+
+```
+sudo apt-get install vagrant vagrant-lxc vagrant-cachier
+vagrant plugin install vagrant-hostmanager
+```
+
+## older Debian and Ubuntu
+
+Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
+
+Then open a terminal and run : 
+
+```
+sudo apt-get install lxc redir    # this is needed for LXC provider
+vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
+```
+
+## Mac OS X
+
+Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
+
+Go to https://www.virtualbox.org/wiki/Downloads to download and install the latest VirtualBox version.
+
+Then open a terminal and run : 
+
+```
+vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
+```
+
+## Windows
+
+To be completed.
+
