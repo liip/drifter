@@ -24,6 +24,13 @@ for an example.
 
 The `lxc_box_name`, `lxc_box_url`, `vbox_box_name` and `vbox_box_url` have been removed in favor of `box_name` and `box_url`.
 
+### Git
+
+Git installation and configuration is now in its own role. It was added to the `playbook.yml.dist` file, but existing project
+should also add it to their playbook if they want to have git installed.
+
+You should also have a look at the `git` role documentation inside the System roles for the new features.
+
 ## Version 0.1.0 to 0.2.0
 
 In order for the framework to work correctly on Windows, we removed the symlinks to the Vagrantfile stored in the submodule.
