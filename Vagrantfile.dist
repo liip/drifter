@@ -62,6 +62,7 @@ class CustomConfig
       self.send(name)
     elsif default.nil?
       raise "[CONFIG ERROR] '#{name}' cannot be found and no default provided."
+    else
       default
     end
   end
