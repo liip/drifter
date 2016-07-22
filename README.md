@@ -1,10 +1,13 @@
-Drifter
-=======
+# Drifter
 
 Drifter is a framework to help provision developer boxes using Ansible and Vagrant.
 
-Requirements
-------------
+* [Requirements](#requirements)
+* [Documentation](#documentation)
+* [TL;DR;](#tldr)
+* [Installing Vagrant](#installing-vagrant)
+
+## Requirements
 
 * Vagrant >= 1.8.4
 
@@ -18,13 +21,11 @@ Optional dependencies :
 * vagrant-hostmanager >= 1.5.0 (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
 * Ansible >= 1.9.0 (if you want to use a different provisioner than the default `ansible-local`)
 
-Documentation
--------------
+## Documentation
 
 You can find the complete documentation on Read The Docs : https://liip-drifter.readthedocs.io/
 
-TL;DR;
-------
+## TL;DR;
 
 To install it in your project, simply run the following in your project root :
 
@@ -59,10 +60,9 @@ vagrant plugin install vagrant-lxc
 vagrant up --provider lxc
 ```
 
-Installing Vagrant
-------------------
+## Installing Vagrant
 
-## Debian Stretch (testing) and Ubuntu Xenial 16.04
+### Debian Stretch (testing) and Ubuntu Xenial 16.04
 
 Open a termain and run :
 
@@ -82,7 +82,7 @@ sudo apt-get install lxc redir    # this is needed for LXC provider
 vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
 ```
 
-## Mac OS X
+### Mac OS X
 
 Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
 
@@ -94,7 +94,7 @@ Then open a terminal and run :
 vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
 ```
 
-## Windows
+### Windows
 
 To be completed.
 
