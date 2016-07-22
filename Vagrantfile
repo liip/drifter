@@ -27,6 +27,11 @@ def which(cmd)
   return nil
 end
 
+# get git config on the host so that we can have it even when running
+# ansible_local as provisioner.
+git_config = `git config --list`
+git_config.gsub! "$", "\\$" # escape $ so they don't get interpreted later
+
 custom_config = CustomConfig.new
 
 ansible_provisioner = custom_config.get('ansible_local', true) ? 'ansible_local' : 'ansible'
@@ -104,6 +109,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "shell", inline: "echo export CI_SERVER=#{ENV['CI_SERVER']} > /etc/profile.d/drifter_vars.sh;
                                           echo export GITLAB_CI=#{ENV['GITLAB_CI']} >> /etc/profile.d/drifter_vars.sh;
                                           chmod a+x /etc/profile.d/drifter_vars.sh"
+
+    # Sync the git configuration over
+    sync_git = <<SCRIPT
+echo -e "#{git_config}" > /tmp/gitconfig-host
+
+while read l; do
+    KEY=$(echo $l | cut -d"=" -f1)
+    VALUE=$(echo $l | cut -d"=" -f2-)
+    if [ -n "$KEY" -a -n "$VALUE" ]; then
+        git config --add --file /home/vagrant/.gitconfig-host --add $KEY "$VALUE"
+    fi
+done < /tmp/gitconfig-host
+
+rm -f /tmp/gitconfig-host
+SCRIPT
+    config.vm.provision "Sync GIT config", type: "shell", inline: sync_git, run: "always"
 
     config.vm.provision ansible_provisioner do |ansible|
         ansible.extra_vars = custom_config.get('extra_vars', {})

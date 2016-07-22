@@ -1,0 +1,36 @@
+- name: install git and utilities
+  apt: pkg={{ item }} state=latest
+  become: yes
+  with_items:
+    - git
+    - libimage-exiftool-perl
+
+- name: install default git config system wide
+  copy: src=gitconfig dest=/etc/gitconfig
+  become: yes
+
+- name: install global ignore and attributes file
+  copy: src={{ item }} dest=~/.{{ item }}
+  with_items:
+    - gitglobalignore
+    - gitglobalattributes
+
+- name: get git username from synced config
+  shell: git config --file ~/.gitconfig-host user.name
+  register: git_username
+  ignore_errors: yes
+
+- name: get git email from synced config
+  shell: git config --file ~/.gitconfig-host user.email
+  register: git_email
+  ignore_errors: yes
+
+- name: set box git username and email
+  shell: git config --system user.name "{{ git_username.stdout }}"; git config --system user.email "{{ git_email.stdout }}"
+
+- include: fancy-diff.yml
+  when: fancy_diff
+
+- name: install synced git config
+  file: src=~/.gitconfig-host dest=~/.gitconfig state=link
+  when: sync_git_with_host

@@ -5,6 +5,18 @@ configuration files of the vagrant user home directory.
 
 It should always be included to have a common environment in all vagrant boxes.
 
+# Git
+
+Install Git and some sane configuration and sync the username and e-mail from the host.
+
+[Fancy-diff](https://github.com/so-fancy/diff-so-fancy) is also installed by default and
+you can opt-in to sync your git configuration on each `vagrant up`.
+
+## Parameters
+
+* **fancy_diff** : install fancy-diff
+* **sync_git_with_host** : sync your host git config on each `vagrant up`
+
 # Supervisor
 
 Install Supervisor so that you can manage long lived processes inside the box.
