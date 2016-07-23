@@ -27,6 +27,7 @@
 
 - name: set box git username and email
   shell: git config --system user.name "{{ git_username.stdout }}"; git config --system user.email "{{ git_email.stdout }}"
+  become: yes
 
 - include: fancy-diff.yml
   when: fancy_diff
