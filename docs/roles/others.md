@@ -1,6 +1,6 @@
 # Ruby
 
-Install Ruby gem integration for Debian and dev dependencies.
+Install Ruby, Gem integration for Debian and dev dependencies.
 
 Any Debian ruby package should then be also recognized as a Gem. You can however
 continue to install Gems using the `gem` utility if you need a specific version
@@ -26,4 +26,4 @@ To be completed.
 
 # Gitlab CI
 
-To be completed.
+See https://liip-drifter.readthedocs.io/en/latest/tips/ci/

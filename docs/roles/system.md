@@ -81,3 +81,10 @@ To be completed.
 To be completed.
 
 # LogStash
+
+Currently only installs LogStach without any kind of configuration or nothing. This role is not
+usable as is.
+
+## Parameters
+
+* **logstash_version**: version to install, defaults to 2.3

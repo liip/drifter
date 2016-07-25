@@ -1,52 +1,72 @@
 # PHP
 
-Install PHP 5.4.4 and various extensions : curl, intl, gd, imagemagick, xcache, xdebug.
+Install PHP and various extensions : curl, intl, gd, imagemagick, ...
+
+The version can be changed and defaults to 5.6. All version are however not available on
+all OS versions, an error message will be displayed by Ansible if you chose an impossible
+combination.
 
 Development specific configuration options are also put into place, for example to activate
 error outputting.
 
 A database driver is also installed if one of the MySQL or PostgreSQL roles was included before.
 
-XDebug profiling and debugging are off by default, you can modify the config file `/etc/php5/conf.d/20-xdebug.ini`
-and restart your Apache or PHP-FPM to activate them. XDebug is also configured to trigger debugging
-and profiling in response to the related query string or cookie, so you should be able to install
-a browser extension to make it work this way.
+If you want to install xdebug, you'll need to also add the specific role : `php-xdebug`.
+
+There are also roles for some more specific extension that could be found below.
 
 This role is automatically included by roles PHP-Apache and PHP-FPM, so you should not include
 it yourself.
 
 ## Parameters
 
+* **php_version** : version to install, defaults to 5.6
 * **php_error_reporting** : php error reporting, defaults to "E_ALL | E_STRICT"
 * **php_max_execution** _time** : script max exectution time, defaults to "3600"
 * **php_memory_limit** : memory limit, defaults to "4G"
 * **php_upload_max_filesize** : maximal size of uploaded file, defaults to "128M"
 * **php_date_timezone** : timezone, defaults to "Europe/Zurich"
 * **php_default_charset** : default charset, defaults to "UTF-8"
+* **php_default_socket_timeout** : socket timeout, defaults to 120
 
 # PHP-Apache
 
-Install libapache2-mod-php5 so that PHP can be used with Apache.
+Install the PHP mod for Apache along with Apache and PHP. You only need to install this role, PHP and Apache
+will be automatically added as dependencies. For details about PHP config, see above.
 
-Depends on the PHP and Apache role.
+The default vhost template from the Apache role is used.
 
 # PHP-FPM
 
-Install php5-fpm so that you can use PHP with NGinx.
+Install PHP-FPM so that you can use NGinx. You only need to install this role, PHP and NGinx
+will be automatically added as dependencies. For details about PHP config, see above.
 
-Depends on the PHP and NGinx role.
+You can change the site template used using the parameter defined below. The templates can be found
+in the NGinx role.
+
+## Parameters
+
+* **nginx_site_template**: template to use for site configuration, defaults to "php-site.j2"
 
 # PHP-XDebug
 
-To be completed
+Installs the XDebug extension for PHP.
+
+You can modify the config file `/etc/php5/conf.d/20-xdebug.ini` to change the configuration and restart
+your Apache or PHP-FPM. XDebug is also configured to trigger debugging and profiling in response to the
+related query string or cookie, so you should be able to install a browser extension to make it work this way.
 
 # PHP-Redis
 
-To be completed
+Installs the Redis extension for PHP. Redis and PHP are installed as a dependency.
+
+Concerning Redis itself, the documentation is in the "System" section of the documentation.
 
 # PHP-MemCached
 
-To be completed
+Installs the MemCached extension for PHP. MemCached and PHP are installed as a dependency.
+
+Concerning MemCached itself, the documentation is in the "System" section of the documentation.
 
 # Composer
 
