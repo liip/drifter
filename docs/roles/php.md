@@ -36,6 +36,18 @@ Install php5-fpm so that you can use PHP with NGinx.
 
 Depends on the PHP and NGinx role.
 
+# PHP-XDebug
+
+To be completed
+
+# PHP-Redis
+
+To be completed
+
+# PHP-MemCached
+
+To be completed
+
 # Composer
 
 Install Composer, the PHP package manager. The PHP role is defined as a dependency.

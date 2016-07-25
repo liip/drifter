@@ -71,3 +71,13 @@ Also add the github and gitlab.liip.ch host key to the `kwown_host` file.
 ## Parameters
 
 * **ssh_no_stricthostkeychecking** : if set to true, disable SSH strict host key checking
+
+# Redis
+
+To be completed.
+
+# RabbitMQ
+
+To be completed.
+
+# LogStash

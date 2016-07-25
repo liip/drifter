@@ -6,8 +6,7 @@ Drifter is a framework to help provision developer boxes using Ansible and Vagra
 Requirements
 ------------
 
-* Vagrant >= 1.6.2 (on Windows you need >= 1.8.1)
-* Ansible >= 1.9.0 (starting with Vagrant 1.8.4 this dependency is optional)
+* Vagrant >= 1.8.4
 
 You also need a virtualization solution, either one of those :
 
@@ -17,52 +16,52 @@ You also need a virtualization solution, either one of those :
 Optional dependencies :
 
 * vagrant-hostmanager >= 1.5.0 (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
+* Ansible >= 1.9.0 (if you want to use a different provisioner than the default `ansible-local`)
 
-Installation
+Install Requirements
 ------------
 
-### Linux (Debian & Ubuntu)
+### Debian Stretch (testing) and Ubuntu Xenial 16.04
 
-For Vagrant and Ansible :
-
-```
-apt-get install -y vagrant ansible
-```
-
-For Virtualbox :
+Open a termain and run :
 
 ```
-apt-get install -y virtualbox
+sudo apt-get install vagrant vagrant-lxc vagrant-cachier
+vagrant plugin install vagrant-hostmanager
 ```
 
-For LXC :
+## older Debian and Ubuntu
+
+Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
+
+Then open a terminal and run :
 
 ```
-apt-get install -y lxc
-vagrant plugin install vagrant-lxc
+sudo apt-get install lxc redir    # this is needed for LXC provider
+vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
 ```
 
-### Max OS X
+### Mac OS X
 
-For Ansible :
+Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
+
+Go to https://www.virtualbox.org/wiki/Downloads to download and install the latest VirtualBox version.
+
+Then open a terminal and run :
 
 ```
-brew install ansible
+vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
 ```
 
-For Vagrant & Virtualbox :
-
-with cask:
+You can also use `cask` to help with the installation :
 
 ```
 brew cask install vagrant virtualbox
 ```
 
-Otherwise download the binaries and install the apps the as usual.
-
 ### Windows
 
-Install Virtualbox and Vagrant (>= 1.8.1)
+Install Virtualbox and Vagrant (>= 1.8.4) using the binaries available on their respective websites.
 
 Goals
 -----
@@ -70,7 +69,8 @@ Goals
 * Streamline our project setups
 * Ease the "entry cost" for a new squad member
 * Easy to use
-* Be adopted by the team as a whole
+* Lean : small codebase, easy to maintain and extend, focus only on Debian and Ubuntu
+* Be adopted by Liip as a whole
 
 The idea behind the framework
 -----------------------------
@@ -85,20 +85,20 @@ it is highly recommended that they are added to the common pool if they are deem
 Each squad can tailor its box to its need by modifying the Ansible playbook which should ultimately only
 contain role inclusion to maximize reuse.
 
-A common Vagrantfile is also provided to simplify the process even more. An extension mechanism is
-in place to provide fine grained control through a parameters file and an included ruby file. This
-process is currently in its infancy but it should be sufficient to allow enough customization so
-that each project can share the Vagrantfile thus enabling reuse.
+When installed, Drifter creates a parameters file to hold various information about your project, a
+playbook file where you can choose what to install and finally a Vagrantfile where you can modify
+some Vagrant related parameters before the "main" Vagrantfile is included. This should offer enough
+flexibility for every projects.
 
 What this framework is not ?
 ----------------------------
 
-This framework does not aim to provide a way to deploy staging and production severs for your project.
-The roles are written with a development box in mind and are thus not fit for server provisioning.
+This framework does not aim to provide a way to deploy staging and production servers for your project.
+The roles are written with a development box in mind and are thus not fit for server provisioning. There
+are absolutely no security consideration.
 
 However, if your server is using a Debian based OS based on the stable release, both configuration
-should be close enough so that you don't run into issues.
-
+should be close enough so that you won't run into issues.
 
 Customization
 -------------
@@ -107,7 +107,8 @@ You can customize what seems to us to be the more important option trough two fi
 
 * `virtualization/parameters.yml` for every project related parameters. Any value in this
 file will be passed to ansible as a variable. You can override any role default value
-through this file.
+through this file. You can find details about possible parameters and values later in
+this documentation.
 * `virtualization/playbook.yml` for provisioning. You can control which roles are
 used to build your box. This allows you to control what is installed in your box.
 
@@ -117,12 +118,8 @@ be aware that the risk of botching things up is far greater.
 Currently you do not have a lot of control, but we will glad to add anything making sense
 to this file. Feel free to ask and we will comply ;)
 
-Submodule access without login
-------------------------------
+Intended Public
+===============
 
-The submodule is initially configured to use your own credentials to access the Github
-repository. In some situation, it is possible you will require read-only access without
-your credentials.
-
-For this case, a read-only account is available and can be configured directly in the
-submodule repositoriy URL, please ask Gilles or Sylvain for more information.
+This project was first and foremost created to be used inside of Liip, but you are more than
+welcome to use it for personal projects or anywhere else you'd like to.

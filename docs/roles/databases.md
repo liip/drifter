@@ -27,3 +27,9 @@ Django role to be able to configure the database correctly.
 * **database_password**: the password of the user, defaults to the database name
 
 # PostGIS
+
+To be completed.
+
+# MemCached
+
+To be completed.

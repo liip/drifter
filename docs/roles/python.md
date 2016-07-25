@@ -23,4 +23,4 @@ use the "django-site.js" site template on the port "8000".
 
 # Flask
 
-TODO
+To be completed.

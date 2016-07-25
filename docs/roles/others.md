@@ -22,4 +22,8 @@ For more info on usage, go to https://github.com/liip/RMT#usage
 
 # Redis
 
-TODO
+To be completed.
+
+# Gitlab CI
+
+To be completed.

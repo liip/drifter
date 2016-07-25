@@ -19,6 +19,7 @@ pages:
     - 'Other roles': 'roles/others.md'
   - 'Tips & Tricks':
     - 'PHP Debugging': 'tips/php.md'
+    - 'Integrating with Gitlab CI': 'tips/ci.md'
   - 'Roadmap': 'roadmap.md'
   - 'Custom boxes': 'boxes.md'
   - 'Migrations': 'migrations.md'

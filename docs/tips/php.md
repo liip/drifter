@@ -1,5 +1,5 @@
-PHP Debugging with RVF & PHPStorm
-=================================
+PHP Debugging with Drifter & PHPStorm
+====================================
 
 As said earlier, the PHP role installs php-xdebug which is configured to try to connect to any
 listener on the host.

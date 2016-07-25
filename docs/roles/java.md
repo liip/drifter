@@ -4,9 +4,11 @@ Install a Java Runtime Environment using the OpenJDK Debian package.
 
 # JDK
 
-TODO
+To be completed
 
 # Maven
+
+To be completed
 
 # Solr
 
@@ -23,5 +25,4 @@ Solr is then launched automatically using the Supervisor role.
 
 # ElasticSearch
 
-TODO
-
+To be completed

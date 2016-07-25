@@ -7,7 +7,7 @@ included by other roles, for example PHP-Apache.
 
 ## Parameters
 
-TODO
+To be completed
 
 # NGinx
 

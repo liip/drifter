@@ -1,3 +1,5 @@
+## The playground is currently broken when using `ansible_local` and still contains legacy files.
+
 Playground
 ----------
 
