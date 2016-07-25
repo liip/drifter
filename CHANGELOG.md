@@ -24,6 +24,7 @@ Also, the requirements are bumped to Ansible 1.9 if you're not using `ansible_lo
 - [BC] remove support for old Vagrant file deprecated in v0.2.0
 - assume `ansible` is installed in the box and remove installation procedure
 - improved documentation
+- renamed `redis-php` and `memcached-php` roles to follow convention
 
 ### Added
 

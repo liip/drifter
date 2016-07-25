@@ -31,6 +31,11 @@ should also add it to their playbook if they want to have git installed.
 
 You should also have a look at the `git` role documentation inside the System roles for the new features.
 
+### PHP roles names
+
+`redis-php` and `memcached-php` roles have been renamed to follow the already in place convention.
+You'll now have to use `php-redis` and `php-memcached`
+
 ## Version 0.1.0 to 0.2.0
 
 In order for the framework to work correctly on Windows, we removed the symlinks to the Vagrantfile stored in the submodule.
