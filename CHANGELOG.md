@@ -114,7 +114,7 @@ version was used.
 ## Fixed
 - Probably lots of things
 
-## [First Blood] - 2014-09-26
+## [FirstBlood] - 2014-09-26
 
 Hackish try to do something using Docker to achieve the same purpose as today.
 The idea was fairly quickly abandoned because it was too complicated to manage
@@ -135,4 +135,4 @@ Some of the roles still survives today, so not everything was lost ;)
 [0.3.0]: https://github.com/liip/drifter/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/liip/drifter/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/liip/drifter/compare/ce825ff5a860fe8ccffb6ac3277a9278f7685a74...v0.1.0
-[First Blood] : https://github.com/liip/drifter/commit/ce825ff5a860fe8ccffb6ac3277a9278f7685a74
+[FirstBlood] : https://github.com/liip/drifter/commit/ce825ff5a860fe8ccffb6ac3277a9278f7685a74
