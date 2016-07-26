@@ -8,7 +8,17 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
-## [1.0.0] - 2016-07-DD
+## [1.0.2] - 2016-07-26
+
+### Fixed
+- force `.gitconfig` symlink creation if the file already exists
+
+## [1.0.1] - 2016-07-26
+
+### Fixed
+- remove config `push.default = simple` for git since it caused issues on `Wheezy` and it's the default for Git > 2 anyway
+
+## [1.0.0] - 2016-07-26
 
 First stable release. As of now, Drifter will follow [Semantic Versioning](http://semver.org/).
 
@@ -27,8 +37,6 @@ Also, the requirements are bumped to Ansible 1.9 if you're not using `ansible_lo
 - improved documentation
 - renamed `redis-php` and `memcached-php` roles to follow convention
 - `flask` and `django` roles now use the new `virtualenv` role
-
-### Added
 
 ## [0.5.1] - 2016-07-21
 
@@ -115,6 +123,8 @@ Some of the roles still survives today, so not everything was lost ;)
 - Roles : Apache, PHP
 
 [Unreleased]: https://github.com/liip/drifter/compare/v1.0.0...HEAD
+[1.0.2]: https://github.com/liip/drifter/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/liip/drifter/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/liip/drifter/compare/v0.5.1...v1.0.0
 [0.5.1]: https://github.com/liip/drifter/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/liip/drifter/compare/v0.4.0...v0.5.0

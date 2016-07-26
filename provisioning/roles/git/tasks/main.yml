@@ -33,5 +33,5 @@
   when: fancy_diff
 
 - name: install synced git config
-  file: src=~/.gitconfig-host dest=~/.gitconfig state=link
+  file: src=~/.gitconfig-host dest=~/.gitconfig state=link force=yes
   when: sync_git_with_host
