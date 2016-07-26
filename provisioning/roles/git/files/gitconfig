@@ -57,8 +57,6 @@
     autosetupmerge = always
 [merge]
     defaultToUpstream = true
-[push]
-    default = simple
 [fetch]
     prune = true
 
