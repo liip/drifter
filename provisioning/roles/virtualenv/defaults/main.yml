@@ -1,0 +1,2 @@
+pip_requirements: requirements/dev.txt
+env_root: "~/ENV"

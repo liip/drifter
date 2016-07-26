@@ -17,7 +17,8 @@ This version contains a lot of BC breaks, please read https://liip-drifter.readt
 Also, the requirements are bumped to Ansible 1.9 if you're not using `ansible_local`, and Vagrant 1.8.4.
 
 ### Added
-- new git role, with config sync possibilities and diff-so-fancy.
+- new `git` role, with config sync possibilities and diff-so-fancy.
+- new `virtualenv` role
 
 ### Changed
 - use `become` instead of `sudo` (requires Ansible 1.9)
@@ -25,6 +26,7 @@ Also, the requirements are bumped to Ansible 1.9 if you're not using `ansible_lo
 - assume `ansible` is installed in the box and remove installation procedure
 - improved documentation
 - renamed `redis-php` and `memcached-php` roles to follow convention
+- `flask` and `django` roles now use the new `virtualenv` role
 
 ### Added
 

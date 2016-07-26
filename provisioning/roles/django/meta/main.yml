@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: python }
+  - { role: virtualenv }
   - { role: nginx, web_directory: "{{ django_root }}", site_template: "django-site.j2", proxy_port: 8000, when: "no_nginx is not defined" }

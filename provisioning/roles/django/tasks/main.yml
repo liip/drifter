@@ -1,4 +1,6 @@
 ---
+# Actual installation is done in the 'virtualenv' role
+
 # This role requires either the postgresql or mysql roles to be enabled
 # Please note that Python 3 compatibility is only supported since jessie
 
@@ -7,21 +9,9 @@
   apt: pkg=gettext state=latest
   become: yes
 
-- name: create the local environement directory
-  file: path=/vagrant/envdir state=directory
-
 - name: fill in DATABASE_URL setting
   copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
   when: database_type is defined
-
-- name: create venv with latest pip version
-  pip: "virtualenv={{ env_root }} name=pip state=latest virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv-3.4' }}"
-
-- name: install base packages in venv
-  pip: "requirements={{ django_root }}/{{ django_pip_requirements }} virtualenv={{ env_root }} extra_args=--exists-action=w"
-
-- name: activate virtualenv when sshing into the box
-  lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
 
 - name: sync db
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"

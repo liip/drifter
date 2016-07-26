@@ -36,6 +36,13 @@ You should also have a look at the `git` role documentation inside the System ro
 `redis-php` and `memcached-php` roles have been renamed to follow the already in place convention.
 You'll now have to use `php-redis` and `php-memcached`
 
+### Flash & Django roles
+
+The `flask` and `django` roles now use the new `virtualenv` role. This means the parameter for the requirements is
+now named `pip_requirements`.
+
+The default value for this parameter has also been changed to "requirements/dev.txt".
+
 ## Version 0.1.0 to 0.2.0
 
 In order for the framework to work correctly on Windows, we removed the symlinks to the Vagrantfile stored in the submodule.
