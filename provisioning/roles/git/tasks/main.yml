@@ -29,8 +29,11 @@
   shell: git config --system user.name "{{ git_username.stdout }}"; git config --system user.email "{{ git_email.stdout }}"
   become: yes
 
+- stat: path=/usr/local/bin/diff-so-fancy
+  register: fancy_diff_file
+  
 - include: fancy-diff.yml
-  when: fancy_diff
+  when: fancy_diff and not (fancy_diff_file.stat.exists is defined and fancy_diff_file.stat.exists)
 
 - name: install synced git config
   file: src=~/.gitconfig-host dest=~/.gitconfig state=link force=yes
