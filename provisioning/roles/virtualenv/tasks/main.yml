@@ -3,7 +3,7 @@
   file: path=/vagrant/envdir state=directory
 
 - name: create venv and install base packages
-  pip: "requirements={{ root_directory }}/{{ flask_pip_requirements }} virtualenv={{ env_root }} virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv' }}"
+  pip: "requirements={{ root_directory }}/{{ pip_requirements }} virtualenv={{ env_root }} virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv' }}"
 
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'
