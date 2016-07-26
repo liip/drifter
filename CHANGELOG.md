@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Fixed
+- remove the dependency for `git` on the `base` role since it's included via the playbook
+
 ## [1.0.2] - 2016-07-26
 
 ### Fixed
@@ -122,7 +125,7 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.0.2...HEAD
 [1.0.2]: https://github.com/liip/drifter/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/liip/drifter/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/liip/drifter/compare/v0.5.1...v1.0.0
