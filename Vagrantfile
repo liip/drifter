@@ -143,6 +143,10 @@ SCRIPT
             # changes sshd configuration. If controlmaster is used, the new sshd
             # configuration is not taken into account
             ansible.raw_ssh_args = ['-o ControlMaster=no']
+        else 
+            ansible.install = true
+            ansible.version = "1.9.4"
+            ansible.install_mode = :pip
         end
     end
 
