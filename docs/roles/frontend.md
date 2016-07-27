@@ -12,10 +12,11 @@ After the first provisioning, you should edit the `Gulpfile.js` (especially the 
 
 ## Parameters
 
-* **gulp_gulpfile_path**: where should the gulpfile be created, defaults to <project_dir>/Gulpfile.js
+* **gulp_directory**: where should the gulpfile be created, defaults to <project_dir>/
 * **gulp_package_json_path**: where should the package.json file be created, defaults to <project_dir>/package.json
 * **gulp_package_json_author**: Author that should be put in the package.json file, defaults to "Liip AG"
 * **gulp_package_json_readme**: Documentation file the should be put in the package.json file, defaults to README.md
+* **gulp_use_webpack**: Do you want to install WebPack alongside Gulp, defatuls to true
 
 ## Default tasks
 ### Live reload proxy

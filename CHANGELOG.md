@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Added
+- `webpack` support to `gulp` role, only works on new boxes as the Gulpfile is not recreated
+
 ### Fixed
 - remove the dependency for `git` on the `base` role since it's included via the playbook
 
