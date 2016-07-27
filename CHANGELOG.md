@@ -8,6 +8,14 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+## [1.0.4] - 2016-07-27
+
+### Changed
+- specify install method and version for ansible when using `ansible_local` and it is not found in the box
+
+### Fixed
+- avoid install `fancy-diff` on each provisioning
+
 ## [1.0.3] - 2016-07-27
 
 ### Added
@@ -130,7 +138,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/liip/drifter/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/liip/drifter/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/liip/drifter/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/liip/drifter/compare/v1.0.0...v1.0.1
