@@ -15,5 +15,10 @@
   npm: name=gulp global=yes
   become: yes
 
+- name: Install PureScript globally
+  npm: name=purescript global=yes
+  become: yes
+  when: gulp_use_purescript
+
 - name: Install Node packages / Gulp dependencies
   npm: path=/vagrant
