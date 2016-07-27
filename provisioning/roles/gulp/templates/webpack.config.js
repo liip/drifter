@@ -8,7 +8,7 @@ module.exports = function(production) {
   var config = {
     resolve: {
       root: [path.resolve(__dirname, 'static/javascripts')],
-      extensions: ['', '.jsx', '.js']
+      extensions: ['', '.jsx', '.js'{% if gulp_use_purescript %}, '.purs'{% endif %}]
     },
     entry: gulpConfig.src.webpack,
     output: gulpConfig.dest.webpack,

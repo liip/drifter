@@ -4,7 +4,7 @@ module.exports = {
   src: {
     sass:           'static/sass/**/*.scss',
 {% if gulp_use_webpack %}
-    javascripts:    'static/javascripts/src/**/*.{js,jsx}',
+    javascripts:    'static/javascripts/src/**/*.{js,jsx{% if gulp_use_purescript %}purs{% endif %}}',
     webpack:        ['./static/javascripts/src/main.js'],
 {% endif %}
     images:         'static/images/**/*.{gif,jpg,jpeg,png,svg}',
