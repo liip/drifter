@@ -29,7 +29,7 @@ end
 
 # get git config on the host so that we can have it even when running
 # ansible_local as provisioner.
-git_config = `git config --list`
+git_config = `git config --list --system` + "\n" + `git config --list --global`
 git_config.gsub! "$", "\\$" # escape $ so they don't get interpreted later
 
 custom_config = CustomConfig.new
@@ -118,7 +118,7 @@ while read l; do
     KEY=$(echo $l | cut -d"=" -f1)
     VALUE=$(echo $l | cut -d"=" -f2-)
     if [ -n "$KEY" -a -n "$VALUE" ]; then
-        git config --add --file /home/vagrant/.gitconfig-host --add $KEY "$VALUE"
+        sudo -u vagrant git config --file /home/vagrant/.gitconfig-host --replace-all $KEY "$VALUE"
     fi
 done < /tmp/gitconfig-host
 
