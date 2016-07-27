@@ -29,7 +29,7 @@ end
 
 # get git config on the host so that we can have it even when running
 # ansible_local as provisioner.
-git_config = `git config --list --global`
+git_config = `git config --list --system` + "\n" + `git config --list --global`
 git_config.gsub! "$", "\\$" # escape $ so they don't get interpreted later
 
 custom_config = CustomConfig.new
