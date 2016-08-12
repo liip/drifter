@@ -24,17 +24,17 @@
   notify: enable supervisor
 
 - name: install config
-  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisor/supervisord.conf state=link
+  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisor/supervisord.conf state=link force=yes
   become: yes
 
 - name: supervisorctl needs the config in etc
-  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisord.conf state=link
+  file: src={{ wheezy_repo_destination }}/debian/supervisord.conf dest=/etc/supervisord.conf state=link force=yes
   become: yes
 
 - name: install default parameters
-  file: src={{ wheezy_repo_destination }}/debian/supervisor.default dest=/etc/default/supervisor state=link
+  file: src={{ wheezy_repo_destination }}/debian/supervisor.default dest=/etc/default/supervisor state=link force=yes
   become: yes
 
 - name: symling supervisord binary
-  file: src=/usr/local/bin/supervisord dest=/usr/bin/supervisord state=link
+  file: src=/usr/local/bin/supervisord dest=/usr/bin/supervisord state=link force=yes
   become: yes
