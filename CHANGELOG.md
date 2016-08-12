@@ -8,6 +8,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+## [1.0.6] - 2016-08-12
+
 ### Added
 - add the possibility to use PureScript to `gulp` role
 
@@ -153,7 +155,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.0.5...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.0.6...HEAD
+[1.0.6]: https://github.com/liip/drifter/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/liip/drifter/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/liip/drifter/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/liip/drifter/compare/v1.0.2...v1.0.3
