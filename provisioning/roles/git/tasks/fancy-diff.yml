@@ -1,10 +1,24 @@
 - name: clone diff-so-fancy
-  git: repo=https://github.com/so-fancy/diff-so-fancy.git dest=/tmp/fancy-diff
+  git: repo=https://github.com/so-fancy/diff-so-fancy.git dest=/tmp/fancy-diff version=v0.11.1
 
 - name: copy files to /usr/local/bin
-  shell: cp -f /tmp/fancy-diff/diff-so-fancy /usr/local/bin && cp -rf /tmp/fancy-diff/lib /usr/local/bin && cp -f /tmp/fancy-diff/third_party/diff-highlight/diff-highlight /usr/local/bin
+  command: cp -rf /tmp/fancy-diff/{{ item }} /usr/local/bin/
+  with_items:
+    - third_party/diff-highlight/diff-highlight
+    - libexec
+    - diff-so-fancy
+  become: yes
+
+- name: make sure files are executable
+  command: chmod a+x /usr/local/bin/{{ item }}
+  with_items:
+    - diff-highlight
+    - diff-so-fancy
   become: yes
 
 - name: activate fancy-diff
-  shell: git config --system pager.diff "diff-so-fancy | less --tabs=4 -RFX"; git config --system pager.show "diff-so-fancy | less --tabs=4 -RFX"
+  command: git config --system pager.{{ item }} "diff-so-fancy | less --tabs=4 -RFX"
+  with_items:
+    - diff
+    - show
   become: yes

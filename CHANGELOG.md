@@ -11,6 +11,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 - add the possibility to use PureScript to `gulp` role
 
+
+### Fixed
+- fix error due to change on the diff-so-fancy repo, now use a set version to avoid further issue
+
 ## [1.0.5] - 2016-07-27
 
 ### Fixed
