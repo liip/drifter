@@ -29,7 +29,7 @@ end
 
 # get git config on the host so that we can have it even when running
 # ansible_local as provisioner.
-git_config = `git config --list --system` + "\n" + `git config --list --global`
+git_config = `git config --list --system 2> /dev/null` + "\n" + `git config --list --global 2> /dev/null`
 git_config.gsub! "$", "\\$" # escape $ so they don't get interpreted later
 
 custom_config = CustomConfig.new
@@ -143,7 +143,7 @@ SCRIPT
             # changes sshd configuration. If controlmaster is used, the new sshd
             # configuration is not taken into account
             ansible.raw_ssh_args = ['-o ControlMaster=no']
-        else 
+        else
             ansible.install = true
             ansible.version = "1.9.4"
             ansible.install_mode = :pip
