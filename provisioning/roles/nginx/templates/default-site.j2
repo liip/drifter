@@ -7,7 +7,7 @@ server {
 
     root {{ web_directory }};
     {% if index %}
-    index {% block index %}{{ index }}{% endblock %}
+    index {% block index %}{{ index }}{% endblock %};
     {% endif %}
 
     {% block extra %}
