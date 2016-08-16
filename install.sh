@@ -51,10 +51,16 @@ cp $VIRTDIR/$REPODIR/ansible.cfg.dist ansible.cfg
 cp $VIRTDIR/$REPODIR/Vagrantfile.dist Vagrantfile
 echo -e "${GREEN}OK${NC}."
 
+echo -n -e "Add new files to git : ${RED}"
+git add -f ansible.cfg Vagrantfile virtualization/parameters.yml virtualization/playbook.yml virtualization/drifter
+echo -e "${GREEN}OK${NC}."
+
 echo
 echo -e "You can now configure Drifter by modifying the following files : "
 echo -e "\t * ${VIRTDIR}/playbook.yml   : to configure what needs to be installed inside the box"
 echo -e "\t * ${VIRTDIR}/parameters.yml : for project parameters"
+echo -e ""
+echo -e "Do not forget to commit once you are done."
 
 # remove error handler
 trap : 0
