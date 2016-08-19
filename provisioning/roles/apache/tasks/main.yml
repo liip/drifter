@@ -6,13 +6,13 @@
   file: name=/etc/apache2/sites-enabled/000-default state=absent
   become: yes
   when: ansible_lsb.major_release|int < 8
-  notify: restart apache
+  notify: reload apache
 
 - name: disable default vhost
   file: name=/etc/apache2/sites-enabled/000-default.conf state=absent
   become: yes
   when: ansible_lsb.major_release|int >= 8
-  notify: restart apache
+  notify: reload apache
 
 - name: create vhost config
   template: src={{ site_template }} dest=/etc/apache2/sites-available/{{ hostname }}.conf
@@ -39,3 +39,5 @@
   become: yes
   when: ssl
   notify: restart apache
+
+- meta: flush_handlers

@@ -9,3 +9,5 @@
   notify:
     - restart php-fpm
   become: yes
+
+- meta: flush_handlers

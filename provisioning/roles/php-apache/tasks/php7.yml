@@ -13,3 +13,5 @@
 #    - xdebug
 #  notify: restart apache
 #  become: yes
+
+- meta: flush_handlers

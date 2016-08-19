@@ -24,3 +24,5 @@
   file: dest="{{ solr_install_dir }}" state=directory owner=solr group=www-data recurse=yes
   become: yes
   notify: restart supervisor
+
+- meta: flush_handlers
