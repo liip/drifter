@@ -20,9 +20,19 @@ The server logs are stored in `/var/log/nginx/<hostname>.(error|access).log`.
 ## Parameters
 
 * **site_template** : The virtual host template to use, defaults to "default-site.j2" for
-  static websites only, possible values are "default-site.j2", "django-site.j2" and "php-site.j2"
+  static websites only, possible values are:
+   - `default-site.j2`
+   - `django-site.j2` Site template for Django
+   - `drupal6-site.j2` Site template for Drupal6
+   - `drupal7-site.j2` Site template for Drupal7
+   - `drupal8-site.j2` Site template for Drupal8
+   - `php-site.j2` Site template for generic PHP
+   - `silex-site.j2` Site template for Silex
+   - `symfony2-site.j2` Site template for Symfony2
+
 * **index** : what file do we use as an index ? defaults to 'false'
 * **static_host** : Which static host to use for Django projects ? defaults to "false".
 * **static_dir** : Which static URL dir to use for Django projects ? defaults to "false".
 * **static_fs_dir** : Which static filesystem dir to use for Django projects ? defaults to "".
 * **expire_time** : Expiration time of static files, defaults to "6h"
+

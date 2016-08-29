@@ -1,0 +1,33 @@
+{% extends "php-site.j2" %}
+
+{% block extra %}
+    {{ super() }}
+
+    # Inspired from https://www.nginx.com/resources/wiki/start/topics/recipes/drupal/
+    location ~ \..*/.*\.php$ {
+        return 403;
+    }
+
+    location ~ ^/sites/.*/private/ {
+        return 403;
+    }
+
+    location / {
+        try_files $uri @rewrite;
+    }
+
+    # Don't allow direct access to PHP files in the vendor directory.
+    location ~ /vendor/.*\.php$ {
+        deny all;
+        return 404;
+    }
+
+    # Handle image-styles
+    location ~ ^/sites/.*/files/imagecache/ {
+        try_files $uri @rewrite;
+    }
+
+     location @rewrite {
+         rewrite ^ /index.php;
+     }
+{% endblock %}
