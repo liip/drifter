@@ -1,26 +1,26 @@
-- name: create solr group
+- name: Create SOLR group
   group: name=solr state=present
   become: yes
 
-- name: create solr user
+- name: Create SOLR user
   user: name=solr group=solr groups="www-data" comment="Solr Daemon" home="{{ solr_install_dir }}"
   become: yes
 
-- name: download solr
+- name: Download SOLR v{{ solr_version }}
   get_url: url={{ solr_url }} dest={{ solr_install_dir }}/solr-{{ solr_version }}.tgz
   become_user: solr
   become: yes
 
-- name: extract solr
+- name: Extract SOLR
   command: tar xzf {{ solr_install_dir }}/solr-{{ solr_version }}.tgz --strip 1 -C {{ solr_install_dir }}/
   become_user: solr
   become: yes
 
-- name: solr config directory permission
+- name: SOLR config directory permission
   file: dest="{{ solr_config_dir }}" state=directory owner=vagrant group=solr mode="g+rwX" recurse=yes
   become: yes
 
-- name: solr install directory permission
+- name: SOLR install directory permission
   file: dest="{{ solr_install_dir }}" state=directory owner=solr group=www-data recurse=yes
   become: yes
   notify: restart supervisor
