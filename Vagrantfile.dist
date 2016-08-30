@@ -68,4 +68,5 @@ class CustomConfig
   end
 end
 
+Dir.chdir File.expand_path(File.dirname(__FILE__))
 load 'virtualization/drifter/Vagrantfile'

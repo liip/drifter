@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Added
+- Change the directory before loading Drifter's Vagrantfile so that Vagrant can be run from anywhere inside the project root
+
 ### Fixed
 - set the permission of the solr data directory so that the core can correctly start
 - fix the default nginx vhost when setting up an index file
