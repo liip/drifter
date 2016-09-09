@@ -69,6 +69,7 @@
 # before trying to execute other provisioning scripts that might fail because
 # of the locale environment variables
 - meta: flush_handlers
+
 - name: ensure silversearcher-ag is installed
   apt: pkg=silversearcher-ag
   when: ansible_lsb.major_release|int >= 8
@@ -82,6 +83,7 @@
     - zshrc
     - liquidpromptrc
     - ackrc
+    - agignore
     - vimrc
 
 - name: cd to /vagrant when sshing

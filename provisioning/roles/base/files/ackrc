@@ -7,24 +7,15 @@
 # ignore sf2 cache
 --ignore-dir=app/cache
 
-# ignore VCA specific dirs
---ignore-dir=web/media
---ignore-dir=app/logs
+# ignore Intellij related files
 --ignore-dir=.idea
---ignore-dir=web/uploads
---ignore-dir=web/assetic
---ignore-dir=web/static
---ignore-dir=src/VCA/ModelBundle/Model/om
---ignore-dir=v2/pub/media/cache
---ignore-dir=v2/media/logs
---ignore-dir=v1/media/view-cache
---ignore-dir=deployment/local_test
 
 # sort files
 --sort-files
 
-# add mustache
+# add some file types
 --type-set=mustache=.mustache
 --type-set=compass=.scss
 --type-set=twig=.twig
 --type-set=haml=.haml
+--type-set=rst=.rst
