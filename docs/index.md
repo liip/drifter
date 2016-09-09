@@ -56,6 +56,7 @@ Requirements
 ============
 
 * Vagrant >= 1.8.4
+* Git >= 1.0
 
 You also need a virtualization solution, either one of those :
 
@@ -117,7 +118,14 @@ Install Virtualbox and Vagrant (>= 1.8.4) using the binaries available on their 
 Usage
 =====
 
-To install Drifter in your project, simply run the following in your project root :
+Drifter is going to be installed into your project as a git submodule. So if your project is not using Git as VCS,
+start by create a git repo
+
+```
+cd my-project && git init
+```
+
+Then to install Drifter, simply run the following command:
 
 ```
 curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash
