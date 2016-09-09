@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - set the permission of the solr data directory so that the core can correctly start
 - fix the default nginx vhost when setting up an index file
 - flush handlers at the end of relevent roles to ensure services are available
+- fix an error where the destination directory contains spaces
 
 ## [1.0.6] - 2016-08-12
 

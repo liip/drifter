@@ -29,26 +29,26 @@ trap 'rollback' 0
 # exit on first error
 set -e
 
-mkdir $VIRTDIR
+mkdir "$VIRTDIR"
 
 echo -n -e "Cloning Drifter into $VIRTDIR/$REPODIR : ${RED}"
-git submodule add -q https://github.com/liip/drifter.git $VIRTDIR/$REPODIR > /dev/null
+git submodule add -q https://github.com/liip/drifter.git "$VIRTDIR/$REPODIR" > /dev/null
 echo -e "${GREEN}OK${NC}."
 
-cd $VIRTDIR/$REPODIR
+cd "$VIRTDIR/$REPODIR"
 LATEST_COMMIT=$(git rev-list --tags --max-count=1)
 LATEST=$(git describe --tags $LATEST_COMMIT)
 echo -n -e "Using version $LATEST : ${RED}"
 git checkout -q $LATEST > /dev/null
 echo -e "${GREEN}OK${NC}."
 
-cd $BASE
+cd "$BASE"
 
 echo -n -e "Copying default configuration inside the project : ${RED}"
-cp $VIRTDIR/$REPODIR/provisioning/playbook.yml.dist $VIRTDIR/playbook.yml
-cp $VIRTDIR/$REPODIR/parameters.yml.dist $VIRTDIR/parameters.yml
-cp $VIRTDIR/$REPODIR/ansible.cfg.dist ansible.cfg
-cp $VIRTDIR/$REPODIR/Vagrantfile.dist Vagrantfile
+cp "$VIRTDIR/$REPODIR/provisioning/playbook.yml.dist" "$VIRTDIR/playbook.yml"
+cp "$VIRTDIR/$REPODIR/parameters.yml.dist" "$VIRTDIR/parameters.yml"
+cp "$VIRTDIR/$REPODIR/ansible.cfg.dist" "ansible.cfg"
+cp "$VIRTDIR/$REPODIR/Vagrantfile.dist" "Vagrantfile"
 echo -e "${GREEN}OK${NC}."
 
 echo
