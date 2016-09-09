@@ -12,6 +12,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Change the directory before loading Drifter's Vagrantfile so that Vagrant can be run from anywhere inside the project root
 
 ### Changed
+- Interactive install script
 - The IP is not defined by default anymore as vagrant does this automatically
 - Upgrade Ansible to version 2.1.1 inside the box
 
@@ -26,7 +27,6 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Added
 - add the possibility to use PureScript to `gulp` role
-
 
 ### Fixed
 - fix error due to change on the diff-so-fancy repo, now use a set version to avoid further issue
