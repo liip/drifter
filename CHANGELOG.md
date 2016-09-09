@@ -13,6 +13,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Changed
 - The IP is not defined by default anymore as vagrant does this automatically
+- Upgrade Ansible to version 2.1.1 inside the box
 
 ### Fixed
 - set the permission of the solr data directory so that the core can correctly start
