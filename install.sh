@@ -15,19 +15,63 @@ NC='\033[0m' # No Color
 
 rollback()
 {
-    echo -e "${RED}An error occured. Aborting.${NC}"
-    rm -Rf $VIRTDIR/$REPODIR
-    # this might lead to some confusing error output, but if we didn't reach
-    # the file copying stage it will leave the directory in a cleaner state.
+    echo -e "${RED}An error occurred. Aborting.${NC}"
     if [ -d $VIRTDIR ]; then
-        rmdir --ignore-fail-on-non-empty $VIRTDIR
+        rm -rf $VIRTDIR
     fi
 }
 
-trap 'rollback' 0
+echo_abort()
+{
+    echo -e "${RED}Aborting.${NC}"
+}
+
+git_status=$(git status --porcelain 2>/dev/null)
+git_status_exit_code=$?
 
 # exit on first error
 set -e
+
+if [ $git_status_exit_code -eq 128 ]; then
+    echo "The current directory $(pwd) doesn't seem to be a git repository."
+    while true; do
+        echo -n "Do you want to run 'git init'? [Yn] "
+        read -i Y git_init
+        case $git_init in
+            Y|y|"" ) git init; break;;
+            N|n ) echo_abort; exit 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+    echo
+else
+    if echo "$git_status" | grep -q -v '^??'; then
+        echo -e "${RED}Your directory contains staged modifications. Please unstage them or stash them.${NC}"
+        exit 1
+    fi
+fi
+
+if [ -e $VIRTDIR ]; then
+    echo "A directory named 'virtualization' already exists."
+    while true; do
+        echo -n "Do you want to wipe it out and reinstall Drifter? [yN] "
+        read -i N wipe
+        case $wipe in
+            Y|y ) rm -rf $VIRTDIR; break;;
+            N|n|"" ) echo_abort; exit 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+    echo
+fi
+
+if ! grep -q .vagrant .gitignore 1> /dev/null 2>&1; then
+    echo /.vagrant/ >> .gitignore
+    git add .gitignore
+fi
+
+
+trap 'rollback' 0
 
 mkdir $VIRTDIR
 
@@ -51,8 +95,11 @@ cp $VIRTDIR/$REPODIR/ansible.cfg.dist ansible.cfg
 cp $VIRTDIR/$REPODIR/Vagrantfile.dist Vagrantfile
 echo -e "${GREEN}OK${NC}."
 
-echo -n -e "Add new files to git : ${RED}"
+echo -n -e "Adding new files to git : ${RED}"
 git add -f ansible.cfg Vagrantfile virtualization/parameters.yml virtualization/playbook.yml virtualization/drifter
+echo -e "${GREEN}OK${NC}."
+echo -n -e "Committing : ${RED}"
+git commit -m "Install Drifter" > /dev/null
 echo -e "${GREEN}OK${NC}."
 
 echo
