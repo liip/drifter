@@ -5,7 +5,7 @@
     - { src: php.ini.j2, dest: "{{ etc_php_path }}/mods-available/php-dev.ini" }
 
 - name: Activate PHP configuration files
-  command: "{{phpenmod}} {{ item }}"
+  command: "{{php_phpenmod}} {{ item }}"
   with_items:
     - php-dev
     - imagick

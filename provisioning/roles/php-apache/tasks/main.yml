@@ -4,3 +4,11 @@
 - include: php5.yml
   when: "{{ php_version_installed|float }} < 7.0"
 
+- name: Configure mod-php
+  command: "{{php_phpenmod}} {{ item }}"
+  with_items:
+    - php-dev
+  notify: restart apache
+  become: yes
+
+- meta: flush_handlers
