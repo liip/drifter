@@ -3,9 +3,57 @@ Drifter
 
 Drifter is a framework to help provision developer boxes using Ansible and Vagrant.
 
+Goals
+-----
+
+* Streamline our project setups
+* Ease the "entry cost" for a new squad member
+* Easy to use
+* Lean : small codebase, easy to maintain and extend, focus only on Debian and Ubuntu
+* Be adopted by Liip as a whole
+
+
+The idea behind the framework
+-----------------------------
+
+The idea is to have a common ground for each project that can be improved over time, each project
+benefiting from the improvements.
+
+This repository aims to contain multiples Ansible roles to manage the various part of the development
+stack needed to work on the various projects of Liip.  If a someone need new roles,
+it is highly recommended that they are added to the common pool if they are deemed reusable.
+
+Each squad can tailor its box to its need by modifying the Ansible playbook which should ultimately only
+contain role inclusion to maximize reuse.
+
+When installed, Drifter creates a parameters file to hold various information about your project, a
+playbook file where you can choose what to install and finally a Vagrantfile where you can modify
+some Vagrant related parameters before the "main" Vagrantfile is included. This should offer enough
+flexibility for every projects.
+
+
+What this framework is not ?
+----------------------------
+
+This framework does not aim to provide a way to deploy staging and production servers for your project.
+The roles are written with a development box in mind and are thus not fit for server provisioning. There
+are absolutely no security consideration.
+
+However, if your server is using a Debian based OS based on the stable release, both configuration
+should be close enough so that you won't run into issues.
+
+
+Intended Public
+---------------
+
+This project was first and foremost created to be used inside of Liip, but you are more than
+welcome to use it for personal projects or anywhere else you'd like to.
+
+
+
 
 Requirements
-------------
+============
 
 * Vagrant >= 1.8.4
 
@@ -66,43 +114,23 @@ Install Virtualbox and Vagrant (>= 1.8.4) using the binaries available on their 
 
 
 
+Usage
+=====
 
-Goals
------
+To install Drifter in your project, simply run the following in your project root :
 
-* Streamline our project setups
-* Ease the "entry cost" for a new squad member
-* Easy to use
-* Lean : small codebase, easy to maintain and extend, focus only on Debian and Ubuntu
-* Be adopted by Liip as a whole
+```
+curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash
+```
 
-The idea behind the framework
------------------------------
+This will create a `Vagrantfile` in your root and a `virtualization` folder
+containing configuration option. You now have to follow those two steps :
 
-The idea is to have a common ground for each project that can be improved over time, each project
-benefiting from the improvements.
+* edit `virtualization/parameters.yml` to set parameters related to your project
+* edit `virtualization/playbook.yml` to configure what to install in your box
 
-This repository aims to contain multiples Ansible roles to manage the various part of the development
-stack needed to work on the various projects of Liip.  If a someone need new roles,
-it is highly recommended that they are added to the common pool if they are deemed reusable.
+You now just have to launch your Vagrant box and start hacking!
 
-Each squad can tailor its box to its need by modifying the Ansible playbook which should ultimately only
-contain role inclusion to maximize reuse.
-
-When installed, Drifter creates a parameters file to hold various information about your project, a
-playbook file where you can choose what to install and finally a Vagrantfile where you can modify
-some Vagrant related parameters before the "main" Vagrantfile is included. This should offer enough
-flexibility for every projects.
-
-What this framework is not ?
-----------------------------
-
-This framework does not aim to provide a way to deploy staging and production servers for your project.
-The roles are written with a development box in mind and are thus not fit for server provisioning. There
-are absolutely no security consideration.
-
-However, if your server is using a Debian based OS based on the stable release, both configuration
-should be close enough so that you won't run into issues.
 
 Customization
 -------------
@@ -121,9 +149,3 @@ be aware that the risk of botching things up is far greater.
 
 Currently you do not have a lot of control, but we will glad to add anything making sense
 to this file. Feel free to ask and we will comply ;)
-
-Intended Public
-===============
-
-This project was first and foremost created to be used inside of Liip, but you are more than
-welcome to use it for personal projects or anywhere else you'd like to.
