@@ -1,4 +1,3 @@
 php_fpm_package: php7.0-fpm
-  
 
 php_fpm_pool_conf: /etc/php/7.0/fpm/pool.d/www.conf

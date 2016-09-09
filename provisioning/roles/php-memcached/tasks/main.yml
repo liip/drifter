@@ -3,7 +3,7 @@
   become: yes
 
 - name: Activate PHP configuration files
-  command: "{{phpenmod}} -s ALL {{ item }}"
+  command: "{{php_phpenmod}} -s ALL {{ item }}"
   with_items:
     - memcached
   notify:

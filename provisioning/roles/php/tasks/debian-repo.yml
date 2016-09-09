@@ -2,14 +2,27 @@
   fail: msg="Jessie only supports version 5.6."
   when: "ansible_lsb.major_release|int >= 8 and {{ php_version_installed }} < 5.6"
 
+- name: debian-repo | error when trying to use an invalid PHP version on wheezy
+  fail: msg="Invalid PHP version {{ php_version }}."
+  when: "{{ ansible_lsb.major_release|int }} < 8 and {{ php_version_installed }} != 5.6 and {{ php_version_installed }} != 5.5 and {{ php_version_installed }} != 5.4"
+
 - name: debian-repo | Install DotDeb key
   apt_key: url=http://www.dotdeb.org/dotdeb.gpg
   become: yes
-  when: "{{ php_version_installed }} > 5.4"  
+  when: "{{ php_version_installed }} > 5.4"
 
+# Jessie and PHP 7
 - name: debian-repo | Add DotDeb repository for PHP 7.0 on Jessie
   apt_repository: repo='{{ item }}' update_cache=yes
   with_items:
     - deb http://packages.dotdeb.org jessie all
   become: yes
-  when: "php_version_installed == '7.0'"
+  when: "ansible_lsb.major_release|int >= 8 and php_version_installed == '7.0'"
+
+# Debian version lower than Jessie
+- name: debian-repo | Add DotDeb repository
+  apt_repository: repo='{{ item }}' update_cache=yes
+  with_items:
+    - deb http://packages.dotdeb.org wheezy-php{{ php_version | replace('.', '') }} all
+  become: yes
+  when: "{{ ansible_lsb.major_release|int }} < 8 and {{ php_version_installed }} > 5.4"

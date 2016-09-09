@@ -2,6 +2,7 @@
   with_first_found:
     - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
     - "{{ ansible_distribution }}.yml"
+    - "default.yml"
   when: "php_version_installed is defined"
 
 - name: install PHP redis extension
@@ -10,7 +11,7 @@
   when: "php_version_installed is defined and not ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
 
 - name: Activate PHP configuration files
-  command: "{{phpenmod}} -s ALL {{ item }}"
+  command: "{{php_phpenmod}} -s ALL {{ item }}"
   with_items:
     - redis
   notify:

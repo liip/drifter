@@ -6,7 +6,6 @@
    - "default-{{ php_version_installed }}.yml"
    - "default.yml"
 
-
 - name: install php-fpm
   apt: pkg={{ php_fpm_package }} state=latest
   become: yes

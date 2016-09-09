@@ -10,11 +10,13 @@ php_packages:
   - libmagickwand-6.q16-dev
   - pkg-config
 
-php_mysql_packages: 
+php_mysql_packages:
   - php7.0-mysql
-  
+
 php_pgsql_package: php7.0-pgsql
 
 etc_php_path: /etc/php/7.0/
+
+phpenmod: phpenmod
 
 alternatives_php_path: /usr/bin/php7.0
