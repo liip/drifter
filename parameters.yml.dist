@@ -15,11 +15,11 @@ forwarded_ports: {
     "3000": "3000",  # BrowserSync default port
 }
 
-# The box IP, this must be unique across all your virtualized projects to
-# avoid collisions. WARNING, this parameter will not guarantee that your box
+# By default Vagrant managed different IPs for all boxes. But you can force it
+# here if you want. WARNING, this parameter will not guarantee that your box
 # will be accessible at this IP depending on your network configuration or
 # provider choice.
-box_ip: "10.10.10.10"
+# box_ip: "10.10.10.10"
 
 # Name of the database to create for your project if you include the
 # MySQL or PostgreSQL role
