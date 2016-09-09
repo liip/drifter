@@ -18,13 +18,12 @@ Optional dependencies :
 
 * [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager) A Vagrant plugin that manages /etc/hosts files. (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
 * [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) A Vagrant plugin that share common package cache among similar VM instances.
-* [ansible](https://www.ansible.com/) If you want to use a different provisioner than the default `ansible-local`
 
 
 Install Requirements
 --------------------
 
-## Debian Stretch (testing) and Ubuntu Xenial 16.04
+### Debian Stretch (testing) and Ubuntu Xenial 16.04
 
 Open a termain and run :
 
@@ -33,7 +32,7 @@ sudo apt-get install vagrant vagrant-lxc vagrant-cachier
 vagrant plugin install vagrant-hostmanager
 ```
 
-### older Debian and Ubuntu
+#### older Debian and Ubuntu
 
 Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
 Then open a terminal and run:
@@ -43,7 +42,7 @@ sudo apt-get install lxc redir    # this is needed for LXC provider
 vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
 ```
 
-## Mac OS X
+### Mac OS X
 
 Download and install [https://www.vagrantup.com/downloads.html](the latest Vagrant version).
 
@@ -61,9 +60,11 @@ You can also use `cask` to help with the installation :
 brew cask install vagrant virtualbox
 ```
 
-## Windows
+### Windows
 
 Install Virtualbox and Vagrant (>= 1.8.4) using the binaries available on their respective websites.
+
+
 
 
 Goals
