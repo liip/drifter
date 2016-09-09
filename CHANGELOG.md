@@ -22,6 +22,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - flush handlers at the end of relevent roles to ensure services are available
 - fix an error where the destination directory contains spaces
 - ensure git is installed before synching git config
+- ensure libpam-systemd installed and sshd configured to use it; this obviates the need to remove systemd
 
 ## [1.0.6] - 2016-08-12
 

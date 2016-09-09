@@ -1,11 +1,7 @@
+# python-apt is needed for the Ansible 'apt' module, used later in this file.
 - name: ensure python-apt is installed
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
   become: yes
-
-- name: remove systemd on Debian
-  apt: name=systemd state=absent
-  become: yes
-  when: "ansible_distribution == 'Debian'"
 
 - name: ensure apt database is up-to-date
   apt: update_cache=yes
@@ -46,6 +42,24 @@
     - iputils-ping
     - ncurses-term
     - python-pycurl # needed by ansible to add apt repos
+
+# Avoid vagrant problem specific to debian guests, see https://github.com/mitchellh/vagrant/issues/6207#issuecomment-234332985
+# If systemd is installed, ensure that libpam-systemd is installed too, and enable it in the sshd config.
+- name: Check if systemd is installed
+  shell: dpkg-query -W 'systemd'
+  ignore_errors: True
+  register: systemd_installed
+
+- name: ensure libpam-systemd is installed if systemd is installed
+  apt: pkg=libpam-systemd
+  become: yes
+  when: systemd_installed|success
+
+- name: Ensure UsePAM sshd config set if systemd is installed
+  lineinfile: dest=/etc/ssh/sshd_config line='UsePAM yes' state=present
+  notify: restart ssh
+  become: yes
+  when: systemd_installed|success
 
 # Some programs such as PostgreSQL use the current locale to create the base
 # databases. If the locale is set to a value that isn't installed on the
