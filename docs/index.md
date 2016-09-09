@@ -3,6 +3,7 @@ Drifter
 
 Drifter is a framework to help provision developer boxes using Ansible and Vagrant.
 
+
 Requirements
 ------------
 
@@ -15,13 +16,15 @@ You also need a virtualization solution, either one of those :
 
 Optional dependencies :
 
-* vagrant-hostmanager >= 1.5.0 (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
-* Ansible >= 1.9.0 (if you want to use a different provisioner than the default `ansible-local`)
+* [vagrant-hostmanager](https://github.com/devopsgroup-io/vagrant-hostmanager) A Vagrant plugin that manages /etc/hosts files. (will be automatically used if installed, make sure it's at least 1.5.0 if you have it)
+* [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) A Vagrant plugin that share common package cache among similar VM instances.
+* [ansible](https://www.ansible.com/) If you want to use a different provisioner than the default `ansible-local`
+
 
 Install Requirements
-------------
+--------------------
 
-### Debian Stretch (testing) and Ubuntu Xenial 16.04
+## Debian Stretch (testing) and Ubuntu Xenial 16.04
 
 Open a termain and run :
 
@@ -30,27 +33,26 @@ sudo apt-get install vagrant vagrant-lxc vagrant-cachier
 vagrant plugin install vagrant-hostmanager
 ```
 
-## older Debian and Ubuntu
+### older Debian and Ubuntu
 
 Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
-
-Then open a terminal and run :
+Then open a terminal and run:
 
 ```
 sudo apt-get install lxc redir    # this is needed for LXC provider
 vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
 ```
 
-### Mac OS X
+## Mac OS X
 
-Go to https://www.vagrantup.com/downloads.html to download and install the latest Vagrant version.
+Download and install [https://www.vagrantup.com/downloads.html](the latest Vagrant version).
 
-Go to https://www.virtualbox.org/wiki/Downloads to download and install the latest VirtualBox version.
+Download and install [https://www.virtualbox.org/wiki/Downloads](the latest VirtualBox version).
 
 Then open a terminal and run :
 
 ```
-vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
+vagrant plugin install vagrant-cachier vagrant-hostmanager
 ```
 
 You can also use `cask` to help with the installation :
@@ -59,9 +61,10 @@ You can also use `cask` to help with the installation :
 brew cask install vagrant virtualbox
 ```
 
-### Windows
+## Windows
 
 Install Virtualbox and Vagrant (>= 1.8.4) using the binaries available on their respective websites.
+
 
 Goals
 -----
