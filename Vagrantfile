@@ -149,7 +149,7 @@ SCRIPT
             ansible.raw_ssh_args = ['-o ControlMaster=no']
         else
             ansible.install = true
-            ansible.version = "1.9.4"
+            ansible.version = "2.1.1"
             ansible.install_mode = :pip
         end
     end
