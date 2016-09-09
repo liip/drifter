@@ -19,6 +19,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - fix the default nginx vhost when setting up an index file
 - flush handlers at the end of relevent roles to ensure services are available
 - fix an error where the destination directory contains spaces
+- ensure git is installed before synching git config
 
 ## [1.0.6] - 2016-08-12
 
