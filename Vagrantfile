@@ -111,6 +111,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                                           echo export GITLAB_CI=#{ENV['GITLAB_CI']} >> /etc/profile.d/drifter_vars.sh;
                                           chmod a+x /etc/profile.d/drifter_vars.sh"
 
+    # Ensure that git is installed in the vagrant box.
+    config.vm.provision "shell", inline: "git --version >/dev/null 2>&1 || sudo apt-get -y install git"
+
     # Sync the git configuration over
     sync_git = <<SCRIPT
 echo -e "#{git_config}" > /tmp/gitconfig-host
