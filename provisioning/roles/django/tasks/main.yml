@@ -4,11 +4,6 @@
 # This role requires either the postgresql or mysql roles to be enabled
 # Please note that Python 3 compatibility is only supported since jessie
 
-# Gettext is used by Django's compilemessages
-- name: ensure gettext is installed
-  apt: pkg=gettext state=latest
-  become: yes
-
 - name: fill in DATABASE_URL setting
   copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
   when: database_type is defined

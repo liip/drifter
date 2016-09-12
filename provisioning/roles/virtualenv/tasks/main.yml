@@ -1,4 +1,9 @@
 ---
+# Gettext is used by some python base packages
+- name: ensure gettext is installed
+  apt: pkg=gettext state=latest
+  become: yes
+
 - name: create the local environement directory
   file: path=/vagrant/envdir state=directory
 
