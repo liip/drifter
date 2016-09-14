@@ -45,7 +45,7 @@ if [ $git_status_exit_code -eq 128 ]; then
     done
     echo
 else
-    if echo "$git_status" | grep -q -v '^??'; then
+    if [ "$git_status" != "" ] && echo "$git_status" | grep -q -v '^??'; then
         echo -e "${RED}Your directory contains staged modifications. Please unstage them or stash them.${NC}"
         exit 1
     fi
