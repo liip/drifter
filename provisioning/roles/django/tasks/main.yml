@@ -10,7 +10,7 @@
   become: yes
 
 - name: create the local environement directory
-  file: path=/vagrant/envdir state=directory
+  file: path={{ django_root }}/envdir state=directory
 
 - name: fill in DATABASE_URL setting
   copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
