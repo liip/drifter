@@ -1,7 +1,4 @@
 ---
-- name: create the local environement directory
-  file: path=/vagrant/envdir state=directory
-
 - name: create venv and install base packages
   pip: "requirements={{ root_directory }}/{{ pip_requirements }} virtualenv={{ env_root }} virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv' }}"
 

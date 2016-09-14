@@ -9,6 +9,9 @@
   apt: pkg=gettext state=latest
   become: yes
 
+- name: create the local environement directory
+  file: path=/vagrant/envdir state=directory
+
 - name: fill in DATABASE_URL setting
   copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
   when: database_type is defined
