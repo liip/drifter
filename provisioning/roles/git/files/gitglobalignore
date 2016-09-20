@@ -8,3 +8,5 @@ nohup.out
 
 *.iml
 *.sqlite
+*.swp
+*.swo
