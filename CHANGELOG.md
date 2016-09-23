@@ -6,7 +6,7 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
-## [Unreleased]
+## [1.0.7] - 2016-09-23
 
 ### Added
 - Change the directory before loading Drifter's Vagrantfile so that Vagrant can be run from anywhere inside the project root
@@ -17,12 +17,12 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Upgrade Ansible to version 2.1.1 inside the box
 
 ### Fixed
-- set the permission of the solr data directory so that the core can correctly start
-- fix the default nginx vhost when setting up an index file
-- flush handlers at the end of relevent roles to ensure services are available
-- fix an error where the destination directory contains spaces
-- ensure git is installed before synching git config
-- ensure libpam-systemd installed and sshd configured to use it; this obviates the need to remove systemd
+- Set the permission of the solr data directory so that the core can correctly start
+- Fix the default nginx vhost when setting up an index file
+- Flush handlers at the end of relevent roles to ensure services are available
+- Fix an error where the destination directory contains spaces
+- Ensure git is installed before synching git config
+- Ensure libpam-systemd installed and sshd configured to use it; this obviates the need to remove systemd
 
 ## [1.0.6] - 2016-08-12
 
