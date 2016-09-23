@@ -35,8 +35,7 @@ set -e
 if [ $git_status_exit_code -eq 128 ]; then
     echo "The current directory $(pwd) doesn't seem to be a git repository."
     while true; do
-        echo -n "Do you want to run 'git init'? [Yn] "
-        read -i Y git_init
+        read -p "Do you want to run 'git init'? [Yn] " git_init
         case $git_init in
             Y|y|"" ) git init; break;;
             N|n ) echo_abort; exit 1;;
@@ -54,8 +53,7 @@ fi
 if [ -e $VIRTDIR ]; then
     echo "A directory named 'virtualization' already exists."
     while true; do
-        echo -n "Do you want to wipe it out and reinstall Drifter? [yN] "
-        read -i N wipe
+        read -p "Do you want to wipe it out and reinstall Drifter? [yN] " wipe
         case $wipe in
             Y|y ) rm -rf $VIRTDIR; break;;
             N|n|"" ) echo_abort; exit 1;;
