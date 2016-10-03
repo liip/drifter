@@ -1,35 +1,134 @@
-- set_fact: database_type=mysql
+- set_fact:
+    database_type: mysql
   when: database_type is not defined
 
-- name: set mysql root password via debconf
-  debconf: name=mysql-server-5.5 question='mysql-server/root_password'  value='root' vtype='password'
+- name: get installed mysql version
+  shell: "mysqld --version 2>/dev/null | grep -o 'Ver [0-9]\\.[0-9]' | cut -d' ' -f2"
+  register: mysql_installed_version
+  failed_when: false
+  changed_when: false
   become: yes
 
-- name: set mysql root password confirmation via debconf
-  debconf: name=mysql-server-5.5 question='mysql-server/root_password_again'  value='root' vtype='password'
+- name: ensure old packages are uninstalled
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - mysql-common
+    - mysql-client
+    - mysql-server
+    - mysql-community-client
+    - mysql-community-server
+    - python-mysqldb
+    - libmysqlclient-dev
+  register: mysql_package_uninstallation
+  when: "{{ mysql_installed_version.stdout_lines[0] | default(0) }} != {{ mysql_version }}"
   become: yes
 
-- name: install mysql 5.5
-  apt: pkg=mysql-server-5.5 state=latest
+- name: ensure mysql upstream repository package is configured
+  debconf:
+    name: mysql-apt-config
+    question: "mysql-apt-config/{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.vtype | default ('select') }}"
+  with_items:
+    - question: repo-distro
+      value: "{{ ansible_distribution | lower }}"
+    - question: repo-codename
+      value: "{{ ansible_distribution_release }}"
+    - question: select-server
+      value: "mysql-{{ mysql_version }}"
   become: yes
 
-- name: install python-mysqldb (for ansible)
-  apt: pkg=python-mysqldb state=latest
+- name: ensure mysql-server package is configured
+  debconf:
+    name: mysql-community-server
+    question: "mysql-community-server/{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.vtype | default ('password') }}"
+  with_items:
+    - question: root-pass
+      value: root
+    - question: re-root-pass
+      value: root
   become: yes
 
-- name: install mysql dev libraries
-  apt: pkg=libmysqlclient-dev state=latest
+- name: check if mysql upstream repository is already installed
+  command: dpkg-query -W mysql-apt-config
+  register: mysql_apt_config_check_deb
+  failed_when: mysql_apt_config_check_deb.rc > 1
+  changed_when: mysql_apt_config_check_deb.rc == 1
+  become: yes
+
+- name: ensure mysql upstream repository package is downloaded
+  get_url:
+    url: http://dev.mysql.com/get/mysql-apt-config_0.8.0-1_all.deb
+    dest: /root/mysql-apt-config.deb
+  when: mysql_apt_config_check_deb|changed
+  become: yes
+
+- name: ensure mysql upstream repository is installed
+  apt:
+    deb: /root/mysql-apt-config.deb
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  register: mysql_upstream_repository_installation
+  when: mysql_apt_config_check_deb|changed
+  become: yes
+
+- name: ensure mysql upstream repository package is removed
+  file:
+    path: /root/mysql-apt-config.deb
+    state: absent
+  when: mysql_apt_config_check_deb|changed
+  become: yes
+
+- name: ensure mysql repository package is re-configured
+  shell: "DEBIAN_FRONTEND=noninteractive dpkg-reconfigure --frontend noninteractive mysql-apt-config"
+  when: mysql_package_uninstallation is defined and mysql_package_uninstallation|changed
+  become: yes
+
+- name: ensure apt cache is updated
+  apt:
+    update_cache: yes
+  changed_when: false
+  when: (mysql_upstream_repository_installation is defined and mysql_upstream_repository_installation|changed) or (mysql_package_uninstallation is defined and mysql_package_uninstallation|changed)
+  become: yes
+
+- name: ensure packages are installed
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - mysql-client
+    - mysql-server
+    - python-mysqldb
+    - libmysqlclient-dev
+  become: yes
+
+- name: create my.cnf config for root
+  template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
   become: yes
 
 - name: create my.cnf config for user
-  template: src=my.cnf.j2 dest=~/.my.cnf
+  template:
+    src: my.cnf.j2
+    dest: ~/.my.cnf
 
 - name: ensure mysql is started
-  action: service name=mysql state=started
+  service:
+    name: mysql
+    state: started
+    enabled: yes
   become: yes
 
 - name: create database user
-  mysql_user: name={{ database_user }} password={{ database_password }} priv=*.*:ALL,GRANT state=present
+  mysql_user:
+    name: "{{ database_user }}"
+    password: "{{ database_password }}"
+    priv: "*.*:ALL,GRANT"
 
 - name: create database
-  mysql_db: name={{ database_name }} state=present
+  mysql_db:
+    name: "{{ database_name }}"

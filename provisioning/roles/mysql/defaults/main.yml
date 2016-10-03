@@ -1,2 +1,3 @@
 database_user: "{{ database_name }}"
 database_password: "{{ database_name }}"
+mysql_version: 5.6

@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Changed
+- Improve MySQL role to support different versions (parameter `mysql_version`)
+
 ### Fixed
 
 - Try to use git_config instead of shell commands to prevent warnings
