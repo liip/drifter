@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## [1.0.8] - 2016-10-04
+
+### Fixed
+
+- Use the correct package for Python 3 virtualenv on Ubuntu Trusty
+
 ## [1.0.7] - 2016-09-23
 
 ### Added
