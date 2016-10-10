@@ -7,7 +7,7 @@ var path       = require('path'),
 module.exports = function(production) {
   var config = {
     resolve: {
-      root: [path.resolve(__dirname, 'static/javascripts')],
+      root: [path.resolve(__dirname, gulpConfig.src.javascripts)],
       extensions: ['', '.jsx', '.js'{% if gulp_use_purescript %}, '.purs'{% endif %}]
     },
     entry: gulpConfig.src.webpack,
@@ -30,9 +30,9 @@ module.exports = function(production) {
         {
           loader: 'babel',
           exclude: /(node_modules|bower_components)/,
-          test: /\.jsx?$/,
+          test: /\.js$/,
           query: {
-            presets: ['es2016', 'react']
+            presets: ['es2015']
           }
         }
       ]
@@ -53,10 +53,6 @@ module.exports = function(production) {
         }
       })
     ];
-  }
-  else {
-    // Write sourcemaps
-    config.devtool = '#cheap-eval-source-map';
   }
 
   return config;
