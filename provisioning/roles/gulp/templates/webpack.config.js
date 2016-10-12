@@ -30,9 +30,9 @@ module.exports = function(production) {
         {
           loader: 'babel',
           exclude: /(node_modules|bower_components)/,
-          test: /\.js$/,
+          test: /\.jsx?$/,
           query: {
-            presets: ['es2015']
+            presets: ['es2015', 'es2016', 'react']
           }
         }
       ]
@@ -53,6 +53,10 @@ module.exports = function(production) {
         }
       })
     ];
+  }
+  else {
+    // Write sourcemaps   
+    config.devtool = '#cheap-eval-source-map';
   }
 
   return config;
