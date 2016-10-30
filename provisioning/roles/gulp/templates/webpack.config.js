@@ -55,7 +55,7 @@ module.exports = function(production) {
     ];
   }
   else {
-    // Write sourcemaps   
+    // Write sourcemaps
     config.devtool = '#cheap-eval-source-map';
   }
 
