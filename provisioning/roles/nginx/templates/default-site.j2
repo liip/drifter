@@ -6,7 +6,7 @@ server {
     error_log	/var/log/nginx/{{ vhost }}.error.log;
 
     root {{ web_directory }};
-    {% if index %}
+    {% if index or self.index() %}
     index {% block index %}{{ index }}{% endblock %};
     {% endif %}
 
@@ -28,8 +28,8 @@ server {
     error_log	/var/log/nginx/{{ hostname }}.error.log;
 
     root {{ root_directory }};
-    {% if index %}
-    index {{ self.index() }}
+    {% if index or self.index() %}
+    index {{ self.index() }};
     {% endif %}
 
     {{ self.extra() }}
