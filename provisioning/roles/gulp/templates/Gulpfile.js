@@ -16,7 +16,7 @@ var config        = require('./gulp.config.js'),
 {% if gulp_use_webpack %}
 var webpackConfig = require('./webpack.config.js'),
     webpack       = require('webpack')(webpackConfig(isProduction)),
-    util = require("gulp-util");
+    util          = require('gulp-util');
 {% endif %}
 
 /*----------------------------------------*\
