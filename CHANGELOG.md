@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## [Unreleased]
+
+### Fixed
+
+- Fix DotDeb key installation, see #130
+
 ## [1.0.8] - 2016-10-04
 
 ### Fixed
