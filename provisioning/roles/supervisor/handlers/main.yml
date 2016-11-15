@@ -1,5 +1,5 @@
 - name: restart supervisor
-  shell: /etc/init.d/supervisor stop; /etc/init.d/supervisor start
+  shell: /etc/init.d/supervisor stop; /etc/init.d/supervisor start; exit 0
   become: yes
 
 - name: start supervisor
