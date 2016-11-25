@@ -1,2 +1,4 @@
 pip_requirements: requirements/dev.txt
+pip_version: 9.0.1
+setuptools_version: 28.8.0
 env_root: "~/ENV"
