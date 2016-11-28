@@ -109,5 +109,5 @@
 
 - name: "Add custom hosts to /etc/hosts file"
   lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
-  with_items: hosts
+  with_items: "{{ hosts }}"
   become: yes
