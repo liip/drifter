@@ -25,13 +25,17 @@
   register: git_email
   ignore_errors: yes
 
-- name: set box git username and email
-  shell: git config --system user.name "{{ git_username.stdout }}"; git config --system user.email "{{ git_email.stdout }}"
+- name: set box git username
+  git_config: name=user.email value={{ git_username.stdout }}
+  become: yes
+
+- name: set box git email
+  git_config: name=user.email value={{ git_email.stdout }}
   become: yes
 
 - stat: path=/usr/local/bin/diff-so-fancy
   register: fancy_diff_file
-  
+
 - include: fancy-diff.yml
   when: fancy_diff and not (fancy_diff_file.stat.exists is defined and fancy_diff_file.stat.exists)
 
