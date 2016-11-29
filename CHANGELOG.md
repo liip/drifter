@@ -154,6 +154,7 @@ virtualization/drifter/ansible.cfg.dist ansible.cfg`.
 
 ### Fixed
 
+- Adapt postgis role to version 2
 - Try to use git_config instead of shell commands to prevent warnings
 - Fix deprecated use of hosts variable in base role
 - The `index` block in nginx templates now works correctly
