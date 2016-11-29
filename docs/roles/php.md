@@ -47,6 +47,7 @@ in the NGinx role.
 ## Parameters
 
 * **nginx_site_template**: template to use for site configuration, defaults to "php-site.j2"
+* **nginx_index**: index in nginx configuration, defaults to "index.php"
 
 # PHP-XDebug
 

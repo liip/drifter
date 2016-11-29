@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## [Unreleased]
+
+### Fixed
+
+- the `index` block in nginx templates now works correctly.
+
 ## [1.0.8] - 2016-10-04
 
 ### Fixed
@@ -176,7 +182,9 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.0.6...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.0.8...HEAD
+[1.0.8]: https://github.com/liip/drifter/compare/v1.0.7...v1.0.8
+[1.0.7]: https://github.com/liip/drifter/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/liip/drifter/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/liip/drifter/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/liip/drifter/compare/v1.0.3...v1.0.4

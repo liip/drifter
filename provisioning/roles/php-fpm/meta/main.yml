@@ -1,4 +1,4 @@
 ---
 dependencies:
   - { role: php }
-  - { role: nginx, site_template: "{{ nginx_site_template }}" }
+  - { role: nginx, site_template: "{{ nginx_site_template }}", index: "{{ nginx_index }}" }

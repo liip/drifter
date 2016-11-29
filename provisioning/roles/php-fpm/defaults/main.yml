@@ -1,1 +1,2 @@
 nginx_site_template: "php-site.j2"
+nginx_index: "index.php"

@@ -6,9 +6,11 @@ server {
     error_log	/var/log/nginx/{{ vhost }}.error.log;
 
     root {{ web_directory }};
-    {% if index %}
-    index {% block index %}{{ index }}{% endblock %};
-    {% endif %}
+    {% block index %}
+        {% if index %}
+            index {{ index }};
+        {% endif %}
+    {% endblock %}
 
     {% block extra %}
     {% endblock %}
