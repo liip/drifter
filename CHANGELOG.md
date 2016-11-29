@@ -10,6 +10,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Fixed
 
+- Try to use git_config instead of shell commands to prevent warnings
+- Fix deprecated use of hosts variable in base role
 - The `index` block in nginx templates now works correctly
 - Fix solr config folder permissions and Supervisord restart on Wheezy
 - Fix DotDeb key installation, see #130
