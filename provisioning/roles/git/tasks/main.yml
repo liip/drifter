@@ -26,11 +26,11 @@
   ignore_errors: yes
 
 - name: set box git username
-  git_config: name=user.email value={{ git_username.stdout }}
+  git_config: name=user.name value={{ git_username.stdout }} scope=system
   become: yes
 
 - name: set box git email
-  git_config: name=user.email value={{ git_email.stdout }}
+  git_config: name=user.email value={{ git_email.stdout }} scope=system
   become: yes
 
 - stat: path=/usr/local/bin/diff-so-fancy
