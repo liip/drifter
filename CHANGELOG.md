@@ -10,7 +10,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Fixed
 
-- the `index` block in nginx templates now works correctly.
+- The `index` block in nginx templates now works correctly
+- Fix solr config folder permissions and Supervisord restart on Wheezy
 
 ## [1.0.8] - 2016-10-04
 
