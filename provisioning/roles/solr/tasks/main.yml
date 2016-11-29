@@ -17,7 +17,7 @@
   become: yes
 
 - name: SOLR config directory permission
-  file: dest="{{ solr_config_dir }}" state=directory owner=vagrant group=solr mode="g+rwX" recurse=yes
+  file: dest="{{ solr_config_dir }}" state=directory group=solr mode="g+rwX" recurse=yes
   become: yes
 
 - name: SOLR install directory permission
