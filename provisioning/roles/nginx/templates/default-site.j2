@@ -5,6 +5,8 @@ server {
     access_log	/var/log/nginx/{{ vhost }}.access.log;
     error_log	/var/log/nginx/{{ vhost }}.error.log;
 
+    client_max_body_size 0;
+
     root {{ web_directory }};
     {% block index %}
         {% if index %}

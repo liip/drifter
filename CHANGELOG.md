@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - The `index` block in nginx templates now works correctly
 - Fix solr config folder permissions and Supervisord restart on Wheezy
 - Fix DotDeb key installation, see #130
+- Remove maximum allowed request body size in Nginx configuration (fixes #136)
 
 ## [1.0.8] - 2016-10-04
 
