@@ -111,3 +111,17 @@
   lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
   with_items: "{{ hosts }}"
   become: yes
+
+- name: Make sure packages are installed to properly support HTTPS on Python < 2.7.9
+  apt: pkg={{ item }}
+  with_items:
+    - python-openssl
+    - python-pyasn1
+    - python-urllib3
+  when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
+  become: yes
+
+- name: Make sure packages are installed to properly support HTTPS on Python < 2.7.9
+  pip: name=ndg-httpsclient
+  when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
+  become: yes

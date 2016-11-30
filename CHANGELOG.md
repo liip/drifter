@@ -16,6 +16,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Fix solr config folder permissions and Supervisord restart on Wheezy
 - Fix DotDeb key installation, see #130
 - Remove maximum allowed request body size in Nginx configuration (fixes #136)
+- Fix usage of HTTPS URLs (eg. in nodejs role) in boxes that use Python < 2.7.9 (eg. Ubuntu Trusty, Debian Wheezy)
+  (fixes #140)
 
 ## [1.0.8] - 2016-10-04
 
