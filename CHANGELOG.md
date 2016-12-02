@@ -6,7 +6,7 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
-## [Unreleased]
+## [1.0.9] - 2016-12-02
 
 ### Changed
 - Improve MySQL role to support different versions (parameter `mysql_version`)
@@ -192,7 +192,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.0.8...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.0.9...HEAD
+[1.0.9]: https://github.com/liip/drifter/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/liip/drifter/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/liip/drifter/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/liip/drifter/compare/v1.0.5...v1.0.6
