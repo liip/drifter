@@ -12,6 +12,7 @@ the correct extension and configuration could be made.
 * **database_name** : the name of the database to create, set in parameters.yml
 * **database_user**: the name of the user, defaults to the database name
 * **database_password**: the password of the user, defaults to the database name
+* **mysql_version**: the MySQL version to install, defaults to 5.6 and supports 5.6, 5.7 and 8.0 (more info on http://dev.mysql.com/downloads/repo/apt/)
 
 # PostgreSQL
 
