@@ -16,6 +16,11 @@
   copy: "dest={{ django_root }}/envdir/DATABASE_URL content={{ database_type }}://{{ database_user }}:{{ database_user }}@localhost/{{ database_name }}"
   when: database_type is defined
 
+- name: fill in ALLOWED_HOSTS setting
+  template:
+    src: allowed_hosts.j2
+    dest: "{{ django_root }}/envdir/ALLOWED_HOSTS"
+
 - name: sync db
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
   when: database_type is defined and django_version | version_compare('1.7', '<')

@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## Unreleased
+
+### Changed
+
+- Django role: generate ALLOWED_HOSTS file to comply with Django >= 1.9.11
+
 ## [1.0.9] - 2016-12-02
 
 ### Changed
