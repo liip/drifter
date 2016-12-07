@@ -10,6 +10,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Changed
 
+- CI Scripts: Set environment variables set by drifter
 - Django role: generate ALLOWED_HOSTS file to comply with Django >= 1.9.11
 
 ## [1.0.9] - 2016-12-02
