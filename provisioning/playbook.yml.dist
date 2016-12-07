@@ -27,7 +27,7 @@
     # - { role: php-apache }    # PHP using Apache and mod-php
     # - { role: django }        # Django framework
 
-    ## Webserver, choose one of those only if you have not choosed a scripting language
+    ## Webserver, choose one of those only if you have not chosen a scripting language
     ## above
     # - { role: nginx }          # Nginx for basic HTML website
     # - { role: apache }         # Apache for basic HTML website
