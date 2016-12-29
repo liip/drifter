@@ -3,8 +3,11 @@
   command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
   become: yes
 
-- name: ensure apt database is up-to-date
-  apt: update_cache=yes
+- name: ensure apt database is up-to-date (cache time 1h)
+  apt:
+    update_cache: yes
+    # Only run "update_cache=yes" if the last one is more than 1h ago (3600 seconds)
+    cache_valid_time: 3600
   become: yes
 
 - name: set en_US.UTF-8 as generated locale
