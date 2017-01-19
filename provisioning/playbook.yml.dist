@@ -47,6 +47,9 @@
     ## Install Composer in the box
     # - { role: composer }
 
+    ## Install OpenLDAP's slapd in the box
+    # - { role: openldap }
+
     # If you want php xdebug in your local boxes, uncomment this
     # The when clause prevents it to be installed on the CI_SERVER
     # - { role: php-xdebug, when: "'{{ lookup('env','CI_SERVER') }}' != 'yes'" }
