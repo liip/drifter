@@ -10,6 +10,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Changed
 
+- Nginx Role: Added Symfony1 site configuration
 - Base role: Set the cache valid-time for `apt-update cache` command to 1h
 - Django role: generate ALLOWED_HOSTS file to comply with Django >= 1.9.11
 
