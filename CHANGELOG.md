@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Added
+- OpenLDAP (slapd) role
+
 ### Changed
 
 - Base role: Set the cache valid-time for `apt-update cache` command to 1h

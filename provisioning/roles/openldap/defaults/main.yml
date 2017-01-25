@@ -1,0 +1,3 @@
+ldap_organization: Evil Corp Ltd
+ldap_organization_domain: evilcorp.example.com
+ldap_admin_password: admin
