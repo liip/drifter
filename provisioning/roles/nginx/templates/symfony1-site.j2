@@ -1,0 +1,18 @@
+{% extends "default-site.j2" %}
+
+{% block extra %}
+    {{ super() }}
+
+    location ~ ^/(index|frontend|frontend_dev|backend|backend_dev)\.php(/.*)?$ {
+        include conf.d/partials/_php_fpm.conf;
+    }
+
+    location / {
+        try_files $uri /index.php?$args;
+    }
+
+    location ^~ /sf/ {
+        alias {{ web_directory }}/../lib/vendor/symfony/data/web/sf/;
+    }
+
+{% endblock %}
