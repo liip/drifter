@@ -5,8 +5,11 @@
 - name: try to compile dynamic bash extension to speed up rbenv
   shell: cd ~/.rbenv && src/configure && make -C src
 
-- name: ensure rbenv is accessible
-  shell: echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-
 - name: install ruby-build plugin
   git: repo=https://github.com/rbenv/ruby-build.git dest=~/.rbenv/plugins/ruby-build
+
+- name: ensure rbenv is accessible
+  shell: echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+
+- name: init rbenv
+  shell: echo 'eval "$(rbenv init -)"' >> ~/.bashrc
