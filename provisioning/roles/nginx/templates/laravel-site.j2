@@ -1,0 +1,9 @@
+{% extends "default-site.j2" %}
+
+{% block extra %}
+    {{ super() }}
+
+    location / {
+        try_files $uri /index.php$is_args$args;
+    }
+{% endblock %}
