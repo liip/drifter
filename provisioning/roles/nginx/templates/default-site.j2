@@ -31,7 +31,7 @@ server {
     access_log	/var/log/nginx/{{ hostname }}.access.log;
     error_log	/var/log/nginx/{{ hostname }}.error.log;
 
-    root {{ root_directory }};
+    root {{ web_directory }};
     {% if index %}
     index {{ self.index() }}
     {% endif %}

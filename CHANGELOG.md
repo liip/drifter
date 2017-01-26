@@ -18,6 +18,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Fixed
 - Composer role: don't reinstall on every provision
+- Nginx role: use web_directory parameter for HTTPS root instead of root_directory
 
 ## [1.0.9] - 2016-12-02
 
