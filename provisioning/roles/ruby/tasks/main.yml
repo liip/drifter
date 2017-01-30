@@ -1,7 +1,31 @@
-- name: ensure Ruby packages are installed
-  apt: pkg={{ item }} state=installed
-  become: yes
-  with_items:
-    - ruby
-    - ruby-dev
-    - rubygems-integration
+---
+- name: install rbenv
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: ~/.rbenv
+    version: v1.1.0
+
+- name: try to compile dynamic bash extension to speed up rbenv
+  shell: cd ~/.rbenv && src/configure && make -C src
+
+- name: install ruby-build plugin
+  git:
+    repo: https://github.com/rbenv/ruby-build.git
+    dest: ~/.rbenv/plugins/ruby-build
+    version: v20170112
+
+- name: ensure rbenv is accessible
+  lineinfile:
+    dest: ~/.bashrc
+    line: export PATH="$HOME/.rbenv/bin:$PATH"
+
+- name: init rbenv
+  lineinfile:
+    dest: ~/.bashrc
+    line: eval "$(rbenv init -)"
+
+- name: Install ruby {{ruby_version}}
+  shell: ~/.rbenv/bin/rbenv install {{ruby_version}}
+
+- name: Set ruby {{ruby_version}} globally
+  shell: ~/.rbenv/bin/rbenv global {{ruby_version}}
