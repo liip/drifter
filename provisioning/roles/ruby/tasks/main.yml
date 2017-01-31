@@ -6,7 +6,10 @@
     version: v1.1.0
 
 - name: try to compile dynamic bash extension to speed up rbenv
-  shell: cd ~/.rbenv && src/configure && make -C src
+  command: src/configure && make -C src
+  ignore_errors: yes
+  args:
+    chdir: ~/.rbenv/
 
 - name: install ruby-build plugin
   git:
@@ -24,8 +27,28 @@
     dest: ~/.bashrc
     line: eval "$(rbenv init -)"
 
-- name: Install ruby {{ruby_version}}
-  shell: ~/.rbenv/bin/rbenv install {{ruby_version}}
+- name: Install ruby {{ ruby_version }}
+  command: rbenv install {{ ruby_version }}
+  args:
+    chdir: ~/.rbenv/bin/
+    creates: ~/.rbenv/shims/ruby
 
-- name: Set ruby {{ruby_version}} globally
-  shell: ~/.rbenv/bin/rbenv global {{ruby_version}}
+- name: Set ruby {{ ruby_version }} globally
+  command: rbenv global {{ ruby_version }}
+  args:
+    chdir: ~/.rbenv/bin/
+
+- name: Disable gem docs
+  template:
+    src: gem_config.j2
+    dest: ~/.gemrc
+
+- name: Install bundler
+  command: gem install bundler
+  args:
+    chdir: ~/.rbenv/shims/
+
+- name: Install Gems from Gemfile if any
+  command: bundle install
+  args:
+    removes: /vagrant/Gemfile
