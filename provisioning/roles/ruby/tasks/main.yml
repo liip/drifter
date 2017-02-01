@@ -1,7 +1,56 @@
-- name: ensure Ruby packages are installed
-  apt: pkg={{ item }} state=installed
-  become: yes
-  with_items:
-    - ruby
-    - ruby-dev
-    - rubygems-integration
+---
+- name: install rbenv
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: ~/.rbenv
+    version: v1.1.0
+
+- name: try to compile dynamic bash extension to speed up rbenv
+  command: src/configure && make -C src
+  ignore_errors: yes
+  args:
+    chdir: ~/.rbenv/
+    creates: ~/.rbenv/libexec/rbenv-realpath.dylib
+
+- name: install ruby-build plugin
+  git:
+    repo: https://github.com/rbenv/ruby-build.git
+    dest: ~/.rbenv/plugins/ruby-build
+    version: v20170112
+
+- name: ensure rbenv is accessible
+  lineinfile:
+    dest: ~/.bashrc
+    line: export PATH="$HOME/.rbenv/bin:$PATH"
+
+- name: init rbenv
+  lineinfile:
+    dest: ~/.bashrc
+    line: eval "$(rbenv init -)"
+
+- stat:
+    path: ~/.rbenv/versions/{{ ruby_version }}/bin/ruby
+  register: ruby_path_rules
+
+- name: Install ruby {{ ruby_version }}
+  command: ~/.rbenv/bin/rbenv install {{ ruby_version }}
+  when:
+    - ruby_path_rules.stat.exists|bool == False
+
+- name: Set ruby {{ ruby_version }} globally
+  command: ~/.rbenv/bin/rbenv global {{ ruby_version }}
+
+- name: Disable gem docs
+  copy:
+    dest: ~/.gemrc
+    content: |
+        +install: --no-rdoc --no-ri
+        +update: --no-rdoc --no-ri
+
+- name: Install bundler
+  command: ~/.rbenv/shims/gem install bundler
+
+- name: Install Gems from Gemfile if any
+  command: ~/.rbenv/shims/bundle install
+  args:
+    removes: /vagrant/Gemfile
