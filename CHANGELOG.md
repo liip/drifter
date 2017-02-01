@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 - Base role: Set the cache valid-time for `apt-update cache` command to 1h
 - Django role: generate ALLOWED_HOSTS file to comply with Django >= 1.9.11
+- Ruby role: install with rbenv to have access to the latest version of ruby
 
 ### Fixed
 - Composer role: don't reinstall on every provision

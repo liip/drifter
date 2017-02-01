@@ -10,7 +10,7 @@
   ignore_errors: yes
   args:
     chdir: ~/.rbenv/
-    creates: ~/.rbenv/bin/rbenv
+    creates: ~/.rbenv/libexec/rbenv-realpath.dylib
 
 - name: install ruby-build plugin
   git:
@@ -37,7 +37,6 @@
   when:
     - ruby_path_rules.stat.exists|bool == False
 
-
 - name: Set ruby {{ ruby_version }} globally
   command: ~/.rbenv/bin/rbenv global {{ ruby_version }}
 
@@ -52,6 +51,6 @@
   command: ~/.rbenv/shims/gem install bundler
 
 - name: Install Gems from Gemfile if any
-  command: bundle install
+  command: ~/.rbenv/shims/bundle install
   args:
     removes: /vagrant/Gemfile
