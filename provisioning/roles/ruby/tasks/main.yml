@@ -1,4 +1,10 @@
 ---
+- name: make sure libreadline-dev is installed
+  apt:
+    pkg: libreadline-dev
+    state: installed
+  sudo: yes
+
 - name: install rbenv
   git:
     repo: https://github.com/rbenv/rbenv.git
