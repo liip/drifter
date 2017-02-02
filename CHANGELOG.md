@@ -6,6 +6,11 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## [1.1.1] - 2017-02-02
+
+### Fixed
+- Ruby role: fix installation of Ruby by installing missing dependency
+
 ## [1.1.0] - 2017-02-01
 
 ### Added
@@ -208,7 +213,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/liip/drifter/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/liip/drifter/compare/v1.0.9...v1.1.0
 [1.0.9]: https://github.com/liip/drifter/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/liip/drifter/compare/v1.0.7...v1.0.8
