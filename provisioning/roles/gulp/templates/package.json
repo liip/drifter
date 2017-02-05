@@ -31,5 +31,6 @@
 {% endif %}
 {% endif %}
     "yargs": "^6.6.0"
-  }
+  },
+  "browserslist": {{ gulp_browserslist }}
 }

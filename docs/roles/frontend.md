@@ -6,7 +6,7 @@ _Existing configuration files will not be overriden._
 * Create a prefilled `Gulpfile.js` with useful tasks
     * Watch & live reload with BrowserSync
     * Compile Sass with Autoprefixer & source-maps
-    * Bundle JavaScript with Webpack (optional)
+    * Bundle JavaScript with Webpack, preconfigured with Babel (optional)
     * Lossless images optimization with ImageMin
 * Create associated `gulp.config.js` and `webpack.config.js`
 * Create the `package.json` containing the necessary dependencies to be installed with NPM.
@@ -15,11 +15,12 @@ After the first provisioning, you should edit the `gulp.config.js` and `webpack.
 
 ## Parameters
 
-* **gulp_directory**: where should the gulpfile be created, defaults to <project_dir>/
-* **gulp_package_json_path**: where should the package.json file be created, defaults to <project_dir>/package.json
-* **gulp_package_json_author**: Author that should be put in the package.json file, defaults to "Liip AG"
-* **gulp_use_webpack**: Setup Webpack alongside Gulp, defaults to true
-* **gulp_use_purescript**: Add PureScript support to Webpack, defaults to false
+* **gulp_directory**: where should the gulpfile be created, defaults to `<project_dir>/`
+* **gulp_package_json_path**: where should the package.json file be created, defaults to `<project_dir>/package.json`
+* **gulp_package_json_author**: Author that should be put in the package.json file, defaults to `Liip AG`
+* **gulp_use_webpack**: Setup Webpack alongside Gulp, defaults to `true`
+* **gulp_use_purescript**: Add PureScript support to Webpack, defaults to `false`
+* **gulp_browserslist**: Define [Browserslist](https://github.com/ai/browserslist), defaults to `["Last 2 versions", "IE 11"]`
 
 ## Default tasks
 
