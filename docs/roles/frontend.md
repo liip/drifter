@@ -1,7 +1,3 @@
-# Compass
-
-Install Compass and incidentally Sass via `apt-get`. The Ruby role is installed as dependency.
-
 # Gulp
 
 * Install `gulp` globally in the Vagrant box
@@ -16,7 +12,7 @@ After the first provisioning, you should edit the `Gulpfile.js` (especially the 
 * **gulp_package_json_path**: where should the package.json file be created, defaults to <project_dir>/package.json
 * **gulp_package_json_author**: Author that should be put in the package.json file, defaults to "Liip AG"
 * **gulp_package_json_readme**: Documentation file the should be put in the package.json file, defaults to README.md
-* **gulp_use_webpack**: Do you want to install WebPack alongside Gulp, defatuls to true
+* **gulp_use_webpack**: Do you want to install WebPack alongside Gulp, defaults to true
 
 ## Default tasks
 ### Live reload proxy
@@ -46,3 +42,9 @@ Optimizes jp(e)g, png, gif & svg files with:
 ```
 gulp images
 ```
+
+# Compass
+
+**This role is deprecated, just as Compass is no longer supported.**
+
+Install Compass and incidentally Sass via `apt-get`. The Ruby role is installed as dependency.
