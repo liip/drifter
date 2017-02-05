@@ -19,6 +19,12 @@ module.exports = {
   },
   browserSync: {
     proxy:          '{{ hostname }}',
+{% if ssl_key_file is defined %}
+    https: {
+      key: '{{ ssl_key_file }}',
+      cert: '{{ ssl_cert_file }}'
+    },
+{% endif %}
     open:           false,
     notify:         false
   },
