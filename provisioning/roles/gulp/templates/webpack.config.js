@@ -1,64 +1,60 @@
-'use strict';
+const path    = require('path');
+const webpack = require('webpack');
+const config  = require('./gulp.config.js');
 
-var path       = require('path'),
-    webpack    = require('webpack'),
-    gulpConfig = require('./gulp.config.js');
-
-module.exports = function(production) {
-  var config = {
-    resolve: {
-      root: [path.resolve(__dirname, gulpConfig.src.javascripts)],
-      extensions: ['', '.jsx', '.js'{% if gulp_use_purescript %}, '.purs'{% endif %}]
-    },
-    entry: gulpConfig.src.webpack,
-    output: gulpConfig.dest.webpack,
-    module: {
-      loaders: [
+const webpackConfig = {
+  resolve: {
+    modules: [
+      path.resolve(__dirname, 'static/javascripts/**/*.{js{% if gulp_use_purescript %},purs{% endif %}}'),
+      'node_modules'
+    ],
+    extensions: ['.js'{% if gulp_use_purescript %}, '.purs'{% endif %}]
+  },
+  entry: './static/javascripts/index.js',
+  output: {
+    path: './static/javascripts',
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
 {% if gulp_use_purescript %}
-        {
-          loader: 'purs-loader',
-          exclude: /node_modules/,
-          test: /\.purs$/,
-          query: {
-            psc: 'psa',
-            pscArgs: { sourceMaps: true },
-            pscIde: true,
-            src: ['bower_components/purescript-*/src/**/*.purs', 'src/**/*.purs']
-          }
-        },
+      {
+        test: /\.purs$/,
+        exclude: /node_modules/,
+        loader: 'purs-loader',
+        options: {
+          psc: 'psa',
+          pscArgs: { sourceMaps: true },
+          pscIde: true,
+          src: ['bower_components/purescript-*/src/**/*.purs', 'src/**/*.purs']
+        }
+      },
 {% endif %}
-        {
-          loader: 'babel',
-          exclude: /(node_modules|bower_components)/,
-          test: /\.jsx?$/,
-          query: {
-            presets: ['es2015', 'es2016', 'react']
-          }
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['es2015', 'es2016', 'react']
         }
-      ]
-    }
-  };
-  if (production) {
-    // Minify
-    config.plugins = [
-      new webpack.DefinePlugin({
-        'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        comments: false,
-        compress: {
-          warnings: false
-        }
-      })
-    ];
+      }
+    ]
   }
-  else {
-    // Write sourcemaps
-    config.devtool = '#cheap-eval-source-map';
-  }
-
-  return config;
 };
 
+if (config.optimize) {
+  webpackConfig.plugins = [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false
+    })
+  ];
+} else {
+  webpackConfig.devtool = '#eval';
+}
+
+module.exports = webpackConfig;

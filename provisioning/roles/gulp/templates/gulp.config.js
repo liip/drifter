@@ -1,20 +1,14 @@
-'use strict';
+const argv = require('yargs').argv;
 
 module.exports = {
+  optimize:         argv.production,
   src: {
     sass:           'static/sass/**/*.scss',
-{% if gulp_use_webpack %}
-    javascripts:    'static/javascripts/src/**/*.{js,jsx{% if gulp_use_purescript %},purs{% endif %}}',
-    webpack:        ['./static/javascripts/src/main.js'],
-{% endif %}
     images:         'static/images/**/*.{gif,jpg,jpeg,png,svg}',
     templates:      '**/*.html'
   },
   dest: {
     css:            'static/stylesheets',
-{% if gulp_use_webpack %}
-    webpack:        { path: './static/javascripts/', filename: 'main.js' },
-{% endif %}
     images:         'static/images'
   },
   browserSync: {
