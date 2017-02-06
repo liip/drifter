@@ -6,6 +6,11 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## Unreleased
+
+### Changed
+- PHP role: set `always_populate_raw_post_data` to -1 to avoid deprecation warnings
+
 ## [1.1.1] - 2017-02-02
 
 ### Fixed
