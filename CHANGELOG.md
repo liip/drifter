@@ -6,10 +6,10 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
-## In progress
+## Unreleased
 
-### Changed
-- Node role: add support for version 7.x, drop 0.10 and 0.12 (end-of-life)
+### Added
+- Node role: add support for version 7.x
 
 ## [1.1.1] - 2017-02-02
 
