@@ -6,6 +6,19 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## Unreleased
+
+### Added
+- Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed.
+- Gulp role: Print WebPack/Sass compilation to the browser
+
+### Changed
+- Compass role: Depreacted because Compass is no more maintained.
+- Gulp role: Updated WebPack to 2.2 and other various dependencies
+- Gulp role: Autoprefixer now use Browserslist
+- Gulp role: WebPack’s babel-loader now use preset `env` by default
+- Gulp role: WebPack config is now standard (export an object and not a function)
+
 ## [1.1.1] - 2017-02-02
 
 ### Fixed
