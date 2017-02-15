@@ -11,6 +11,7 @@ const reload        = browserSync.reload;
 {% if gulp_use_webpack %}
 const webpackConfig = require('./webpack.config.js');
 const webpack       = require('webpack')(webpackConfig);
+const stripAnsi     = require('strip-ansi');
 {% endif %}
 
 /*----------------------------------------*\
@@ -25,7 +26,7 @@ gulp.task('watch', ['build'], function() {
 
   gulp.watch(config.src.sass, ['sass']);
   gulp.watch(config.src.templates, reload);
-  {% if gulp_use_webpack %}gulp.watch(webpackConfig.resolve.modules, ['webpack', reload]);{% endif %}
+  {% if gulp_use_webpack %}gulp.watch(webpackConfig.resolve.modules, ['webpack']);{% endif %}
 });
 
 /**
@@ -36,7 +37,19 @@ gulp.task('watch', ['build'], function() {
 gulp.task('sass', function() {
   return gulp.src(config.src.sass)
     .pipe($.if(!config.optimize, $.sourcemaps.init()))
-    .pipe($.sass(config.sass).on('error', $.sass.logError))
+    .pipe(
+      $.sass(config.sass)
+        .on('error', function(error) {
+          browserSync.sockets.emit('fullscreen:message', {
+            title: 'Sass compilation error',
+            body: error.message
+          });
+          $.sass.logError.apply(this, arguments);
+        })
+        .on('data', function(data) {
+          browserSync.sockets.emit('fullscreen:message:clear');
+        })
+    )
     .pipe($.autoprefixer(config.autoprefixer))
     .pipe($.if(!config.optimize, $.sourcemaps.write('.')))
     .pipe(gulp.dest(config.dest.css))
@@ -48,9 +61,18 @@ gulp.task('sass', function() {
  * Bundle JavaScript modules
  */
 gulp.task('webpack', function(done) {
-  webpack.run(function(err, stats) {
-    if(err) throw new $.util.PluginError('webpack', err);
-    $.util.log('[webpack]', stats.toString());
+  webpack.run(function(error, stats) {
+    if (stats.hasErrors() || stats.hasWarnings()) {
+      browserSync.sockets.emit('fullscreen:message', {
+        title: 'WebPack compilation error',
+        body: stripAnsi(stats.toString()),
+        timeout: 100000
+      });
+      $.util.log('[webpack]', stats.toString());
+    } else {
+      browserSync.sockets.emit('fullscreen:message:clear');
+      reload();
+    }
     done();
   });
 });

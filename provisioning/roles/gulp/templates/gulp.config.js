@@ -20,7 +20,8 @@ module.exports = {
     },
 {% endif %}
     open:           false,
-    notify:         false
+    notify:         false,
+    plugins:        ['bs-pretty-message']
   },
   sass: {
     outputStyle:    'compressed'

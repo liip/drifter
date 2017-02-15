@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.12.7",
+    "bs-pretty-message": "^1.0.7",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-if": "^2.0.1",
@@ -27,6 +28,7 @@
     "purescript": "^0.10.5",
     "purs-loader": "^2.2.0",
 {% endif %}
+    "strip-ansi": "^3.0.1",
 {% endif %}
     "yargs": "^6.6.0"
   },

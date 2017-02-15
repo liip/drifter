@@ -20,7 +20,7 @@ After the first provisioning, you should edit the `gulp.config.js` and `webpack.
 * **gulp_package_json_author**: Author that should be put in the package.json file, defaults to `Liip AG`
 * **gulp_use_webpack**: Setup Webpack alongside Gulp, defaults to `true`
 * **gulp_use_purescript**: Add PureScript support to Webpack, defaults to `false`
-* **gulp_browserslist**: Define [Browserslist](https://github.com/ai/browserslist), defaults to `["Last 2 versions", "IE 11"]`
+* **gulp_browserslist**: Define [Browserslist](https://github.com/ai/browserslist) in `package.json`, defaults to `["Last 2 versions", "IE 11"]`
 
 ## Default tasks
 
