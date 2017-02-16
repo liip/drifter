@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Added
+- Node role: add support for version 7.x
+
 ### Changed
 - PHP role: set `always_populate_raw_post_data` to -1 to avoid deprecation warnings
 
