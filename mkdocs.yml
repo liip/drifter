@@ -5,6 +5,11 @@ site_author: Liip SA
 repo_name: "Drifter on GitHub"
 repo_url: https://github.com/liip/drifter
 
+#requird due to https://github.com/rtfd/readthedocs.org/issues/1313
+#see http://mkdocs.readthedocs.org/en/latest/user-guide/styling-your-docs/#customising-a-theme
+extra_javascript:
+  - assets/extra.js
+
 theme: readthedocs
 pages:
   - 'Home': 'index.md'
@@ -16,7 +21,7 @@ pages:
     - 'Python roles': 'roles/python.md'
     - 'Ruby roles': 'roles/ruby.md'
     - 'Java roles': 'roles/java.md'
-    - 'Frontend roles': 'roles/frontend.md'
+    - 'Front-end roles': 'roles/frontend.md'
     - 'Other roles': 'roles/others.md'
   - 'Tips & Tricks':
     - 'PHP Debugging': 'tips/php.md'

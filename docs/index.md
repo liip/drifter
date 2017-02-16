@@ -111,6 +111,22 @@ brew cask install vagrant virtualbox
 
 Install Virtualbox and Vagrant (>= 1.8.4) using the binaries available on their respective websites.
 
+Also make sure that `core.autocrlf` is set to `input` (recommended) or at least `true` so that you don't get issues
+with Windows line-endings in the files that are in your box. You can set it by running the following command:
+
+`git config --global core.autocrlf input`
+
+For example if you get the following error when trying to provision the box:
+
+```
+TASK [base : ensure base packages are installed] *******************************
+
+failed: [default] (item=[u'locales', u'procps', u'command-not-found', u'bash-completion', u'zsh', u'bzip2', u'unzip', u'vim', u'ack-grep', u'highlight', u'libxml2-utils', u'build-essential', u'wget', u'openssh-server', u'sudo', u'imagemagick', u'iputils-ping', u'ncurses-term', u'python-pycurl']) => {"failed": true, "item": ["locales", "procps", "command-not-found", "bash-completion", "zsh", "bzip2", "unzip", "vim", "ack-grep", "highlight", "libxml2-utils", "build-essential", "wget", "openssh-server", "sudo", "imagemagick", "iputils-ping", "ncurses-term", "python-pycurl"], "module_stderr": ">>> /etc/sudoers.d/sudo-passwordless: syntax error near line 1 <<<\nsudo: parse error in /etc/sudoers.d/sudo-passwordless near line 1\nsudo: no valid sudoers sources found, quitting\nsudo: unable to initialize policy plugin\n", "module_stdout": "", "msg": "MODULE FAILURE", "parsed": false}
+```
+
+That's because the sudoers file that gets copied in the box has the wrong format. Enabling `core.autocrlf` will fix the
+issue.
+
 
 Usage
 =====

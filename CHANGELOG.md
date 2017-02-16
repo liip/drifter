@@ -9,10 +9,12 @@ For migration information, you can always have a look at https://liip-drifter.re
 ## Unreleased
 
 ### Added
+- Node role: add support for version 7.x
 - Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed
 - Gulp role: Print WebPack/Sass compilation to the browser
 
 ### Changed
+- PHP role: set `always_populate_raw_post_data` to -1 to avoid deprecation warnings
 - Compass role: Deprecate because Compass is not maintained anymore
 - Gulp role: Update WebPack to 2.2 and other various dependencies
 - Gulp role: Autoprefixer now uses Browserslist
