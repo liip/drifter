@@ -8,7 +8,7 @@ repo_url: https://github.com/liip/drifter
 #requird due to https://github.com/rtfd/readthedocs.org/issues/1313
 #see http://mkdocs.readthedocs.org/en/latest/user-guide/styling-your-docs/#customising-a-theme
 extra_javascript:
-- docs/assets/extra.js
+  - assets/extra.js
 
 theme: readthedocs
 pages:
