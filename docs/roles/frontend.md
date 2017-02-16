@@ -1,6 +1,6 @@
 # Gulp
 
-_Existing configuration files will not be overriden._
+_Existing configuration files (Gulpfile.js, gulp.config.js, webpack.config.js, package.json) will not be overridden._
 
 * Install `gulp` globally in the Vagrant box
 * Create a prefilled `Gulpfile.js` with useful tasks
@@ -16,11 +16,15 @@ After the first provisioning, you should edit the `gulp.config.js` and `webpack.
 ## Parameters
 
 * **gulp_directory**: where should the gulpfile be created, defaults to `<project_dir>/`
-* **gulp_package_json_path**: where should the package.json file be created, defaults to `<project_dir>/package.json`
+* **gulp_package_json_path**: where should the package.json file be created, defaults to `<gulp_directory>/package.json`
 * **gulp_package_json_author**: Author that should be put in the package.json file, defaults to `Liip AG`
 * **gulp_use_webpack**: Setup Webpack alongside Gulp, defaults to `true`
 * **gulp_use_purescript**: Add PureScript support to Webpack, defaults to `false`
-* **gulp_browserslist**: Define [Browserslist](https://github.com/ai/browserslist) in `package.json`, defaults to `["Last 2 versions", "IE 11"]`
+* **gulp_browserslist**: Define [Browserslist](https://github.com/ai/browserslist) in `package.json`, defaults to:
+    ```
+    - Last 2 versions
+    - IE 11
+    ```
 
 ## Default tasks
 
@@ -40,7 +44,7 @@ npm run build
 
 _For performance reason, this task is not included in the watch/build tasks. You should run it manually according to your needs._
 
-Optimizes jp(e)g, png, gif & svg files with:
+Optimize jp(e)g, png, gif & svg files with:
 
 ```
 gulp images

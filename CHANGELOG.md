@@ -9,14 +9,14 @@ For migration information, you can always have a look at https://liip-drifter.re
 ## Unreleased
 
 ### Added
-- Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed.
+- Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed
 - Gulp role: Print WebPack/Sass compilation to the browser
 
 ### Changed
-- Compass role: Depreacted because Compass is no more maintained.
-- Gulp role: Updated WebPack to 2.2 and other various dependencies
-- Gulp role: Autoprefixer now use Browserslist
-- Gulp role: WebPack’s babel-loader now use preset `env` by default
+- Compass role: Deprecate because Compass is not maintained anymore
+- Gulp role: Update WebPack to 2.2 and other various dependencies
+- Gulp role: Autoprefixer now uses Browserslist
+- Gulp role: WebPack’s babel-loader now uses preset `env` by default
 - Gulp role: WebPack config is now standard (export an object and not a function)
 
 ## [1.1.1] - 2017-02-02
