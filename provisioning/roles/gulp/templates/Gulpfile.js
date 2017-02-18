@@ -26,7 +26,9 @@ gulp.task('watch', ['build'], function() {
 
   gulp.watch(config.src.sass, ['sass']);
   gulp.watch(config.src.templates, reload);
-  {% if gulp_use_webpack %}gulp.watch(webpackConfig.resolve.modules, ['webpack']);{% endif %}
+{% if gulp_use_webpack %}
+  gulp.watch(config.src.javascripts, ['webpack']);
+{% endif %}
 });
 
 /**

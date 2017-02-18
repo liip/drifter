@@ -5,6 +5,7 @@ module.exports = {
   src: {
     sass:           'static/sass/**/*.scss',
     images:         'static/images/**/*.{gif,jpg,jpeg,png,svg}',
+    javascripts:    'static/javascripts/**/*.js',
     templates:      '**/*.html'
   },
   dest: {

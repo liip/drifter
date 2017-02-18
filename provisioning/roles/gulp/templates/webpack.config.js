@@ -5,7 +5,7 @@ const config  = require('./gulp.config.js');
 const webpackConfig = {
   resolve: {
     modules: [
-      path.resolve(__dirname, 'static/javascripts/**/*.{js{% if gulp_use_purescript %},purs{% endif %}}'),
+      path.resolve(__dirname, 'static/javascripts'),
       'node_modules'
     ],
     extensions: ['.js'{% if gulp_use_purescript %}, '.purs'{% endif %}]
