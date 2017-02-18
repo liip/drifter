@@ -31,11 +31,17 @@ const webpackConfig = {
       },
 {% endif %}
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['env']
+          presets: [
+            ['env', {
+              'targets': {
+                'browsers': {{ gulp_browserslist | to_json }}
+              }
+            }]
+          ]
         }
       }
     ]
