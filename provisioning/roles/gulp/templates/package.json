@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.12.7",
-    "bs-pretty-message": "^1.0.7",
+    "bs-pretty-message": "^1.0.8",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-if": "^2.0.1",
