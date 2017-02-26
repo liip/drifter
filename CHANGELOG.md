@@ -14,6 +14,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 - PHP role: set `always_populate_raw_post_data` to -1 to avoid deprecation warnings
 
+### Fixed
+- MySQL role: fix installation of MySQL packages by upgrading mysql-apt-config
+
 ## [1.1.1] - 2017-02-02
 
 ### Fixed
