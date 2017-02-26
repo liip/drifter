@@ -1,32 +1,33 @@
-'use strict';
+const argv = require('yargs').argv;
 
 module.exports = {
+  optimize:         argv.production,
   src: {
     sass:           'static/sass/**/*.scss',
-{% if gulp_use_webpack %}
-    javascripts:    'static/javascripts/src/**/*.{js,jsx{% if gulp_use_purescript %},purs{% endif %}}',
-    webpack:        ['./static/javascripts/src/main.js'],
-{% endif %}
     images:         'static/images/**/*.{gif,jpg,jpeg,png,svg}',
+    javascripts:    'static/javascripts/**/*.js',
     templates:      '**/*.html'
   },
   dest: {
     css:            'static/stylesheets',
-{% if gulp_use_webpack %}
-    webpack:        { path: './static/javascripts/', filename: 'main.js' },
-{% endif %}
     images:         'static/images'
   },
   browserSync: {
     proxy:          '{{ hostname }}',
+{% if ssl %}
+    https: {
+      key: '{{ ssl_key_file }}',
+      cert: '{{ ssl_cert_file }}'
+    },
+{% endif %}
     open:           false,
-    notify:         false
+    notify:         false,
+    plugins:        ['bs-pretty-message']
   },
   sass: {
     outputStyle:    'compressed'
   },
   autoprefixer: {
-    browsers:       ['last 2 versions', 'ie 9'],
     cascade:        false
   }
 };

@@ -1,4 +1,4 @@
-- name: ensure compass package is installed
+- name: DEPRECATED | Ensure Compass package is installed
   apt: pkg={{ item }} state=installed
   become: yes
   with_items:
