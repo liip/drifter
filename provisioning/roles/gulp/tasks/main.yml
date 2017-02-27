@@ -20,5 +20,5 @@
   become: yes
   when: gulp_use_purescript
 
-- name: Install Node packages / Gulp dependencies
+- name: Install Node modules
   npm: path=/vagrant

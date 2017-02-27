@@ -1,22 +1,17 @@
-////////////////////////////////////////////
-// Drifter Gulpfile
-// Version 1.0.3
-////////////////////////////////////////////
+/*----------------------------------------*\
+  DRIFTER GULPFILE
+  Version 1.1.0
+\*----------------------------------------*/
 
-'use strict';
-
-var config        = require('./gulp.config.js'),
-    gulp          = require('gulp'),
-    $             = require('gulp-load-plugins')(),
-    argv          = require('yargs').argv,
-    browserSync   = require('browser-sync').create(),
-    reload        = browserSync.reload,
-    isProduction  = argv.production;
-
+const config        = require('./gulp.config.js');
+const gulp          = require('gulp');
+const $             = require('gulp-load-plugins')();
+const browserSync   = require('browser-sync').create();
+const reload        = browserSync.reload;
 {% if gulp_use_webpack %}
-var webpackConfig = require('./webpack.config.js'),
-    webpack       = require('webpack')(webpackConfig(isProduction)),
-    util          = require('gulp-util');
+const webpackConfig = require('./webpack.config.js');
+const webpack       = require('webpack')(webpackConfig);
+const stripAnsi     = require('strip-ansi');
 {% endif %}
 
 /*----------------------------------------*\
@@ -26,37 +21,60 @@ var webpackConfig = require('./webpack.config.js'),
 /**
  * Watching files for changes
  */
-gulp.task('watch', [{% if gulp_use_webpack %}'webpack', {% endif %}'sass'], function() {
+gulp.task('watch', ['build'], function() {
   browserSync.init(config.browserSync);
 
   gulp.watch(config.src.sass, ['sass']);
   gulp.watch(config.src.templates, reload);
-  {% if gulp_use_webpack %}gulp.watch(config.src.javascripts, ['webpack', reload]);{% endif %}
+{% if gulp_use_webpack %}
+  gulp.watch(config.src.javascripts, ['webpack']);
+{% endif %}
 });
 
 /**
- * Compile Sass into CSS
+ * Compile Sass to CSS
  * Add vendor prefixes with Autoprefixer
  * Write sourcemaps in dev mode
  */
 gulp.task('sass', function() {
   return gulp.src(config.src.sass)
-    .pipe($.if(! isProduction, $.sourcemaps.init()))
-    .pipe($.sass(config.sass).on('error', $.sass.logError))
+    .pipe($.if(!config.optimize, $.sourcemaps.init()))
+    .pipe(
+      $.sass(config.sass)
+        .on('error', function(error) {
+          browserSync.sockets.emit('fullscreen:message', {
+            title: 'Sass compilation error',
+            body: error.message
+          });
+          $.sass.logError.apply(this, arguments);
+        })
+        .on('data', function(data) {
+          browserSync.sockets.emit('fullscreen:message:clear');
+        })
+    )
     .pipe($.autoprefixer(config.autoprefixer))
-    .pipe($.if(! isProduction, $.sourcemaps.write('.')))
+    .pipe($.if(!config.optimize, $.sourcemaps.write('.')))
     .pipe(gulp.dest(config.dest.css))
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 {% if gulp_use_webpack %}
 /**
- * Pack JavaScript modules
+ * Bundle JavaScript modules
  */
 gulp.task('webpack', function(done) {
-  webpack.run(function(err, stats) {
-    if(err) throw new $.util.PluginError('webpack', err);
-    $.util.log('[webpack]', stats.toString());
+  webpack.run(function(error, stats) {
+    if (stats.hasErrors() || stats.hasWarnings()) {
+      browserSync.sockets.emit('fullscreen:message', {
+        title: 'WebPack compilation error',
+        body: stripAnsi(stats.toString()),
+        timeout: 100000
+      });
+      $.util.log('[webpack]', stats.toString());
+    } else {
+      browserSync.sockets.emit('fullscreen:message:clear');
+      reload();
+    }
     done();
   });
 });
@@ -76,6 +94,5 @@ gulp.task('images', function () {
     .pipe(gulp.dest(config.dest.images));
 });
 
-gulp.task('default', ['watch']);
-
 gulp.task('build', [{% if gulp_use_webpack %}'webpack', {% endif %}'sass']);
+gulp.task('default', ['watch']);
