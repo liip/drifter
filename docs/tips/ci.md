@@ -34,6 +34,17 @@ To prevent provisioning on the ci runners all the time and save lots of time, pr
 
 If you don't add this file to your project, then provisioning will be run every time a ci build is started.
 
+Be aware, that the CI deletes all files before each run, which are not in your git repository. This eg. means that your vendor (if you use composer) or node_modules folders are gone and not recreated, if provisioning doesn't go through.
+To still keep your important directories, add this to .gitlab-ci.yml (see also [https://docs.gitlab.com/ce/ci/yaml/#cache](https://docs.gitlab.com/ce/ci/yaml/#cache) for more details)
+
+```
+cache:
+  paths:
+    - bin/
+    - vendor/
+  key: sharedcache
+```
+
 #### Using a different folder than scripts/
 
 If you prefer to install those files in a different folder than scripts/ you can add the following line in your `parameters.yml`, eg:
