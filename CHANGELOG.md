@@ -12,6 +12,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Node role: add support for version 7.x
 - Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed
 - Gulp role: Print WebPack/Sass compilation to the browser
+- Ruby role: add instructions on how to setup Drifter for Rails projects
 
 ### Changed
 - PHP role: set `always_populate_raw_post_data` to -1 to avoid deprecation warnings
