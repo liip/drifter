@@ -57,7 +57,7 @@
   command: dpkg-query -W mysql-apt-config
   register: mysql_apt_config_check_deb
   failed_when: mysql_apt_config_check_deb.rc > 1
-  changed_when: mysql_apt_config_check_deb.rc == 1
+  changed_when: mysql_apt_config_check_deb.rc == 1 or '0.8.2' not in mysql_apt_config_check_deb.stdout
   become: yes
 
 - name: ensure mysql upstream repository package is downloaded
@@ -121,6 +121,13 @@
     name: mysql
     state: started
     enabled: yes
+  become: yes
+
+- name: ensure mysql data is upgraded
+  command: mysql_upgrade
+  register: mysql_upgrade
+  failed_when: mysql_upgrade.rc != 0 and mysql_upgrade.stdout.find('already upgraded') == -1
+  changed_when: mysql_upgrade.stdout.find('already upgraded') == -1
   become: yes
 
 - name: create database user
