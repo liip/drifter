@@ -22,6 +22,9 @@
     # - { role: mysql }
     # - { role: postgresql }
 
+    # Install WKHTMLTOPDF
+    # - { role: wkhtmltopdf }
+
     ## Scripting / Language support
     # - { role: php-fpm }       # PHP using Nginx and PHP-FPM
     # - { role: php-apache }    # PHP using Apache and mod-php
@@ -50,9 +53,6 @@
 
     ## Install the ssh rule, installs gitlab.liip.ch and github.com host key
     # - { role: ssh }
-
-    # Install WKHTMLTOPDF
-    # - { role: wkhtmltopdf }
 
     ## Install some Gitlab CI scripts and .gitlab-ci.yml.
     ## See https://github.com/liip/drifter/blob/master/ci/README.md for details

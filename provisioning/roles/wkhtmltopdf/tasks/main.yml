@@ -2,10 +2,12 @@
 - name: download wkhtmltopdf package
   get_url: url={{ url }} dest={{ dst }}/{{ filename }}
   sudo: yes
-  register: downloaded
+  register: wkhtmltopdf_downloaded
 
 
 - name: unzip wkhtmltopdf package
   unarchive: src={{ dst }}/{{ filename }} dest={{ dst }} copy=no
   sudo: yes
-  when: downloaded
+  when: wkhtmltopdf_downloaded
+  register: wkhtmltopdf_installed
+  notify: WKHTMLTOPDF installed
