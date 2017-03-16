@@ -13,6 +13,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed
 - Gulp role: Print WebPack/Sass compilation to the browser
 - Ruby role: add instructions on how to setup Drifter for Rails projects
+- Virtualbox: Set timesync-set-threshold to 10 seconds instead of the default 20 minutes
 
 ### Changed
 - PHP role: set `always_populate_raw_post_data` to -1 to avoid deprecation warnings

@@ -92,6 +92,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.cpus = 2
         v.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
         v.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+        # From the manual:
+        # The absolute drift threshold, given as milliseconds where to start setting the time instead of trying to smoothly adjust it. The default is 20 minutes.
+        # we set it here to 10 seconds, I had too many way off time, which screwed up some digital signatures.
+        v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
 
         if Vagrant.has_plugin?("vagrant-cachier")
             # use the same nfs config than above for cache performance
