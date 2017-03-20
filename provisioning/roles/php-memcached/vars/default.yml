@@ -1,5 +1,2 @@
 # Debian package name. Default b/c debian is default
-memcache_package: php5-memcached
-
-php_packages:
-  - "{{ memcache_package }}"
+php_memcached_package: php5-memcached

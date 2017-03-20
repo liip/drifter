@@ -7,9 +7,8 @@
    - "default.yml"
 
 - name: install PHP {{ php_version_installed }} memcached extension
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{ php_memcached_package }} state=latest
   become: yes
-  with_items: "{{ php_packages }}"
 
 - name: Activate PHP configuration files
   command: "{{ phpenmod }} -s ALL {{ item }}"

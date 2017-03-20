@@ -1,1 +1,1 @@
-memcache_package: php7.0-memcached
+php_memcached_package: php7.0-memcached
