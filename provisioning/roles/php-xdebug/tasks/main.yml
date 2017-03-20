@@ -11,7 +11,7 @@
 - name: install PHP packages
   apt: pkg={{ item }} state=latest
   become: yes
-  with_items: "{{ php_packages }}" 
+  with_items: "{{ php_packages }}"
 
 
 - include: not-debian-7.0.yml

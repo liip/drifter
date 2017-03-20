@@ -1,0 +1,2 @@
+# Debian package name. Default b/c debian is default
+php_memcached_package: php5-memcached
