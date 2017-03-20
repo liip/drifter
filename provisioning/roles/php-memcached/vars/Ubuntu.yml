@@ -1,0 +1,2 @@
+# On ubuntu the packages are called the same
+memcache_package: php-memcached
