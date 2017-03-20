@@ -1,5 +1,4 @@
 ---
 dependencies:
-  - { role: php-fpm }
   - { role: memcached }
   - { role: php }
