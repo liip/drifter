@@ -1,8 +1,31 @@
+.. toctree::
+    :maxdepth: 2
+
+    index
+    roles/databases
+    roles/frontend
+    roles/java
+    roles/others
+    roles/php
+    roles/python
+    roles/ruby
+    roles/system
+    roles/webservers
+    tips
+    tips/ci
+    tips/php
+    roadmap
+    boxes
+    migrations
+
+
 Drifter
 =======
 
 Drifter is a framework to help provision developer boxes using Ansible
 and Vagrant.
+
+
 
 Goals
 -----
@@ -81,9 +104,7 @@ Install Requirements
 Debian Stretch (testing) and Ubuntu Xenial 16.04
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Open a terminal and run:
-
-::
+Open a terminal and run::
 
     sudo apt-get install vagrant vagrant-lxc vagrant-cachier
     vagrant plugin install vagrant-hostmanager
@@ -92,9 +113,7 @@ Older Debian and Ubuntu versions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Go to https://www.vagrantup.com/downloads.html to download and install
-the latest Vagrant version. Then open a terminal and run:
-
-::
+the latest Vagrant version. Then open a terminal and run::
 
     sudo apt-get install lxc redir    # this is needed for LXC provider
     vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
@@ -108,15 +127,11 @@ Download and install
 Download and install
 `https://www.virtualbox.org/wiki/Downloads <the%20latest%20VirtualBox%20version>`__.
 
-Then open a terminal and run:
-
-::
+Then open a terminal and run::
 
     vagrant plugin install vagrant-cachier vagrant-hostmanager
 
-You can also use ``cask`` to help with the installation:
-
-::
+You can also use ``cask`` to help with the installation:::
 
     brew cask install vagrant virtualbox
 
@@ -134,9 +149,7 @@ running the following command:
 ``git config --global core.autocrlf input``
 
 For example if you get the following error when trying to provision the
-box:
-
-::
+box::
 
     TASK [base : ensure base packages are installed] *******************************
 
@@ -150,15 +163,11 @@ Usage
 
 Drifter is going to be installed into your project as a git submodule.
 So if your project is not using Git as VCS, start by creating a git
-repo:
-
-::
+repo::
 
     cd my-project && git init
 
-Then to install Drifter, simply run the following command:
-
-::
+Then to install Drifter, simply run the following command::
 
     curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash
 
@@ -171,9 +180,7 @@ steps:
 -  edit ``virtualization/playbook.yml`` to configure what to install in
    your box
 
-You now just have to launch your Vagrant box and start hacking!
-
-::
+You now just have to launch your Vagrant box and start hacking!::
 
     vagrant up
 
