@@ -1,11 +1,12 @@
+***********************
 Migrations instructions
-=======================
+***********************
 
 Version 1.0.0
 -------------
 
 Ansible version and ``ansible_local``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 Changes were made to the roles that requires to use of at least the
 version 1.9.0 of ``ansible``. This means Debian stable users have to
@@ -18,14 +19,14 @@ version was bumped to 1.8.4 in this case to get rid of the bug that
 caused issues before. This is the new recommanded provisioner.
 
 Old Vagrantfile format
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 
 The support for the old Vagrantfile format has been removed in this
 version. You should follow the steps detailed in the migration from
 0.1.0 to 0.2.0 if you haven't done it already.
 
 Virtualbox and LXC URLs
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 It's not possible to specify separate boxes for LXC and Virtualbox via
 Drifter anymore. You need to move to the new JSON box format in order to
@@ -38,7 +39,7 @@ The ``lxc_box_name``, ``lxc_box_url``, ``vbox_box_name`` and
 ``box_url``.
 
 Git
-~~~
+---
 
 Git installation and configuration is now in its own role. It was added
 to the ``playbook.yml.dist`` file, but existing project should also add
@@ -48,14 +49,14 @@ You should also have a look at the ``git`` role documentation inside the
 System roles for the new features.
 
 PHP roles names
-~~~~~~~~~~~~~~~
+---------------
 
 ``redis-php`` and ``memcached-php`` roles have been renamed to follow
 the already in place convention. You'll now have to use ``php-redis``
 and ``php-memcached``
 
 Flash & Django roles
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The ``flask`` and ``django`` roles now use the new ``virtualenv`` role.
 This means the parameter for the requirements is now named
@@ -65,7 +66,7 @@ The default value for this parameter has also been changed to
 "requirements/dev.txt".
 
 Version 0.1.0 to 0.2.0
-----------------------
+======================
 
 In order for the framework to work correctly on Windows, we removed the
 symlinks to the Vagrantfile stored in the submodule. The content of the

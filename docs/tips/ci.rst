@@ -1,3 +1,7 @@
+**
+CI
+**
+
 Integrating with Gitlab CI
 ==========================
 

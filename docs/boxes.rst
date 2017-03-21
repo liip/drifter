@@ -1,8 +1,9 @@
+************
 Create boxes
-============
+************
 
 Current way
------------
+===========
 
 Used for the current boxes available on
 https://vagrantbox-public.liip.ch/
@@ -17,10 +18,10 @@ be installed in the box with at least a version of 1.9.0 otherwise the
 roles won't work.
 
 Other way (older, may still work)
----------------------------------
+=================================
 
 LXC
-~~~
+---
 
 ::
 
@@ -39,7 +40,7 @@ setup:
     lxc.network.flags = up
 
 VirtualBox
-~~~~~~~~~~
+----------
 
 Install `veewee <https://github.com/jedi4ever/veewee/>`__ and then:
 

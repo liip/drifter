@@ -1,5 +1,6 @@
+************
 The future ?
-============
+************
 
 The framework will evolve as we use it on more projects. It is not the
 goal to refrain you from doing anything. It will be improved as we need
