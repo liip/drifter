@@ -1,9 +1,10 @@
 ---
 - name: make sure libreadline-dev is installed
-  apt:
-    pkg: libreadline-dev
-    state: installed
-  sudo: yes
+  apt: pkg={{ item }} state=latest
+  become: yes
+  with_items:
+    - libreadline-dev
+    - libsqlite3-dev
 
 - name: install rbenv
   git:
@@ -50,8 +51,7 @@
   copy:
     dest: ~/.gemrc
     content: |
-        +install: --no-rdoc --no-ri
-        +update: --no-rdoc --no-ri
+      install: --no-document
 
 - name: Install bundler
   command: ~/.rbenv/shims/gem install bundler

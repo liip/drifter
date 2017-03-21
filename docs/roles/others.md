@@ -1,11 +1,3 @@
-# Ruby
-
-Install Ruby, Gem integration for Debian and dev dependencies.
-
-Any Debian ruby package should then be also recognized as a Gem. You can however
-continue to install Gems using the `gem` utility if you need a specific version
-or an unavailable package.
-
 # NodeJS
 
 Install NodeJS and NPM.
