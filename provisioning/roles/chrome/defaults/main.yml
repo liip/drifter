@@ -1,0 +1,4 @@
+# currently only the latest version is supported
+chrome_download_url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+chromedriver_download_url: https://chromedriver.storage.googleapis.com/2.28/chromedriver_linux64.zip
