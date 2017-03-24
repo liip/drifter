@@ -8,7 +8,7 @@ or an unavailable package.
 
 # NodeJS
 
-Install NodeJS and NPM.
+Install NodeJS, NPM and Yarn.
 
 ## Parameters
 
