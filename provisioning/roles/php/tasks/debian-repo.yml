@@ -7,9 +7,17 @@
   become: yes
   when: "{{ php_version_installed }} > 5.4"
 
-- name: debian-repo | Add DotDeb repository for PHP 7.0 on Jessie
+- name: debian-repo | Make sure APT supports HTTPS sources
+  apt: pkg=apt-transport-https state=present
+  become: yes
+
+- name: debian-repo | Install deb.sury.org repository key
+  apt_key: id=AC0E47584A7A714D url=https://packages.sury.org/php/apt.gpg state=present
+  become: yes
+
+- name: debian-repo | Add deb.sury.org repository for PHP 7.x on Jessie
   apt_repository: repo='{{ item }}' update_cache=yes
   with_items:
-    - deb http://packages.dotdeb.org jessie all
+    - deb https://packages.sury.org/php jessie main
   become: yes
-  when: "php_version_installed == '7.0'"
+  when: "php_version_installed >= '7.0'"

@@ -5,6 +5,7 @@
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}-{{ php_version_installed | int }}.x.yml"
    - "{{ ansible_distribution }}.yml"
    - "default.yml"
 
@@ -16,8 +17,4 @@
 
 - include: not-debian-7.0.yml
   when: "not ({{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian')"
-
-- include: debian-php7.yml
-  when: "{{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian'"
-
 

@@ -1,24 +1,13 @@
 - include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+    - "{{ ansible_distribution }}-{{ php_version_installed | int }}.x.yml"
     - "{{ ansible_distribution }}.yml"
   when: "php_version_installed is defined"
 
 - name: install PHP redis extension
   apt: pkg={{ php_redis_package }} state=latest
   become: yes
-  when: "php_version_installed is defined and not ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
-
-- name: Activate PHP configuration files
-  command: "{{phpenmod}} -s ALL {{ item }}"
-  with_items:
-    - redis
   notify:
-    - restart php-fpm
-  become: yes
-  when: "php_version_installed is defined and not ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
+    - restart webserver
 
-- include: php7.yml
-  when: "php_version_installed is defined and ({{ php_version_installed | float }} == 7.0 and ansible_distribution == 'Debian')"
-
-- meta: flush_handlers

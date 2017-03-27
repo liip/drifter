@@ -1,13 +1,13 @@
 - set_fact: php_version_installed={{ php_version | float }}
 
 - fail: msg="PHP7.0 is only available on Jessie."
-  when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} == 7.0"
+  when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} >= 7.0"
 
 - include: ubuntu-repo.yml
   when: "ansible_distribution == 'Ubuntu'"
 
 - include: debian-repo.yml
-  when: "ansible_distribution == 'Debian'"
+  when: "ansible_distribution == 'Debian' and {{ php_version_installed }} > 5.5"
 
 # we do include_vars twice so that we can have default values
 # and just have to override any changes in the specific versions
@@ -16,6 +16,7 @@
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}-{{ php_version_installed | int }}.x.yml"
    - "{{ ansible_distribution }}.yml"
    - "default.yml"
 
@@ -38,10 +39,7 @@
   when: "'{{ database_type|default(false) }}' == 'postgresql'"
 
 - include: not-debian-7.0.yml
-  when: "not ({{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian')"
-
-- include: debian-php7.yml
-  when: "{{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian'"
+  when: "not ({{ php_version_installed }} >= 7.0 and ansible_distribution == 'Debian')"
 
 - include: wheezy-php5.yml
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed }} > 5.4"

@@ -1,9 +1,0 @@
-- name: debian-php7 | install imagick install script for PHP7
-  copy: src=install_imagick.sh dest=/tmp/install_imagick.sh mode=0755
-
-- name: debian-php7 | compile and install imagick for PHP7
-  command: bash /tmp/install_imagick.sh
-  args:
-    chdir: /tmp/
-    creates: /etc/php/7.0/mods-available/imagick.ini
-

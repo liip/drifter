@@ -5,7 +5,7 @@
     - { src: xdebug.ini.j2, dest: "{{ etc_php_path }}/mods-available/xdebug.ini" }
 
 - name: Activate PHP configuration files
-  command: "{{phpenmod}} {{ item }}"
+  command: "{{php_phpenmod}} {{ item }}"
   with_items:
     - xdebug
   become: yes
