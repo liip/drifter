@@ -1,5 +1,4 @@
 database_user: "{{ database_name }}"
 database_password: "{{ database_name }}"
 mysql_version: 5.6
-mysql_apt_config_version: 0.8.3
-mysql_apt_config_patchlevel: 1
+mysql_apt_config_version: 0.8.3-1
