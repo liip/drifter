@@ -23,6 +23,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Gulp role: Autoprefixer now uses Browserslist
 - Gulp role: WebPack’s babel-loader now uses preset `env` by default
 - Gulp role: WebPack config is now standard (export an object and not a function)
+- Documentation: Converted the documentation language from Markdown to RestructuredText
 
 ### Fixed
 - MySQL role: fix installation of MySQL packages by upgrading mysql-apt-config
