@@ -6,7 +6,7 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
-## Unreleased
+## [1.2.0] - 2017-03-28
 
 ### Added
 - Node role: add support for version 7.x
@@ -238,7 +238,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/liip/drifter/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/liip/drifter/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/liip/drifter/compare/v1.0.9...v1.1.0
 [1.0.9]: https://github.com/liip/drifter/compare/v1.0.8...v1.0.9
