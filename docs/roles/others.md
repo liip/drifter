@@ -8,13 +8,13 @@ or an unavailable package.
 
 # NodeJS
 
-Install NodeJS, NPM and Yarn.
+Install NodeJS and NPM. Also install Yarn when `nodejs_with_yarn` is set to `true`.
 
 ## Parameters
 
 * **nodejs_version** : The version to install, currently supports 7.x, 6.x, 5.x, 4.x, 0.12 and 0.10, default being 6.x.
 * **nodejs_distro** : Is automatically set to either 'jessie' or 'wheezy' based on available information, you can also put an Ubuntu codename here.
-* **with_yarn** : Install yarn package manager. Default: false
+* **nodejs_with_yarn** : Install yarn package manager. Default: false
 
 # OpenLDAP
 

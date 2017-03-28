@@ -10,7 +10,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Added
 - Node role: add support for version 7.x
-- Node role: install yarn
+- Node role: install yarn when `nodejs_with_yarn` is set to `true`
 - Gulp role: Specify SSL certificates in BrowserSync config when role SSL is installed
 - Gulp role: Print WebPack/Sass compilation to the browser
 - Ruby role: add instructions on how to setup Drifter for Rails projects
