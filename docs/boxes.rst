@@ -21,7 +21,7 @@ Other way (older, may still work)
 =================================
 
 LXC
----
+~~~
 
 ::
 
@@ -40,7 +40,7 @@ setup:
     lxc.network.flags = up
 
 VirtualBox
-----------
+~~~~~~~~~~
 
 Install `veewee <https://github.com/jedi4ever/veewee/>`__ and then:
 
