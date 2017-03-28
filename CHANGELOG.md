@@ -21,6 +21,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 - MySQL role: don't install mysql upstream repository if a newer version is already installed.
 - Nginx role: fix Drupal templates and rewrite rule
 
+### Added
+- Add `firefox` role to install a specific version or the latest Firefox version
+- Add `chrome` role to install the Chrome browser
+
 ## [1.3.0] - 2017-04-26
 
 ### Added
