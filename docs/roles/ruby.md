@@ -24,7 +24,7 @@ You have two options. First, in the box, run `rails server` or `puma`, then open
 Second option is to add the nginx role with the rails template:
 
 ```
-- { role: nginx, web_directory: "/vagrant/public", site_template: "rails-site.j2", proxy_port: 3000, when: "no_nginx is not defined" }
+- { role: nginx, web_directory: "/vagrant/public", site_template: "rails-site.j2", proxy_port: 3000 }
 ```
 
 Then you can just open `http://{hostname}`
