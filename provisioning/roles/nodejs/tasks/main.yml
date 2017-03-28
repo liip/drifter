@@ -17,3 +17,18 @@
 - name: Install nodejs
   apt: name=nodejs state=present
   become: yes
+
+- name: Add Yarn apt key
+  apt_key: url=https://dl.yarnpkg.com/debian/pubkey.gpg
+  become: yes
+  when: nodejs_with_yarn
+
+- name: Add Yarn apt repo
+  apt_repository: repo='deb https://dl.yarnpkg.com/debian/ stable main'
+  become: yes
+  when: nodejs_with_yarn
+
+- name: Install yarn
+  apt: pkg=yarn state=latest
+  become: yes
+  when: nodejs_with_yarn
