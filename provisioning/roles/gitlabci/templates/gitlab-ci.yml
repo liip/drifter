@@ -10,7 +10,7 @@ variables:
 #  paths:
 #    - vendor/
 #    - bin/
-#  group: sharedcache
+#  key: sharedcache
   
 tests:
   tags:
