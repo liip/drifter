@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This project try to follows [Semantic Versioning](http://semver.org/) since the version 1.0.0.
 
-For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
+For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
 ## Unreleased
 
