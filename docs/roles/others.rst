@@ -58,4 +58,4 @@ To be completed.
 Gitlab CI
 =========
 
-See https://liip-drifter.readthedocs.io/en/latest/tips/ci/
+See :doc:`../tips/ci`.
