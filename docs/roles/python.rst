@@ -21,14 +21,19 @@ Virtualenv
 ==========
 
 Create a python virtual environment and install application requirements
-via pip.
+via pip. The environment will also get `pip-tools <https://github.com/jazzband/pip-tools>`_ installed.
 
 The virtual environment is automatically activated upon box login.
 
--  **pip\_requirement** : filename of the requirements file, defaults to
+-  **pip\_requirements** : filename of the requirements file, defaults to
    "requirements/dev.txt"
 -  **env\_root** : directory where the virtual environment must be
    created, defaults to "~/ENV"
+-  **pip\_requirements\_dir** : name of the requirements directory that contain the `.in` files. If set, Drifter will
+   run ``pip-compile`` on these files upon provisioning.
+-  **pip\_version** : the version of pip to install in the virtual environment. Defaults to 9.0.1.
+-  **setuptools\_version** : the version of setuptools to install in the virtual environment. Defaults to 28.8.0.
+-  **pip_tools\_version** : the version of pip-tools to install in the virtual environment. Defaults to 1.8.2.
 
 Django
 ======

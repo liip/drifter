@@ -1,12 +1,22 @@
 ---
-- name: create venv and install base packages
-  pip: "requirements={{ root_directory }}/{{ pip_requirements }} virtualenv={{ env_root }} virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv' }}"
+- shell: "ls {{ root_directory }}/{{ pip_requirements_dir }}/*.in"
+  register: pip_requirements_files
+  when: pip_requirements_dir is defined
 
-- name: make sure pip and setuptools are up-to-date
-  pip: "name={{ item }} virtualenv={{ env_root }}"
+- name: create venv
+  pip: "name={{ item }} virtualenv={{ env_root }} virtualenv_command={{ 'virtualenv' if (python_version|int == 2) else 'pyvenv' }}"
   with_items:
     - pip=={{ pip_version }}
     - setuptools=={{ setuptools_version }}
+    - pip-tools=={{ pip_tools_version }}
+
+- name: compile requirements files
+  command: "{{ env_root }}/bin/pip-compile {{ item }}"
+  with_items: "{{ pip_requirements_files.stdout_lines }}"
+  when: pip_requirements_dir is defined
+
+- name: install requirements
+  pip: "requirements={{ root_directory }}/{{ pip_requirements }} virtualenv={{ env_root }}"
 
 - name: activate virtualenv when sshing into the box
   lineinfile: dest=~/.bashrc line='. {{ env_root }}/bin/activate'

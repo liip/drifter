@@ -6,6 +6,11 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations/.
 
+## Unreleased
+
+### Added
+- Virtualenv role: add `pip_requirements_dir` option to automatically compile `.in` requirements
+
 ## [1.2.0] - 2017-03-28
 
 ### Added
