@@ -2,7 +2,7 @@
   template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
   become: yes
   with_items:
-    - { src: php.ini.j2, dest: "{{ etc_php_path }}/mods-available/php-dev.ini" }
+    - { src: php.ini.j2, dest: "{{ etc_php_path }}{{ php_version_installed }}/mods-available/php-dev.ini" }
 
 - name: Activate PHP configuration files
   command: "{{phpenmod}} {{ item }}"
