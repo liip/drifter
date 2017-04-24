@@ -11,6 +11,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 - Virtualenv role: add `pip_requirements_dir` option to automatically compile `.in` requirements
 
+### Fixed
+- Webpack: use absolute path for the output.path config value
+
 ## [1.2.0] - 2017-03-28
 
 ### Added
