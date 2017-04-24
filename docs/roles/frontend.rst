@@ -33,6 +33,8 @@ Parameters
    created, defaults to ``<gulp_directory>/package.json``
 -  **gulp\_package\_json\_author**: Author that should be put in the
    package.json file, defaults to ``Liip AG``
+-  **gulp\_use\_config**: Create the gulp.config.js used by the default Gulpefile.js, defaults to
+   ``true``
 -  **gulp\_use\_webpack**: Setup Webpack alongside Gulp, defaults to
    ``true``
 -  **gulp\_use\_purescript**: Add PureScript support to Webpack,

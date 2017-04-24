@@ -10,6 +10,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Added
 - Virtualenv role: add `pip_requirements_dir` option to automatically compile `.in` requirements
+- Gulp: add `gulp_use_config` to make gulp.config.js file creation optional
 
 ## [1.2.0] - 2017-03-28
 

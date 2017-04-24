@@ -3,7 +3,12 @@
   with_items:
     - { src: package.json, dest: "{{ gulp_package_json_path }}" }
     - { src: Gulpfile.js, dest: "{{ gulp_directory }}/Gulpfile.js" }
+
+- name: Create Gulp config file
+  template: src={{ item.src }} dest={{ item.dest }} force=no
+  with_items:
     - { src: gulp.config.js, dest: "{{ gulp_directory }}/gulp.config.js" }
+  when: gulp_use_config
 
 - name: Create webpack.config.js
   template: src={{ item.src }} dest={{ item.dest }} force=no
