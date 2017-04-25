@@ -8,7 +8,7 @@
   template: src={{ item.src }} dest={{ item.dest }} force=no
   with_items:
     - { src: gulp.config.js, dest: "{{ gulp_directory }}/gulp.config.js" }
-  when: gulp_use_config
+  when: gulp_create_config
 
 - name: Create webpack.config.js
   template: src={{ item.src }} dest={{ item.dest }} force=no
