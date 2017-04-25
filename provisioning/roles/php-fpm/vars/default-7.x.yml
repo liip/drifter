@@ -1,0 +1,4 @@
+php_fpm_package: php{{ php_version_installed }}-fpm
+
+
+php_fpm_pool_conf: /etc/php/{{ php_version_installed }}/fpm/pool.d/www.conf
