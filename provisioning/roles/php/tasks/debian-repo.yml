@@ -20,4 +20,4 @@
   with_items:
     - deb https://packages.sury.org/php jessie main
   become: yes
-  when: "php_version_installed >= '7.0'"
+  when: "{{ php_version_installed| version_compare('7.0', '>=') }}"

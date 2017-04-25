@@ -1,6 +1,6 @@
 - include: php7.yml
-  when: "{{ php_version_installed|float }} >= 7.0"
+  when: "{{ php_version_installed| version_compare('7.0', '>=') }}"
 
 - include: php5.yml
-  when: "{{ php_version_installed|float }} < 7.0"
+  when: "{{ php_version_installed| version_compare('7.0', '<') }}"
 
