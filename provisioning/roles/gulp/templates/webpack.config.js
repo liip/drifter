@@ -12,7 +12,7 @@ const webpackConfig = {
   },
   entry: './static/javascripts/index.js',
   output: {
-    path: './static/javascripts',
+    path: path.resolve(__dirname, 'static/javascripts'),
     filename: 'bundle.js'
   },
   module: {
