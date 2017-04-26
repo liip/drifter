@@ -1,6 +1,7 @@
 gulp_directory: /vagrant/
 gulp_package_json_path: "{{ gulp_directory }}/package.json"
 gulp_package_json_author: Liip AG
+gulp_create_config: true
 gulp_use_webpack: true
 gulp_use_purescript: false
 gulp_browserslist:

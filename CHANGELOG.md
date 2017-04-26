@@ -11,9 +11,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 - Virtualenv role: add `pip_requirements_dir` option to automatically compile `.in` requirements
 - PHP role: add support for PHP 7.1
+- Gulp role: add `gulp_create_config` to make gulp.config.js file creation optional
 
 ### Fixed
-- Webpack: use absolute path for the output.path config value
+- Webpack role: use absolute path for the output.path config value
 - Nginx role: add add X-Forwarded-Proto header in Rails site template
 
 ### Changed
