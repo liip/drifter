@@ -19,7 +19,6 @@ For migration information, you can always have a look at https://liip-drifter.re
 - PHP role: change the packages repo from the discontinued dotdeb.org to deb.sury.org
 - PHP role: xdebug and imagick for PHP 7.x are taken from the repo and not compiled anymore
 
-
 ## [1.2.0] - 2017-03-28
 
 ### Added
