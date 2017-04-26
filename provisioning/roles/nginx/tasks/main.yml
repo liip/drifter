@@ -11,7 +11,7 @@
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ ansible_distribution }}-php-{{ php_version_installed }}.yml"
-   - "default-php-{{ php_version_installed }}.yml"
+   - "default-php-{{ php_version_installed | int }}.x.yml"
    - "default-php.yml"
   when: "php_version_installed is defined"
 

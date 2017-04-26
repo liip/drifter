@@ -3,7 +3,8 @@
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
-   - "default-{{ php_version_installed }}.yml"
+#   - "default-{{ php_version_installed }}.yml"
+   - "default-{{ php_version_installed | int }}.x.yml"
    - "default.yml"
 
 

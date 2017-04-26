@@ -1,8 +1,8 @@
-- name: install libapache2-mod-php7.0
-  apt: pkg=libapache2-mod-php7.0 state=latest
+- name: install libapache2-mod-php{{ php_version_installed }}
+  apt: pkg=libapache2-mod-php{{ php_version_installed }} state=latest
   become: yes
 
-- apache2_module: state=present name=php7.0
+- apache2_module: state=present name=php{{ php_version_installed }}
   notify: restart apache
   become: yes
 

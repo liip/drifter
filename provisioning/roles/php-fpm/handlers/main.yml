@@ -3,3 +3,9 @@
     name: "{{ php_fpm_package }}"
     state: restarted
   become: yes
+
+- name: restart webserver
+  service:
+    name: "{{ php_fpm_package }}"
+    state: restarted
+  become: yes

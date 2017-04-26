@@ -1,3 +1,2 @@
 php_redis_package: php5-redis
 
-phpenmod: php5enmod

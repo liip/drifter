@@ -1,0 +1,29 @@
+
+php_packages:
+  - php{{ php_version_installed }}-common
+  - php{{ php_version_installed }}-cli
+  - php{{ php_version_installed }}-curl
+  - php{{ php_version_installed }}-intl
+  - php{{ php_version_installed }}-gd
+  - php{{ php_version_installed }}-sqlite3
+  - php{{ php_version_installed }}-readline
+  - php{{ php_version_installed }}-xml
+  - php-imagick
+  - php{{ php_version_installed }}-json
+  - php{{ php_version_installed }}-soap
+  - php{{ php_version_installed }}-mbstring
+  - php{{ php_version_installed }}-bcmath
+  - php{{ php_version_installed }}-zip
+
+php_mysql_packages: 
+  - php{{ php_version_installed }}-mysql
+  
+php_pgsql_package: php{{ php_version_installed }}-pgsql
+
+#/etc/php5 auf debian
+etc_php_path: /etc/php/{{ php_version_installed }}/
+
+#php5enmod auf debian
+phpenmod: phpenmod
+
+alternatives_php_path: /usr/bin/php{{ php_version_installed }}

@@ -2,6 +2,10 @@
   service: name=apache2 state=restarted
   become: yes
 
+- name: restart webserver
+  service: name=apache2 state=restarted
+  become: yes
+
 - name: reload apache
   service: name=apache2 state=reloaded
   become: yes

@@ -1,21 +1,12 @@
-- include_vars: "default.yml"
-
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}-{{ php_version_installed | int }}.x.yml"
    - "{{ ansible_distribution }}.yml"
    - "default.yml"
 
 - name: install PHP {{ php_version_installed }} memcached extension
   apt: pkg={{ php_memcached_package }} state=latest
   become: yes
-
-- name: Activate PHP configuration files
-  command: "{{ phpenmod }} -s ALL {{ item }}"
-  with_items:
-    - memcached
   notify:
-    - restart php-fpm
-  become: yes
-
-- meta: flush_handlers
+    - restart webserver
