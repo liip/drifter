@@ -13,6 +13,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Fixed
 - Webpack: use absolute path for the output.path config value
+- Nginx role: add add X-Forwarded-Proto header in Rails site template
 
 ## [1.2.0] - 2017-03-28
 
