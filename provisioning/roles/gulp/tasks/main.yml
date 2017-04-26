@@ -5,15 +5,11 @@
     - { src: Gulpfile.js, dest: "{{ gulp_directory }}/Gulpfile.js" }
 
 - name: Create Gulp config file
-  template: src={{ item.src }} dest={{ item.dest }} force=no
-  with_items:
-    - { src: gulp.config.js, dest: "{{ gulp_directory }}/gulp.config.js" }
+  template: src=gulp.config.js dest={{ gulp_directory }}/gulp.config.js force=no
   when: gulp_create_config
 
 - name: Create webpack.config.js
-  template: src={{ item.src }} dest={{ item.dest }} force=no
-  with_items:
-    - { src: webpack.config.js, dest: "{{ gulp_directory }}/webpack.config.js" }
+  template: src=webpack.config.js dest={{ gulp_directory }}/webpack.config.js force=no
   when: gulp_use_webpack
 
 - name: Install Gulp globally
