@@ -6,6 +6,11 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## Unreleased
+
+### Fixed
+- PHP role: don't download surby.org gpg key, when not needed. Fixes problem on wheezy.
+
 ## [1.3.0] - 2017-04-26
 
 ### Added
