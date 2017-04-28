@@ -22,6 +22,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Nginx role: fix Drupal templates and rewrite rule
 
 ### Added
+- Add `phantomjs` role to install a specific phantomJS version
 - Add `firefox` role to install a specific version or the latest Firefox version
 - Add `chrome` role to install the Chrome browser
 

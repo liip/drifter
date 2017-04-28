@@ -58,9 +58,10 @@
     ## See https://github.com/liip/drifter/blob/master/ci/README.md for details
     # - { role: gitlabci }
 
-    # Install Browsers for frontend testing
+    # Install Browsers for end-to-end tests
     # - { role: firefox }
     # - { role: chrome }
+    # - { role: phantomjs }
 
     ## You can also creates your own role, just add a directory under the 'virtualization'
     ## folder and refer to it like for other roles :

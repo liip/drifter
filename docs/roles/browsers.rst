@@ -3,7 +3,7 @@ Browser Roles
 *************
 
 Browser roles are available for frontend testing. They all depend on
-the role xvfb, which is a headless X server.
+the role xvfb, which is a headless X server, except for Phantomjs.
 
 
 Firefox
@@ -30,6 +30,12 @@ There are no parameters available for this one, as they don't really provide
 older versions. Therefore, always the newest Chrome browser will be installed.
 
 
+PhantomJS
+=========
+
+Install PhantomJS
+
+
 Example usage with pytest and splinter
 ======================================
 
@@ -43,9 +49,10 @@ this):
 
 - pytest
 - pytest-splinter
-- pytest-xvfb
+- pytest-xvfb (When you want to use firefox or chrome)
 
 
 In order to run your tests, you can simply invoke pytest. By default the
 Firefox webdriver will be used, but it's possible to change this with the
-option --splinter-webdriver=chrome.
+option --splinter-webdriver=chrome. More info available
+[here](https://github.com/pytest-dev/pytest-splinter).
