@@ -1,3 +1,4 @@
+/* eslint-env node */
 const path    = require('path');
 const webpack = require('webpack');
 const config  = require('./gulp.config.js');
@@ -13,7 +14,7 @@ const webpackConfig = {
   entry: './static/javascripts/index.js',
   output: {
     path: path.resolve(__dirname, 'static/javascripts'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -26,8 +27,8 @@ const webpackConfig = {
           psc: 'psa',
           pscArgs: { sourceMaps: true },
           pscIde: true,
-          src: ['bower_components/purescript-*/src/**/*.purs', 'src/**/*.purs']
-        }
+          src: ['bower_components/purescript-*/src/**/*.purs', 'src/**/*.purs'],
+        },
       },
 {% endif %}
       {
@@ -37,30 +38,30 @@ const webpackConfig = {
         options: {
           presets: [
             ['env', {
-              'targets': {
-                'browsers': {{ gulp_browserslist | to_json }}
-              }
-            }]
-          ]
-        }
-      }
-    ]
-  }
+              targets: {
+                browsers: {{ gulp_browserslist | to_json }},
+              },
+            }],
+          ],
+        },
+      },
+    ],
+  },
 };
 
 if (config.optimize) {
   webpackConfig.plugins = [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      comments: false
-    })
+      comments: false,
+    }),
   ];
 } else {
-  webpackConfig.devtool = '#eval';
+  webpackConfig.devtool = 'cheap-module-source-map';
 }
 
 module.exports = webpackConfig;
