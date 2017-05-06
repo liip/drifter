@@ -8,6 +8,11 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [1.3.0] - 2017-04-26
 
+### Changed
+- Gulp role: Webpack now uses "cheap-module-source-map" as devtool
+
+## [1.3.0] - 2017-04-26
+
 ### Added
 - Virtualenv role: add `pip_requirements_dir` option to automatically compile `.in` requirements
 - PHP role: add support for PHP 7.1
