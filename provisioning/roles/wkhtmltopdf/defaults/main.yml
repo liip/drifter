@@ -1,0 +1,6 @@
+version: "0.12/0.12.4"
+filename: "wkhtmltox-0.12.4_linux-generic-amd64.tar.xz"
+
+# this is not very useful yet, but their URL is built like this
+url: "http://download.gna.org/wkhtmltopdf/{{ version }}/{{ filename }}"
+dst: "/opt/"

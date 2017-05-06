@@ -22,6 +22,9 @@
     # - { role: mysql }
     # - { role: postgresql }
 
+    # Install WKHTMLTOPDF
+    # - { role: wkhtmltopdf }
+
     ## Scripting / Language support
     # - { role: php-fpm }       # PHP using Nginx and PHP-FPM
     # - { role: php-apache }    # PHP using Apache and mod-php

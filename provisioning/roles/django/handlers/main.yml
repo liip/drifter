@@ -1,0 +1,4 @@
+# If WKHTMLTOPDF was installed, set the env variable
+- name: WKHTMLTOPDF installed
+  copy: content="/opt/wkhtmltox/bin/wkhtmltopdf" dest="{{ django_root }}/envdir/WKHTMLTOPDF"
+
