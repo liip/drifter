@@ -11,6 +11,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
 
+### Fixed
+- PHP role: don't download surby.org gpg key, when not needed. Fixes problem on wheezy
+
 ## [1.3.0] - 2017-04-26
 
 ### Added
