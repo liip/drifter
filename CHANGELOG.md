@@ -6,6 +6,11 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## Unreleased
+
+### Changed
+- Gulp role: Webpack now use "cheap-module-source-map" as devtool
+
 ## [1.3.0] - 2017-04-26
 
 ### Changed
