@@ -1,4 +1,4 @@
-{% extends "php-site.j2" %}
+{% extends "nginx/templates/php-site.j2" %}
 
 {% block extra %}
     {{ super() }}
@@ -33,7 +33,7 @@
         try_files $uri /index.php?$query_string;
     }
 
-     location @rewrite {
-         rewrite ^ /index.php;
-     }
+    location @rewrite {
+        rewrite ^ /index.php;
+    }
 {% endblock %}

@@ -27,10 +27,24 @@ roles do it automatically with the correct parameters.
 The server logs are stored in
 ``/var/log/nginx/<hostname>.(error|access).log``.
 
+You can have your own site template in your project directory,
+for example `virtualization/templates/nginx.j2` and extends one of the
+default templates provided:
+
+```
+{% extends "nginx/templates/default-site.j2" %}
+
+{% block extra %}
+    {{ super() }}
+
+    # Here goes your custom Nginx rules
+{% endblock %}
+```
+
 Parameters
 ----------
 
--  **site\_template** : The virtual host template to use, defaults to
+-  **site_template** : The virtual host template to use, defaults to
    "default-site.j2" for static websites only, possible values are:
 -  ``default-site.j2``
 -  ``django-site.j2`` Site template for Django
@@ -42,10 +56,10 @@ Parameters
 -  ``symfony2-site.j2`` Site template for Symfony2
 
 -  **index** : what file do we use as an index ? defaults to 'false'
--  **static\_host** : Which static host to use for Django projects ?
+-  **static_host** : Which static host to use for Django projects ?
    defaults to "false".
--  **static\_dir** : Which static URL dir to use for Django projects ?
+-  **static_dir** : Which static URL dir to use for Django projects ?
    defaults to "false".
--  **static\_fs\_dir** : Which static filesystem dir to use for Django
+-  **static_fs_dir** : Which static filesystem dir to use for Django
    projects ? defaults to "".
--  **expire\_time** : Expiration time of static files, defaults to "6h"
+-  **expire_time** : Expiration time of static files, defaults to "6h"

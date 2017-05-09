@@ -10,6 +10,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
+- Nginx role: Allow to extends templates from outside the templates directory
 
 ### Fixed
 - PHP role: don't download surby.org gpg key, when not needed. Fixes problem on wheezy
