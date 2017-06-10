@@ -12,6 +12,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
 
 ### Fixed
+- Mysql role: use become to create database and user. Fixes problem on trusty
 - PHP role: don't download surby.org gpg key, when not needed. Fixes problem on wheezy
 
 ## [1.3.0] - 2017-04-26
