@@ -27,8 +27,11 @@ Install ``solr`` via the tarballs available on the Apache repository.
 A specific user is created and ``solr`` is automatically started at boot
 using ``supervisor``.
 
-You can chose any ``solr`` version available via download. However the
-provided start command might need some adjustment.
+You can chose any ``solr`` version (compatible with Java7) via download.
+However the provided start command might need some adjustment.
+
+To create a Solr core use both the ``solr_core_name`` and ``solr_core_conf``
+parameter.
 
 Parameters
 ----------
@@ -46,6 +49,15 @@ want to use a version different than 4.X or 5.X
 -  **solr.config\_dir**: Solr configuration directory, defaults to
    "//solr/"
 -  **solr\_port**: defaults to 8984
+
+-  **solr\_core\_name**: Create a new Solr core/index with such name; by
+   default no indexes are created. Both this parameter and the ``solr_core_conf``
+   must be defined.
+-  **solr\_core\_conf**: Specifies the Solr core/index configuration folder
+   to use for the index, it will be symlink to the `conf` folder of the index,
+   refer to http://lucene.apache.org/solr/ documentation for the file-structure
+   required by Solr.
+   Example: `solr_core_conf=vagrant/solr/conf`.
 
 Internal Parameters
 -------------------

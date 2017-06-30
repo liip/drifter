@@ -9,6 +9,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ## Unreleased
 
 ### Added
+- Solr role: allow to setup a Solr index/core during the provisioning
 - Virtualbox: allow use of Virtualbox shared folders besides nfs
 
 ### Changed
