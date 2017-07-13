@@ -6,6 +6,12 @@ php_packages:
   - php5-gd
   - php5-sqlite
   - php5-imagick
+  - php5-bcmath
+  - php5-mbstring
+  - php5-readline
+  - php5-soap
+  - php5-xml
+  - php5-zip
 
 php_mysql_packages: 
   - php5-mysqlnd
