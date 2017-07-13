@@ -1,4 +1,4 @@
-{% extends "php-site.j2" %}
+{% extends "nginx/templates/php-site.j2" %}
 
 {% block extra %}
     {{ super() }}
@@ -48,5 +48,4 @@
     location @rewrite {
         rewrite ^/(.*)$ /index.php?q=$1;
     }
-
 {% endblock %}

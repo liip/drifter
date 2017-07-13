@@ -1,4 +1,4 @@
-{% extends "default-site.j2" %}
+{% extends "nginx/templates/default-site.j2" %}
 
 {% block extra %}
     {{ super() }}
@@ -63,5 +63,4 @@
     location ~ '\.php$|^/update.php' {
         include conf.d/partials/_php_fpm.conf;
     }
-
 {% endblock %}
