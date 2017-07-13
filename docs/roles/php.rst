@@ -82,6 +82,11 @@ also configured to trigger debugging and profiling in response to the
 related query string or cookie, so you should be able to install a
 browser extension to make it work this way.
 
+Parameters
+----------
+
+- **xdebug_idekey**: value of the ``xdebug.idekey`` setting, defaults to `XDEBUG-DRIFTER`.
+
 PHP-Redis
 =========
 
