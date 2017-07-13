@@ -54,10 +54,10 @@
   become: yes
 
 - name: check if mysql upstream repository is already installed
-  command: dpkg-query -W mysql-apt-config
+  command: dpkg-query -f '${Version}' -W mysql-apt-config
   register: mysql_apt_config_check_deb
   failed_when: mysql_apt_config_check_deb.rc > 1
-  changed_when: mysql_apt_config_check_deb.rc == 1 or '{{mysql_apt_config_version}}' not in mysql_apt_config_check_deb.stdout
+  changed_when: mysql_apt_config_check_deb.rc == 1 or mysql_apt_config_version | version_compare(mysql_apt_config_check_deb.stdout, ">")
   become: yes
 
 - name: ensure mysql upstream repository package is downloaded
