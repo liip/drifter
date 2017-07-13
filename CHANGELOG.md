@@ -16,6 +16,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Fixed
 - PHP role: don't download surby.org gpg key, when not needed. Fixes problem on wheezy
 - MySQL role: don't install mysql upstream repository if a newer version is already installed.
+- Nginx role: fix Drupal templates and rewrite rule
 
 ## [1.3.0] - 2017-04-26
 

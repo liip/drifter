@@ -12,6 +12,18 @@
         return 403;
     }
 
+    # Allow "Well-Known URIs" as per RFC 5785
+    location ~* ^/.well-known/ {
+        allow all;
+    }
+
+    # Block access to "hidden" files and directories whose names begin with a
+    # period. This includes directories used by version control systems such
+    # as Subversion or Git to store control files.
+    location ~ (^|/)\. {
+        return 403;
+    }
+
     location / {
         try_files $uri /index.php?$query_string;
     }
@@ -33,7 +45,8 @@
         try_files $uri /index.php?$query_string;
     }
 
-     location @rewrite {
-         rewrite ^ /index.php;
-     }
+    location @rewrite {
+        rewrite ^/(.*)$ /index.php?q=$1;
+    }
+
 {% endblock %}
