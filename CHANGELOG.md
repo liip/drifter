@@ -8,6 +8,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Added
+- Virtualbox: allow use of Virtualbox shared folders besides nfs
+
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
 - php-xdebug role: add `xdebug_idekey` configuration option

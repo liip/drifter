@@ -18,19 +18,20 @@ class CustomConfig
   # you can delete the 'attr_accessor' and provide your own method
   # to return the values.
 
-  attr_accessor :box_name        # url of the lxc box
-  attr_accessor :box_url         # name of the lxc box
+  attr_accessor :box_name           # url of the lxc box
+  attr_accessor :box_url            # name of the lxc box
 
-  attr_accessor :project_name    # project name (currently unused by the Vagrant file)
-  attr_accessor :hostname        # main hostname of the box
-  attr_accessor :hostnames       # alternative hostnames (array)
-  attr_accessor :box_ip          # IP of the box
+  attr_accessor :project_name       # project name (currently unused by the Vagrant file)
+  attr_accessor :hostname           # main hostname of the box
+  attr_accessor :hostnames          # alternative hostnames (array)
+  attr_accessor :box_ip             # IP of the box
 
-  attr_accessor :ansible_local   # use 'ansible_local' provisionner ?
-  attr_accessor :playbook        # path to the playbook
-  attr_accessor :extra_vars      # extra variables to pass to Ansible
+  attr_accessor :ansible_local      # use 'ansible_local' provisionner ?
+  attr_accessor :playbook           # path to the playbook
+  attr_accessor :extra_vars         # extra variables to pass to Ansible
 
-  attr_accessor :forwarded_ports # Port that need to be forwarded
+  attr_accessor :forwarded_ports    # Port that need to be forwarded
+  attr_accessor :synced_folder_type # Type of synced folder to use
 
   # Retrieve the values of 'virtualization/parameters.yml' so that
   # they can be used by Vagrant. If you need to change those values
@@ -51,7 +52,8 @@ class CustomConfig
     @playbook      = config['playbook'] || nil
     @extra_vars    = {}
 
-    @forwarded_ports = config['forwarded_ports'] || nil
+    @forwarded_ports    = config['forwarded_ports'] || nil
+    @synced_folder_type = config['synced_folder_type'] || "nfs"
   end
 
   # Getter that first check if the accessor exists on the class and if

@@ -28,6 +28,11 @@ database_name: "example"
 # Root directory of your project for the webserver and other purposes
 root_directory: "/vagrant/"
 
+# Synced folder type to use. Only "nfs" and "virtualbox" are supported by
+# drifter. Defaults to "nfs". Uncomment the following line to use the
+# Virtualbox shared folder implementation.
+# synced_folder_type: "virtualbox"
+
 # Do we activate SSL ? The CA will be copied to your project dir, you can then
 # add it to your computer keychain
 # ssl: yes

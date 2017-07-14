@@ -46,6 +46,15 @@ else
     Vagrant.require_version ">= 1.6.2"
 end
 
+synced_folder_type = custom_config.get('synced_folder_type')
+
+unless ['nfs', 'virtualbox'].include?(synced_folder_type)
+    class SyncedFolderTypeError < Vagrant::Errors::VagrantError
+        self.error_message "[synced_folder_type] Only 'nfs' and 'virtualbox' are supported values"
+    end
+    raise SyncedFolderTypeError
+end
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = custom_config.get('box_name', 'drifter/jessie64-base')
     box_url = custom_config.get('box_url', 'https://vagrantbox-public.liip.ch/drifter-jessie64-base.json')
@@ -78,14 +87,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provider "virtualbox" do |v, override|
         override.vm.network :private_network, ip: custom_config.get('box_ip', "10.10.10.10")
 
-        if Vagrant::Util::Platform.windows? && !Vagrant.has_plugin?("vagrant-winnfsd")
-            puts "*************************************************************************"
-            puts "Please install the plugin vagrant-winnfsd to have NFS Support on Windows!"
-            puts "vagrant plugin install vagrant-winnfsd"
-            puts "*************************************************************************"
-            exit 1
+        if synced_folder_type == "nfs"
+            if Vagrant::Util::Platform.windows? && !Vagrant.has_plugin?("vagrant-winnfsd")
+                puts "*************************************************************************"
+                puts "Please install the plugin vagrant-winnfsd to have NFS Support on Windows!"
+                puts "vagrant plugin install vagrant-winnfsd"
+                puts "*************************************************************************"
+                exit 1
+            end
+            override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
         end
-        override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
 
         v.linked_clone = true if Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8')
         v.memory = 4096
@@ -97,7 +108,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # we set it here to 10 seconds, I had too many way off time, which screwed up some digital signatures.
         v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
 
-        if Vagrant.has_plugin?("vagrant-cachier")
+        if Vagrant.has_plugin?("vagrant-cachier") && synced_folder_type == "nfs"
             # use the same nfs config than above for cache performance
              override.cache.synced_folder_opts = {type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']}
         end
