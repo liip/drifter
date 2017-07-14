@@ -48,7 +48,7 @@ end
 
 synced_folder_type = custom_config.get('synced_folder_type')
 
-unless (synced_folder_type == "nfs" || synced_folder_type == "virtualbox")
+unless ['nfs', 'virtualbox'].include?(synced_folder_type)
     class SyncedFolderTypeError < Vagrant::Errors::VagrantError
         self.error_message "[synced_folder_type] Only 'nfs' and 'virtualbox' are supported values"
     end
