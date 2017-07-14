@@ -46,7 +46,7 @@ else
     Vagrant.require_version ">= 1.6.2"
 end
 
-synced_folder_type = custom_config.get('synced_folder_type')
+synced_folder_type = custom_config.get('synced_folder_type', 'nfs')
 
 unless ['nfs', 'virtualbox'].include?(synced_folder_type)
     class SyncedFolderTypeError < Vagrant::Errors::VagrantError
