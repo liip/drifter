@@ -10,6 +10,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Added
 - Virtualbox: allow use of Virtualbox shared folders besides nfs
+- Node role: add support for version 8.x and make it the default
 
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
