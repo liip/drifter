@@ -6,6 +6,6 @@ nodejs_distro: "{{
   'jessie'
 }}"
 nodejs_acceptable_distros: ["wheezy", "jessie", "stretch", "sid", "precise", "trusty"]
-nodejs_version: "6.x"
-nodejs_acceptable_versions: ["7.x", "6.x", "5.x", "4.x", "0.12", "0.10"]
+nodejs_version: "8.x"
+nodejs_acceptable_versions: ["8.x", "7.x", "6.x", "5.x", "4.x", "0.12", "0.10"]
 nodejs_with_yarn: false
