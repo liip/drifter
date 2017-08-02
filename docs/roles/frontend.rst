@@ -18,8 +18,7 @@ webpack.config.js, package.json) will not be overridden.*
    -  Lossless images optimization with ImageMin
 
 -  Create associated ``gulp.config.js`` and ``webpack.config.js``
--  Create the ``package.json`` containing the necessary dependencies to
-   be installed with NPM.
+-  Add the necessary dependencies to ``package.json`` (only if the file doesn't exist yet)
 
 After the first provisioning, you should edit the ``gulp.config.js`` and
 ``webpack.config.js`` to match your project structure.
@@ -28,11 +27,7 @@ Parameters
 ----------
 
 -  **gulp\_directory**: where should the gulpfile be created, defaults
-   to ``<project_dir>/``
--  **gulp\_package\_json\_path**: where should the package.json file be
-   created, defaults to ``<gulp_directory>/package.json``
--  **gulp\_package\_json\_author**: Author that should be put in the
-   package.json file, defaults to ``Liip AG``
+   to ``<root_directory>/``
 -  **gulp\_create\_config**: Create the gulp.config.js used by the default Gulpefile.js, defaults to
    ``true``
 -  **gulp\_use\_webpack**: Setup Webpack alongside Gulp, defaults to

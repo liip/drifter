@@ -32,3 +32,12 @@
   apt: pkg=yarn state=latest
   become: yes
   when: nodejs_with_yarn
+
+- name: Create default package.json
+  template: src={{ nodejs_package_json_template }} dest={{ nodejs_package_json_path }} force=no
+
+- name: Install npm packages
+  command: /bin/true
+  notify:
+    - install package.json
+  when: nodejs_install_package_json

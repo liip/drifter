@@ -4,4 +4,3 @@ display_skipped_hosts = False
 
 # if you want a more human readable output of ansible commands (for debugging purposes), uncomment the following line
 # callback_plugins = virtualization/drifter/ansible-plugins/callback_plugins
-

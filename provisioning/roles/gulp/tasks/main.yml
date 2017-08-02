@@ -1,8 +1,5 @@
-- name: Create package.json and Gulpfile.js if non-existent
-  template: src={{ item.src }} dest={{ item.dest }} force=no
-  with_items:
-    - { src: package.json, dest: "{{ gulp_package_json_path }}" }
-    - { src: Gulpfile.js, dest: "{{ gulp_directory }}/Gulpfile.js" }
+- name: Create Gulpfile.js if non-existent
+  template: src=Gulpfile.js dest={{ gulp_directory }}/Gulpfile.js force=no
 
 - name: Create Gulp config file
   template: src=gulp.config.js dest={{ gulp_directory }}/gulp.config.js force=no
@@ -20,6 +17,3 @@
   npm: name=purescript global=yes
   become: yes
   when: gulp_use_purescript
-
-- name: Install Node modules
-  npm: path=/vagrant

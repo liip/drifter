@@ -12,6 +12,17 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - Apache role: add support for the `web_directory` parameter
 
+### Changed
+
+- gulp and nodejs roles: call `npm install` on every provisioning, unless `nodejs_install_package_json` is set to
+  `false`
+- gulp role: rename parameter `gulp_package_json_path` to `nodejs_package_json_path`, and `gulp_package_json_author` to
+  `nodejs_package_json_author`
+- gulp role: add parameter `gulp_patch_package_json` to prevent the `gulp` role from interacting with the
+  `package.json` file
+- nodejs role: add parameter `nodejs_package_json_template` to customize the template used to create the `package.json`
+  file
+
 ### Fixed
 
 - Vagrant: update ansible_local version for Vagrant 2.0
