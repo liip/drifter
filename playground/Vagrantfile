@@ -75,4 +75,5 @@ load '../Vagrantfile'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder "../provisioning", "/drifter"
+    config.vm.synced_folder "../ansible-plugins", "/drifter_plugins"
 end
