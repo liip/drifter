@@ -64,5 +64,10 @@ Parameters
 Flask
 =====
 
+.. note::
+
+    This module is deprecated and will be removed in a future version. Using the :ref:`virtualenv-reference-label` role
+    will achieve the same result.
+
 Uses the ``virtualenv`` role to create and install a virtual environment
 for Flask.

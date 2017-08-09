@@ -1,2 +1,4 @@
 ---
 # Actual installation is done in the 'virtualenv' role
+- name: DEPRECATED | Please use the virtualenv role instead
+  command: /bin/true

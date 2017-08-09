@@ -20,6 +20,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
 - php-xdebug role: add `xdebug_idekey` configuration option
 - Nginx role: allow to extend templates from outside the templates directory
+- Flask role: this role is now deprecated since all it did was depending on the virtualenv role
 
 ### Fixed
 - Mysql role: use become to create database and user. Fixes problem on xenial
