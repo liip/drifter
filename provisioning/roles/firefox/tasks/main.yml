@@ -1,0 +1,37 @@
+- name: Install Firefox dependencies
+  apt: name={{ firefox_dependencies }} state=present
+  sudo: yes
+
+- name: Download latest Firefox
+  get_url: url={{ firefox_latest_url }} dest=/opt/firefox.tar.bz2
+  sudo: yes
+  when: firefox_version == 'latest'
+
+- name: Download Firefox {{ firefox_version }}
+  get_url: url={{ firefox_download_url }} dest=/opt/firefox.tar.bz2
+  sudo: yes
+  when: firefox_version != 'latest'
+
+- name: Unpack Firefox
+  unarchive: src=/opt/firefox.tar.bz2 dest=/opt/ copy=no creates=/opt/firefox/
+  sudo: yes
+
+- name: Create Firefox Symlinks
+  file: state=link src=/opt/firefox/firefox path=/usr/local/bin/firefox
+  sudo: yes
+
+- name: Download geckodriver {{ geckodriver_version }}
+  get_url: url={{ geckodriver_download_url }} dest=/opt/geckodriver-{{ geckodriver_version }}.tar.gz
+  sudo: yes
+
+- name: Make directory for geckodriver
+  file: path=/opt/geckodriver-{{ geckodriver_version }} state=directory
+  sudo: yes
+
+- name: Unpack Geckodriver
+  unarchive: src=/opt/geckodriver-{{ geckodriver_version }}.tar.gz dest=/opt/geckodriver-{{ geckodriver_version }}/ copy=no
+  sudo: yes
+
+- name: Create Geckodriver Symlinks
+  file: state=link src=/opt/geckodriver-{{ geckodriver_version }}/geckodriver path=/usr/local/bin/geckodriver
+  sudo: yes

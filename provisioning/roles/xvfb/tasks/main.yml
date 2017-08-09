@@ -1,0 +1,3 @@
+- name: Install xvfb
+  apt: name=xvfb state=present
+  sudo: yes

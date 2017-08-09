@@ -1,0 +1,14 @@
+firefox_dependencies:
+  - libgtk-3-0
+  - libdbus-glib-1-2
+
+# This URL downloads the latest version
+firefox_latest_url: https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US
+
+# This URL is used for a specific version download
+firefox_download_url: https://ftp.mozilla.org/pub/firefox/releases/{{ firefox_version }}/linux-x86_64/en-US/firefox-{{ firefox_version }}.tar.bz2
+
+geckodriver_version: 0.18.0
+
+geckodriver_download_url: https://github.com/mozilla/geckodriver/releases/download/v{{ geckodriver_version }}/geckodriver-v{{ geckodriver_version }}-linux64.tar.gz
+

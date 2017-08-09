@@ -1,0 +1,5 @@
+phantomjs_name: phantomjs-{{ phantomjs_version }}-linux-x86_64
+
+phantomjs_filename: "{{ phantomjs_name }}.tar.bz2"
+
+phantomjs_url: https://bitbucket.org/ariya/phantomjs/downloads/{{ phantomjs_filename }}

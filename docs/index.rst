@@ -80,6 +80,7 @@ anywhere else you'd like to.
     roles/ruby
     roles/java
     roles/frontend
+    roles/browsers
     roles/others
 
 .. toctree::

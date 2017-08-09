@@ -11,6 +11,9 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 - Virtualbox: allow use of Virtualbox shared folders besides nfs
 - Node role: add support for version 8.x and make it the default
+- Add `phantomjs` role to install a specific phantomJS version
+- Add `firefox` role to install a specific version or the latest Firefox version
+- Add `chrome` role to install the Chrome browser
 
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
