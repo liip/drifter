@@ -14,6 +14,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Add `phantomjs` role to install a specific phantomJS version
 - Add `firefox` role to install a specific version or the latest Firefox version
 - Add `chrome` role to install the Chrome browser
+- Add plugin to improve Ansible output readability, see `ansible.cfg.dist` for to enable it
 
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
