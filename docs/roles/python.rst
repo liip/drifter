@@ -17,7 +17,8 @@ Parameters
 
 -  **python\_version**: Either version 2 or 3, defaults to "2"
 
- .. _virtualenv-reference-label:
+.. _virtualenv-reference-label:
+
 Virtualenv
 ==========
 
