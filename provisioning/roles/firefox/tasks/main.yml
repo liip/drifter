@@ -17,7 +17,7 @@
   sudo: yes
 
 - name: Create Firefox Symlinks
-  file: state=link src=/opt/firefox/firefox path=/usr/bin/firefox
+  file: state=link src=/opt/firefox/firefox path=/usr/local/bin/firefox
   sudo: yes
 
 - name: Download geckodriver {{ geckodriver_version }}
@@ -33,5 +33,5 @@
   sudo: yes
 
 - name: Create Geckodriver Symlinks
-  file: state=link src=/opt/geckodriver-{{ geckodriver_version }}/geckodriver path=/usr/bin/geckodriver
+  file: state=link src=/opt/geckodriver-{{ geckodriver_version }}/geckodriver path=/usr/local/bin/geckodriver
   sudo: yes

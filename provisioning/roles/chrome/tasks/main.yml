@@ -15,5 +15,5 @@
   sudo: yes
 
 - name: Symlink Chrome
-  file: state=link src=/opt/chromedriver/chromedriver path=/usr/bin/chromedriver
+  file: state=link src=/opt/chromedriver/chromedriver path=/usr/local/bin/chromedriver
   sudo: yes

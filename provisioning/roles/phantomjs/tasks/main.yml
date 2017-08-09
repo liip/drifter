@@ -7,5 +7,5 @@
   sudo: yes
 
 - name: Create phantomjs Symlink
-  file: state=link src=/opt/{{ phantomjs_name }}/bin/phantomjs path=/usr/bin/phantomjs
+  file: state=link src=/opt/{{ phantomjs_name }}/bin/phantomjs path=/usr/local/bin/phantomjs
   sudo: yes
