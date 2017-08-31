@@ -47,8 +47,7 @@ Parameters
 RMT - Release Management Tool
 =============================
 
-Install RMT in the box. Once done you can use it on the shell by running
-``RMT`` For more info on usage, go to https://github.com/liip/RMT#usage
+Install RMT in the box. Once done you must run `php /home/vagrant/.config/composer/vendor/liip/rmt/RMT` to init it for your project. Then for the next steps go to https://github.com/liip/RMT#usage
 
 Redis
 =====
