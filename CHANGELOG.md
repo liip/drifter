@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Add `firefox` role to install a specific version or the latest Firefox version
 - Add `chrome` role to install the Chrome browser
 - Add plugin to improve Ansible output readability, see `ansible.cfg.dist` for to enable it
+- Add parameters java_jre_version & java_jdk_version
 
 ### Changed
 - Gulp role: Webpack now uses "cheap-module-source-map" as devtool
