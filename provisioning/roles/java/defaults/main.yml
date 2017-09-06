@@ -1,0 +1,2 @@
+java_jre_version: "7"
+java_jre_package: "openjdk-{{ java_jre_version }}-jre"
