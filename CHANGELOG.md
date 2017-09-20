@@ -6,7 +6,7 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
-## Unreleased
+## [1.4.0] - 2017-09-20
 
 ### Added
 - Virtualbox: allow use of Virtualbox shared folders besides nfs
@@ -275,7 +275,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/liip/drifter/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/liip/drifter/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/liip/drifter/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/liip/drifter/compare/v1.1.0...v1.1.1
