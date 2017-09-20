@@ -14,7 +14,9 @@ is automatically included by other roles, for example PHP-Apache.
 Parameters
 ----------
 
-To be completed
+-  **web_directory** : Root directory for the virtual host, defaults to `root_directory`.
+-  **ssl** : Whether to activate HTTPS vhost, defaults to `false`. If enabled, the generated CA will be copied to the
+  project directory.
 
 NGinx
 =====
@@ -81,4 +83,7 @@ Parameters
    defaults to "false".
 -  **static_fs_dir** : Which static filesystem dir to use for Django
    projects ? defaults to "".
--  **expire_time** : Expiration time of static files, defaults to "6h"
+-  **expire_time** : Expiration time of static files, defaults to "6h".
+-  **web_directory** : Root directory for the virtual host, defaults to `root_directory`.
+-  **ssl** : Whether to activate HTTPS vhost, defaults to `false`. If enabled, the generated CA will be copied to the
+  project directory.

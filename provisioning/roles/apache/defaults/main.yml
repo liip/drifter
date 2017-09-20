@@ -2,3 +2,4 @@
 site_template: default-site.j2
 # activate SSL ?
 ssl: false
+web_directory: "{{ root_directory }}"

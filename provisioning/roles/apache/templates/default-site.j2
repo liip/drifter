@@ -15,7 +15,7 @@
         {% endif %}
     </Directory>
 
-    DocumentRoot "{{ root_directory }}"
+    DocumentRoot "{{ web_directory }}"
 </VirtualHost>
 
 {% if ssl %}
@@ -36,7 +36,7 @@
         {% endif %}
     </Directory>
 
-    DocumentRoot "{{ root_directory }}"
+    DocumentRoot "{{ web_directory }}"
 
     SSLEngine on
     SSLCertificateKeyFile {{ ssl_key_file }}
