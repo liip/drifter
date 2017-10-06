@@ -12,6 +12,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - Apache role: add support for the `web_directory` parameter
 
+### Fixed
+
+- Vagrant: update ansible_local version for Vagrant 2.0
+
 ## [1.4.0] - 2017-09-20
 
 ### Added
