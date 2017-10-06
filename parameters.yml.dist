@@ -62,3 +62,9 @@ root_directory: "/vagrant/"
 # php7 (with fpm and nginx) anyway.
 # box_name: "drifter/trusty64-base"
 # box_url: "https://vagrantbox-public.liip.ch/drifter-trusty64-base.json"
+
+# Default Java version is 7. If you need another java version, uncomment
+# the matching line and set the correct value.
+# Set your version according to your needs and your Linux distribution.
+# java_jre_version: "7"
+# java_jdk_version: "7"

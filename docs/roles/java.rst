@@ -6,13 +6,25 @@ Java
 ====
 
 Installs a Java Runtime Environment using the OpenJDK Debian package.
-Currently installs the version 7.
+
+Parameters
+----------
+
+-  **java_jre_version**: JRE version to install, defaults to 7. Set
+   your version according to your needs and your Linux distribution.
+-  **java_jre_package**: default is ``openjdk-{{ java_jre_version }}-jre``.
 
 JDK
 ===
 
 Installs a Java Development Kit using the OpenJDK Debian package.
-Currently installs the version 7.
+
+Parameters
+----------
+
+-  **java_jdk_version**: JDK version to install, defaults to 7. Set
+   your version according to your needs and your Linux distribution.
+-  **java_jdk_package**: default is ``openjdk-{{ java_jdk_version }}-jdk``.
 
 Maven
 =====
