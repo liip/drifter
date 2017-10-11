@@ -16,6 +16,31 @@
   become_user: solr
   become: yes
 
+- name: Add Core directory
+  when: solr_core_name is defined and solr_core_conf is defined
+  file:
+    path: "{{ solr_config_dir}}/{{ solr_core_name}}"
+    state: directory
+  become_user: solr
+  become: yes
+
+- name: Symlink Core conf
+  when: solr_core_name is defined and solr_core_conf is defined
+  file:
+    src: "{{ solr_core_conf }}"
+    dest: "{{ solr_config_dir}}/{{ solr_core_name}}/conf"
+    state: link
+  become_user: solr
+  become: yes
+
+- name: Setup Core properties file
+  when: solr_core_name is defined and solr_core_conf is defined
+  copy:
+    content: "name={{ solr_core_name}}"
+    dest: "{{ solr_config_dir}}/{{ solr_core_name}}/core.properties"
+  become_user: solr
+  become: yes
+
 - name: SOLR config directory permission
   file: dest="{{ solr_config_dir }}" state=directory group=solr mode="g+rwX" recurse=yes
   become: yes
