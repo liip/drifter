@@ -24,6 +24,14 @@ Parameters
 -  **nodejs\_distro** : Is automatically set to either 'jessie' or
    'wheezy' based on available information, you can also put an Ubuntu
    codename here.
+-  **nodejs_package_json_template**: template to use for the creation of the initial ``package.json`` file. Defaults to
+  ``package.json.j2``, or ``package.json.gulp.j2`` if you're using the gulp role. See the
+  ``provisioning/roles/nodejs/templates`` directory for the list of available templates.
+-  **nodejs_package_json_path**: where should the package.json file be
+   created, defaults to ``<root_directory>/package.json``
+-  **nodejs_package_json_author**: Author that should be put in the
+   package.json file, defaults to ``Liip AG``
+-  **nodejs_install_package_json**: Run ``npm install`` on each provisioning. Defaults to ``true``.
 
 OpenLDAP
 ========
