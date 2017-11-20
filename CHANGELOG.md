@@ -6,11 +6,7 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
-## [1.5.0] - 2017-10-30
-
-### Added
-- Apache role: add support for the `web_directory` parameter
-- Solr role: allow to setup a Solr index/core during the provisioning
+## [Unreleased]
 
 ### Changed
 
@@ -22,6 +18,12 @@ For migration information, you can always have a look at https://liip-drifter.re
   `package.json` file
 - nodejs role: add parameter `nodejs_package_json_template` to customize the template used to create the `package.json`
   file
+
+## [1.5.0] - 2017-10-30
+
+### Added
+- Apache role: add support for the `web_directory` parameter
+- Solr role: allow to setup a Solr index/core during the provisioning
 
 ### Fixed
 - Vagrant: update ansible_local version for Vagrant 2.0
