@@ -118,6 +118,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         if Vagrant.has_plugin?("vagrant-hostmanager")
             override.hostmanager.ignore_private_ip = true
         end
+        # Cope with AppArmor, as it's enforced on recent Debian
+        lxc.customize 'aa_profile', 'unconfined'
     end
 
     # Set some env variables, so they can be used within the vagrant box as well
