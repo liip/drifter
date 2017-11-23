@@ -108,7 +108,7 @@ section of the documentation.
 Composer
 ========
 
-Install Composer, the PHP package manager. The PHP role is defined as a
+Installs Composer, the PHP package manager. The PHP role is defined as a
 dependency. You can set the install dir, a link is ``/usr/local/bin``
 will be set up whichever the install dir is so that composer can be
 accessed globally.
