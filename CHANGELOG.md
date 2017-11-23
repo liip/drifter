@@ -19,6 +19,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 - nodejs role: add parameter `nodejs_package_json_template` to customize the template used to create the `package.json`
   file
 
+### Added
+
+- Disable AppArmor by default to ensure compatibility with Debian Linux Kernel 4.13
+
 ## [1.5.0] - 2017-10-30
 
 ### Added
