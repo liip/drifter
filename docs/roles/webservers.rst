@@ -75,6 +75,7 @@ Parameters
   -  ``php-site.j2`` Site template for generic PHP
   -  ``silex-site.j2`` Site template for Silex
   -  ``symfony2-site.j2`` Site template for Symfony2
+  -  ``symfony4-site.j2`` Site template for Symfony4
 
 -  **index** : what file do we use as an index ? defaults to 'false'
 -  **static_host** : Which static host to use for Django projects ?
