@@ -99,8 +99,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
 
         v.linked_clone = true if Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8')
-        v.memory = 4096
-        v.cpus = 2
+        v.memory = custom_config.get('memory', 4096)
+        v.cpus = custom_config.get('cpus', 2)
         v.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
         v.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
         # From the manual:

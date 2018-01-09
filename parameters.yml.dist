@@ -15,6 +15,14 @@ forwarded_ports: {
     "3000": "3000",  # BrowserSync default port
 }
 
+# Virtual machine memory size use in MB. Defaults to 4096. Uncomment and change this
+# value to suit your needs.
+# memory: 1024
+
+# Virtual machine CPU's count use. Defaults to 2. Uncomment and change this
+# value to suit your needs.
+# cpus: 1
+
 # By default Vagrant managed different IPs for all boxes. But you can force it
 # here if you want. WARNING, this parameter will not guarantee that your box
 # will be accessible at this IP depending on your network configuration or

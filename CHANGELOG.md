@@ -8,6 +8,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Added
+
+- Add parameters memory & cpus and changed Vagrantfile and Vagrantfile.dist accordingly
+
 ### Changed
 
 - gulp and nodejs roles: call `npm install` on every provisioning, unless `nodejs_install_package_json` is set to
