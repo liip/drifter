@@ -1,6 +1,6 @@
 # python-apt is needed for the Ansible 'apt' module, used later in this file.
 - name: ensure python-apt is installed
-  command: apt-get install -y python-apt creates=/usr/share/pyshared/apt
+  command: apt-get install -y python-apt creates=/usr/share/doc/python-apt/changelog.gz
   become: yes
 
 - name: ensure apt database is up-to-date (cache time 1h)
