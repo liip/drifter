@@ -24,6 +24,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Nginx role: added Symfony4 template (PR #187)
 - Disable AppArmor by default to ensure compatibility with Debian Linux Kernel 4.13
 
+### Fixed
+
+- Make python-apt installed status detection future-proof (PR #204)
+
 ## [1.5.0] - 2017-10-30
 
 ### Added
