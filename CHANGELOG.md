@@ -29,6 +29,7 @@ virtualization/drifter/ansible.cfg.dist ansible.cfg`.
 
 ### Added
 
+- Allow CPU count and memory to be configured in parameters.yml
 - Nginx role: added Symfony4 template (PR #187)
 - Disable AppArmor by default to ensure compatibility with Debian Linux Kernel 4.13
 

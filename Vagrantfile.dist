@@ -32,6 +32,9 @@ class CustomConfig
 
   attr_accessor :forwarded_ports    # Port that need to be forwarded
   attr_accessor :synced_folder_type # Type of synced folder to use
+  
+  attr_accessor :cpus               # Virtual machine CPU's count use
+  attr_accessor :memory             # Virtual machine memory size use (in MB)
 
   # Retrieve the values of 'virtualization/parameters.yml' so that
   # they can be used by Vagrant. If you need to change those values
@@ -54,6 +57,9 @@ class CustomConfig
 
     @forwarded_ports    = config['forwarded_ports'] || nil
     @synced_folder_type = config['synced_folder_type'] || "nfs"
+
+    @memory             = config['memory']  || nil
+    @cpus               = config['cpus']    || nil
   end
 
   # Getter that first check if the accessor exists on the class and if
