@@ -8,10 +8,6 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
-### Added
-
-- Add parameters memory & cpus and changed Vagrantfile and Vagrantfile.dist accordingly
-
 ### Changed
 
 - gulp and nodejs roles: call `npm install` on every provisioning, unless `nodejs_install_package_json` is set to
@@ -25,6 +21,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Added
 
+- Allow CPU count and memory to be configured in parameters.yml
 - Nginx role: added Symfony4 template (PR #187)
 - Disable AppArmor by default to ensure compatibility with Debian Linux Kernel 4.13
 
