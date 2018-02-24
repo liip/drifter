@@ -8,6 +8,12 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Upgrade instructions
+
+To get the fix for the Ansible error "failed to set permissions on temporary files", you'll need to overwrite your
+`ansible.cfg` file with the `ansible.cfg.dist` file. This can be done with the following command: `cp
+virtualization/drifter/ansible.cfg.dist ansible.cfg`.
+
 ### Changed
 
 - gulp and nodejs roles: call `npm install` on every provisioning, unless `nodejs_install_package_json` is set to
@@ -18,6 +24,8 @@ For migration information, you can always have a look at https://liip-drifter.re
   `package.json` file
 - nodejs role: add parameter `nodejs_package_json_template` to customize the template used to create the `package.json`
   file
+- Fix Ansible error "failed to set permissions on the temporary files". This needs updating your `ansible.cfg` file
+  with the contents from `ansible.cfg.dist`
 
 ### Added
 
