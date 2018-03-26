@@ -15,8 +15,13 @@ forwarded_ports: {
     "3000": "3000",  # BrowserSync default port
 }
 
-# Virtual machine memory size use in MB. Defaults to 4096. Uncomment and change this
+# Backingstore used by LXC. Defaults to dir. Uncomment and change this
 # value to suit your needs.
+# Note: only used with vagrant-lxc provider.
+# backingstore: dir
+
+# Virtual machine memory size use in MB. Defaults to 4096. Uncomment and change
+# this value to suit your needs.
 # Note: only used with VirtualBox provider.
 # memory: 1024
 
