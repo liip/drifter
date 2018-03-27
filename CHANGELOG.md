@@ -27,6 +27,7 @@ virtualization/drifter/ansible.cfg.dist ansible.cfg`.
 - Fix Ansible error "failed to set permissions on the temporary files". This needs updating your `ansible.cfg` file
   with the contents from `ansible.cfg.dist`
 - Fix default backingstore to `dir` with vagrant-lxc provider
+- Ruby role: update rbenv to v1.1.1 and ruby-build to v20180224. Upgrade Ruby version to 2.4.1
 
 ### Added
 
