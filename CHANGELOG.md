@@ -26,6 +26,7 @@ virtualization/drifter/ansible.cfg.dist ansible.cfg`.
   file
 - Fix Ansible error "failed to set permissions on the temporary files". This needs updating your `ansible.cfg` file
   with the contents from `ansible.cfg.dist`
+- Fix default backingstore to `dir` with vagrant-lxc provider
 
 ### Added
 
