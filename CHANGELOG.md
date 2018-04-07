@@ -11,6 +11,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 
 - gitlab.liip.ch got a new ssh key.
+- Avoid compiling requirements files that are already compiled in the virtualenv role
 
 ## [1.6.0] - 2018-03-27
 
