@@ -12,6 +12,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - gitlab.liip.ch got a new ssh key.
 
+### Added
+
+- Webpack role: a brand new way of handling front-end assets in your projects, preconfigured!
+
 ## [1.6.0] - 2018-03-27
 
 ### Upgrade instructions
