@@ -22,6 +22,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Python role: upgrade pip to 10.0.1 and setuptools to 39.1.0
 - Python role: use Python 3 by default
 - virtualenv role: upgrade pip-tools to 2.0.1
+- Postgresql role: install the postgresql-contrib package
 
 ## [1.6.0] - 2018-03-27
 
