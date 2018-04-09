@@ -1,10 +1,10 @@
 ---
 - name: list uncompiled requirements files
+  # Pipe everything to cat to avoid error in case of empty return
   shell: |
     for f in {{ root_directory }}/{{ pip_requirements_dir }}/*.in; do
       [ ! -e "${f%in}txt" ] && echo $f
-    done
-  ignore_errors: True
+    done | cat
   register: pip_requirements_files
   when: pip_requirements_dir is defined
 
