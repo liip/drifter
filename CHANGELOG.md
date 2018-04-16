@@ -14,6 +14,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Added option to enable assert exceptions for PHP 7.0 and above
 - Make ansible version in the guest configurable via parameters.yml
 - Django role: download and enable bash completion for django commands
+- Node.js role: allow to disable package.json creation with new parameter `nodejs_create_package_json`
 
 ### Changed
 
