@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## unreleased
+
+### Changed
+
+- gitlab.liip.ch got a new ssh key.
+
 ## [1.6.0] - 2018-03-27
 
 ### Upgrade instructions
