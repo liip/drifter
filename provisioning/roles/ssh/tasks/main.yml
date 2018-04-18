@@ -3,8 +3,12 @@
   when: "{{ ssh_no_stricthostkeychecking|default(false) }} == true"
 
 - name: add gitlab.liip.ch ssh host key
-  lineinfile: dest=~/.ssh/known_hosts owner=vagrant mode=0600  create="yes" line="|1|0dGiUQ3BUdlYX8iGVmFTdJ6RD8w=|Kl9qSmoxKNcMwtJf6nv2BfqW5g4= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3ekjnWZ5gcwFItmv9+XJWCEt98IbSlD9TqZnx9ijIk2Y1vjeRCOO4CuISExou6Z+CV2/HFk3h06SZtul2urIc="
+  lineinfile: dest=~/.ssh/known_hosts owner=vagrant mode=0600  create="yes" line="|1|kpxP5RUzhsD0D+Orj+cIyYVnMng=|svlMzQRFnzhsXteU7cS8W8ymPl4= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICQDU/qcjvPfFV/wdl/s0IJQgRl9LVnGONMLVsn6m780"
+
+- name: add gitlab.liip.ch ssh host key line 2
+  lineinfile: dest=~/.ssh/known_hosts owner=vagrant mode=0600  create="yes" line="|1|jkSRq0bFi+OikrNAmZJ+cvSyK+Y=|TCifULANLTMa8LnJesE+DCnpwaQ= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICQDU/qcjvPfFV/wdl/s0IJQgRl9LVnGONMLVsn6m780"
+
 
 - name: add github.com ssh host key
-  lineinfile: dest=~/.ssh/known_hosts owner=vagrant mode=0600  create="yes" line="  |1|QZNAYtd7C+pZl2VXmAsDp6Pm0/c=|pTECnHRaAZ+kqep4FKry9MhYiu8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
+  lineinfile: dest=~/.ssh/known_hosts owner=vagrant mode=0600  create="yes" line="|1|QZNAYtd7C+pZl2VXmAsDp6Pm0/c=|pTECnHRaAZ+kqep4FKry9MhYiu8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
 
