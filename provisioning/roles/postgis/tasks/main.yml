@@ -1,41 +1,16 @@
 - set_fact: database_type=postgis
 
+- name: set specific variables for distributions
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}-{{ ansible_distribution_major_version}}.yml"
+    - "default.yml"
+
 - name: ensure geo packages are installed
   apt: pkg={{ item }} state=present
   with_items:
       - binutils
       - libproj-dev
       - gdal-bin
-      - postgresql-{{ postgresql_version }}-postgis-{{ postgis_version }}
+      - "{{ postgis_package_name }}"
   become: yes
-
-- name: ensure postgis database template exists
-  postgresql_db: name=template_postgis state=present
-  sudo_user: postgres
-  sudo: yes
-  register: postgis_template_created
-  when: postgis_version < 2
-
-- name: run postgis scripts on postgis database template
-  command: psql -d template_postgis --file '/usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}'
-  with_items:
-    - postgis.sql
-    - spatial_ref_sys.sql
-  sudo_user: postgres
-  sudo: yes
-  when: postgis_template_created|changed
-
-- name: run postgis scripts on existing database
-  command: psql -d {{ database_name }} --file /usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}
-  sudo_user: postgres
-  sudo: yes
-  with_items:
-    - postgis.sql
-    - spatial_ref_sys.sql
-  when: postgis_version < 2
-
-- name: enable database spatially
-  command: psql -d {{ database_name }} -c "CREATE EXTENSION IF NOT EXISTS postgis; CREATE EXTENSION IF NOT EXISTS postgis_topology;"
-  become_user: postgres
-  become: yes
-  when: postgis_version >= 2

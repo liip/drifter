@@ -52,8 +52,14 @@ Parameters
 
 PostGIS
 =======
+Install and set up a PostgreSQL server with the PostGIS extension enabled. The postgres role is declared as a dependency and does need to be activated explicitely in playbook.yml.
 
-To be completed.
+For each of the supported OS, the recommended PostgreSQL/PostGIS combination package will be installed:
+-  **Debian 7 (Wheezy)**: postgresql-9.1-postgis (1.5.3-2)
+-  **Debian 8 (Jessie)**: postgresql-9.4-postgis-2.1
+-  **Debian 9 (Stretch)**: postgresql-9.6-postgis-2.3
+-  **Ubuntu 14 (trusty)**: postgresql-9.3-postgis-2.1
+-  **Ubuntu 16 (xenial)**: postgresql-9.5-postgis-2.2
 
 MemCached
 =========
