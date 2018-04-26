@@ -3,6 +3,16 @@
   command: apt-get install -y python-apt creates=/usr/share/doc/python-apt/changelog.gz
   become: yes
 
+- name: ensure apt database can be used
+  file:
+    name: "{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+  - /var/lib/apt/lists/
+  - /var/cache/apt/archives/
+  become: yes
+
 - name: ensure apt database is up-to-date (cache time 1h)
   apt:
     update_cache: yes
