@@ -11,6 +11,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 
 - gitlab.liip.ch got a new ssh key.
+- Fixed early box setup to ensure that the apt database can be queried
 
 ## [1.6.0] - 2018-03-27
 
