@@ -1,3 +1,5 @@
 python_version: "3"
 pip_version: 10.0.1
 setuptools_version: 39.1.0
+python3_install_from_source: false
+python3_source_version: "3.6.5"

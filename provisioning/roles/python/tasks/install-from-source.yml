@@ -1,0 +1,26 @@
+---
+- name: Download Python
+  get_url:
+    url: "https://www.python.org/ftp/python/{{ python3_source_version }}/Python-{{ python3_source_version }}.tgz"
+    dest: "/tmp/Python-{{ python3_source_version }}.tgz"
+
+- name: Expand Python archive
+  unarchive:
+    src: "/tmp/Python-{{ python3_source_version }}.tgz"
+    dest: "/tmp"
+    creates: "/tmp/Python-{{ python3_source_version }}/README.rst"
+    copy: no
+
+- name: Configure Python build
+  command: >
+    ./configure --with-ensurepip=install --prefix=/usr
+    chdir=/tmp/Python-{{ python3_source_version }}
+
+- name: Build Python
+  command: >
+    make {{ item }}
+    chdir=/tmp/Python-{{ python3_source_version }}
+  with_items:
+    - all
+    - install
+  become: yes

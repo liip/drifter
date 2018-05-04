@@ -43,3 +43,7 @@
 - name: install libjpeg-dev
   apt: pkg="{{ 'libjpeg8-dev' if (ansible_lsb.major_release|int == 7) else 'libjpeg-dev' }}" state=latest
   become: yes
+
+# Install python from source when python_install_from_source is true.
+- include: install-from-source.yml
+  when: python3_install_from_source == true and python3_source_version|version_compare('3', '>=')
