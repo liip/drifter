@@ -8,14 +8,14 @@ Python
 Install Pip and Virtualenv along with dev dependencies. Dependencies to
 build the Pillow package are also installed.
 
-Both Python 2 and Python are always installed, for example to facilitate
+Both Python 2 and Python 3 are always installed, for example to facilitate
 tests on multiple python version, the parameter below only change the
 behavior of python related roles.
 
 Parameters
 ----------
 
--  **python_version**: Either version 2 or 3, defaults to "2"
+-  **python_version**: version of Python to use. Can be 2 or 3, defaults to "3"
 -  **pip_version** : the version of pip to install in the virtual environment. Defaults to 9.0.1.
 -  **setuptools_version** : the version of setuptools to install in the virtual environment. Defaults to 28.8.0.
 
