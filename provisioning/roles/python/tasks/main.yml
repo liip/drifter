@@ -13,20 +13,21 @@
     - python-pip
     - python-all-dev
 
-- set_fact: python3_venv_package=python3-venv
-
-# The Python 3 virtualenv package is named "python3.4-venv" on Ubuntu before
-# Xenial
-- set_fact: python3_venv_package=python3.4-venv
-  when: ansible_distribution == "Ubuntu" and ansible_lsb.major_release|int < 16
-
 - name: install python 3 packages
   apt: pkg={{ item }} state=latest
   become: yes
   with_items:
     - python3-pip
     - python3-all-dev
-    - "{{ python3_venv_package }}"
+  when: ansible_lsb.major_release|int >= 8
+
+# The Python 3 virtualenv package is named "python3.4-venv" on Ubuntu before
+# Xenial
+- name: install python 3 virtualenv package
+  apt:
+    pkg: "{{ 'python3.4-venv' if ansible_distribution == 'Ubuntu' and ansible_lsb.major_release|int >= 16 else 'python3-venv' }}"
+    state: latest
+  become: yes
   when: ansible_lsb.major_release|int >= 8
 
 - name: install pillow dependencies

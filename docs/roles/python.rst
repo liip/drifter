@@ -8,14 +8,16 @@ Python
 Install Pip and Virtualenv along with dev dependencies. Dependencies to
 build the Pillow package are also installed.
 
-Both Python 2 and Python are always installed, for example to facilitate
+Both Python 2 and Python 3 are always installed, for example to facilitate
 tests on multiple python version, the parameter below only change the
 behavior of python related roles.
 
 Parameters
 ----------
 
--  **python\_version**: Either version 2 or 3, defaults to "2"
+-  **python_version**: version of Python to use. Can be 2 or 3, defaults to "3"
+-  **pip_version** : the version of pip to install in the virtual environment. Defaults to 9.0.1.
+-  **setuptools_version** : the version of setuptools to install in the virtual environment. Defaults to 28.8.0.
 
 .. _virtualenv-reference-label:
 
@@ -33,18 +35,17 @@ The virtual environment is automatically activated upon box login.
    created, defaults to "~/ENV"
 -  **pip\_requirements\_dir** : name of the requirements directory that contain the `.in` files. If set, Drifter will
    run ``pip-compile`` on these files upon provisioning.
--  **pip\_version** : the version of pip to install in the virtual environment. Defaults to 9.0.1.
--  **setuptools\_version** : the version of setuptools to install in the virtual environment. Defaults to 28.8.0.
 -  **pip_tools\_version** : the version of pip-tools to install in the virtual environment. Defaults to 1.8.2.
 
 Django
 ======
 
-Uses the ``virtualenv`` role to create and install a virtual environment
-for Django.
+Uses the ``virtualenv`` or the ``pipenv`` role (depending on the
+``django_use_pipenv`` parameter) to create and install a virtual
+environment for Django.
 
 Configure database access via environment variable and then run
-migrations (compatible with all Django version since 1.6).
+migrations.
 
 You need to include either to ``mysql`` or ``postgresql`` roles before
 this one.
@@ -55,11 +56,9 @@ configured to use the "django-site.js" site template on the port "8000".
 Parameters
 ----------
 
--  **django\_root** : root directory of the Django project, default to
-   the "root\_directory" variable defined in parameters.yml
--  **django\_version** : django version, the django version actually
-   installed is decided via the requirements, this is only to determine
-   how to perform migrations, default to "1.8"
+- **django_root** : root directory of the Django project, default to
+   the "root_directory" variable defined in parameters.yml
+- **django_use_pipenv**: whether to use Pipenv to install requirements. Defaults to false.
 
 Flask
 =====
