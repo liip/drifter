@@ -21,10 +21,6 @@
     src: allowed_hosts.j2
     dest: "{{ django_root }}/envdir/ALLOWED_HOSTS"
 
-- name: sync db
-  command: "{{ env_root }}/bin/python {{ django_root }}/manage.py syncdb --noinput"
-  when: database_type is defined and django_version | version_compare('1.7', '<')
-
 - name: migrate
   command: "{{ env_root }}/bin/python {{ django_root }}/manage.py migrate --noinput"
   when: database_type is defined

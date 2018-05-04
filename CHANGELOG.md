@@ -12,6 +12,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - gitlab.liip.ch got a new ssh key.
 - Avoid compiling requirements files that are already compiled in the virtualenv role
+- Django role: drop support for Django 1.6 and remove `django_version` parameter
 
 ## [1.6.0] - 2018-03-27
 

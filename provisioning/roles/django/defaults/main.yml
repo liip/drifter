@@ -1,2 +1,1 @@
 django_root: "{{ root_directory }}"
-django_version: "1.8"

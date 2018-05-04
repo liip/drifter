@@ -44,7 +44,7 @@ Uses the ``virtualenv`` role to create and install a virtual environment
 for Django.
 
 Configure database access via environment variable and then run
-migrations (compatible with all Django version since 1.6).
+migrations.
 
 You need to include either to ``mysql`` or ``postgresql`` roles before
 this one.
@@ -55,11 +55,8 @@ configured to use the "django-site.js" site template on the port "8000".
 Parameters
 ----------
 
--  **django\_root** : root directory of the Django project, default to
-   the "root\_directory" variable defined in parameters.yml
--  **django\_version** : django version, the django version actually
-   installed is decided via the requirements, this is only to determine
-   how to perform migrations, default to "1.8"
+- **django_root** : root directory of the Django project, default to
+   the "root_directory" variable defined in parameters.yml
 
 Flask
 =====
