@@ -8,6 +8,11 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Added
+
+- Add [Pipenv](https://docs.pipenv.org/) role
+- Django role: add `django_use_pipenv` parameter to use Pipenv
+
 ### Changed
 
 - gitlab.liip.ch got a new ssh key.

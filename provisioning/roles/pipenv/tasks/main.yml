@@ -1,0 +1,19 @@
+- name: Install pipenv
+  pip:
+    name: pipenv
+    executable: "{{ 'pip' if (python_version|int == 2) else 'pip3' }}"
+  become: yes
+
+# We need to ensure that pipenv uses up-to-date versions of setuptools and pip
+- name: Make sure pipenv uses correct versions of pip and setuptools
+  command: pipenv run -- pip install pip=={{ pip_version }} setuptools=={{ setuptools_version }}
+
+- name: Run pipenv install
+  command: pipenv install --dev
+
+# Ensure that a previous install that would have added the activate script to the bashrc is not active
+- name: Don't activate virtualenv when sshing into the box
+  lineinfile:
+    dest: ~/.bashrc
+    regexp: '^\. .*/bin/activate$'
+    state: absent

@@ -1,1 +1,2 @@
 django_root: "{{ root_directory }}"
+django_use_pipenv: false
