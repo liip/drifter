@@ -2,10 +2,14 @@
   fail: msg="Jessie only supports version 5.6."
   when: "ansible_lsb.major_release|int >= 8 and {{ php_version_installed }} < 5.6"
 
-- name: debian-repo | Install DotDeb key
+- name: debian-repo | error when trying to use something less than PHP 7 on Stretch
+  fail: msg="Stretch only supports version 7"
+  when: "ansible_lsb.major_release|int >= 9 and {{ php_version_installed }} < 7.0"
+
+- name: debian-repo | Install DotDeb key on Jessie
   apt_key: url=https://www.dotdeb.org/dotdeb.gpg
   become: yes
-  when: "{{ php_version_installed }} > 5.4"
+  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed }} > 5.4"
 
 - name: debian-repo | Make sure APT supports HTTPS sources
   apt: pkg=apt-transport-https state=present
@@ -13,7 +17,7 @@
 
 - name: debian-repo | Install deb.sury.org repository key
   apt_key: id=AC0E47584A7A714D url=https://packages.sury.org/php/apt.gpg state=present
-  when: "{{ php_version_installed| version_compare('7.0', '>=') }}"
+  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed| version_compare('7.0', '>=') }}"
   become: yes
 
 - name: debian-repo | Add deb.sury.org repository for PHP 7.x on Jessie
@@ -21,4 +25,4 @@
   with_items:
     - deb https://packages.sury.org/php jessie main
   become: yes
-  when: "{{ php_version_installed| version_compare('7.0', '>=') }}"
+  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed| version_compare('7.0', '>=') }}"

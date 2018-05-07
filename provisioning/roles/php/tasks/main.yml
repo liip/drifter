@@ -1,6 +1,6 @@
 - set_fact: php_version_installed={{ php_version | float }}
 
-- fail: msg="PHP7.0 is only available on Jessie."
+- fail: msg="PHP7.0 is only available from Debian Jessie (8) on"
   when: "ansible_lsb.major_release|int < 8 and {{ php_version_installed| version_compare('7.0', '>=') }}"
 
 - include: ubuntu-repo.yml
