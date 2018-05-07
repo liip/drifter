@@ -11,8 +11,12 @@ The version can be changed and defaults to 5.6. All version are however
 not available on all OS versions, an error message will be displayed by
 Ansible if you chose an impossible combination.
 
-Available versions are 5.6, 7.0 and 7.1 for Debian Jessie and Ubuntu
-Trusty (also supports 5.5) and later. 5.4, 5.5 and 5.6 for Debian Wheezy.
+Available versions are:
+
+  - **Debian Stretch & Jessie**: 5.6, 7.0, 7.1 and 7.2
+  - **Debian Wheezy**: 5.4, 5.5 and 5.6
+  - **Ubuntu Trusty**:  5.5, 5.6, 7.0, 7.1 and 7.2.
+
 
 Development specific configuration options are also put into place, for
 example to activate error outputting.
