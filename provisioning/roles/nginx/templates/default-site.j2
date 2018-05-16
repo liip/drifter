@@ -1,3 +1,6 @@
+{% block extra_server_top %}
+{% endblock %}
+
 server {
     listen {{ port }};
     server_name {{ hostname }} {% for hostname in hostnames %}{{ hostname }} {% endfor %};
