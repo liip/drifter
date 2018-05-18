@@ -25,7 +25,7 @@
 # Xenial
 - name: install python 3 virtualenv package
   apt:
-    pkg: "{{ 'python3.4-venv' if ansible_distribution == 'Ubuntu' and ansible_lsb.major_release|int >= 16 else 'python3-venv' }}"
+    pkg: "{{ 'python3.4-venv' if ansible_distribution == 'Ubuntu' and ansible_lsb.major_release|int < 16 else 'python3-venv' }}"
     state: latest
   become: yes
   when: ansible_lsb.major_release|int >= 8

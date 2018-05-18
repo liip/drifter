@@ -20,6 +20,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Django role: drop support for Django 1.6 and remove `django_version` parameter
 - Python role: upgrade pip to 10.0.1 and setuptools to 39.1.0
 - Python role: use Python 3 by default
+- virtualenv role: upgrade pip-tools to 2.0.1
 
 ## [1.6.0] - 2018-03-27
 
