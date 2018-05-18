@@ -32,8 +32,8 @@
     # - { role: nginx }          # Nginx for basic HTML website
     # - { role: apache }         # Apache for basic HTML website
 
-    ## Install Gulp with Drifter Gulpfile in the box
-    # - { role: gulp }
+    ## Install Webpack in the box
+    # - { role: webpack }
 
     ## Install Solr in the box
     # - { role: solr }

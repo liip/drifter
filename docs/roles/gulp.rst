@@ -1,9 +1,6 @@
-**************
-Frontend Roles
-**************
-
-Gulp
-====
+*********
+Gulp Role
+*********
 
 *Existing configuration files (Gulpfile.js, gulp.config.js,
 webpack.config.js, package.json) will not be overridden.*
@@ -74,11 +71,3 @@ Optimize jp(e)g, png, gif & svg files with:
 ::
 
     gulp images
-
-Compass
-=======
-
-**This role is deprecated, just as Compass is no longer supported.**
-
-Install Compass and incidentally Sass via ``apt-get``. The Ruby role is
-installed as dependency.
