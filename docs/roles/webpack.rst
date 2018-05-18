@@ -4,7 +4,7 @@ Webpack
 
 **Current Webpack version: 4.5.0**
 
-This role provide a pretty simple setup to handle assets (javascripts, stylesheets, images, fonts and SVG icons) through `Webpack <https://webpack.js.org/>`_ in your project.
+This role provides a pretty simple setup to handle assets (javascripts, stylesheets, images, fonts and SVG icons) through `Webpack <https://webpack.js.org/>`_ in your project.
 
 It creates a `webpack.config.js` that is preconfigured to handle:
 
@@ -20,7 +20,7 @@ Installation
 
 Once enabled, this role will create a ``webpack.config.js`` and a ``package.json`` that includes all the required dependencies by default.
 
-**Existing files (webpack.config.js, package.json) will not be overridden. If those files already exists, the installation will be incomplete and could not work as expected.**
+**Existing files (webpack.config.js, package.json) will not be overridden. If those files already exist, the installation will be incomplete and might not work as expected.**
 
 Parameters
 ~~~~~~~~~~
@@ -38,7 +38,7 @@ Parameters
 Post-install
 ~~~~~~~~~~~~
 
-The default configuration expect a couple of things:
+The default configuration expects a couple of things:
 
 - The main JavaScript file to live at ``assets/scripts/common.js`` (not created by the role)
 - All the assets to live in ``assets/…`` or in ``node_modules``
