@@ -13,6 +13,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Add [Pipenv](https://docs.pipenv.org/) role
 - Django role: add `django_use_pipenv` parameter to use Pipenv
 - Webpack role: a brand new way of handling front-end assets in your projects, preconfigured!
+- Add `extra_server_top` block to `provisioning/roles/nginx/templates/default-site.j2`
 
 ### Changed
 - Adapt postgis role to version 2
