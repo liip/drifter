@@ -19,6 +19,10 @@
   apt: pkg=libpq-dev state=latest
   become: yes
 
+- name: install postgresql extensions
+  apt: pkg=postgresql-contrib state=latest
+  become: yes
+
 - name: ensure postgresql is started
   action: service name=postgresql state=started
   become: yes
