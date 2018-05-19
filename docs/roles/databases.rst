@@ -54,7 +54,7 @@ PostGIS
 =======
 Install and set up a PostgreSQL server with the PostGIS extension enabled.
 
-The `postgres` role is declared as a dependency and does need to be activated explicitly in `playbook.yml`.
+The `postgres` role is declared as a dependency and does not need to be activated explicitly in `playbook.yml`.
 
 For each of the supported OS, this role installs the recommended PostgreSQL/PostGIS combination package:
 -  **Debian 7 (Wheezy)**: postgresql-9.1-postgis (1.5.3-2)
