@@ -18,7 +18,7 @@ Parameters
 -  **python_version**: version of Python to use. Can be 2 or 3, defaults to "3"
 -  **pip_version** : the version of pip to install in the virtual environment. Defaults to 9.0.1.
 -  **setuptools_version** : the version of setuptools to install in the virtual environment. Defaults to 28.8.0.
--  **python3_install_from_source**: false (default) or true
+-  **python3_install_from_source**: whether to install Python from source (true) or use the distribution version (false). Defaults to false
 -  **python3_source_version**: Python version like 3.5.5, defaults to "3.6.5"
 
 .. _virtualenv-reference-label:
