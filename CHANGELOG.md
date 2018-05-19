@@ -15,7 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Webpack role: a brand new way of handling front-end assets in your projects, preconfigured!
 
 ### Changed
-
+- Adapt postgis role to version 2
 - gitlab.liip.ch got a new ssh key.
 - Avoid compiling requirements files that are already compiled in the virtualenv role
 - Django role: drop support for Django 1.6 and remove `django_version` parameter
@@ -155,7 +155,6 @@ virtualization/drifter/ansible.cfg.dist ansible.cfg`.
 - Improve MySQL role to support different versions (parameter `mysql_version`)
 
 ### Fixed
-
 - Try to use git_config instead of shell commands to prevent warnings
 - Fix deprecated use of hosts variable in base role
 - The `index` block in nginx templates now works correctly
@@ -168,7 +167,6 @@ virtualization/drifter/ansible.cfg.dist ansible.cfg`.
 ## [1.0.8] - 2016-10-04
 
 ### Fixed
-
 - Use the correct package for Python 3 virtualenv on Ubuntu Trusty
 
 ## [1.0.7] - 2016-09-23

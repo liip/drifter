@@ -1,33 +1,21 @@
 - set_fact: database_type=postgis
 
+- name: set specific variables for distributions
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+
 - name: ensure geo packages are installed
   apt: pkg={{ item }} state=present
   with_items:
-      - binutils
-      - libproj-dev
-      - gdal-bin
-      - postgresql-9.1-postgis
+    - binutils
+    - libproj-dev
+    - gdal-bin
+    - "{{ postgis_package_name }}"
   become: yes
 
-- name: ensure postgis database template exists
-  postgresql_db: name=template_postgis state=present
-  become_user: postgres
-  become: yes
-  register: postgis_template_created
+- include: Debian-7-tasks.yml
+  when: ansible_distribution == "Debian" and ansible_distribution_major_version < '8'
 
-- name: run postgis scripts on postgis database template
-  command: psql -d template_postgis --file '/usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}'
-  with_items:
-    - postgis.sql
-    - spatial_ref_sys.sql
-  become_user: postgres
-  become: yes
-  when: postgis_template_created|changed
-
-- name: run postgis scripts on existing database
-  command: psql -d {{ database_name }} --file /usr/share/postgresql/9.1/contrib/postgis-1.5/{{ item }}
-  become_user: postgres
-  become: yes
-  with_items:
-    - postgis.sql
-    - spatial_ref_sys.sql
+- include: default.yml
+  when: ansible_distribution != "Debian" or ansible_distribution_major_version > '7'
