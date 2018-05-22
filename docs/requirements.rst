@@ -16,9 +16,6 @@ Optional dependencies:
    A Vagrant plugin that manages /etc/hosts files. (will be
    automatically used if installed, make sure it's at least 1.5.0 if you
    have it)
--  `vagrant-cachier <https://github.com/fgrehm/vagrant-cachier>`__ A
-   Vagrant plugin that share common package cache among similar VM
-   instances.
 
 Install Requirements
 ====================

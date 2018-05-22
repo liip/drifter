@@ -27,13 +27,13 @@
     # - { role: php-apache }    # PHP using Apache and mod-php
     # - { role: django }        # Django framework
 
-    ## Webserver, choose one of those only if you have not choosed a scripting language
+    ## Webserver, choose one of those only if you have not chosen a scripting language
     ## above
     # - { role: nginx }          # Nginx for basic HTML website
     # - { role: apache }         # Apache for basic HTML website
 
-    ## Install Gulp with Drifter Gulpfile in the box
-    # - { role: gulp }
+    ## Install Webpack in the box
+    # - { role: webpack }
 
     ## Install Solr in the box
     # - { role: solr }
@@ -43,6 +43,9 @@
 
     ## Install Composer in the box
     # - { role: composer }
+
+    ## Install OpenLDAP's slapd in the box
+    # - { role: openldap }
 
     # If you want php xdebug in your local boxes, uncomment this
     # The when clause prevents it to be installed on the CI_SERVER
@@ -54,6 +57,11 @@
     ## Install some Gitlab CI scripts and .gitlab-ci.yml.
     ## See https://github.com/liip/drifter/blob/master/ci/README.md for details
     # - { role: gitlabci }
+
+    # Install Browsers for end-to-end tests
+    # - { role: firefox }
+    # - { role: chrome }
+    # - { role: phantomjs }
 
     ## You can also creates your own role, just add a directory under the 'virtualization'
     ## folder and refer to it like for other roles :

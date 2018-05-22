@@ -1,0 +1,3 @@
+- name: Create webpack.config.js file if non-existent
+  template: src=webpack.config.js dest={{ webpack_directory }}/webpack.config.js force=no
+  when: webpack_create_config

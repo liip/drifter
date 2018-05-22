@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: nodejs, nodejs_package_json_template: package.json.webpack.j2 }
