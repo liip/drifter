@@ -1,15 +1,15 @@
 - name: debian-repo | error when trying to use something less than PHP 5.6 on jessie
   fail: msg="Jessie only supports version 5.6."
-  when: "ansible_lsb.major_release|int >= 8 and {{ php_version_installed }} < 5.6"
+  when: "ansible_lsb.major_release|int >= 8 and {{ php_version_installed | version_compare('5.6', '<') }}"
 
 - name: debian-repo | error when trying to use something less than PHP 7 on Stretch
   fail: msg="Stretch only supports version 7"
-  when: "ansible_lsb.major_release|int >= 9 and {{ php_version_installed }} < 7.0"
+  when: "ansible_lsb.major_release|int >= 9 and {{ php_version_installed | version_compare('7.0', '<') }}"
 
 - name: debian-repo | Install DotDeb key on Jessie
   apt_key: url=https://www.dotdeb.org/dotdeb.gpg
   become: yes
-  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed }} > 5.4"
+  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed | version_compare('5.4', '>') }}"
 
 - name: debian-repo | Make sure APT supports HTTPS sources
   apt: pkg=apt-transport-https state=present
