@@ -19,7 +19,7 @@
   with_items:
     - python3-pip
     - python3-all-dev
-  when: ansible_lsb.major_release|int >= 8
+  when: ansible_lsb.major_release|int >= 8 and python3_install_from_source == false
 
 # The Python 3 virtualenv package is named "python3.4-venv" on Ubuntu before
 # Xenial
