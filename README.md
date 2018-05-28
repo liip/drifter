@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="400" height="400" src="https://raw.githubusercontent.com/liip/drifter/master/docs/images/logo.png" alt="drifter logo"/>
+</p>
+
 Drifter
 =======
 
