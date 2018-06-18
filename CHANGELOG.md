@@ -6,6 +6,14 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## Unreleased
+ 
+### Added
+
+### Changed
+
+- PHP role: Add compatibility for Debian Stretch
+
 ## [1.7.0] - 2018-05-19
 
 ### Added
