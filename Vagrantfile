@@ -119,7 +119,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             override.hostmanager.ignore_private_ip = true
         end
         # Cope with AppArmor, as it's enforced on recent Debian
+        # lxc options have been renamed in v2.1, and deprecated name are removed since v3.0.0
+        # https://tinyurl.com/ybpyae6x https://tinyurl.com/y924yqct
         lxc.customize 'apparmor.profile', 'unconfined'
+
         lxc.backingstore = custom_config.get('backingstore', 'dir')
     end
 
