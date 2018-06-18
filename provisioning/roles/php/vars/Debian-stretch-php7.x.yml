@@ -1,0 +1,24 @@
+# debian 9, 2017-06-17
+php_packages:
+  - php-common
+  - php-cli
+  - php-curl
+  - php-intl
+  - php-gd
+  - php-sqlite3
+  - php-dev
+  - php-readline
+  - php-imagick
+  - libmagickwand-6.q16-dev
+  - pkg-config
+
+php_mysql_packages: 
+  - php-mysql
+  
+php_pgsql_package: php-pgsql
+
+etc_php_path: /etc/php/{{ php_version_installed }}/
+
+alternatives_php_path: /usr/bin/php{{ php_version_installed }}
+
+phpenmod: phpenmod
