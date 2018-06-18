@@ -6,7 +6,7 @@
   fail: msg="Stretch only supports version 7"
   when: "ansible_lsb.major_release|int >= 9 and {{ php_version_installed | version_compare('7.0', '<') }}"
 
-- name: debian-repo | Install DotDeb key on Jessie
+- name: debian-repo | Install DotDeb key on jessie
   apt_key: url=https://www.dotdeb.org/dotdeb.gpg
   become: yes
   when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed | version_compare('5.4', '>') }}"
@@ -15,14 +15,14 @@
   apt: pkg=apt-transport-https state=present
   become: yes
 
-- name: debian-repo | Install deb.sury.org repository key on jessie
+- name: debian-repo | Install deb.sury.org repository key on jessie/stretch
   apt_key: id=AC0E47584A7A714D url=https://packages.sury.org/php/apt.gpg state=present
-  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed| version_compare('7.0', '>=') }}"
+  when: "ansible_lsb.major_release|int >= 7 and {{ php_version_installed| version_compare('7.0', '>=') }}"
   become: yes
 
-- name: debian-repo | Add deb.sury.org repository for PHP 7.x on Jessie
+- name: debian-repo | Add deb.sury.org repository for PHP 7.x on Debian
   apt_repository: repo='{{ item }}' update_cache=yes
   with_items:
-    - deb https://packages.sury.org/php jessie main
+    - deb https://packages.sury.org/php {{ ansible_distribution_release }} main
   become: yes
-  when: "ansible_lsb.major_release|int <= 8 and {{ php_version_installed| version_compare('7.0', '>=') }}"
+  when: "ansible_lsb.major_release|int >= 7 and {{ php_version_installed| version_compare('7.0', '>=') }}"
