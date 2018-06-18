@@ -1,3 +1,4 @@
+# debian 9, 2017-06-17
 php_packages:
   - php{{ php_version_installed }}-common
   - php{{ php_version_installed }}-cli
@@ -7,13 +8,13 @@ php_packages:
   - php{{ php_version_installed }}-sqlite3
   - php{{ php_version_installed }}-dev
   - php{{ php_version_installed }}-readline
-  - php-imagick
+  - php{{ php_version_installed }}-imagick
   - libmagickwand-6.q16-dev
   - pkg-config
 
-php_mysql_packages: 
+php_mysql_packages:
   - php{{ php_version_installed }}-mysql
-  
+
 php_pgsql_package: php{{ php_version_installed }}-pgsql
 
 etc_php_path: /etc/php/{{ php_version_installed }}/
