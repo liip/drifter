@@ -28,3 +28,11 @@
 - name: migrate
   command: "pipenv run {{ django_root }}/manage.py migrate --noinput"
   when: database_type is defined and django_use_pipenv
+
+- name: download Django bash completion file
+  get_url:
+    url: https://raw.githubusercontent.com/django/django/master/extras/django_bash_completion
+    dest: ~/.django_bash_completion
+
+- name: enable Django bash completion
+  lineinfile: dest=~/.bashrc line='. ~/.django_bash_completion'
