@@ -8,6 +8,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+- Update `package.json.webpack.j2` dependencies & config file
+
 ### Fixed
 
 - Remove AppArmor 'unconfined' profile directive from Vagrantfile (since it's causing issues with LXC 3)
