@@ -26,6 +26,16 @@ Parameters
    supports 5.6, 5.7 and 8.0 (more info on
    http://dev.mysql.com/downloads/repo/apt/)
 
+MariaDB
+=====
+
+Install and set up a MariaDB server and then create the configured user
+and database.
+
+The database administrative user is "root" with the "root" password. Version is 5.5 by default.
+
+Parameters are the same as MySQL role
+
 PostgreSQL
 ==========
 
