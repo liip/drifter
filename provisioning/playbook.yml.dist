@@ -17,9 +17,10 @@
     - { role: base }
     - { role: git }
 
-    ## Database, choose either mysql or postgres, some subsequent roles will be configured
+    ## Database, choose either mysql, mariadb or postgres, some subsequent roles will be configured
     ## depending on your choice here.
     # - { role: mysql }
+    # - { role: mariadb }
     # - { role: postgresql }
 
     ## Scripting / Language support
