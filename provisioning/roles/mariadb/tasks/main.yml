@@ -13,9 +13,9 @@
     state: present
   become: yes
 
-- name: ensure mysql-server package is configured
+- name: ensure MariaDB package is configured
   debconf:
-    name: mariadb-server-5.5
+    name: 'mariadb-server-{{ mariadb_version }}'
     question: "mysql-server/{{ item.question }}"
     value: "{{ item.value }}"
     vtype: "{{ item.vtype | default ('password') }}"
@@ -32,8 +32,8 @@
     default_release: "wheezy"
     update_cache: yes
   with_items:
-    - mariadb-client-5.5
-    - mariadb-server-5.5
+    - 'mariadb-client-{{ mariadb_version }}'
+    - 'mariadb-server-{{ mariadb_version }}'
     - python-mysqldb
     - libmariadbclient-dev
   become: yes
@@ -49,7 +49,7 @@
     src: my.cnf.j2
     dest: ~/.my.cnf
 
-- name: ensure mysql is started
+- name: ensure MariaDB is started
   service:
     name: mysql
     state: started

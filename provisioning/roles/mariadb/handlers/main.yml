@@ -1,4 +1,4 @@
-- name: restart mysql
+- name: restart MariaDB
   service:
     name: mysql
     state: restarted
