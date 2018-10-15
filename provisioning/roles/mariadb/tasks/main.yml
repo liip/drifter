@@ -1,0 +1,69 @@
+- set_fact:
+    database_type: mysql
+
+- name: Add MariaDB apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 1BB943DB
+  become: yes
+
+- name: Add MariaDB repo
+  apt_repository:
+    repo: "deb http://mirror.mva-n.net/mariadb/repo/{{ mariadb_version }}/debian wheezy main"
+    state: present
+  become: yes
+
+- name: ensure mysql-server package is configured
+  debconf:
+    name: mariadb-server-5.5
+    question: "mysql-server/{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.vtype | default ('password') }}"
+  with_items:
+    - question: root_password
+      value: root
+    - question: root_password_again
+      value: root
+  become: yes
+
+- name: ensure packages are installed
+  apt:
+    name: "{{ item }}"
+    default_release: "wheezy"
+    update_cache: yes
+  with_items:
+    - mariadb-client-5.5
+    - mariadb-server-5.5
+    - python-mysqldb
+    - libmariadbclient-dev
+  become: yes
+
+- name: create my.cnf config for root
+  template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+  become: yes
+
+- name: create my.cnf config for user
+  template:
+    src: my.cnf.j2
+    dest: ~/.my.cnf
+
+- name: ensure mysql is started
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: yes
+
+- name: create database user
+  mysql_user:
+    name: "{{ database_user }}"
+    password: "{{ database_password }}"
+    priv: "*.*:ALL,GRANT"
+  become: yes
+
+- name: create database
+  mysql_db:
+    name: "{{ database_name }}"
+  become: yes
