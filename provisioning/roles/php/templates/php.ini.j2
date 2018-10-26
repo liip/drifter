@@ -3,6 +3,10 @@
 display_startup_errors = On
 display_errors = On
 error_reporting = {{ php_error_reporting }}
+{% if php_assert_exceptions %}
+zend.assertions = 1
+assert.exception = 1
+{% endif %}
 
 max_execution_time = {{ php_max_execution_time }}
 memory_limit = {{ php_memory_limit }}
