@@ -11,6 +11,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 
 - Added PHP [PhIVE](https://phar.io/) support
+- Make ansible version in the guest configurable via parameters.yml
 
 ### Fixed
 
