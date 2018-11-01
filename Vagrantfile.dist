@@ -27,6 +27,7 @@ class CustomConfig
   attr_accessor :box_ip             # IP of the box
 
   attr_accessor :ansible_local      # use 'ansible_local' provisionner ?
+  attr_accessor :ansible_version    # the ansible version to use
   attr_accessor :playbook           # path to the playbook
   attr_accessor :extra_vars         # extra variables to pass to Ansible
 
@@ -52,6 +53,8 @@ class CustomConfig
     @box_ip       = config['box_ip']       || nil
 
     @ansible_local = true
+    @ansible_version = config['ansible_version'] || "2.1.1.0"
+
     @playbook      = config['playbook'] || nil
     @extra_vars    = {}
 

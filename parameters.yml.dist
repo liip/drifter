@@ -83,3 +83,5 @@ root_directory: "/vagrant/"
 # Set your version according to your needs and your Linux distribution.
 # java_jre_version: "7"
 # java_jdk_version: "7"
+
+# ansible_version: "2.1.1.0"
