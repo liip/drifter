@@ -32,7 +32,7 @@ class CustomConfig
 
   attr_accessor :forwarded_ports    # Port that need to be forwarded
   attr_accessor :synced_folder_type # Type of synced folder to use
-  
+
   attr_accessor :cpus               # Virtual machine CPU's count use
   attr_accessor :memory             # Virtual machine memory size use (in MB)
 
