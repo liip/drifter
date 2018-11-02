@@ -10,11 +10,8 @@
    - "default.yml"
 
 - name: install PHP packages
-  apt: pkg={{ item }} state=latest
+  apt: pkg={{ php_packages }} state=latest
   become: yes
-  with_items: "{{ php_packages }}"
-
 
 - include: not-debian-7.0.yml
-  when: "not ({{ php_version_installed }} == 7.0 and ansible_distribution == 'Debian')"
-
+  when: not (php_version_installed == 7.0 and ansible_distribution == 'Debian')

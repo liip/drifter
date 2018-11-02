@@ -15,7 +15,9 @@
   apt_repository: repo='deb https://deb.nodesource.com/node_{{ nodejs_version }} {{ nodejs_distro}} main' state=present update_cache=yes
   become: yes
 - name: Install nodejs
-  apt: name=nodejs state=present
+  apt:
+    pkg: nodejs
+    state: present
   become: yes
 
 - name: Add Yarn apt key

@@ -1,17 +1,22 @@
 - name: install git and utilities
-  apt: pkg={{ item }} state=latest
+  apt:
+    state: latest
+    pkg:
+      - git
+      - libimage-exiftool-perl
   become: yes
-  with_items:
-    - git
-    - libimage-exiftool-perl
 
 - name: install default git config system wide
-  copy: src=gitconfig dest=/etc/gitconfig
+  copy:
+    src: gitconfig
+    dest: /etc/gitconfig
   become: yes
 
 - name: install global ignore and attributes file
-  copy: src={{ item }} dest=~/.{{ item }}
-  with_items:
+  copy:
+    src: "{{ item }}"
+    dest: "~/.{{ item }}"
+  loop:
     - gitglobalignore
     - gitglobalattributes
 
@@ -26,11 +31,17 @@
   ignore_errors: yes
 
 - name: set box git username
-  git_config: name=user.name value={{ git_username.stdout }} scope=system
+  git_config:
+    name: user.name
+    value: "{{ git_username.stdout }}"
+    scope: system
   become: yes
 
 - name: set box git email
-  git_config: name=user.email value={{ git_email.stdout }} scope=system
+  git_config:
+    name: user.email
+    value: "{{ git_email.stdout }}"
+    scope: system
   become: yes
 
 - stat: path=/usr/local/bin/diff-so-fancy
@@ -40,5 +51,9 @@
   when: fancy_diff and not (fancy_diff_file.stat.exists is defined and fancy_diff_file.stat.exists)
 
 - name: install synced git config
-  file: src=~/.gitconfig-host dest=~/.gitconfig state=link force=yes
+  file:
+    src: ~/.gitconfig-host
+    dest: ~/.gitconfig
+    state: link
+    force: yes
   when: sync_git_with_host

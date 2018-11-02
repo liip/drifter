@@ -11,41 +11,52 @@
   become: yes
 
 - name: set en_US.UTF-8 as generated locale
-  debconf: name=locales question='locales/locales_to_be_generated'  value='en_US.UTF-8 UTF-8' vtype='multiselect'
+  debconf:
+    name: locales
+    question: 'locales/locales_to_be_generated'
+    value: 'en_US.UTF-8 UTF-8'
+    vtype: 'multiselect'
   become: yes
 
 - name: set en_US.UTF-8 as default locale
-  debconf: name=locales question='locales/default_environment_locale' value=en_US.UTF-8 vtype='select'
+  debconf:
+    name: locales
+    question: 'locales/default_environment_locale'
+    value: en_US.UTF-8
+    vtype: 'select'
   become: yes
 
 - name: ensure members of sudo can sudo password-less
-  copy: src=passwordless-sudo dest=/etc/sudoers.d/sudo-passwordless
+  copy:
+    src: passwordless-sudo
+    dest: /etc/sudoers.d/sudo-passwordless
   become: yes
 
 - name: ensure base packages are installed
-  apt: pkg={{ item }} state=latest
+  apt:
+    state: latest
+    pkg:
+      - acl
+      - locales
+      - procps
+      - command-not-found
+      - bash-completion
+      - zsh
+      - bzip2
+      - unzip
+      - vim
+      - ack-grep
+      - highlight
+      - libxml2-utils
+      - build-essential
+      - wget
+      - openssh-server
+      - sudo
+      - imagemagick
+      - iputils-ping
+      - ncurses-term
+      - python-pycurl # needed by ansible to add apt repos
   become: yes
-  with_items:
-    - acl
-    - locales
-    - procps
-    - command-not-found
-    - bash-completion
-    - zsh
-    - bzip2
-    - unzip
-    - vim
-    - ack-grep
-    - highlight
-    - libxml2-utils
-    - build-essential
-    - wget
-    - openssh-server
-    - sudo
-    - imagemagick
-    - iputils-ping
-    - ncurses-term
-    - python-pycurl # needed by ansible to add apt repos
 
 # Avoid vagrant problem specific to debian guests, see https://github.com/mitchellh/vagrant/issues/6207#issuecomment-234332985
 # If systemd is installed, ensure that libpam-systemd is installed too, and enable it in the sshd config.
@@ -55,31 +66,44 @@
   register: systemd_installed
 
 - name: ensure libpam-systemd is installed if systemd is installed
-  apt: pkg=libpam-systemd
+  apt:
+    pkg: libpam-systemd
   become: yes
-  when: systemd_installed|success
+  when: systemd_installed is success
 
 - name: Ensure UsePAM sshd config set if systemd is installed
-  lineinfile: dest=/etc/ssh/sshd_config line='UsePAM yes' state=present
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: 'UsePAM yes'
+    state: present
   notify: restart ssh
   become: yes
-  when: systemd_installed|success
+  when: systemd_installed is success
 
 # Some programs such as PostgreSQL use the current locale to create the base
 # databases. If the locale is set to a value that isn't installed on the
 # system, PostgreSQL installation will fail
 - name: disallow setting of LANG and LOCALE
-  lineinfile: dest=/etc/ssh/sshd_config line='AcceptEnv LANG LC_*' state=absent
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: 'AcceptEnv LANG LC_*'
+    state: absent
   notify: restart ssh
   become: yes
 
 - name: disallow DNS lookups in sshd
-  lineinfile: dest=/etc/ssh/sshd_config line='UseDNS no' state=present
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: 'UseDNS no'
+    state: present
   notify: restart ssh
   become: yes
 
 - name: disallow GSSAPIAuthentication lookups in sshd
-  lineinfile: dest=/etc/ssh/sshd_config line='GSSAPIAuthentication no' state=present
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: 'GSSAPIAuthentication no'
+    state: present
   notify: restart ssh
   become: yes
 
@@ -89,13 +113,16 @@
 - meta: flush_handlers
 
 - name: ensure silversearcher-ag is installed
-  apt: pkg=silversearcher-ag
+  apt:
+    pkg: silversearcher-ag
   when: ansible_lsb.major_release|int >= 8
   become: yes
 
 - name: install shell config
-  copy: src={{ item }} dest=~/.{{ item }}
-  with_items:
+  copy:
+    src: "{{ item }}"
+    dest: "~/.{{ item }}"
+  loop:
     - aliases
     - bashrc
     - zshrc
@@ -105,27 +132,34 @@
     - vimrc
 
 - name: cd to /vagrant when sshing
-  lineinfile: dest=~/.bashrc line='cd /vagrant'
+  lineinfile:
+    dest: ~/.bashrc
+    line: 'cd /vagrant'
 
 - name: add vagrant user to www-data group
   shell: "usermod -a -G www-data vagrant"
   become: yes
 
 - name: "Add custom hosts to /etc/hosts file"
-  lineinfile: dest=/etc/hosts regexp='.* {{ item.host }}$' line="{{ item.ip }} {{ item.host }}" state=present
-  with_items: "{{ hosts }}"
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.* {{ item.host }}$'
+    line: "{{ item.ip }} {{ item.host }}"
+    state: present
+  loop: "{{ hosts }}"
   become: yes
 
 - name: Make sure packages are installed to properly support HTTPS on Python < 2.7.9
-  apt: pkg={{ item }}
-  with_items:
-    - python-openssl
-    - python-pyasn1
-    - python-urllib3
-  when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
+  apt:
+    pkg:
+      - python-openssl
+      - python-pyasn1
+      - python-urllib3
+  when: ansible_python_version is version_compare('2.7.9', '<')
   become: yes
 
 - name: Make sure packages are installed to properly support HTTPS on Python < 2.7.9
-  pip: name=ndg-httpsclient
-  when: "{{ ansible_python_version | version_compare('2.7.9', '<') }}"
+  pip:
+    name: ndg-httpsclient
+  when: "ansible_python_version is version_compare('2.7.9', '<')"
   become: yes

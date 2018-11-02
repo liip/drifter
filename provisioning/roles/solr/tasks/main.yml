@@ -7,12 +7,14 @@
   become: yes
 
 - name: Download SOLR v{{ solr_version }}
-  get_url: url={{ solr_url }} dest={{ solr_install_dir }}/solr-{{ solr_version }}.tgz
+  get_url:
+    url: "{{ solr_url }}"
+    dest: "{{ solr_install_dir }}/solr-{{ solr_version }}.tgz"
   become_user: solr
   become: yes
 
 - name: Extract SOLR
-  command: tar xzf {{ solr_install_dir }}/solr-{{ solr_version }}.tgz --strip 1 -C {{ solr_install_dir }}/
+  command: tar xzf {{ solr_install_dir }}/solr-{{ solr_version }}.tgz --strip 1 -C {{ solr_install_dir }}/ warn=False
   become_user: solr
   become: yes
 

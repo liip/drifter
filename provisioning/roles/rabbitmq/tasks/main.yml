@@ -1,5 +1,5 @@
 - name: ensure rabbitmq is installed
-  apt: pkg=rabbitmq-server state=installed
+  apt: pkg=rabbitmq-server state=present
   become: yes
 
 - name: activate rabbitmq_management plugin

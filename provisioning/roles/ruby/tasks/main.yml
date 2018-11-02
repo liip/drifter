@@ -1,10 +1,11 @@
 ---
 - name: make sure libreadline-dev is installed
-  apt: pkg={{ item }} state=latest
+  apt:
+    pkg:
+      - libreadline-dev
+      - libsqlite3-dev
+    state: latest
   become: yes
-  with_items:
-    - libreadline-dev
-    - libsqlite3-dev
 
 - name: install rbenv
   git:
@@ -41,8 +42,7 @@
 
 - name: Install ruby {{ ruby_version }}
   command: ~/.rbenv/bin/rbenv install {{ ruby_version }}
-  when:
-    - ruby_path_rules.stat.exists|bool == False
+  when: ruby_path_rules.stat.exists|bool == False
 
 - name: Set ruby {{ ruby_version }} globally
   command: ~/.rbenv/bin/rbenv global {{ ruby_version }}

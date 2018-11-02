@@ -16,4 +16,4 @@
 
 - name: restart supervisor service
   command: supervisorctl restart {{ name }}
-  sudo : yes
+  become: yes

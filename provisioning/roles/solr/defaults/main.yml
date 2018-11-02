@@ -1,8 +1,8 @@
 solr_base_dir: "/opt/solr"
 solr_version: "5.3.1"
 
-solr_base_url_filename: "{{ 'apache-' if (solr_version | version_compare('4.1.0', '<')) else '' }}"
-solr_base_config_dir: "{{ 'example' if  (solr_version | version_compare('5.0.0', '<')) else 'server' }}"
+solr_base_url_filename: "{{ 'apache-' if (solr_version is version_compare('4.1.0', '<')) else '' }}"
+solr_base_config_dir: "{{ 'example' if  (solr_version is version_compare('5.0.0', '<')) else 'server' }}"
 
 solr_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_version }}/{{ solr_base_url_filename }}solr-{{ solr_version }}.tgz"
 
@@ -12,5 +12,5 @@ solr_config_dir: "{{ solr_base_dir }}/{{ solr_base_config_dir }}/solr"
 
 solr_port: "8984"
 solr_command: "{{ 'java -jar ' + solr_install_dir + '/example/start.jar -Djetty.home=' + solr_install_dir + '/example -Dsolr.solr.home=' + solr_config_dir + ' -Djetty.port=' + solr_port 
-if    solr_version | version_compare('4.10.0', '<') 
+if    solr_version is version_compare('4.10.0', '<') 
 else  solr_install_dir + '/bin/solr start -f -p ' + solr_port + ' -s ' + solr_config_dir }}"

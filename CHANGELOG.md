@@ -6,6 +6,13 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## Unreleased
+
+### Changed
+
+- Bump Ansible default version to 2.7.0
+- Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
+
 ## [1.8.0] - 2019-01-07
 
 ### Added
