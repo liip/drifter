@@ -8,6 +8,11 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Changed
+
+- Bump ansible default version to 2.7.0
+- Nginx role: update templates "extend" rules to match changes in ansible paths lookup
+
 ### Added
 
 - Added PHP [PhIVE](https://phar.io/) support
