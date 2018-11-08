@@ -35,6 +35,8 @@ Parameters
 -  **php\_version** : version to install, defaults to 5.6
 -  **php\_error\_reporting** : php error reporting, defaults to "E\_ALL
    \| E\_STRICT"
+-  **php\_assert\_exceptions** : php assert exceptions for 7.0 and above,
+   defaults to false
 -  **php\_max\_execution** \_time\*\* : script max exectution time,
    defaults to "3600"
 -  **php\_memory\_limit** : memory limit, defaults to "4G"
