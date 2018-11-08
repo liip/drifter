@@ -14,6 +14,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Added option to enable assert exceptions for PHP 7.0 and above
 - Make ansible version in the guest configurable via parameters.yml
 
+### Changed
+
+- Webpack role: update dependencies, especially upgrade to Babel 7
+
 ### Fixed
 
 - Remove AppArmor 'unconfined' profile directive from Vagrantfile (since it's causing issues with LXC 3)
