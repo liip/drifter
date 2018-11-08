@@ -8,6 +8,11 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Added
+
+- Added PHP [PhIVE](https://phar.io/) support
+- Make ansible version in the guest configurable via parameters.yml
+
 ### Changed
 
 - Webpack role: update dependencies, especially upgrade to Babel 7

@@ -27,12 +27,13 @@ class CustomConfig
   attr_accessor :box_ip             # IP of the box
 
   attr_accessor :ansible_local      # use 'ansible_local' provisionner ?
+  attr_accessor :ansible_version    # the ansible version to use
   attr_accessor :playbook           # path to the playbook
   attr_accessor :extra_vars         # extra variables to pass to Ansible
 
   attr_accessor :forwarded_ports    # Port that need to be forwarded
   attr_accessor :synced_folder_type # Type of synced folder to use
-  
+
   attr_accessor :cpus               # Virtual machine CPU's count use
   attr_accessor :memory             # Virtual machine memory size use (in MB)
 
@@ -52,6 +53,8 @@ class CustomConfig
     @box_ip       = config['box_ip']       || nil
 
     @ansible_local = true
+    @ansible_version = config['ansible_version'] || "2.1.1.0"
+
     @playbook      = config['playbook'] || nil
     @extra_vars    = {}
 
