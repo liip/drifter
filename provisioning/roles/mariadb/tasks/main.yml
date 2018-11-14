@@ -4,19 +4,19 @@
 - name: Add MariaDB apt key
   apt_key:
     keyserver: keyserver.ubuntu.com
-    id: 1BB943DB
+    id: F1656F24C74CD1D8
   become: yes
 
 - name: Add MariaDB repo
   apt_repository:
-    repo: "deb http://mirror.mva-n.net/mariadb/repo/{{ mariadb_version }}/debian wheezy main"
+    repo: "deb http://mirror.mva-n.net/mariadb/repo/{{ mariadb_version }}/debian stretch main"
     state: present
   become: yes
 
 - name: ensure MariaDB package is configured
   debconf:
     name: 'mariadb-server-{{ mariadb_version }}'
-    question: "mysql-server/{{ item.question }}"
+    question: "mariadb-server/{{ item.question }}"
     value: "{{ item.value }}"
     vtype: "{{ item.vtype | default ('password') }}"
   with_items:
@@ -29,13 +29,12 @@
 - name: ensure packages are installed
   apt:
     name: "{{ item }}"
-    default_release: "wheezy"
+    default_release: "stretch"
     update_cache: yes
   with_items:
-    - 'mariadb-client-{{ mariadb_version }}'
-    - 'mariadb-server-{{ mariadb_version }}'
+    - 'mysql-client'
+    - 'mariadb-server'
     - python-mysqldb
-    - libmariadbclient-dev
   become: yes
 
 - name: create my.cnf config for root
