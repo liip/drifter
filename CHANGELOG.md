@@ -22,6 +22,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Fixed
 
 - Remove AppArmor 'unconfined' profile directive from Vagrantfile (since it's causing issues with LXC 3)
+- Fix "Failed to set permissions on the temporary files" error
 
 ## [1.7.0] - 2018-05-19
 
