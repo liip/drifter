@@ -23,7 +23,7 @@
   git:
     repo: https://github.com/rbenv/ruby-build.git
     dest: ~/.rbenv/plugins/ruby-build
-    version: v20180224
+    version: v20181207
 
 - name: ensure rbenv is accessible
   lineinfile:
