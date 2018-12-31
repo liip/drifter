@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Make ansible version in the guest configurable via parameters.yml
 - Django role: download and enable bash completion for django commands
 - Node.js role: allow to disable package.json creation with new parameter `nodejs_create_package_json`
+- New MariaDB role
 
 ### Changed
 
