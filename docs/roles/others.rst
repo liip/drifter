@@ -24,6 +24,8 @@ Parameters
 -  **nodejs\_distro** : Is automatically set to either 'jessie' or
    'wheezy' based on available information, you can also put an Ubuntu
    codename here.
+-  **nodejs_create_package_json**: create a ``package.json`` file based on the
+   settings below during provisioning. Defaults to ``true``.
 -  **nodejs_package_json_template**: template to use for the creation of the initial ``package.json`` file. Defaults to
   ``package.json.j2``, or ``package.json.gulp.j2`` if you're using the gulp role. See the
   ``provisioning/roles/nodejs/templates`` directory for the list of available templates.

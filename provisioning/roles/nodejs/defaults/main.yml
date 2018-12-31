@@ -12,4 +12,5 @@ nodejs_with_yarn: false
 nodejs_package_json_template: package.json.j2
 nodejs_package_json_path: "{{ root_directory }}/package.json"
 nodejs_package_json_author: Liip AG
+nodejs_create_package_json: true
 nodejs_install_package_json: true
