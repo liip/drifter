@@ -15,7 +15,7 @@
 
 - name: ensure MariaDB package is configured
   debconf:
-    name: 'mariadb-server-{{ mariadb_version }}'
+    name: "mariadb-server-{{ mariadb_version }}"
     question: "mariadb-server/{{ item.question }}"
     value: "{{ item.value }}"
     vtype: "{{ item.vtype | default ('password') }}"
@@ -32,8 +32,8 @@
     default_release: "stretch"
     update_cache: yes
   with_items:
-    - 'mysql-client'
-    - 'mariadb-server'
+    - mysql-client
+    - mariadb-server
     - python-mysqldb
   become: yes
 
