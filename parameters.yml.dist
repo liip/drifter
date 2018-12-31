@@ -37,7 +37,7 @@ forwarded_ports: {
 # box_ip: "10.10.10.10"
 
 # Name of the database to create for your project if you include the
-# MySQL or PostgreSQL role
+# MySQL, MariaDB or PostgreSQL role
 database_name: "example"
 
 # Root directory of your project for the webserver and other purposes
