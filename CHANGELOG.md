@@ -18,6 +18,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 
 - Webpack role: update dependencies, especially upgrade to Babel 7
+- Ruby role: update ruby-build to v20181207
 
 ### Fixed
 
