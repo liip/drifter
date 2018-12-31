@@ -35,6 +35,7 @@
 
 - name: Create default package.json
   template: src={{ nodejs_package_json_template }} dest={{ nodejs_package_json_path }} force=no
+  when: nodejs_create_package_json
 
 - name: Install npm packages
   command: /bin/true

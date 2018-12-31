@@ -1,0 +1,29 @@
+- name: create directory for phive
+  become: yes
+  file:
+    name: "{{ phive.dir }}"
+    state: directory
+
+- command: test -f {{ phive.dir }}/phive.phar
+  register: phive_installed
+  ignore_errors: yes
+
+- name: install phive
+  become: yes
+  shell: "cd {{ phive.dir }} && curl --location --silent --show-error --output phive.phar https://phar.io/releases/phive.phar && chmod ugo+x phive.phar"
+  when: phive_installed|failed
+
+- name: upgrade phive
+  become: yes
+  shell: "cd {{ phive.dir }} && ./phive.phar self-update"
+  when: phive_installed|success
+
+- name: symlink phive in /usr/local/bin
+  become: yes
+  file:
+    src: "{{ phive.dir }}/phive.phar"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items:
+    - phive
+    - phive.phar

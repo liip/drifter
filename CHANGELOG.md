@@ -8,9 +8,23 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Added
+
+- Added PHP [PhIVE](https://phar.io/) support
+- Added option to enable assert exceptions for PHP 7.0 and above
+- Make ansible version in the guest configurable via parameters.yml
+- Django role: download and enable bash completion for django commands
+- Node.js role: allow to disable package.json creation with new parameter `nodejs_create_package_json`
+
+### Changed
+
+- Webpack role: update dependencies, especially upgrade to Babel 7
+- Ruby role: update ruby-build to v20181207
+
 ### Fixed
 
 - Remove AppArmor 'unconfined' profile directive from Vagrantfile (since it's causing issues with LXC 3)
+- Fix "Failed to set permissions on the temporary files" error
 
 ## [1.7.0] - 2018-05-19
 

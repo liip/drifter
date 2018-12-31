@@ -35,6 +35,8 @@ Parameters
 -  **php\_version** : version to install, defaults to 5.6
 -  **php\_error\_reporting** : php error reporting, defaults to "E\_ALL
    \| E\_STRICT"
+-  **php\_assert\_exceptions** : php assert exceptions for 7.0 and above,
+   defaults to false
 -  **php\_max\_execution** \_time\*\* : script max exectution time,
    defaults to "3600"
 -  **php\_memory\_limit** : memory limit, defaults to "4G"
@@ -109,7 +111,7 @@ Composer
 ========
 
 Installs Composer, the PHP package manager. The PHP role is defined as a
-dependency. You can set the install dir, a link is ``/usr/local/bin``
+dependency. You can set the install dir, a link in ``/usr/local/bin``
 will be set up whichever the install dir is so that composer can be
 accessed globally.
 
@@ -120,3 +122,17 @@ Parameters
 
 -  **composer.dir** : where to install the binary, default
    "opt/composer"
+
+PhiVE
+=====
+
+Installs PhIVE support (Phar Installation and Verification Environment (PHIVE).
+A link in ``/usr/local/bin`` will be set up so that ``phive`` can be accessed globally.
+
+If PhIVE is already installed, this role will update it instead.
+
+Parameters
+----------
+
+- **phive.dir** : where to install the binary and the downloaded phar(s),
+  default to "opt/phive"

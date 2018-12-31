@@ -18,22 +18,23 @@ It creates a `webpack.config.js` that is preconfigured to handle:
 Installation
 ------------
 
-Once enabled, this role will create a ``webpack.config.js`` and a ``package.json`` that includes all the required dependencies by default.
+Once enabled, this role will create a ``webpack.config.js``, a ``babel.config.js`` and a ``package.json`` that includes all the required dependencies by default.
 
-**Existing files (webpack.config.js, package.json) will not be overridden. If those files already exist, the installation will be incomplete and might not work as expected.**
+**Existing files (webpack.config.js, babel.config.js and package.json) will not be overridden. If those files already exist, the installation will be incomplete and might not work as expected.**
 
 Parameters
 ~~~~~~~~~~
 
 - **webpack_directory**: where should the webpack.config.js be created, defaults to ``{{ root_directory }}/``
 - **webpack_package_json_path**: where should the package.json be created, defaults to ``{{ webpack_directory }}/package.json``
-- **webpack_create_config**: Create the webpack.config.js, defaults to ``true``
+- **webpack_create_config**: Create the webpack.config.js & babel.config.js, defaults to ``true``
 - **webpack_browserslist**: Define `Browserslist <https://github.com/ai/browserslist>`__ in ``package.json``, defaults to:
 
     .. code-block:: yaml
 
         - "> 0.5%"
         - "not op_mini all"
+        - "not dead"
 
 Post-install
 ~~~~~~~~~~~~
