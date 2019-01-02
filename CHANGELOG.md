@@ -21,6 +21,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - Webpack role: update dependencies, especially upgrade to Babel 7
 - Ruby role: update ruby-build to v20181207
+- Node.js role: you can now install versions 9.x, 10.x and 11.x; 10.x replaces 8.x as the default
 
 ### Fixed
 

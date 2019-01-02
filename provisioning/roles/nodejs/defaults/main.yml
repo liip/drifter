@@ -6,8 +6,8 @@ nodejs_distro: "{{
   'jessie'
 }}"
 nodejs_acceptable_distros: ["wheezy", "jessie", "stretch", "sid", "precise", "trusty"]
-nodejs_version: "8.x"
-nodejs_acceptable_versions: ["8.x", "7.x", "6.x", "5.x", "4.x", "0.12", "0.10"]
+nodejs_version: "10.x"
+nodejs_acceptable_versions: ["11.x", "10.x", "9.x", "8.x", "7.x", "6.x", "5.x", "4.x", "0.12", "0.10"]
 nodejs_with_yarn: false
 nodejs_package_json_template: package.json.j2
 nodejs_package_json_path: "{{ root_directory }}/package.json"
