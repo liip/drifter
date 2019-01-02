@@ -22,6 +22,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Webpack role: update dependencies, especially upgrade to Babel 7
 - Ruby role: update ruby-build to v20181207
 - Node.js role: you can now install versions 9.x, 10.x and 11.x; 10.x replaces 8.x as the default
+- Explicitly set box_name and box_url in parameters.yml when creating a new project (fixes #225)
 
 ### Fixed
 
