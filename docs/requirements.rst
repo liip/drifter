@@ -25,7 +25,7 @@ Debian Stretch (testing) and Ubuntu Xenial 16.04
 
 Open a terminal and run::
 
-    sudo apt-get install vagrant vagrant-lxc vagrant-cachier
+    sudo apt-get install vagrant vagrant-lxc
     vagrant plugin install vagrant-hostmanager
 
 Older Debian and Ubuntu versions
@@ -35,7 +35,7 @@ Go to https://www.vagrantup.com/downloads.html to download and install
 the latest Vagrant version. Then open a terminal and run::
 
     sudo apt-get install lxc redir    # this is needed for LXC provider
-    vagrant plugin install vagrant-lxc vagrant-cachier vagrant-hostmanager
+    vagrant plugin install vagrant-lxc vagrant-hostmanager
 
 Mac OS X
 --------
@@ -48,7 +48,7 @@ Download and install
 
 Then open a terminal and run::
 
-    vagrant plugin install vagrant-cachier vagrant-hostmanager
+    vagrant plugin install vagrant-hostmanager
 
 You can also use ``cask`` to help with the installation:::
 
