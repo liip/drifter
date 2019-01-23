@@ -92,7 +92,7 @@ SSH
 Disable SSH strict host key checking if ``ssh_no_stricthostkeychecking``
 is set to true in the parameters.
 
-Also add the github and gitlab.liip.ch host key to the ``kwown_host``
+Also add the github and gitlab.liip.ch host key to the ``known_hosts``
 file.
 
 Parameters
