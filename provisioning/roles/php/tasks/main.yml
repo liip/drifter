@@ -43,9 +43,6 @@
 - include: not-debian-7.0.yml
   when: not (php_version_installed is version_compare('7.0', '>=') and ansible_distribution == 'Debian')
 
-- include: wheezy-php5.yml
-  when: ansible_lsb.major_release|int < 8 and php_version_installed is version_compare('5.4', '>')
-
 - name: set php alternative to the correct path
   alternatives: name=php path={{ alternatives_php_path }}
   become: yes
