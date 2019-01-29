@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## Unreleased
+
+### Fixed
+
+- Ruby role: fixed installation on Debian Stretch
+
 ## [1.8.0] - 2019-01-07
 
 ### Added
