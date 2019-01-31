@@ -1,7 +1,7 @@
 - set_fact: php_version_installed={{ php_version | float }}
 
-- fail: msg="PHP7.0 is only available on Jessie."
-  when: ansible_lsb.major_release|int < 8 and php_version_installed is version_compare('7.0', '>=')
+- fail: msg="PHP7.0 is only available from Debian Jessie (8) on"
+  when: "ansible_lsb.major_release|int < 8 and php_version_installed is version_compare('7.0', '>=')"
 
 - include: ubuntu-repo.yml
   when: ansible_distribution == 'Ubuntu'
@@ -13,11 +13,15 @@
 # and just have to override any changes in the specific versions
 - include_vars: "default.yml"
 
-- include_vars: "{{ item }}"
+- name: Include subconfiguration for php based on the distribution used
+  include_vars: "{{ item }}"
   with_first_found:
-   - "{{ ansible_distribution }}-{{ php_version_installed }}.yml"
-   - "{{ ansible_distribution }}-{{ php_version_installed|int }}.x.yml"
-   - "{{ ansible_distribution }}.yml"
+   - "{{ ansible_distribution }}-{{ ansible_distribution_release }}-php.yml"
+   - "{{ ansible_distribution }}-{{ ansible_distribution_release }}-php{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}-{{ ansible_distribution_release }}-php{{ php_version_installed | int }}.x.yml"
+   - "{{ ansible_distribution }}-php{{ php_version_installed }}.yml"
+   - "{{ ansible_distribution }}-php{{ php_version_installed | int }}.x.yml"
+   - "{{ ansible_distribution }}-default.yml"
    - "default.yml"
 
 - set_fact: php_phpenmod={{ phpenmod }}

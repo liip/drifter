@@ -8,6 +8,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## Unreleased
 
+### Changed
+
+- PHP role: Add compatibility for Debian Stretch
+
 ### Fixed
 
 - Ruby role: fixed installation on Debian Stretch
