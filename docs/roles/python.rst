@@ -61,14 +61,3 @@ Parameters
 - **django_root** : root directory of the Django project, default to
    the "root_directory" variable defined in parameters.yml
 - **django_use_pipenv**: whether to use Pipenv to install requirements. Defaults to false.
-
-Flask
-=====
-
-.. note::
-
-    This module is deprecated and will be removed in a future version. Using the :ref:`virtualenv-reference-label` role
-    will achieve the same result.
-
-Uses the ``virtualenv`` role to create and install a virtual environment
-for Flask.

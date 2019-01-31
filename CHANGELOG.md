@@ -14,6 +14,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Bump Ansible default version to 2.7.0
 - Dropped support for Debian Wheezy
 - Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
+- Remove deprecated roles flask and compass
 
 ### Fixed
 
