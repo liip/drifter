@@ -11,16 +11,13 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 
 - PHP role: Add compatibility for Debian Stretch
+- Bump Ansible default version to 2.7.0
+- Dropped support for Debian Wheezy
+- Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
 
 ### Fixed
 
 - Ruby role: fixed installation on Debian Stretch
-
-### Changed
-
-- Bump Ansible default version to 2.7.0
-- Dropped support for Debian Wheezy
-- Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
 
 ## [1.8.0] - 2019-01-07
 
