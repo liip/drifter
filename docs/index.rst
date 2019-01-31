@@ -96,6 +96,7 @@ anywhere else you'd like to.
     :caption: Other Info
     :maxdepth: 2
 
+    testing
     roadmap
     boxes
     migrations
