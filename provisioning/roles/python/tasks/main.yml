@@ -1,8 +1,4 @@
 ---
-- name: error when trying to use python3 on wheezy
-  fail: msg="You cannot use python 3 on Wheezy."
-  when: "ansible_lsb.major_release|int < 8 and python_version|int > 2"
-
 # We always try to install Python 2 + Python 3 packages in case
 # we want to use tools like tox
 - name: install python 2 packages

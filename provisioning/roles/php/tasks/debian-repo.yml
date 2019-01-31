@@ -11,12 +11,12 @@
   become: yes
 
 # https://www.dotdeb.org/instructions/
-- name: debian-repo | Install DotDeb repository key on wheezy/squeeze
+- name: debian-repo | Install DotDeb repository key on squeeze
   apt_key: url=https://www.dotdeb.org/dotdeb.gpg
   become: yes
   when: ansible_lsb.major_release is version_compare('8', '<') and php_version_installed is version_compare('5.4', '>')
 
-- name: debian-repo | Add DotDeb repository on wheezy/squeeze
+- name: debian-repo | Add DotDeb repository on squeeze
   apt_repository: repo='deb http://packages.dotdeb.org {{ ansible_distribution_release }} all' update_cache=yes
   become: yes
   when: ansible_lsb.major_release is version_compare('8', '<') and php_version_installed is version_compare('5.4', '>')

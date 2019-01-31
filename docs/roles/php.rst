@@ -14,9 +14,7 @@ Ansible if you chose an impossible combination.
 Available versions are:
 
   - **Debian Stretch & Jessie**: 5.6, 7.0, 7.1 and 7.2
-  - **Debian Wheezy**: 5.4, 5.5 and 5.6
   - **Ubuntu Trusty**:  5.5, 5.6, 7.0, 7.1 and 7.2.
-
 
 Development specific configuration options are also put into place, for
 example to activate error outputting.
