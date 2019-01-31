@@ -1,4 +1,4 @@
 - name: ensure memcached is installed
-  apt: pkg=memcached state=installed
+  apt: pkg=memcached state=present
   become: yes
 

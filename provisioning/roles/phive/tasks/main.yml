@@ -11,12 +11,12 @@
 - name: install phive
   become: yes
   shell: "cd {{ phive.dir }} && curl --location --silent --show-error --output phive.phar https://phar.io/releases/phive.phar && chmod ugo+x phive.phar"
-  when: phive_installed|failed
+  when: phive_installed is failed
 
 - name: upgrade phive
   become: yes
   shell: "cd {{ phive.dir }} && ./phive.phar self-update"
-  when: phive_installed|success
+  when: phive_installed is success
 
 - name: symlink phive in /usr/local/bin
   become: yes

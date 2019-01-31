@@ -11,18 +11,17 @@
 
 - name: ensure old packages are uninstalled
   apt:
-    name: "{{ item }}"
+    pkg:
+      - mysql-common
+      - mysql-client
+      - mysql-server
+      - mysql-community-client
+      - mysql-community-server
+      - python-mysqldb
+      - libmysqlclient-dev
     state: absent
-  with_items:
-    - mysql-common
-    - mysql-client
-    - mysql-server
-    - mysql-community-client
-    - mysql-community-server
-    - python-mysqldb
-    - libmysqlclient-dev
   register: mysql_package_uninstallation
-  when: "{{ mysql_installed_version.stdout_lines[0] | default(0) }} != {{ mysql_version }}"
+  when: mysql_installed_version.stdout_lines[0] | default(0) != mysql_version
   become: yes
 
 - name: ensure mysql upstream repository package is configured
@@ -57,14 +56,14 @@
   command: dpkg-query -f '${Version}' -W mysql-apt-config
   register: mysql_apt_config_check_deb
   failed_when: mysql_apt_config_check_deb.rc > 1
-  changed_when: mysql_apt_config_check_deb.rc == 1 or mysql_apt_config_version | version_compare(mysql_apt_config_check_deb.stdout, ">")
+  changed_when: mysql_apt_config_check_deb.rc == 1 or mysql_apt_config_version is version_compare(mysql_apt_config_check_deb.stdout, '>')
   become: yes
 
 - name: ensure mysql upstream repository package is downloaded
   get_url:
     url: http://dev.mysql.com/get/mysql-apt-config_{{mysql_apt_config_version}}_all.deb
     dest: /root/mysql-apt-config.deb
-  when: mysql_apt_config_check_deb|changed
+  when: mysql_apt_config_check_deb is changed
   become: yes
 
 - name: ensure mysql upstream repository is installed
@@ -73,36 +72,35 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
   register: mysql_upstream_repository_installation
-  when: mysql_apt_config_check_deb|changed
+  when: mysql_apt_config_check_deb is changed
   become: yes
 
 - name: ensure mysql upstream repository package is removed
   file:
     path: /root/mysql-apt-config.deb
     state: absent
-  when: mysql_apt_config_check_deb|changed
+  when: mysql_apt_config_check_deb is changed
   become: yes
 
 - name: ensure mysql repository package is re-configured
   shell: "DEBIAN_FRONTEND=noninteractive dpkg-reconfigure --frontend noninteractive mysql-apt-config"
-  when: mysql_package_uninstallation is defined and mysql_package_uninstallation|changed
+  when: mysql_package_uninstallation is defined and mysql_package_uninstallation is changed
   become: yes
 
 - name: ensure apt cache is updated
   apt:
     update_cache: yes
   changed_when: false
-  when: (mysql_upstream_repository_installation is defined and mysql_upstream_repository_installation|changed) or (mysql_package_uninstallation is defined and mysql_package_uninstallation|changed)
+  when: (mysql_upstream_repository_installation is defined and mysql_upstream_repository_installation is changed) or (mysql_package_uninstallation is defined and mysql_package_uninstallation is changed)
   become: yes
 
 - name: ensure packages are installed
   apt:
-    name: "{{ item }}"
-  with_items:
-    - mysql-client
-    - mysql-server
-    - python-mysqldb
-    - libmysqlclient-dev
+    pkg:
+      - mysql-client
+      - mysql-server
+      - python-mysqldb
+      - libmysqlclient-dev
   become: yes
 
 - name: create my.cnf config for root

@@ -49,7 +49,7 @@
 
     # If you want php xdebug in your local boxes, uncomment this
     # The when clause prevents it to be installed on the CI_SERVER
-    # - { role: php-xdebug, when: "'{{ lookup('env','CI_SERVER') }}' != 'yes'" }
+    # - { role: php-xdebug, when: "lookup('env','CI_SERVER') != 'yes'" }
 
     ## Install the ssh rule, installs gitlab.liip.ch and github.com host key
     # - { role: ssh }

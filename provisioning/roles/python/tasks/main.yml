@@ -1,20 +1,25 @@
 ---
 - name: error when trying to use python3 on wheezy
   fail: msg="You cannot use python 3 on Wheezy."
-  when: "ansible_lsb.major_release|int < 8 and {{python_version}}|int > 2"
+  when: "ansible_lsb.major_release|int < 8 and python_version|int > 2"
 
 # We always try to install Python 2 + Python 3 packages in case
 # we want to use tools like tox
 - name: install python 2 packages
-  apt: pkg={{ item }} state=latest
+  apt:
+    pkg:
+      - python-virtualenv
+      - python-pip
+      - python-all-dev
+    state: latest
   become: yes
-  with_items:
-    - python-virtualenv
-    - python-pip
-    - python-all-dev
 
 - name: install python 3 packages
-  apt: pkg={{ item }} state=latest
+  apt:
+    pkg:
+      - python3-pip
+      - python3-all-dev
+    state: latest
   become: yes
   with_items:
     - python3-pip
@@ -31,17 +36,20 @@
   when: ansible_lsb.major_release|int >= 8
 
 - name: install pillow dependencies
-  apt: pkg={{ item }} state=latest
+  apt:
+    pkg:
+      - libfreetype6-dev
+      - zlib1g-dev
+      - libwebp-dev
+      - liblcms2-dev
+      - libtiff5-dev
+    state: latest
   become: yes
-  with_items:
-    - libfreetype6-dev
-    - zlib1g-dev
-    - libwebp-dev
-    - liblcms2-dev
-    - libtiff5-dev
 
 - name: install libjpeg-dev
-  apt: pkg="{{ 'libjpeg8-dev' if (ansible_lsb.major_release|int == 7) else 'libjpeg-dev' }}" state=latest
+  apt:
+    pkg: "{{ 'libjpeg8-dev' if (ansible_lsb.major_release|int == 7) else 'libjpeg-dev' }}"
+    state: latest
   become: yes
 
 # Install python from source when python_install_from_source is true.

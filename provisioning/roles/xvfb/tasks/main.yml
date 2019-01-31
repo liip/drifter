@@ -1,3 +1,5 @@
 - name: Install xvfb
-  apt: name=xvfb state=present
-  sudo: yes
+  apt:
+    pkg: xvfb
+    state: present
+  become: yes

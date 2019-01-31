@@ -2,13 +2,13 @@
   template: src=gitlab-ci.yml dest=/vagrant/.gitlab-ci.yml force=no
 
 - name: create ci scripts directory
-  file: path=/vagrant/{{ ci_scripts_folder}} state=directory mode=0755
+  file: path=/vagrant/{{ ci_scripts_folder }} state=directory mode=0755
 
 - name: install run_tests.sh
-  copy: src=run_tests.sh dest=/vagrant/{{ ci_scripts_folder}}run_tests.sh force=no mode=0755
+  copy: src=run_tests.sh dest=/vagrant/{{ ci_scripts_folder }}run_tests.sh force=no mode=0755
  
 - name: install gitlabci.sh
-  template: src=gitlabci.sh dest=/vagrant/{{ ci_scripts_folder}}gitlabci.sh force=no mode=0755
+  template: src=gitlabci.sh dest=/vagrant/{{ ci_scripts_folder }}gitlabci.sh force=no mode=0755
   
 - name: install provisionbuild.dat
   shell: date +%Y%m%d%H%M%S > virtualization/provisionbuild.dat

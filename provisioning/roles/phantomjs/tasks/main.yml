@@ -1,11 +1,11 @@
 - name: Download phantomjs
   get_url: url={{ phantomjs_url }} dest=/opt/phantomjs.tar.bz2
-  sudo: yes
+  become: yes
 
 - name: Unpack phantomjs
   unarchive: src=/opt/phantomjs.tar.bz2 dest=/opt/ copy=no creates=/opt/{{ phantomjs_name }}/
-  sudo: yes
+  become: yes
 
 - name: Create phantomjs Symlink
   file: state=link src=/opt/{{ phantomjs_name }}/bin/phantomjs path=/usr/local/bin/phantomjs
-  sudo: yes
+  become: yes

@@ -7,11 +7,12 @@
     - { question: shared/organization, value: "{{ ldap_organization }}", type: string }
     - { question: slapd/domain, value: "{{ ldap_organization_domain }}", type: string }
     - { question: slapd/backend, value: HDB, type: string }
-  sudo: yes
+  become: yes
 
 - name: Install slapd and ldap-utils
-  apt: pkg={{ item }} state=installed
-  with_items:
-    - slapd
-    - ldap-utils
-  sudo: yes
+  apt:
+    pkg:
+      - 'slapd'
+      - 'ldap-utils'
+    state: present
+  become: yes

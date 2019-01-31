@@ -9,12 +9,12 @@
 - name: install composer
   become: yes
   shell: "cd {{ composer.dir }} && curl -sS https://getcomposer.org/installer | php"
-  when: composer_installed|failed
+  when: composer_installed is failed
 
 - name: upgrade composer
   become: yes
   shell: "cd {{ composer.dir }} && ./composer.phar self-update"
-  when: composer_installed|success
+  when: composer_installed is success
 
 - name: symlink composer in /usr/local/bin
   file: src="{{ composer.dir }}/composer.phar" dest=/usr/local/bin/{{ item }} state=link

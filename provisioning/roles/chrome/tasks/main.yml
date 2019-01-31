@@ -1,19 +1,19 @@
 - name: Install Chrome
   apt: deb={{ chrome_download_url }} state=present
-  sudo: yes
+  become: yes
 
 - name: Download Chromedriver
   get_url: url={{ chromedriver_download_url }} dest=/opt/chromedriver.zip
-  sudo: yes
+  become: yes
 
 - name: Create directory for chromedriver
   file: path=/opt/chromedriver state=directory
-  sudo: yes
+  become: yes
 
 - name: Unzip Chromedriver
   unarchive: src=/opt/chromedriver.zip dest=/opt/chromedriver/ creates=/opt/chromedriver/chromedriver
-  sudo: yes
+  become: yes
 
 - name: Symlink Chrome
   file: state=link src=/opt/chromedriver/chromedriver path=/usr/local/bin/chromedriver
-  sudo: yes
+  become: yes

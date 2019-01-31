@@ -1,5 +1,5 @@
 - name: DEPRECATED | Ensure Compass package is installed
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=present
   become: yes
   with_items:
     - ruby-compass

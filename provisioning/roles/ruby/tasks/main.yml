@@ -43,8 +43,7 @@
 
 - name: Install ruby {{ ruby_version }}
   command: ~/.rbenv/bin/rbenv install {{ ruby_version }}
-  when:
-    - ruby_path_rules.stat.exists|bool == False
+  when: ruby_path_rules.stat.exists|bool == False
 
 - name: Set ruby {{ ruby_version }} globally
   command: ~/.rbenv/bin/rbenv global {{ ruby_version }}
