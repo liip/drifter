@@ -53,7 +53,7 @@ class CustomConfig
     @box_ip       = config['box_ip']       || nil
 
     @ansible_local = true
-    @ansible_version = config['ansible_version'] || "2.7.0"
+    @ansible_version = config['ansible_version'] || nil
 
     @playbook      = config['playbook'] || nil
     @extra_vars    = {}

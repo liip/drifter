@@ -1,9 +1,31 @@
-***********************
-Migrations instructions
-***********************
+**********************
+Migration instructions
+**********************
 
-Version 1.0.0
--------------
+Version 2.0
+===========
+
+Ansible version
+---------------
+
+This version of Drifter requires Ansible version >= 2.7 installed. If you're
+using ``ansible_local = true`` in your `Vagrantfile` (which is the default),
+you'll need to make sure Ansible 2.7 is installed on the guest. To do that, open
+the file ``virtualization/parameters.yml`` in your editor and add the
+following::
+
+  ansible_version: 2.7.0
+
+Then run the provisioning using ``vagrant provision``, this should install the
+correct Ansible version.
+
+If you're using ``ansible_local = false``, you'll need to make sure the Ansible
+version installed on the host is at least 2.7. Instructions will depend on how
+you installed Ansible (OS package manager, pip, etc).
+
+
+Version 1.0
+===========
 
 Ansible version and ``ansible_local``
 -------------------------------------

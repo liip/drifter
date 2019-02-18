@@ -6,7 +6,9 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
-## Unreleased
+## [2.0] - Unreleased
+
+This release contains breaking changes, please refer to the [migration instructions](https://liip-drifter.readthedocs.io/en/latest/migrations.html) when upgrading.
 
 ### Changed
 
