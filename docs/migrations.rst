@@ -23,6 +23,17 @@ If you're using ``ansible_local = false``, you'll need to make sure the Ansible
 version installed on the host is at least 2.7. Instructions will depend on how
 you installed Ansible (OS package manager, pip, etc).
 
+Ansible templates location
+--------------------------
+
+The new Ansible version changed the way templates are discovered. You might have
+templates paths set in your application, especially if you extend a Drifter
+template in one of your templates (eg. ``{% extends "nginx/templates/default-site.j2" %}``).
+
+In such cases, you'll need to replace the template path with only the template
+name. For example ``nginx/templates/default-site.j2`` would become
+``default-site.j2``.
+
 
 Version 1.0
 ===========

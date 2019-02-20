@@ -14,9 +14,10 @@ is automatically included by other roles, for example PHP-Apache.
 Parameters
 ----------
 
--  **web_directory** : Root directory for the virtual host, defaults to `root_directory`.
--  **ssl** : Whether to activate HTTPS vhost, defaults to `false`. If enabled, the generated CA will be copied to the
-  project directory.
+- **web_directory** : Root directory for the virtual host, defaults to
+  `root_directory`.
+- **ssl** : Whether to activate HTTPS vhost, defaults to `false`. If enabled,
+  the generated CA will be copied to the project directory.
 
 NGinx
 =====
@@ -35,7 +36,7 @@ default templates provided:
 
 .. code-block:: jinja
 
-    {% extends "nginx/templates/default-site.j2" %}
+    {% extends "default-site.j2" %}
 
     {% block extra %}
         {{ super() }}
@@ -77,14 +78,14 @@ Parameters
   -  ``symfony2-site.j2`` Site template for Symfony2
   -  ``symfony4-site.j2`` Site template for Symfony4
 
--  **index** : what file do we use as an index ? defaults to 'false'
--  **static_host** : Which static host to use for Django projects ?
-   defaults to "false".
--  **static_dir** : Which static URL dir to use for Django projects ?
-   defaults to "false".
--  **static_fs_dir** : Which static filesystem dir to use for Django
-   projects ? defaults to "".
--  **expire_time** : Expiration time of static files, defaults to "6h".
--  **web_directory** : Root directory for the virtual host, defaults to `root_directory`.
--  **ssl** : Whether to activate HTTPS vhost, defaults to `false`. If enabled, the generated CA will be copied to the
+- **index** : what file do we use as an index ? defaults to 'false'
+- **static_host** : Which static host to use for Django projects ?
+  defaults to "false".
+- **static_dir** : Which static URL dir to use for Django projects ?
+  defaults to "false".
+- **static_fs_dir** : Which static filesystem dir to use for Django
+  projects ? defaults to "".
+- **expire_time** : Expiration time of static files, defaults to "6h".
+- **web_directory** : Root directory for the virtual host, defaults to `root_directory`.
+- **ssl** : Whether to activate HTTPS vhost, defaults to `false`. If enabled, the generated CA will be copied to the
   project directory.
