@@ -6,7 +6,7 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
-## [2.0] - Unreleased
+## [2.0.0] - 2019-02-20
 
 This release contains breaking changes, please refer to the [migration instructions](https://liip-drifter.readthedocs.io/en/latest/migrations.html) when upgrading.
 
@@ -14,13 +14,13 @@ This release contains breaking changes, please refer to the [migration instructi
 
 - PHP role: Add compatibility for Debian Stretch
 - Bump Ansible default version to 2.7.0
-- Dropped support for Debian Wheezy
+- Drop support for Debian Wheezy
 - Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
 - Remove deprecated roles flask and compass
 
 ### Fixed
 
-- Ruby role: fixed installation on Debian Stretch
+- Ruby role: fix installation on Debian Stretch
 
 ## [1.8.0] - 2019-01-07
 
@@ -375,7 +375,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/liip/drifter/compare/v1.8.0...v2.0.0
 [1.8.0]: https://github.com/liip/drifter/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/liip/drifter/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/liip/drifter/compare/v1.5.0...v1.6.0
