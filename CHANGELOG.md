@@ -18,6 +18,7 @@ This release contains breaking changes, please refer to the [migration instructi
 - Drop support for Debian Wheezy
 - Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
 - Remove deprecated roles flask and compass
+- Python role: bump default pip version to 19.0.2 and setuptools to 40.8.0
 
 ### Fixed
 
