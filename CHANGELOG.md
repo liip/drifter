@@ -19,10 +19,12 @@ This release contains breaking changes, please refer to the [migration instructi
 - Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
 - Remove deprecated roles flask and compass
 - Python role: bump default pip version to 19.0.2 and setuptools to 40.8.0
+- MySQL role: bump default version to 5.7
 
 ### Fixed
 
 - Ruby role: fix installation on Debian Stretch
+- MySQL role: fix mysql package installation (was broken because of a key change)
 
 ## [1.8.0] - 2019-01-07
 
