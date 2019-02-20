@@ -12,7 +12,8 @@ This release contains breaking changes, please refer to the [migration instructi
 
 ### Changed
 
-- PHP role: Add compatibility for Debian Stretch
+- PHP role: add compatibility for Debian Stretch
+- PHP role: bump default version to 7.2
 - Bump Ansible default version to 2.7.0
 - Drop support for Debian Wheezy
 - Nginx role: update templates "extend" rules to match changes in Ansible paths lookup
