@@ -59,7 +59,7 @@ root_directory: "/vagrant/"
 # For a Django or Flask project, you might want to set the following
 # pip_requirements: "requirements/dev.txt"
 
-# if you want to dissable ssh StrictHostKeyChecking (needs the ssh role)
+# if you want to disable ssh StrictHostKeyChecking (needs the ssh role)
 # this has security issues, you better add your ssh host keys in the ssh role
 # ssh_no_stricthostkeychecking: true
 
