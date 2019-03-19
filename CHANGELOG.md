@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## [2.0.1] - 2019-03-19
+
+### Fixed
+
+- PHP Role: Replace sury.org signature key 
+
 ## [2.0.0] - 2019-02-20
 
 This release contains breaking changes, please refer to the [migration instructions](https://liip-drifter.readthedocs.io/en/latest/migrations.html) when upgrading.
