@@ -28,7 +28,7 @@
 
 # https://github.com/oerdnj/deb.sury.org/wiki/Frequently-Asked-Questions
 - name: debian-repo | Install packages.sury.org repository key on jessie and beyond
-  apt_key: id=AC0E47584A7A714D url=https://packages.sury.org/php/apt.gpg state=present
+  apt_key: id=B188E2B695BD4743 url=https://packages.sury.org/php/apt.gpg state=present
   when: ansible_lsb.major_release is version_compare('8', '>=')
   become: yes
 
