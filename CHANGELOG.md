@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## [1.8.1] - 2019-03-21
+
+### Fixed
+
+- PHP Role: Make sury.org signature key id configurable with `php_sury_apt_key_id` variable
+
 ## [1.8.0] - 2019-01-07
 
 ### Added
@@ -359,7 +365,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v1.8.1...v2.0.0
+[1.8.1]: https://github.com/liip/drifter/compare/v1.8.0...v1.8.1
 [1.8.0]: https://github.com/liip/drifter/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/liip/drifter/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/liip/drifter/compare/v1.5.0...v1.6.0

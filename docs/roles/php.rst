@@ -32,6 +32,9 @@ you should not include it yourself.
 Parameters
 ----------
 
+-  **php_sury_apt_key_id**: if you're installing PHP on Debian >= jessie, this
+   parameter allows you to change the APT key id of the Sury repository.
+   Defaults to B188E2B695BD4743
 -  **php\_version** : version to install, defaults to 5.6
 -  **php\_error\_reporting** : php error reporting, defaults to "E\_ALL
    \| E\_STRICT"
