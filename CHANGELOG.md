@@ -385,7 +385,8 @@ Some of the roles still survives today, so not everything was lost ;)
 ## Added
 - Roles : Apache, PHP
 
-[Unreleased]: https://github.com/liip/drifter/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/liip/drifter/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/liip/drifter/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/liip/drifter/compare/v1.8.0...v2.0.0
 [1.8.0]: https://github.com/liip/drifter/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/liip/drifter/compare/v1.6.0...v1.7.0
