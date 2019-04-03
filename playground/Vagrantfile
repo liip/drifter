@@ -77,6 +77,7 @@ Dir.chdir File.expand_path(File.dirname(__FILE__))
 load '../Vagrantfile'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.synced_folder "../provisioning", "/drifter"
-    config.vm.synced_folder "../ansible-plugins", "/drifter_plugins"
+    synced_folder_type = CustomConfig.new.get('synced_folder_type', 'nfs')
+    config.vm.synced_folder "../provisioning", "/drifter", type: synced_folder_type
+    config.vm.synced_folder "../ansible-plugins", "/drifter_plugins", type: synced_folder_type
 end
