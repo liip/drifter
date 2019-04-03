@@ -56,6 +56,7 @@
       - iputils-ping
       - ncurses-term
       - python-pycurl # needed by ansible to add apt repos
+      - exim4
   become: yes
 
 # Avoid vagrant problem specific to debian guests, see https://github.com/mitchellh/vagrant/issues/6207#issuecomment-234332985
