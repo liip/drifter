@@ -26,7 +26,6 @@ Parameters
 ~~~~~~~~~~
 
 - **webpack_directory**: where should the webpack.config.js be created, defaults to ``{{ root_directory }}/``
-- **webpack_package_json_path**: where should the package.json be created, defaults to ``{{ webpack_directory }}/package.json``
 - **webpack_create_config**: Create the webpack.config.js & babel.config.js, defaults to ``true``
 - **webpack_browserslist**: Define `Browserslist <https://github.com/ai/browserslist>`__ in ``package.json``, defaults to:
 
