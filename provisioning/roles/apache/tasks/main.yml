@@ -14,15 +14,6 @@
   when: ansible_lsb.major_release|int >= 8
   notify: reload apache
 
-- name: create vhost config
-  template: src={{ site_template }} dest=/etc/apache2/sites-available/{{ hostname }}.conf
-  become: yes
-
-- name: enable vhost
-  file: src=/etc/apache2/sites-available/{{ hostname }}.conf dest=/etc/apache2/sites-enabled/0001-{{ hostname }}.conf state=link
-  become: yes
-  notify: reload apache
-
 - name: enable apache modules
   apache2_module: state=present name={{ item }}
   become: yes
@@ -39,5 +30,14 @@
   become: yes
   when: ssl
   notify: restart apache
+
+- name: create vhost config
+  template: src={{ site_template }} dest=/etc/apache2/sites-available/{{ hostname }}.conf
+  become: yes
+
+- name: enable vhost
+  file: src=/etc/apache2/sites-available/{{ hostname }}.conf dest=/etc/apache2/sites-enabled/0001-{{ hostname }}.conf state=link
+  become: yes
+  notify: reload apache
 
 - meta: flush_handlers

@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## [Unreleased]
+
+### Fixed
+
+- Apache role: fix vhost when SSL is enabled
+
 ## [2.0.2] - 2019-03-21
 
 ### Fixed
