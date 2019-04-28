@@ -12,7 +12,7 @@
   git:
     repo: https://github.com/rbenv/rbenv.git
     dest: ~/.rbenv
-    version: v1.1.1
+    version: v1.1.2
 
 - name: try to compile dynamic bash extension to speed up rbenv
   command: src/configure && make -C src
@@ -25,7 +25,7 @@
   git:
     repo: https://github.com/rbenv/ruby-build.git
     dest: ~/.rbenv/plugins/ruby-build
-    version: v20181207
+    version: v20190423
 
 - name: ensure rbenv is accessible
   lineinfile:

@@ -8,6 +8,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+- Ruby role: update rbenv and ruby-build. Set 2.6.3 default
+
 ### Fixed
 
 - Apache role: fix vhost when SSL is enabled
