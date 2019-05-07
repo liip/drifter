@@ -53,8 +53,11 @@ root_directory: "/vagrant/"
 # ssl: yes
 
 # For a PHP project, you might want to set the following
-# Default reporting level of PHP errors
+# default reporting level of PHP errors
 # php_error_reporting: "E_ALL & ~E_NOTICE"
+
+# To pick a specific PHP version, change this value
+# php_version: "7.3"
 
 # For a Django or Flask project, you might want to set the following
 # pip_requirements: "requirements/dev.txt"
@@ -72,11 +75,13 @@ root_directory: "/vagrant/"
 #   - host: someotherhost
 #     ip: 192.168.12.34
 
-# If you want to use ubuntu instead of debian (or any other box),
-# uncomment this. You can also replace "base" with "php7", if you need
-# php7 (with fpm and nginx) anyway.
+# If you want to use any other box, change these
 box_name: "drifter/stretch64-base"
 box_url: "https://vagrantbox-public.liip.ch/drifter-stretch64-base.json"
+
+# For using Ubuntu 18.04 LTS, Bionic Beaver use these values
+# box_name: "drifter/bionic64-base"
+# box_url: "https://vagrantbox-public.liip.ch/drifter-bionic64-base.json"
 
 # Default Java version is 7. If you need another java version, uncomment
 # the matching line and set the correct value.
