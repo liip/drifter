@@ -39,7 +39,13 @@ then
     THISPROVISION=$(if [ -f ./virtualization/provisionbuild.dat ]; then cat ./virtualization/provisionbuild.dat; else echo ""; fi)
     if [ "$LASTPROVISION" != "$THISPROVISION" ]
     then
-      vagrant provision $VIRTUALBOX_NAME
+      if [ "$PROVISION_UPDATE_MODE" == "destroy" ]
+      then
+        vagrant destroy -f $VIRTUALBOX_NAME
+        vagrant up $VIRTUALBOX_NAME --provider lxc --provision
+      else
+        vagrant provision $VIRTUALBOX_NAME
+      fi
       vagrant ssh -c "echo $THISPROVISION > /home/vagrant/provisionbuild.last" $VIRTUALBOX_NAME
     fi
 else

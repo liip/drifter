@@ -8,6 +8,11 @@ export CI_TEST_SCRIPT={{ ci_scripts_folder }}run_tests.sh
 
 export DO_GLOBAL_PROJECTS_CACHE=true
 
+
+# if you want to destroy and up the box instead of "provision" if provisionbuild.dat changes
+# uncomment this line
+# export PROVISION_UPDATE_MODE="destroy"
+
 echo "- Update submodules"
 git submodule update --init
 
