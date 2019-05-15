@@ -8,6 +8,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Changed
+
+- Global git ignore: add .phpstorm_helpers folder
+
 ### Fixed
 
 - Apache role: fix vhost when SSL is enabled
