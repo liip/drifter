@@ -1,6 +1,7 @@
 .vagrant
 
 .idea
+.phpstorm_helpers
 .pycharm_helpers
 phpunit.xml
 atlassian-ide-plugin.xml
