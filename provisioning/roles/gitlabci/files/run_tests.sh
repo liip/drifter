@@ -10,7 +10,7 @@ echo "No tests configured yet! Please adjust $0"
 
 # eg for PHP/composer
 
-## export COMPOSER_CACHE_DIR=~/.projects_cache/composer_cache
+## export COMPOSER_CACHE_DIR=${PROJECTS_CACHE_DIR}/composer_cache
 
 ## echo "- Install dependencies"
 ## composer.phar install --no-interaction;

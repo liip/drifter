@@ -12,6 +12,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - Apache role: fix vhost when SSL is enabled
 
+### Added
+
+- Gitlab CI role: PROJECTS_CACHE_DIR_BASE and PROJECTS_CACHE_DIR are provided for using user id based project cache directories.
+
 ## [2.0.2] - 2019-03-21
 
 ### Fixed
