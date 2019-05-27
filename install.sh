@@ -77,8 +77,8 @@ git submodule add -q https://github.com/liip/drifter.git "$VIRTDIR/$REPODIR" > /
 echo -e "${GREEN}OK${NC}."
 
 cd "$VIRTDIR/$REPODIR"
-LATEST_COMMIT=$(git rev-list --tags --max-count=1)
-LATEST=$(git describe --tags $LATEST_COMMIT)
+LATEST=$(git tag | tail -n1)
+LATEST_COMMIT=$(git show-ref -s $LATEST)
 echo -n -e "Using version $LATEST : ${RED}"
 git checkout -q $LATEST > /dev/null
 echo -e "${GREEN}OK${NC}."
