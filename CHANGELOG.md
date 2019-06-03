@@ -12,6 +12,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 - Base role: add exim4 package
 
+### Changed
+
+- Ruby role: update rbenv and ruby-build. Set default ruby version to 2.6.3
+
 ### Fixed
 
 - Apache role: fix vhost when SSL is enabled
