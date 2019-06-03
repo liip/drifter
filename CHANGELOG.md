@@ -11,6 +11,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 
 - Base role: add exim4 package
+- Gitlab CI role: `PROJECTS_CACHE_DIR_BASE` and `PROJECTS_CACHE_DIR` are provided for using user id based project cache directories.
 
 ### Changed
 
