@@ -8,6 +8,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ## [Unreleased]
 
+### Added
+
+- Base role: add exim4 package
+
 ### Fixed
 
 - Apache role: fix vhost when SSL is enabled
