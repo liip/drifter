@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 
 - Ruby role: update rbenv and ruby-build. Set default ruby version to 2.6.3
+- Global git ignore: add `.phpstorm_helpers` folder
 
 ### Fixed
 
