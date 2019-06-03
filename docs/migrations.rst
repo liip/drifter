@@ -10,9 +10,13 @@ Ansible version
 
 This version of Drifter requires Ansible version >= 2.7 installed. If you're
 using ``ansible_local = true`` in your `Vagrantfile` (which is the default),
-you'll need to make sure Ansible 2.7 is installed on the guest. To do that, open
-the file ``virtualization/parameters.yml`` in your editor and add the
-following::
+you'll need to make sure Ansible 2.7 is installed on the guest. If you have
+an existing Vagrantfile in your project root, check if the default version is
+set to something old. If it is set, edit the line to say::
+
+  @ansible_version = config['ansible_version'] || "2.7.0"
+
+You can also specify the parameter in ``virtualization/parameters.yml`` as::
 
   ansible_version: 2.7.0
 
