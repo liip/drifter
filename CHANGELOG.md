@@ -20,6 +20,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Fixed
 
 - Apache role: fix vhost when SSL is enabled
+- Node.js role: fix "npm install" not being executed
 
 ## [2.0.2] - 2019-03-21
 

@@ -41,6 +41,7 @@
 
 - name: Install npm packages
   command: /bin/true
-  notify:
-    - install package.json
+  notify: install package.json
   when: nodejs_install_package_json
+
+- meta: flush_handlers
