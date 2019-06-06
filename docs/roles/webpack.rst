@@ -89,7 +89,7 @@ To load the main JavaScript file, use:
 
     <script type="text/javascript" src="common.js"></script>
 
-In development, CSS is automatically injected in a ``<style>`` tag by the JavaScript file that imported it. In production, you need to include the extracted file. For example, all the CSS required by the ``common`` bundle, would be extracted as ``common.css`` and should be loaded like this:
+CSS styles are extracted to a separate file. For example, all the CSS required by the ``common`` bundle, would be extracted as ``common.css`` and should be loaded like this:
 
 .. code-block:: html
 
