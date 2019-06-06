@@ -6,6 +6,11 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+### Changed
+
+- Webpack role: replace `style-loader` with `mini-css-extract-plugin`
+- Node.js role: update dependencies for webpack variant of package.json
+
 ## [2.0.3] - 2019-06-03
 
 ### Added
