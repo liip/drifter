@@ -55,7 +55,7 @@
       install: --no-document
 
 - name: Install bundler
-  command: ~/.rbenv/shims/gem install bundler
+  command: ~/.rbenv/shims/gem install bundler -v 1.17.2
 
 - name: Install Gems from Gemfile if any
   command: ~/.rbenv/shims/bundle install
