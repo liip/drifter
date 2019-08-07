@@ -25,6 +25,8 @@ Parameters
 -  **mysql\_version**: the MySQL version to install, defaults to 5.6 and
    supports 5.6, 5.7 and 8.0 (more info on
    http://dev.mysql.com/downloads/repo/apt/)
+-  **mysql\_character\_set**: the database character set, defaults to "latin1"
+-  **mysql\_collation**: the database collation, defaults to "latin1_swedish_ci"
 
 PostgreSQL
 ==========
