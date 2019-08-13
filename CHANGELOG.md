@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## Unreleased
+
+### Changed
+
+- PHP role: add the custom php-dev.ini for all PHP versions and all OS
+
 ## [2.0.4] - 2019-07-08
 
 ### Changed
