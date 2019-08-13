@@ -40,8 +40,18 @@
   become: yes
   when: database_type|default(false) == 'postgresql'
 
-- include: not-debian-7.0.yml
-  when: not (php_version_installed is version_compare('7.0', '>=') and ansible_distribution == 'Debian')
+- name: Place PHP configuration files in place.
+  template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=644
+  become: yes
+  with_items:
+    - { src: php.ini.j2, dest: "{{ etc_php_path }}/mods-available/php-dev.ini" }
+
+- name: Activate PHP configuration files
+  command: "{{phpenmod}} {{ item }}"
+  with_items:
+    - php-dev
+    - imagick
+  become: yes
 
 - name: set php alternative to the correct path
   alternatives: name=php path={{ alternatives_php_path }}
