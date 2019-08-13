@@ -6,12 +6,11 @@
   notify: restart apache
   become: yes
 
-#- name: Configure mod-php
-#  command: php5enmod {{ item }}
-#  with_items:
-#    - php-dev
-#    - xdebug
-#  notify: restart apache
-#  become: yes
+- name: Configure mod-php
+  command: "{{ phpenmod }} {{ item }}"
+  with_items:
+    - php-dev
+  notify: restart apache
+  become: yes
 
 - meta: flush_handlers
