@@ -10,7 +10,8 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Changed
 
-- MySQL role: Added options to set encoding and collation
+- MySQL role: add options to set encoding and collation
+- NodeJS role: add support for Debian Buster
 
 ## [2.0.4] - 2019-07-08
 

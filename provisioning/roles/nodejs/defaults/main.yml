@@ -2,9 +2,10 @@ nodejs_distro: "{{
   'precise' if (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise') else
   'trusty' if (ansible_distribution == 'Ubuntu') else
   'jessie' if (ansible_lsb.major_release|int == 8) else
-  'stretch' if (ansible_lsb.major_release|int == 9)
+  'stretch' if (ansible_lsb.major_release|int == 9) else
+  'buster' if (ansible_lsb.major_release|int == 10)
 }}"
-nodejs_acceptable_distros: ["jessie", "stretch", "sid", "precise", "trusty"]
+nodejs_acceptable_distros: ["jessie", "stretch", "buster", "sid", "precise", "trusty"]
 nodejs_version: "10.x"
 nodejs_acceptable_versions: ["11.x", "10.x", "9.x", "8.x", "7.x", "6.x", "5.x", "4.x", "0.12", "0.10"]
 nodejs_with_yarn: false
