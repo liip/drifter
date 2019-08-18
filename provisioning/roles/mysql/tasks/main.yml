@@ -138,4 +138,6 @@
 - name: create database
   mysql_db:
     name: "{{ database_name }}"
+    encoding: "{{ mysql_character_set }}"
+    collation: "{{ mysql_collation }}"
   become: yes
