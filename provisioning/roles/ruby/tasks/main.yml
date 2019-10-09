@@ -25,7 +25,7 @@
   git:
     repo: https://github.com/rbenv/ruby-build.git
     dest: ~/.rbenv/plugins/ruby-build
-    version: v20190423
+    version: "{{ ruby_build_version }}"
 
 - name: ensure rbenv is accessible
   lineinfile:
