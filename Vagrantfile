@@ -95,7 +95,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 puts "*************************************************************************"
                 exit 1
             end
-            override.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
+
+            nfsPath = "."
+            if Dir.exist?("/System/Volumes/Data")
+                nfsPath = "/System/Volumes/Data" + Dir.pwd
+            end
+            override.vm.synced_folder nfsPath, "/vagrant", type: "nfs", mount_options: ['noatime', 'noacl', 'proto=udp', 'vers=3', 'async', 'actimeo=1']
         end
 
         v.linked_clone = true if Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new('1.8')
