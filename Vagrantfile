@@ -96,7 +96,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 exit 1
             end
 
-            nfsPath = "."
+            nfsPath = File.dirname(__FILE__)
             if Dir.exist?("/System/Volumes/Data")
                 nfsPath = "/System/Volumes/Data" + Dir.pwd
             end
