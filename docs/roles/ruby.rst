@@ -14,7 +14,8 @@ Parameters
 
 -  **ruby\_version**: this should be the exact version name (such as
    2.3.3). Find a list of accepted version with ``rbenv install -l``.
-   Default is 2.4.1
+   Default is 2.4.1.
+-  **ruby_build_version**: version of ruby-build to use. Default is v20190423.
 
 Rails
 =====

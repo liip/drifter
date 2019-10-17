@@ -6,6 +6,12 @@ This project try to follows [Semantic Versioning](http://semver.org/) since the 
 
 For migration information, you can always have a look at https://liip-drifter.readthedocs.io/en/latest/migrations.html.
 
+## [Unreleased]
+
+### Added
+
+- Ruby role: allow to configure ruby-build version with the `ruby_build_version` variable
+
 ## [2.1.0] - 2019-08-27
 
 ### Changed
