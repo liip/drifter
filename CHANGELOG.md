@@ -11,6 +11,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Added
 
 - Ruby role: allow to configure ruby-build version with the `ruby_build_version` variable
+- PHP role: add support for Debian Buster
 
 ## [2.1.0] - 2019-08-27
 
