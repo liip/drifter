@@ -61,6 +61,7 @@ The `postgres` role is declared as a dependency and does not need to be activate
 For each of the supported OS, this role installs the recommended PostgreSQL/PostGIS combination package:
 -  **Debian 8 (Jessie)**: postgresql-9.4-postgis-2.1
 -  **Debian 9 (Stretch)**: postgresql-9.6-postgis-2.3
+-  **Debian 10 (Buster)**: postgresql-11-postgis-2.5
 -  **Ubuntu 14 (trusty)**: postgresql-9.3-postgis-2.1
 -  **Ubuntu 16 (xenial)**: postgresql-9.5-postgis-2.2
 

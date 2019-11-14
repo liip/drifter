@@ -15,6 +15,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 
 ### Changed
 
+- PostGIS role: add support for Debian Buster and drop Debian Wheezy
 - Django role: allow to disable virtualenv usage with `django_use_virtualenv` variable
 - NodeJS role: you can now install versions 13.x and 12.x; 12.x replaces 10.x as the default
 
