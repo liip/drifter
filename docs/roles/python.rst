@@ -61,3 +61,6 @@ Parameters
 - **django_root** : root directory of the Django project, default to
    the "root_directory" variable defined in parameters.yml
 - **django_use_pipenv**: whether to use Pipenv to install requirements. Defaults to false.
+- **django_use_virtualenv**: whether to use Virtualenv to install requirements. Defaults to the opposite of
+  **django_use_pipenv**. If both **django_use_pipenv** and **django_use_virtualenv** are false, you're responsible for
+  installing your project requirements.

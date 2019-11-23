@@ -13,6 +13,10 @@ For migration information, you can always have a look at https://liip-drifter.re
 - Ruby role: allow to configure ruby-build version with the `ruby_build_version` variable
 - PHP role: add support for Debian Buster
 
+### Changed
+
+- Django role: allow to disable virtualenv usage with `django_use_virtualenv` variable
+
 ## [2.1.0] - 2019-08-27
 
 ### Changed
