@@ -16,6 +16,7 @@ For migration information, you can always have a look at https://liip-drifter.re
 ### Changed
 
 - Django role: allow to disable virtualenv usage with `django_use_virtualenv` variable
+- NodeJS role: use apt key from nodesource.com instead of keyserver.ubuntu.com
 
 ## [2.1.0] - 2019-08-27
 
