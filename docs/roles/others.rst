@@ -19,8 +19,8 @@ Install NodeJS and NPM.
 Parameters
 ----------
 
--  **nodejs\_version** : The version to install, currently supports 11.x, 10.x, 9.x, 8.x,
-   7.x, 6.x, 5.x, 4.x, 0.12 and 0.10, default being 10.x.
+-  **nodejs\_version** : The version to install, currently supports 13.x, 12.x, 11.x, 10.x, 9.x, 8.x,
+   7.x, 6.x, 5.x, 4.x, 0.12 and 0.10, default being 12.x.
 -  **nodejs\_distro** : Is automatically set to either 'jessie', 'stretch', etc
    based on available information, you can also put an Ubuntu codename here.
 -  **nodejs_create_package_json**: create a ``package.json`` file based on the
