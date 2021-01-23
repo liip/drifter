@@ -46,10 +46,3 @@
 - name: set php alternative to the correct path
   alternatives: name=php path={{ alternatives_php_path }}
   become: yes
-
-- name: Download php-cs-fixer
-  get_url:
-    url: http://get.sensiolabs.org/php-cs-fixer.phar
-    dest: /usr/local/bin/php-cs-fixer
-    mode: 0755
-  become: yes
