@@ -12,7 +12,7 @@
   when: ansible_lsb.major_release|int >= 8
 
 - name: install python-psycopg2 (for ansible)
-  apt: pkg=python-psycopg2 state=latest
+  apt: pkg=python3-psycopg2 state=latest
   become: yes
 
 - name: install postgresql dev libraries
